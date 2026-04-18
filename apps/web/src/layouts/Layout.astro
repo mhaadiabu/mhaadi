@@ -4,7 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from '../components/Footer.astro';
 import { ClientRouter } from 'astro:transitions';
 import { navigate } from 'astro:transitions/client';
-import BackArrow from '../../public/assets/icons/arrow-left.astro';
+import BackArrow from '../icons/arrow-left.astro';
 
 interface Props {
   title?: string;
@@ -28,7 +28,7 @@ const isHomepage = Astro.url.pathname === '/';
 
     <ClientRouter />
   </head>
-  <body class="min-h-screen bg-black text-neutral-400 container w-full max-w-5xl mx-auto text-sm font-paper-mono py-4" transition:animate='slide'>
+  <body class="min-h-screen bg-black text-neutral-400 container w-full max-w-5xl mx-auto text-sm font-paper-mono py-4">
     <!-- <Header /> -->
     <main class='flex flex-col w-full max-w-3xl m-auto justify-center items-start text-left px-4 h-full py-6 relative top-0 bottom-0'>
       {
