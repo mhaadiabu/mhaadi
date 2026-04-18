@@ -1,28 +1,22 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
-const TITLE_TEXT = `
- ██████╗ ███████╗████████╗████████╗███████╗██████╗
- ██╔══██╗██╔════╝╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗
- ██████╔╝█████╗     ██║      ██║   █████╗  ██████╔╝
- ██╔══██╗██╔══╝     ██║      ██║   ██╔══╝  ██╔══██╗
- ██████╔╝███████╗   ██║      ██║   ███████╗██║  ██║
- ╚═════╝ ╚══════╝   ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═╝
-
- ████████╗    ███████╗████████╗ █████╗  ██████╗██╗  ██╗
- ╚══██╔══╝    ██╔════╝╚══██╔══╝██╔══██╗██╔════╝██║ ██╔╝
-    ██║       ███████╗   ██║   ███████║██║     █████╔╝
-    ██║       ╚════██║   ██║   ██╔══██║██║     ██╔═██╗
-    ██║       ███████║   ██║   ██║  ██║╚██████╗██║  ██╗
-    ╚═╝       ╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
- `;
 ---
 
-<Layout title="portfolio">
-  <div class="container mx-auto max-w-3xl px-4 py-2">
-    <pre class="overflow-x-auto font-mono text-sm text-white">{TITLE_TEXT}</pre>
-    <div class="grid gap-6">
-    </div>
+<Layout>
+  <h1 class='text-xl font-bold text-neutral-50'>Haadi</h1>
+  <p class='text-xs'>frontend developer. 20. unskilled.</p>
+
+  <p class='py-4'>hey there. i&apos;m haadi, a wannabe fullstack dev who builds nothing for fun. willing to collaborate on whatever you have for me regardless. don&apos;t hesitate to hmu.</p>
+
+  <div class='flex flex-col gap-2.5 pt-4'>
+    <h5 class='font-medium text-neutral-200'>what i do</h5>
+    <ul class='list-disc list-inside [&>li]:leading-loose'>
+      <li>build web apps</li>
+      <li>build mobile apps (if you're willing to pay what i ask)</li>
+      <li>read code and docs (a lot)</li>
+      <li>pretend to build while you watching</li>
+    </ul>
+    <a href='/projects'>projects</a>
+    <a href='/blog'>blog</a>
   </div>
 </Layout>
-
