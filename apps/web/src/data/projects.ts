@@ -42,6 +42,13 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "UPSA HMS",
+    description: "A comprehensive Hospital Management System built for the UPSA Ewuntoma Clinic.",
+    image: "/projects/school-thing.png",
+    stack: ["nextjs", "convex"],
+    disabled: true,
+  },
+  {
     title: "SchoolThing",
     description: "A comprehensive school management system with student and teacher dashboards.",
     image: "/projects/school-thing.png",
