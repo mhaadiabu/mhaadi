@@ -1,12 +1,19 @@
 ---
 import "../styles/global.css";
 import Header from "../components/Header.astro";
+import Footer from '../components/Footer.astro';
+import { ClientRouter } from 'astro:transitions';
+import { navigate } from 'astro:transitions/client';
+import BackArrow from '../../public/assets/icons/arrow-left.astro';
 
 interface Props {
   title?: string;
+  backTo?: string;
+  description?: string;
 }
 
-const { title = "portfolio" } = Astro.props;
+const { title = 'Haadi', backTo = '/' } = Astro.props;
+const isHomepage = Astro.url.pathname === '/';
 ---
 
 <!doctype html>
@@ -15,11 +22,24 @@ const { title = "portfolio" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href="/assets/fonts/PaperMono-Regular.ttf" as="font" type="font/ttf" crossorigin />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+
+    <ClientRouter />
   </head>
-  <body class="min-h-screen bg-neutral-950 text-white">
-    <Header />
-    <slot />
+  <body class="min-h-screen bg-black text-neutral-400 container w-full max-w-5xl mx-auto text-sm font-paper-mono py-4" transition:animate='slide'>
+    <!-- <Header /> -->
+    <main class='flex flex-col w-full max-w-3xl m-auto justify-center items-start text-left px-4 h-full py-6 relative top-0 bottom-0'>
+      {
+        !isHomepage &&
+        <div class='inline-flex gap-1.5'>
+          <a href='javascript:history.back()' class='text-xs text-neutral-400 hover:text-neutral-100 transition-colors duration-200 p-1.5'>{!isHomepage && <BackArrow />}</a>
+          <h2 class='text-lg font-bold text-neutral-100 mb-2.5'>{title}</h2>
+        </div>
+      }
+      <slot />
+      { isHomepage && <Footer /> }
+    </main>
   </body>
 </html>
