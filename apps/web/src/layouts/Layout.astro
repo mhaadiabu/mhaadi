@@ -1,19 +1,59 @@
 ---
 import "../styles/global.css";
-import Header from "../components/Header.astro";
 import Footer from '../components/Footer.astro';
 import { ClientRouter } from 'astro:transitions';
-import { navigate } from 'astro:transitions/client';
-import BackArrow from '../icons/arrow-left.astro';
+import { Icon } from 'astro-icon/components';
 
 interface Props {
   title?: string;
   backTo?: string;
   description?: string;
+  centered?: boolean;
 }
 
-const { title = 'Haadi', backTo = '/' } = Astro.props;
+const { title = 'Haadi', backTo = '/', description, centered = false } = Astro.props;
 const isHomepage = Astro.url.pathname === '/';
+const showBackButton = !isHomepage && !centered;
+const backToLabel = backTo === '/' ? 'home' : backTo.replace('/', '');
+
+const customFade = {
+  forwards: {
+    old: {
+      name: 'fade-to-left',
+      duration: '0.2s',
+      easing: 'ease-in-out',
+      direction: 'reverse',
+    },
+    new: {
+      name: 'fade-from-right',
+      duration: '0.2s',
+      easing: 'ease-in-out',
+    },
+  },
+  backwards: {
+    // old: {
+    //   name: 'fade-to-right',
+    //   duration: '0.2s',
+    //   easing: 'ease-in-out',
+    // },
+    // new: {
+    //   name: 'fade-from-left',
+    //   duration: '0.2s',
+    //   easing: 'ease-in-out',
+    // },
+    old: {
+      name: 'fade-from-right',
+      duration: '0.2s',
+      easing: 'ease-in-out',
+      direction: 'reverse',
+    },
+    new: {
+      name: 'fade-from-right',
+      duration: '0.2s',
+      easing: 'ease-in-out',
+    },
+  },
+};
 ---
 
 <!doctype html>
@@ -24,22 +64,93 @@ const isHomepage = Astro.url.pathname === '/';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preload" href="/assets/fonts/PaperMono-Regular.ttf" as="font" type="font/ttf" crossorigin />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <title>{`${title.charAt(0).toUpperCase()}${title.slice(1).toLowerCase()}`}</title>
 
     <ClientRouter />
   </head>
-  <body class="min-h-screen bg-black text-neutral-400 container w-full max-w-5xl mx-auto text-sm font-paper-mono py-4">
+  <body class="min-h-screen flex flex-col bg-neutral-950 text-neutral-500 container w-full max-w-5xl mx-auto text-sm font-paper-mono py-4" transition:animate={'slide'}>
     <!-- <Header /> -->
-    <main class='flex flex-col w-full max-w-3xl m-auto justify-center items-start text-left px-4 h-full py-6 relative top-0 bottom-0'>
+    <main class:list={['flex flex-col flex-1 w-full max-w-3xl m-auto justify-center px-4 py-6', centered ? 'items-center text-center' : 'items-start text-left']}>
       {
-        !isHomepage &&
+        showBackButton &&
         <div class='inline-flex gap-1.5'>
-          <a href='javascript:history.back()' class='text-xs text-neutral-400 hover:text-neutral-100 transition-colors duration-200 p-1.5'>{!isHomepage && <BackArrow />}</a>
+          <a href='javascript:history.back()' class='group text-xs text-neutral-500 hover:text-neutral-100 transition-colors duration-200 p-1.5'>{!isHomepage && <Icon name='arrow-left' class='size-4 transition-transform duration-200 group-hover:-translate-x-0.5' />}</a>
           <h2 class='text-lg font-bold text-neutral-100 mb-2.5'>{title}</h2>
         </div>
+        <p class='text-neutral-300'>{description}</p>
       }
-      <slot />
+      <section class:list={['flex flex-col flex-1 py-4', centered && 'items-center justify-center']}>
+        <slot />
+      </section>
+      {!isHomepage && !centered && (
+        <a href={backTo} class='group inline-flex items-center gap-1.5 text-neutral-500 hover:text-neutral-100 transition-colors duration-200 pt-6'>
+          <Icon name='arrow-left' class='size-4 transition-transform duration-200 group-hover:-translate-x-0.5' />
+          {backToLabel}
+        </a>
+      )}
       { isHomepage && <Footer /> }
     </main>
+
+    <!-- Scroll to top button -->
+    <button
+      id="scroll-to-top"
+      class="fixed bottom-6 right-6 p-2.5 bg-neutral-900 border border-neutral-800 text-neutral-500 hover:text-neutral-100 hover:border-neutral-700 rounded-full opacity-0 invisible transition-all duration-200 cursor-pointer"
+      aria-label="Scroll to top"
+    >
+      <Icon name='arrow-top' class='size-4' />
+    </button>
   </body>
 </html>
+
+<script>
+  function setupScrollToTop() {
+    const btn = document.getElementById('scroll-to-top');
+    if (!btn) return;
+
+    const toggleVisibility = () => {
+      if (window.scrollY > 300) {
+        btn.classList.remove('opacity-0', 'invisible');
+        btn.classList.add('opacity-100', 'visible');
+      } else {
+        btn.classList.remove('opacity-100', 'visible');
+        btn.classList.add('opacity-0', 'invisible');
+      }
+    };
+
+    window.addEventListener('scroll', toggleVisibility);
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    toggleVisibility();
+  }
+
+  document.addEventListener('astro:page-load', setupScrollToTop);
+</script>
+
+<style is:global>
+  @keyframes fade-to-left {
+    to {
+      opacity: 0;
+      transform: translateX(-24px);
+    }
+  }
+  @keyframes fade-from-right {
+    from {
+      opacity: 0;
+      transform: translateX(24px);
+    }
+  }
+  @keyframes fade-to-right {
+    to {
+      opacity: 0;
+      transform: translateX(24px);
+    }
+  }
+  @keyframes fade-from-left {
+    from {
+      opacity: 0;
+      transform: translateX(-24px);
+    }
+  }
+</style>

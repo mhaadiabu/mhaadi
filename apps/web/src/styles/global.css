@@ -24,3 +24,8 @@
   --font-paper-mono: "Paper Mono", monospace;
   --font-berkeley-mono: "Berkeley Mono", monospace;
 }
+
+
+* {
+  scroll-behavior: none;
+}
