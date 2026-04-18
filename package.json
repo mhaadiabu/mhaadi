@@ -18,7 +18,8 @@
     "build": "turbo build",
     "check-types": "turbo check-types",
     "dev:web": "turbo -F web dev",
-    "check": "oxlint && oxfmt --write"
+    "check": "oxlint && oxfmt --write",
+    "deploy": "cd apps/web && bun run deploy"
   },
   "dependencies": {
     "@portfolio/env": "workspace:*",
