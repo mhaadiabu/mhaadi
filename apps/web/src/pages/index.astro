@@ -1,22 +1,42 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import ProjectCard from "../components/ProjectCard.astro";
+import { featuredProjects } from "../data/projects";
 ---
 
 <Layout>
-  <h1 class='text-xl font-bold text-neutral-50'>Haadi</h1>
-  <p class='text-xs'>frontend developer. 20. unskilled.</p>
+  <header class='mb-6'>
+    <h1 class='text-xl font-bold text-neutral-100'>Haadi</h1>
+    <p class='text-sm text-neutral-500'>frontend developer. 20. unskilled.</p>
+  </header>
 
-  <p class='py-4'>hey there. i&apos;m haadi, a wannabe fullstack dev who builds nothing for fun. willing to collaborate on whatever you have for me regardless. don&apos;t hesitate to hmu.</p>
+  <p>hey there. i&apos;m haadi, a wannabe fullstack dev who builds nothing for fun. willing to collaborate on whatever you have for me regardless. don&apos;t hesitate to hmu.</p>
 
-  <div class='flex flex-col gap-2.5 pt-4'>
-    <h5 class='font-medium text-neutral-200'>what i do</h5>
+  <div class='flex flex-col gap-2.5 pt-6'>
+    <h5 class='font-medium text-neutral-300'>what i do</h5>
     <ul class='list-disc list-inside [&>li]:leading-loose'>
       <li>build web apps</li>
       <li>build mobile apps (if you're willing to pay what i ask)</li>
       <li>read code and docs (a lot)</li>
       <li>pretend to build while you watching</li>
     </ul>
-    <a href='/projects'>projects</a>
-    <a href='/blog'>blog</a>
   </div>
+
+  <div class='flex flex-col gap-4 pt-6 w-full'>
+    <h5 class='font-medium text-neutral-300'>projects</h5>
+    {featuredProjects.map((project) => (
+      <ProjectCard {...project} />
+    ))}
+    <p class='text-sm text-neutral-500 pt-2'>
+      brave enough to witness the rest of this mess?
+      <a href='/projects' class='group inline-flex items-center gap-1 text-neutral-300 hover:text-neutral-100 transition-colors'>
+        view all <Icon name='arrow-right' class='size-3.5 transition-transform duration-200 group-hover:translate-x-0.5' />
+      </a>
+    </p>
+  </div>
+
+  <nav class='flex gap-4 pt-6'>
+    <a href='/blog' class='group inline-flex items-center gap-1 text-neutral-300 hover:text-neutral-100 transition-colors'>blog <Icon name='arrow-right' class='size-4 transition-transform duration-200 group-hover:translate-x-0.5' /></a>
+  </nav>
 </Layout>
