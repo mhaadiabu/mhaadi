@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Footer from '../components/Footer.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 import { ClientRouter } from 'astro:transitions';
 import { Icon } from 'astro-icon/components';
 
@@ -54,24 +55,34 @@ const customFade = {
     <meta name="generator" content={Astro.generator} />
     <title>{`${title.charAt(0).toUpperCase()}${title.slice(1).toLowerCase()}`}</title>
 
+    <!-- Inline script to prevent flash of wrong theme -->
+    <script is:inline>
+      const theme = localStorage.getItem('theme') || 
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.classList.toggle('dark', theme === 'dark');
+    </script>
+
     <ClientRouter />
   </head>
-  <body class="min-h-screen flex flex-col bg-neutral-950 text-neutral-500 container w-full max-w-5xl mx-auto text-sm font-paper-mono py-4" transition:animate={customFade}>
-    <!-- <Header /> -->
+  <body class="min-h-screen flex flex-col bg-(--color-bg) text-(--color-text-muted) container w-full max-w-5xl mx-auto text-sm font-paper-mono py-4 transition-colors duration-200" transition:animate={customFade}>
+    <!-- Theme toggle -->
+    <div class="fixed top-4 right-4 z-50">
+      <ThemeToggle />
+    </div>
     <main class:list={['flex flex-col flex-1 w-full max-w-3xl m-auto justify-center px-4 py-6', centered ? 'items-center text-center' : 'items-start text-left']}>
       {
         showBackButton &&
         <div class='inline-flex gap-1.5'>
-          <a href='javascript:history.back()' class='group text-xs text-neutral-500 hover:text-neutral-100 transition-colors duration-200 p-1.5'>{!isHomepage && <Icon name='arrow-left' class='size-4 transition-transform duration-200 group-hover:-translate-x-0.5' />}</a>
-          <h2 class='text-lg font-bold text-neutral-100 mb-2.5'>{title}</h2>
+          <a href='javascript:history.back()' class='group text-xs text-(--color-text-muted) hover:text-(--color-primary) transition-colors duration-200 p-1.5'>{!isHomepage && <Icon name='arrow-left' class='size-4 transition-transform duration-200 group-hover:-translate-x-0.5' />}</a>
+          <h2 class='text-lg font-bold text-(--color-primary) mb-2.5'>{title}</h2>
         </div>
-        <p class='text-neutral-300'>{description}</p>
+        <p class='text-(--color-secondary)'>{description}</p>
       }
       <section class:list={['flex flex-col flex-1 py-4', centered && 'items-center justify-center']}>
         <slot />
       </section>
       {!isHomepage && !centered && (
-        <a href={backTo} class='group inline-flex items-center gap-1.5 text-neutral-500 hover:text-neutral-100 transition-colors duration-200 pt-6'>
+        <a href={backTo} class='group inline-flex items-center gap-1.5 text-(--color-text-muted) hover:text-(--color-primary) transition-colors duration-200 pt-6'>
           <Icon name='arrow-left' class='size-4 transition-transform duration-200 group-hover:-translate-x-0.5' />
           {backToLabel}
         </a>
@@ -82,7 +93,7 @@ const customFade = {
     <!-- Scroll to top button -->
     <button
       id="scroll-to-top"
-      class="fixed bottom-6 right-6 p-2.5 bg-neutral-900 border border-neutral-800 text-neutral-500 hover:text-neutral-100 hover:border-neutral-700 rounded-full opacity-0 invisible transition-all duration-200 cursor-pointer"
+      class="fixed bottom-6 right-6 p-2.5 bg-(--color-bg-secondary) border border-(--color-border) text-(--color-text-muted) hover:text-(--color-primary) hover:border-(--color-secondary) rounded-full opacity-0 invisible transition-all duration-200 cursor-pointer"
       aria-label="Scroll to top"
     >
       <Icon name='arrow-top' class='size-4' />

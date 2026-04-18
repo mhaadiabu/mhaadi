@@ -23,6 +23,40 @@
   --font-sans: "Helvetica", sans-serif;
   --font-paper-mono: "Paper Mono", monospace;
   --font-berkeley-mono: "Berkeley Mono", monospace;
+
+  /* Theme colors */
+  --color-primary: var(--theme-primary);
+  --color-secondary: var(--theme-secondary);
+  --color-accent: var(--theme-accent);
+  --color-bg: var(--theme-bg);
+  --color-bg-secondary: var(--theme-bg-secondary);
+  --color-border: var(--theme-border);
+  --color-text: var(--theme-text);
+  --color-text-muted: var(--theme-text-muted);
+}
+
+/* Light theme (default) */
+:root {
+  --theme-primary: #171717;
+  --theme-secondary: #525252;
+  --theme-accent: #3b82f6;
+  --theme-bg: #fafafa;
+  --theme-bg-secondary: #f5f5f5;
+  --theme-border: #e5e5e5;
+  --theme-text: #171717;
+  --theme-text-muted: #737373;
+}
+
+/* Dark theme */
+:root.dark {
+  --theme-primary: #f5f5f5;
+  --theme-secondary: #a3a3a3;
+  --theme-accent: #60a5fa;
+  --theme-bg: #0a0a0a;
+  --theme-bg-secondary: #171717;
+  --theme-border: #262626;
+  --theme-text: #f5f5f5;
+  --theme-text-muted: #737373;
 }
 
 

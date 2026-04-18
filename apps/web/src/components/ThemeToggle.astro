@@ -1,0 +1,42 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  class="p-2 text-(--color-text-muted) hover:text-(--color-primary) transition-colors duration-200 cursor-pointer"
+  aria-label="Toggle theme"
+>
+  <Icon name="sun" class="size-5 hidden dark:block" />
+  <Icon name="moon" class="size-5 block dark:hidden" />
+</button>
+
+<script>
+  function setupThemeToggle() {
+    const toggle = document.getElementById('theme-toggle');
+    if (!toggle) return;
+
+    const getTheme = (): 'dark' | 'light' => {
+      const stored = localStorage.getItem('theme');
+      if (stored === 'dark' || stored === 'light') return stored;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+
+    const setTheme = (theme: 'dark' | 'light') => {
+      document.documentElement.classList.toggle('dark', theme === 'dark');
+      localStorage.setItem('theme', theme);
+    };
+
+    // Initialize on page load
+    setTheme(getTheme());
+
+    toggle.addEventListener('click', () => {
+      const current = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  }
+
+  // Run on initial load and after Astro page transitions
+  document.addEventListener('astro:page-load', setupThemeToggle);
+</script>
