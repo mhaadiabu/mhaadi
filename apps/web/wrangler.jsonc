@@ -1,6 +1,7 @@
 {
   "name": "mhaadi",
   "compatibility_date": "2026-04-18",
+  "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": "./dist",
     "not_found_handling": "404-page",
