@@ -37,29 +37,29 @@
 
 /* Light theme (default) */
 :root {
-  --theme-primary: #171717;
-  --theme-secondary: #404040;
+  --theme-primary: #0a0a0a;
+  --theme-secondary: #262626;
   --theme-accent: #3b82f6;
   --theme-bg: #f3f4f6;
   --theme-bg-secondary: #e5e7eb;
   --theme-border: #d4d4d8;
-  --theme-text: #171717;
-  --theme-text-muted: #525252;
+  --theme-text: #0a0a0a;
+  --theme-text-muted: #404040;
 }
 
 /* Dark theme */
 :root.dark {
-  --theme-primary: #f5f5f5;
-  --theme-secondary: #a3a3a3;
+  --theme-primary: #fafafa;
+  --theme-secondary: #a8a8a8;
   --theme-accent: #60a5fa;
   --theme-bg: #0a0a0a;
   --theme-bg-secondary: #171717;
   --theme-border: #262626;
-  --theme-text: #f5f5f5;
-  --theme-text-muted: #737373;
+  --theme-text: #fafafa;
+  --theme-text-muted: #7a7a7a;
 }
 
 
 * {
-  scroll-behavior: none;
+  scroll-behavior: smooth;
 }
