@@ -57,7 +57,7 @@ const customFade = {
 
     <!-- Inline script to prevent flash of wrong theme -->
     <script is:inline>
-      const theme = localStorage.getItem('theme') || 
+      const theme = localStorage.getItem('theme') ||
         (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.classList.toggle('dark', theme === 'dark');
     </script>
@@ -85,8 +85,9 @@ const customFade = {
           {backToLabel}
         </a>
       )}
-      { isHomepage && <Footer /> }
     </main>
+
+    <Footer />
 
     <!-- Scroll to top button -->
     <button
