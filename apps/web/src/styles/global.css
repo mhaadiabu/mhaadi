@@ -57,7 +57,7 @@
 }
 
 * {
-  scroll-behavior: smooth;
+  scroll-behavior: none;
 }
 
 /* Triangle theme transition effect */
