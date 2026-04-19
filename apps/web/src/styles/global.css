@@ -31,35 +31,71 @@
   --color-bg: var(--theme-bg);
   --color-bg-secondary: var(--theme-bg-secondary);
   --color-border: var(--theme-border);
-  --color-text: var(--theme-text);
-  --color-text-muted: var(--theme-text-muted);
+  --color-muted: var(--theme-muted);
 }
 
 /* Light theme (default) */
 :root {
-  --theme-primary: #0a0a0a;
-  --theme-secondary: #262626;
-  --theme-accent: #3b82f6;
-  --theme-bg: #f3f4f6;
-  --theme-bg-secondary: #e5e7eb;
-  --theme-border: #d4d4d8;
-  --theme-text: #0a0a0a;
-  --theme-text-muted: #404040;
+  --theme-primary: oklch(0.145 0 0);
+  --theme-secondary: oklch(0.32 0 0);
+  --theme-accent: oklch(0.623 0.214 259);
+  --theme-bg: oklch(0.967 0.003 264);
+  --theme-bg-secondary: oklch(0.928 0.006 264);
+  --theme-border: oklch(0.871 0.006 286);
+  --theme-muted: oklch(0.37 0 0);
 }
 
 /* Dark theme */
 :root.dark {
-  --theme-primary: #fafafa;
-  --theme-secondary: #a8a8a8;
-  --theme-accent: #60a5fa;
-  --theme-bg: #0a0a0a;
-  --theme-bg-secondary: #171717;
-  --theme-border: #262626;
-  --theme-text: #fafafa;
-  --theme-text-muted: #7a7a7a;
+  --theme-primary: oklch(0.985 0 0);
+  --theme-secondary: oklch(0.708 0 0);
+  --theme-accent: oklch(0.707 0.165 254);
+  --theme-bg: oklch(0.145 0 0);
+  --theme-bg-secondary: oklch(0.205 0 0);
+  --theme-border: oklch(0.269 0 0);
+  --theme-muted: oklch(0.556 0 0);
 }
-
 
 * {
   scroll-behavior: smooth;
+}
+
+/* Triangle theme transition effect */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+.dark::view-transition-old(root) {
+  z-index: 9999;
+}
+
+.dark::view-transition-new(root) {
+  z-index: 1;
+}
+
+@keyframes theme-toggle-polygon {
+  from {
+    clip-path: polygon(0 0, 0 0, 0 0);
+  }
+  to {
+    clip-path: polygon(-50% -50%, 200% -50%, 200% 200%);
+  }
+}
+
+::view-transition-old(root) {
+  animation: theme-toggle-polygon 0.7s ease-in-out reverse;
+}
+
+::view-transition-new(root) {
+  animation: theme-toggle-polygon 0.7s ease-in-out;
 }

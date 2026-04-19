@@ -23,7 +23,7 @@ const { title, description, image, stack, href, github, disabled = false } = Ast
     />
     {disabled && (
       <div class='absolute inset-0 flex items-center justify-center bg-bg-secondary/70'>
-        <span class='text-xs font-medium text-text-muted uppercase tracking-wider px-2 py-1 border border-border bg-bg-secondary'>Coming Soon</span>
+        <span class='text-xs font-medium text-muted uppercase tracking-wider px-2 py-1 border border-border bg-bg-secondary'>Coming Soon</span>
       </div>
     )}
   </div>
@@ -37,7 +37,7 @@ const { title, description, image, stack, href, github, disabled = false } = Ast
             href={github}
             target='_blank'
             rel='noopener noreferrer'
-            class='text-text-muted hover:text-primary transition-colors duration-200'
+            class='text-muted hover:text-primary transition-colors duration-200'
           >
             <Icon name='github-logo' class='size-4' />
             <span class='sr-only'>GitHub repository</span>
@@ -48,7 +48,7 @@ const { title, description, image, stack, href, github, disabled = false } = Ast
             href={href}
             target='_blank'
             rel='noopener noreferrer'
-            class='group/link text-text-muted hover:text-primary transition-colors duration-200'
+            class='group/link text-muted hover:text-primary transition-colors duration-200'
           >
             <Icon name='arrow-top-right' class='size-4 transition-transform duration-200 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5' />
             <span class='sr-only'>View project</span>
@@ -57,7 +57,7 @@ const { title, description, image, stack, href, github, disabled = false } = Ast
       </div>
     </div>
 
-    <p class='text-sm text-text-muted line-clamp-2'>{description}</p>
+    <p class='text-sm text-muted line-clamp-2'>{description}</p>
 
     <div class='flex flex-wrap gap-2 pt-1'>
       {stack.map((tech) => (

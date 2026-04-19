@@ -8,7 +8,7 @@ import { featuredProjects } from "../data/projects";
 <Layout>
   <header class='mb-6'>
     <h1 class='text-xl font-bold text-primary'>Haadi</h1>
-    <p class='text-sm text-text-muted'>frontend developer. 20. unskilled.</p>
+    <p class='text-sm text-muted'>frontend developer. 20. unskilled.</p>
   </header>
 
   <p>hey there. i&apos;m haadi, a wannabe fullstack dev who builds nothing for fun. willing to collaborate on whatever you have for me regardless. don&apos;t hesitate to hmu.</p>
@@ -28,7 +28,7 @@ import { featuredProjects } from "../data/projects";
     {featuredProjects.map((project) => (
       <ProjectCard {...project} />
     ))}
-    <p class='text-sm text-text-muted pt-2'>
+    <p class='text-sm text-muted pt-2'>
       brave enough to witness the rest of this mess?
       <a href='/projects' class='group inline-flex items-center gap-1 text-secondary hover:text-primary transition-colors'>
         view all <Icon name='arrow-right' class='size-3.5 opacity-0 group-hover:opacity-100 transition-all duration-200 group-hover:translate-x-0.5' />
