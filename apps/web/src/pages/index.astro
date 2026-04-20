@@ -4,7 +4,7 @@ import { Icon } from "astro-icon/components";
 import ProjectCard from "../components/ProjectCard.astro";
 import { featuredProjects } from "../data/projects";
 
-const stagger = (index: number) => ({ style: `animation-delay: ${index * 0.05}s` });
+const stagger = (index: number) => ({ style: `animation-delay: ${index * 0.1}s` });
 ---
 
 <Layout>
@@ -40,7 +40,7 @@ const stagger = (index: number) => ({ style: `animation-delay: ${index * 0.05}s`
   <div class='flex flex-col gap-4 pt-6 w-full animate-fade-in-up' {...stagger(4)}>
     <h5 class='font-medium text-secondary'>projects</h5>
     {featuredProjects.map((project, index) => (
-      <div class='animate-fade-in-up' style={`animation-delay: ${(index + 5) * 0.05}s`}>
+      <div class='animate-fade-in-up' style={`animation-delay: ${(index + 5) * 0.1}s`}>
         <ProjectCard {...project} />
       </div>
     ))}
