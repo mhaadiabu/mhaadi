@@ -3,13 +3,16 @@ import Layout from '../layouts/Layout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { projects } from '../data/projects';
 
-const stagger = (index: number) => ({ style: `animation-delay: ${index * 0.1}s` });
+const stagger = (index: number) => ({ style: `animation-delay: ${index * 1.5}s` });
 ---
 
 <Layout title='projects' description='things i have built.'>
-  <div class='flex flex-col gap-4 w-full'>
+  <h1 class='text-xl font-bold text-primary animate-fade-in-up' {...stagger(0)}>projects</h1>
+  <p class='pt-2 text-muted animate-fade-in-up' {...stagger(1)}>things i have built.</p>
+
+  <div class='flex flex-col gap-4 w-full pt-6'>
     {projects.map((project, index) => (
-      <div class='animate-fade-in-up' {...stagger(index)}>
+      <div class='animate-fade-in-up' {...stagger(index + 2)}>
         <ProjectCard {...project} />
       </div>
     ))}
