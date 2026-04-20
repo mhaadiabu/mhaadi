@@ -49,12 +49,7 @@ const stagger = (index: number) => ({
     <h5 class="text-secondary font-medium">projects</h5>
     {
       featuredProjects.map((project, index) => (
-        <div
-          class="opacity-0 animate-fade-in-up"
-          style={`animation-delay: ${(index + 5) * 0.2}s`}
-        >
-          <ProjectCard {...project} />
-        </div>
+        <ProjectCard {...project} />
       ))
     }
     <p class="text-muted pt-2 text-sm">
