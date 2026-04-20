@@ -10,18 +10,17 @@ const stagger = (index: number) => ({
 ---
 
 <Layout>
-  <header class="animate-fade-in-up mb-6" {...stagger(0)}>
+  <header class="opacity-0 animate-fade-in-up" {...stagger(0)}>
     <h1 class="text-primary text-xl font-bold">Haadi</h1>
-    <p class="text-muted text-sm">frontend developer. 20. unskilled.</p>
+    <p class="text-muted text-sm mb-6">frontend developer. 20. unskilled.</p>
+    <p>
+      hey. i&apos;m haadi. a frontend-forward fullstack developer who enjoys the
+      art of software engineering. i&apos;m open to collaborate on any projects
+      you might have in mind. feel free to reach out.
+    </p>
   </header>
 
-  <p class="animate-fade-in-up" {...stagger(1)}>
-    hey. i&apos;m haadi. a frontend-forward fullstack developer who enjoys the
-    art of software engineering. i&apos;m open to collaborate on any projects
-    you might have in mind. feel free to reach out.
-  </p>
-
-  <div class="animate-fade-in-up flex flex-col gap-2.5 pt-6" {...stagger(2)}>
+  <div class="opacity-0 animate-fade-in-up flex flex-col gap-2.5 pt-6" {...stagger(2)}>
     <h5 class="text-secondary font-medium">what i do</h5>
     <ul class="list-inside list-disc [&>li]:leading-loose">
       <li>build web & mobile apps</li>
@@ -31,7 +30,7 @@ const stagger = (index: number) => ({
     </ul>
   </div>
 
-  <div class="animate-fade-in-up flex flex-col gap-2.5 pt-6" {...stagger(3)}>
+  <div class="opacity-0 animate-fade-in-up flex flex-col gap-2.5 pt-6" {...stagger(3)}>
     <h5 class="text-secondary font-medium">what i work with</h5>
     <ul class="list-inside list-disc [&>li]:leading-loose">
       <li>react</li>
@@ -44,14 +43,14 @@ const stagger = (index: number) => ({
   </div>
 
   <div
-    class="animate-fade-in-up flex w-full flex-col gap-4 pt-6"
+    class="opacity-0 animate-fade-in-up flex w-full flex-col gap-4 pt-6"
     {...stagger(4)}
   >
     <h5 class="text-secondary font-medium">projects</h5>
     {
       featuredProjects.map((project, index) => (
         <div
-          class="animate-fade-in-up"
+          class="opacity-0 animate-fade-in-up"
           style={`animation-delay: ${(index + 5) * 0.2}s`}
         >
           <ProjectCard {...project} />
@@ -72,7 +71,7 @@ const stagger = (index: number) => ({
     </p>
   </div>
 
-  <nav class="animate-fade-in-up flex gap-4 pt-6" {...stagger(5)}>
+  <nav class="opacity-0 animate-fade-in-up flex gap-4 pt-6" {...stagger(5)}>
     <a
       href="/blog"
       class="group text-secondary hover:text-primary inline-flex items-center gap-1 transition-colors"
