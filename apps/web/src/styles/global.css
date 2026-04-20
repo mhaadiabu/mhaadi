@@ -1,28 +1,28 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* Add your theme customizations here. */
 /* See the TailwindCSS v4 docs for more info: https://tailwindcss.com/docs/v4-beta */
 
 @font-face {
-  font-family: "Paper Mono";
-  src: url("/assets/fonts/PaperMono-Regular.ttf") format("truetype");
+  font-family: 'Paper Mono';
+  src: url('/assets/fonts/PaperMono-Regular.ttf') format('truetype');
   font-weight: 200;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Berkeley Mono";
-  src: url("/assets/fonts/BerkeleyMonoTrial-Regular.otf") format("opentype");
+  font-family: 'Berkeley Mono';
+  src: url('/assets/fonts/BerkeleyMonoTrial-Regular.otf') format('opentype');
   font-weight: 200;
   font-style: normal;
   font-display: swap;
 }
 
 @theme {
-  --font-sans: "Helvetica", sans-serif;
-  --font-paper-mono: "Paper Mono", monospace;
-  --font-berkeley-mono: "Berkeley Mono", monospace;
+  --font-sans: 'Helvetica', sans-serif;
+  --font-paper-mono: 'Paper Mono', monospace;
+  --font-berkeley-mono: 'Berkeley Mono', monospace;
 
   /* Theme colors */
   --color-primary: var(--theme-primary);

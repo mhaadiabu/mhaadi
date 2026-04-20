@@ -1,22 +1,22 @@
 // @ts-check
-import tailwindcss from "@tailwindcss/vite";
-import { defineConfig, envField } from "astro/config";
+import tailwindcss from '@tailwindcss/vite';
+import { defineConfig, envField } from 'astro/config';
 
-import icon from "astro-icon";
+import icon from 'astro-icon';
 
-import cloudflare from "@astrojs/cloudflare";
+import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
+  output: 'server',
   adapter: cloudflare(),
 
   env: {
     schema: {
       PUBLIC_SERVER_URL: envField.string({
-        access: "public",
-        context: "client",
-        default: "http://localhost:3000",
+        access: 'public',
+        context: 'client',
+        default: 'http://localhost:3000',
       }),
     },
   },

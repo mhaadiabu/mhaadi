@@ -1,5 +1,5 @@
 ---
-import "../styles/global.css";
+import '../styles/global.css';
 import Footer from '../components/Footer.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import { ClientRouter } from 'astro:transitions';
@@ -12,7 +12,12 @@ interface Props {
   centered?: boolean;
 }
 
-const { title = 'Haadi', backTo = '/', description, centered = false } = Astro.props;
+const {
+  title = 'Haadi',
+  backTo = '/',
+  description,
+  centered = false,
+} = Astro.props;
 const isHomepage = Astro.url.pathname === '/';
 const showBackButton = !isHomepage && !centered;
 const backToLabel = backTo === '/' ? 'home' : backTo.replace('/', '');
@@ -51,40 +56,85 @@ const customFade = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preload" href="/assets/fonts/PaperMono-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link
+      rel="preload"
+      href="/assets/fonts/PaperMono-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
     <meta name="generator" content={Astro.generator} />
-    <title>{`${title.charAt(0).toUpperCase()}${title.slice(1).toLowerCase()}`}</title>
+    <title>
+      {`${title.charAt(0).toUpperCase()}${title.slice(1).toLowerCase()}`}
+    </title>
 
     <!-- Inline script to prevent flash of wrong theme -->
     <script is:inline>
-      const theme = localStorage.getItem('theme') ||
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      const theme =
+        localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light');
       document.documentElement.classList.toggle('dark', theme === 'dark');
     </script>
 
     <ClientRouter />
   </head>
-  <body class="min-h-screen flex flex-col bg-bg text-muted container w-full max-w-5xl mx-auto text-sm font-paper-mono py-4 transition-colors duration-200" transition:animate={customFade}>
+  <body
+    class="bg-bg text-muted font-paper-mono container mx-auto flex min-h-screen w-full max-w-5xl flex-col py-4 text-sm transition-colors duration-200"
+    transition:animate={customFade}
+  >
     <!-- Theme toggle -->
     <ThemeToggle />
-    <main class:list={['flex flex-col flex-1 w-full max-w-3xl m-auto justify-center px-4 py-6', centered ? 'items-center text-center' : 'items-start text-left']}>
+    <main
+      class:list={[
+        'm-auto flex w-full max-w-3xl flex-1 flex-col justify-center px-4 py-6',
+        centered ? 'items-center text-center' : 'items-start text-left',
+      ]}
+    >
       {
-        showBackButton &&
-        <div class='inline-flex gap-1.5'>
-          <a href='javascript:history.back()' class='group text-xs text-muted hover:text-primary transition-colors duration-200 p-1.5'>{!isHomepage && <Icon name='arrow-left' class='size-4 transition-transform duration-200 group-hover:-translate-x-0.5' />}</a>
-          <h2 class='text-lg font-bold text-primary mb-2.5'>{title}</h2>
-        </div>
-        <p class='text-secondary'>{description}</p>
+        showBackButton && (
+          <>
+            <div class="inline-flex gap-1.5">
+              <a
+                href="javascript:history.back()"
+                class="group text-muted hover:text-primary p-1.5 text-xs transition-colors duration-200"
+              >
+                {!isHomepage && (
+                  <Icon
+                    name="arrow-left"
+                    class="size-4 transition-transform duration-200 group-hover:-translate-x-0.5"
+                  />
+                )}
+              </a>
+              <h2 class="text-primary mb-2.5 text-lg font-bold">{title}</h2>
+            </div>
+            <p class="text-secondary">{description}</p>
+          </>
+        )
       }
-      <section class:list={['flex flex-col flex-1 py-4', centered && 'items-center justify-center']}>
+      <section
+        class:list={[
+          'flex flex-1 flex-col py-4',
+          centered && 'items-center justify-center',
+        ]}
+      >
         <slot />
       </section>
-      {!isHomepage && !centered && (
-        <a href={backTo} class='group inline-flex items-center gap-1.5 text-muted hover:text-primary transition-colors duration-200 pt-6'>
-          <Icon name='arrow-left' class='size-4 transition-transform duration-200 group-hover:-translate-x-0.5' />
-          {backToLabel}
-        </a>
-      )}
+      {
+        !isHomepage && !centered && (
+          <a
+            href={backTo}
+            class="group text-muted hover:text-primary inline-flex items-center gap-1.5 pt-6 transition-colors duration-200"
+          >
+            <Icon
+              name="arrow-left"
+              class="size-4 transition-transform duration-200 group-hover:-translate-x-0.5"
+            />
+            {backToLabel}
+          </a>
+        )
+      }
     </main>
 
     <Footer />
@@ -92,10 +142,10 @@ const customFade = {
     <!-- Scroll to top button -->
     <button
       id="scroll-to-top"
-      class="fixed bottom-6 right-6 p-2.5 bg-bg-secondary border border-border text-muted hover:text-primary hover:border-secondary rounded-full opacity-0 invisible transition-all duration-200 cursor-pointer"
+      class="bg-bg-secondary border-border text-muted hover:text-primary hover:border-secondary invisible fixed right-6 bottom-6 cursor-pointer rounded-full border p-2.5 opacity-0 transition-all duration-200"
       aria-label="Scroll to top"
     >
-      <Icon name='arrow-top' class='size-4' />
+      <Icon name="arrow-top" class="size-4" />
     </button>
   </body>
 </html>

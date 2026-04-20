@@ -67,47 +67,47 @@
 
 <script>
   function setupThemeToggle() {
-    const toggle = document.getElementById("theme-toggle");
-    const sunIcon = document.getElementById("sun-icon");
-    const moonIcon = document.getElementById("moon-icon");
+    const toggle = document.getElementById('theme-toggle');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
     if (!toggle || !sunIcon || !moonIcon) return;
 
-    const getTheme = (): "dark" | "light" => {
-      const stored = localStorage.getItem("theme");
-      if (stored === "dark" || stored === "light") return stored;
-      return window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
+    const getTheme = (): 'dark' | 'light' => {
+      const stored = localStorage.getItem('theme');
+      if (stored === 'dark' || stored === 'light') return stored;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light';
     };
 
-    const updateIcons = (theme: "dark" | "light") => {
-      if (theme === "dark") {
-        sunIcon.classList.add("active");
-        moonIcon.classList.remove("active");
+    const updateIcons = (theme: 'dark' | 'light') => {
+      if (theme === 'dark') {
+        sunIcon.classList.add('active');
+        moonIcon.classList.remove('active');
       } else {
-        moonIcon.classList.add("active");
-        sunIcon.classList.remove("active");
+        moonIcon.classList.add('active');
+        sunIcon.classList.remove('active');
       }
     };
 
-    const setTheme = (theme: "dark" | "light") => {
-      document.documentElement.classList.toggle("dark", theme === "dark");
-      localStorage.setItem("theme", theme);
+    const setTheme = (theme: 'dark' | 'light') => {
+      document.documentElement.classList.toggle('dark', theme === 'dark');
+      localStorage.setItem('theme', theme);
       updateIcons(theme);
     };
 
     const switchTheme = () => {
-      const current = document.documentElement.classList.contains("dark")
-        ? "dark"
-        : "light";
-      setTheme(current === "dark" ? "light" : "dark");
+      const current = document.documentElement.classList.contains('dark')
+        ? 'dark'
+        : 'light';
+      setTheme(current === 'dark' ? 'light' : 'dark');
     };
 
     const updateScrollState = () => {
       if (window.scrollY > 100) {
-        toggle.classList.add("scrolled");
+        toggle.classList.add('scrolled');
       } else {
-        toggle.classList.remove("scrolled");
+        toggle.classList.remove('scrolled');
       }
     };
 
@@ -117,7 +117,7 @@
     updateScrollState();
 
     // Event listeners
-    toggle.addEventListener("click", () => {
+    toggle.addEventListener('click', () => {
       // Use View Transitions API if available for triangle effect
       if (document.startViewTransition) {
         document.startViewTransition(switchTheme);
@@ -126,9 +126,9 @@
       }
     });
 
-    window.addEventListener("scroll", updateScrollState);
+    window.addEventListener('scroll', updateScrollState);
   }
 
   // Run on initial load and after Astro page transitions
-  document.addEventListener("astro:page-load", setupThemeToggle);
+  document.addEventListener('astro:page-load', setupThemeToggle);
 </script>

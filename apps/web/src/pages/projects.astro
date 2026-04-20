@@ -1,13 +1,11 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import ProjectCard from "../components/ProjectCard.astro";
-import { projects } from "../data/projects";
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { projects } from '../data/projects';
 ---
 
 <Layout title="projects" description="things i have built.">
   <div class="flex w-full flex-col gap-4">
-    {projects.map((project) => (
-      <ProjectCard {...project} />
-    ))}
+    {projects.map((project) => <ProjectCard {...project} />)}
   </div>
 </Layout>
