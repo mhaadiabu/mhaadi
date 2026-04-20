@@ -1,3 +1,3 @@
-*Post 1
+\*Post 1
 
 just a regular blog.

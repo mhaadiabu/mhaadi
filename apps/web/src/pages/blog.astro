@@ -1,9 +1,16 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
-const stagger = (index: number) => ({ style: `animation-delay: ${index * 1.5}s` });
+const stagger = (index: number) => ({
+  style: `animation-delay: ${index * 1.5}s`,
+});
 ---
 
-<Layout title='blog' description='i&apos;m not smart. but i think a lot. though my thoughts are almost never complete. i dump them here when they are. enjoy (or don&apos;t).'>
-  <p class='text-lg font-bold text-primary animate-fade-in-up' {...stagger(0)}>writing...</p>
+<Layout
+  title="blog"
+  description="i'm not smart. but i think a lot. though my thoughts are almost never complete. i dump them here when they are. enjoy (or don't)."
+>
+  <p class="text-primary animate-fade-in-up text-lg font-bold" {...stagger(0)}>
+    writing...
+  </p>
 </Layout>

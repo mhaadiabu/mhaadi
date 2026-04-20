@@ -18,8 +18,11 @@
     "build": "turbo build",
     "check-types": "turbo check-types",
     "dev:web": "turbo -F web dev",
-    "check": "oxlint && oxfmt --write",
-    "deploy": "cd apps/web && bun run deploy"
+    "check": "oxlint && bun run format",
+    "format": "bun run --cwd apps/web format",
+    "deploy": "cd apps/web && bun run deploy",
+    "lint": "turbo lint",
+    "fmt": "turbo format"
   },
   "dependencies": {
     "@portfolio/env": "workspace:*",
@@ -28,7 +31,6 @@
   },
   "devDependencies": {
     "@portfolio/config": "workspace:*",
-    "oxfmt": "^0.26.0",
     "oxlint": "^1.41.0",
     "turbo": "^2.8.12",
     "typescript": "catalog:"

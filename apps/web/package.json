@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "generate-types": "wrangler types",
-    "deploy": "wrangler deploy"
+    "deploy": "wrangler deploy",
+    "format": "prettier --write \"../../**/*.{mjs,ts,md,json,astro,css}\" --ignore-path ../../.gitignore"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.1.10",
@@ -24,6 +25,8 @@
   "devDependencies": {
     "@portfolio/config": "workspace:*",
     "@tailwindcss/vite": "^4.1.18",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4.1.18",
     "typescript": "catalog:"
   },

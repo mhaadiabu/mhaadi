@@ -1,13 +1,19 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { Icon } from 'astro-icon/components';
+import Layout from "../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
 ---
 
-<Layout title='404' centered>
-  <span class='text-8xl font-bold text-primary mb-4'>404</span>
-  <p class='mb-4'>nothing to see here.</p>
-  <a href='/' class='group inline-flex items-center gap-1 text-secondary hover:text-primary transition-colors'>
-    <Icon name='arrow-left' class='size-4 transition-transform duration-200 group-hover:-translate-x-0.5' />
+<Layout title="404" centered>
+  <span class="text-primary mb-4 text-8xl font-bold">404</span>
+  <p class="mb-4">nothing to see here.</p>
+  <a
+    href="/"
+    class="group text-secondary hover:text-primary inline-flex items-center gap-1 transition-colors"
+  >
+    <Icon
+      name="arrow-left"
+      class="size-4 transition-transform duration-200 group-hover:-translate-x-0.5"
+    />
     go back home
   </a>
 </Layout>
