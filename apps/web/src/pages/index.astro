@@ -5,144 +5,56 @@ import ProjectCard from "../components/ProjectCard.astro";
 import { featuredProjects } from "../data/projects";
 
 const stagger = (index: number) => ({
-  style: `animation-delay: ${index * 0.1}s`,
+  style: `animation-delay: ${index * 0.2}s`,
 });
-
-const heroDelay = 0;
-const introDelay = 1;
-const sectionDelay = 2;
-const sectionItemBase = 3;
-const projectBase = 20;
 ---
 
 <Layout>
-  <header class="animate-fade-in-up mb-6" {...stagger(heroDelay)}>
-    <h1
-      class="text-primary animate-fade-in-up text-xl font-bold"
-      {...stagger(introDelay)}
-    >
-      Haadi
-    </h1>
-    <p
-      class="text-muted animate-fade-in-up text-sm"
-      {...stagger(introDelay + 1)}
-    >
-      frontend developer. 20. unskilled.
-    </p>
+  <header class='mb-6 animate-fade-in-up' {...stagger(0)}>
+    <h1 class='text-xl font-bold text-primary'>Haadi</h1>
+    <p class='text-sm text-muted'>frontend developer. 20. unskilled.</p>
   </header>
 
-  <p class="animate-fade-in-up" {...stagger(sectionDelay)}>
-    hey. i&apos;m haadi. a frontend-forward fullstack developer who enjoys the
-    art of software engineering. i&apos;m open to collaborate on any projects
-    you might have in mind. feel free to reach out.
-  </p>
+  <p class='animate-fade-in-up' {...stagger(1)}>hey. i&apos;m haadi. a frontend-forward fullstack developer who enjoys the art of software engineering. i&apos;m open to collaborate on any projects you might have in mind. feel free to reach out.</p>
 
-  <div
-    class="animate-fade-in-up flex flex-col gap-2.5 pt-6"
-    {...stagger(sectionDelay + 1)}
-  >
-    <h5
-      class="text-secondary animate-fade-in-up font-medium"
-      {...stagger(sectionDelay + 2)}
-    >
-      what i do
-    </h5>
-    <ul class="list-inside list-disc [&>li]:leading-loose">
-      <li class="animate-fade-in-up" {...stagger(sectionItemBase + 0)}>
-        build web & mobile apps
-      </li>
-      <li class="animate-fade-in-up" {...stagger(sectionItemBase + 1)}>
-        obsess over AI
-      </li>
-      <li class="animate-fade-in-up" {...stagger(sectionItemBase + 2)}>
-        read code and docs (a lot)
-      </li>
-      <li class="animate-fade-in-up" {...stagger(sectionItemBase + 3)}>
-        refactor for fun
-      </li>
+  <div class='flex flex-col gap-2.5 pt-6 animate-fade-in-up' {...stagger(2)}>
+    <h5 class='font-medium text-secondary'>what i do</h5>
+    <ul class='list-disc list-inside [&>li]:leading-loose'>
+      <li>build web & mobile apps</li>
+      <li>obsess over AI</li>
+      <li>read code and docs (a lot)</li>
+      <li>refactore for fun</li>
     </ul>
   </div>
 
-  <div
-    class="animate-fade-in-up flex flex-col gap-2.5 pt-6"
-    {...stagger(sectionDelay + 3)}
-  >
-    <h5
-      class="text-secondary animate-fade-in-up font-medium"
-      {...stagger(sectionDelay + 4)}
-    >
-      what i work with
-    </h5>
-    <ul class="list-inside list-disc [&>li]:leading-loose">
-      <li class="animate-fade-in-up" {...stagger(sectionItemBase + 4)}>
-        react
-      </li>
-      <li class="animate-fade-in-up" {...stagger(sectionItemBase + 5)}>
-        nextjs
-      </li>
-      <li class="animate-fade-in-up" {...stagger(sectionItemBase + 6)}>
-        tanstack start
-      </li>
-      <li class="animate-fade-in-up" {...stagger(sectionItemBase + 7)}>
-        astro
-      </li>
-      <li class="animate-fade-in-up" {...stagger(sectionItemBase + 8)}>
-        drizzle + sql
-      </li>
-      <li class="animate-fade-in-up" {...stagger(sectionItemBase + 9)}>
-        convex
-      </li>
+  <div class='flex flex-col gap-2.5 pt-6 animate-fade-in-up' {...stagger(3)}>
+    <h5 class='font-medium text-secondary'>what i work with</h5>
+    <ul class='list-disc list-inside [&>li]:leading-loose'>
+      <li>react</li>
+      <li>nextjs</li>
+      <li>tanstack start</li>
+      <li>astro</li>
+      <li>drizzle + sql</li>
+      <li>convex</li>
     </ul>
   </div>
 
-  <div
-    class="animate-fade-in-up flex w-full flex-col gap-4 pt-6"
-    {...stagger(sectionDelay + 5)}
-  >
-    <h5
-      class="text-secondary animate-fade-in-up font-medium"
-      {...stagger(sectionDelay + 6)}
-    >
-      projects
-    </h5>
-    {
-      featuredProjects.map((project, index) => (
-        <div
-          class="animate-fade-in-up"
-          style={`animation-delay: ${(projectBase + index) * 0.1}s`}
-        >
-          <ProjectCard {...project} />
-        </div>
-      ))
-    }
-    <p
-      class="text-muted animate-fade-in-up pt-2 text-sm"
-      {...stagger(featuredProjects.length + projectBase)}
-    >
+  <div class='flex flex-col gap-4 pt-6 w-full animate-fade-in-up' {...stagger(4)}>
+    <h5 class='font-medium text-secondary'>projects</h5>
+    {featuredProjects.map((project, index) => (
+      <div class='animate-fade-in-up' style={`animation-delay: ${(index + 5) * 0.2}s`}>
+        <ProjectCard {...project} />
+      </div>
+    ))}
+    <p class='text-sm text-muted pt-2'>
       interested in other things i&apos;ve worked on?
-      <a
-        href="/projects"
-        class="group text-secondary hover:text-primary inline-flex items-center gap-1 transition-colors"
-      >
-        check them out <Icon
-          name="arrow-right"
-          class="size-3.5 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100"
-        />
+      <a href='/projects' class='group inline-flex items-center gap-1 text-secondary hover:text-primary transition-colors'>
+        check them out <Icon name='arrow-right' class='size-3.5 opacity-0 group-hover:opacity-100 transition-all duration-200 group-hover:translate-x-0.5' />
       </a>
     </p>
   </div>
 
-  <nav
-    class="animate-fade-in-up flex gap-4 pt-6"
-    {...stagger(featuredProjects.length + projectBase + 1)}
-  >
-    <a
-      href="/blog"
-      class="group text-secondary hover:text-primary inline-flex items-center gap-1 transition-colors"
-      >blog <Icon
-        name="arrow-right"
-        class="size-4 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100"
-      /></a
-    >
+  <nav class='flex gap-4 pt-6 animate-fade-in-up' {...stagger(5)}>
+    <a href='/blog' class='group inline-flex items-center gap-1 text-secondary hover:text-primary transition-colors'>blog <Icon name='arrow-right' class='size-4 opacity-0 group-hover:opacity-100 transition-all duration-200 group-hover:translate-x-0.5' /></a>
   </nav>
 </Layout>

@@ -2,27 +2,12 @@
 import Layout from "../layouts/Layout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import { projects } from "../data/projects";
-
-const stagger = (index: number) => ({
-  style: `animation-delay: ${index * 1.5}s`,
-});
 ---
 
 <Layout title="projects" description="things i have built.">
-  <h1 class="text-primary animate-fade-in-up text-xl font-bold" {...stagger(0)}>
-    projects
-  </h1>
-  <p class="text-muted animate-fade-in-up pt-2" {...stagger(1)}>
-    things i have built.
-  </p>
-
-  <div class="flex w-full flex-col gap-4 pt-6">
-    {
-      projects.map((project, index) => (
-        <div class="animate-fade-in-up" {...stagger(index + 2)}>
-          <ProjectCard {...project} />
-        </div>
-      ))
-    }
+  <div class="flex w-full flex-col gap-4">
+    {projects.map((project) => (
+      <ProjectCard {...project} />
+    ))}
   </div>
 </Layout>
