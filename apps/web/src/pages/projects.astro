@@ -10,10 +10,12 @@ const stagger = (index: number) => ({
 
 <Layout title="projects" description="things i have built.">
   <div class="flex w-full flex-col gap-4">
-    {projects.map((project, index) => (
-      <div class="opacity-0 animate-fade-in-up" {...stagger(index)}>
-        <ProjectCard {...project} />
-      </div>
-    ))}
+    {
+      projects.map((project, index) => (
+        <div class="animate-fade-in-up opacity-0" {...stagger(index)}>
+          <ProjectCard {...project} />
+        </div>
+      ))
+    }
   </div>
 </Layout>
