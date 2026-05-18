@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import ProjectCard from '../components/ProjectCard.astro';
+import Tech from '../components/Tech.astro';
 import { featuredProjects } from '../data/projects';
 
 const stagger = (index: number) => ({
@@ -29,7 +30,7 @@ const stagger = (index: number) => ({
       <li>build web & mobile apps</li>
       <li>obsess over AI</li>
       <li>read code and docs (a lot)</li>
-      <li>refactore for fun</li>
+      <li>refactor for fun</li>
     </ul>
   </div>
 
@@ -38,14 +39,15 @@ const stagger = (index: number) => ({
     {...stagger(3)}
   >
     <h5 class="text-secondary font-medium">what i work with</h5>
-    <ul class="list-inside list-disc [&>li]:leading-loose">
+    <Tech />
+    <!-- <ul class="list-inside list-disc [&>li]:leading-loose">
       <li>react</li>
       <li>nextjs</li>
       <li>tanstack start</li>
       <li>astro</li>
       <li>drizzle + sql</li>
       <li>convex</li>
-    </ul>
+    </ul> -->
   </div>
 
   <div
