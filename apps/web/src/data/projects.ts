@@ -1,5 +1,6 @@
 export type Stack =
   | 'nextjs'
+  | 'tanstack'
   | 'reactjs'
   | 'typescript'
   | 'javascript'
@@ -7,7 +8,6 @@ export type Stack =
   | 'trpc'
   | 'convex'
   | 'vite'
-  | 'tanstack'
   | 'shadcn-ui'
   | 'prisma'
   | 'drizzle'
