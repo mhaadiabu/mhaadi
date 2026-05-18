@@ -117,14 +117,7 @@
     updateScrollState();
 
     // Event listeners
-    toggle.addEventListener('click', () => {
-      // Use View Transitions API if available for triangle effect
-      if (document.startViewTransition) {
-        document.startViewTransition(switchTheme);
-      } else {
-        switchTheme();
-      }
-    });
+    toggle.addEventListener('click', switchTheme);
 
     window.addEventListener('scroll', updateScrollState);
   }
