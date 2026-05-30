@@ -1,0 +1,7 @@
+{
+  "extends": "@portfolio/config/tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["@cloudflare/workers-types"]
+  },
+  "include": ["alchemy.run.ts"]
+}

@@ -4,33 +4,28 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "wrangler dev --port 4321",
+    "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "generate-types": "wrangler types",
-    "deploy": "wrangler deploy",
-    "format": "prettier --write \"../../**/*.{mjs,ts,md,json,astro,css}\" --ignore-path ../../.gitignore"
+    "dev:bare": "astro dev"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^13.1.10",
     "@astrojs/node": "^10.0.0-beta.9",
     "@portfolio/env": "workspace:*",
     "astro": "^6.2.1",
     "astro-icon": "^1.1.5",
     "dotenv": "catalog:",
-    "wrangler": "^4.83.0",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@portfolio/config": "workspace:*",
+    "@astrojs/cloudflare": "^13.1.10",
     "@tailwindcss/vite": "^4.1.18",
+    "alchemy": "^0.91.2",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4.1.18",
     "typescript": "catalog:"
-  },
-  "overrides": {
-    "vite": "^7"
   }
 }

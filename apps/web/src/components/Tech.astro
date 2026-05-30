@@ -6,7 +6,7 @@ import { tools } from '../data/tools';
 <section class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
   {
     tools.map(({ icon, name }) => (
-      <div class="hover:border-var(--color-border) flex flex-col items-center gap-1.5 rounded-lg border border-transparent p-3 transition-colors">
+      <div class="flex flex-col items-center gap-1.5 rounded-lg border border-transparent p-3 transition-colors hover:border-(--color-border)">
         <Icon name={icon} class="text-primary size-8" />
         <span class="text-muted text-xs">{name}</span>
       </div>
