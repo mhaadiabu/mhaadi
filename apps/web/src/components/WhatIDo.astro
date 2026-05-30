@@ -1,0 +1,50 @@
+---
+---
+
+<section class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+  {
+    [
+      {
+        text: 'build web & mobile apps',
+        detail: 'react, next.js, expo, tailwind',
+        hue: 210,
+      },
+      {
+        text: 'obsess over AI',
+        detail: 'llms, embeddings, agents, tooling',
+        hue: 280,
+      },
+      {
+        text: 'read code and docs (a lot)',
+        detail: 'github, mdn, spec sheets, blogs',
+        hue: 160,
+      },
+      {
+        text: 'refactor for fun',
+        detail: 'clean architecture, patterns, types',
+        hue: 30,
+      },
+    ].map(({ text, detail, hue }) => (
+      <div
+        class="flex flex-col gap-1 rounded-lg border border-transparent p-3 transition-all duration-300"
+        style={`--hue: ${hue}`}
+      >
+        <div class="flex items-center gap-2">
+          <div
+            class="size-2 shrink-0 rounded-full"
+            style={`background: hsl(var(--hue) 60% 60%)`}
+          ></div>
+          <span class="text-primary text-xs font-medium">{text}</span>
+        </div>
+        <span class="text-muted ml-4 text-xs">{detail}</span>
+      </div>
+    ))
+  }
+</section>
+
+<style>
+  .grid > div:hover {
+    background: hsl(var(--hue) 50% 50% / 0.08);
+    border-color: hsl(var(--hue) 50% 50% / 0.3);
+  }
+</style>

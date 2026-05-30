@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import ProjectCard from '../components/ProjectCard.astro';
 import Tech from '../components/Tech.astro';
+import WhatIDo from '../components/WhatIDo.astro';
 import { featuredProjects } from '../data/projects';
 
 const stagger = (index: number) => ({
@@ -26,12 +27,7 @@ const stagger = (index: number) => ({
     {...stagger(2)}
   >
     <h5 class="text-secondary font-medium">what i do</h5>
-    <ul class="list-inside list-disc [&>li]:leading-loose">
-      <li>build web & mobile apps</li>
-      <li>obsess over AI</li>
-      <li>read code and docs (a lot)</li>
-      <li>refactor for fun</li>
-    </ul>
+    <WhatIDo />
   </div>
 
   <div

@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { iconLabels } from '../data/tools';
 
 interface Props {
   title: string;
@@ -94,7 +95,7 @@ const {
         stack.map((tech) => (
           <div
             class="text-secondary hover:text-primary flex items-center gap-1.5 transition-colors duration-200"
-            title={tech}
+            title={iconLabels[tech] ?? tech}
           >
             <Icon name={tech} class="size-4" />
           </div>

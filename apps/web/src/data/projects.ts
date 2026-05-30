@@ -38,6 +38,7 @@ export interface Project {
   href?: string;
   github?: string;
   disabled?: boolean;
+  featured?: boolean;
 }
 
 export const projects: Project[] = [
@@ -74,7 +75,8 @@ export const projects: Project[] = [
     ],
     href: 'https://task-thing.onrender.com',
     github: 'https://github.com/mhaadiabu/task-thing',
+    featured: true,
   },
 ];
 
-export const featuredProjects = projects.slice(0, 2);
+export const featuredProjects = projects.filter((p) => p.featured);

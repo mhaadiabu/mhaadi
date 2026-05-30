@@ -20,7 +20,6 @@ const {
 } = Astro.props;
 const isHomepage = Astro.url.pathname === '/';
 const showBackButton = !isHomepage && !centered;
-const backToLabel = backTo === '/' ? 'home' : backTo.replace('/', '');
 
 const customFade = {
   forwards: {
@@ -97,7 +96,7 @@ const customFade = {
           <>
             <div class="inline-flex gap-1.5">
               <a
-                href="javascript:history.back()"
+                href={backTo}
                 class="group text-muted hover:text-primary p-1.5 text-xs transition-colors duration-200"
               >
                 {!isHomepage && (
@@ -121,20 +120,6 @@ const customFade = {
       >
         <slot />
       </section>
-      {
-        !isHomepage && !centered && (
-          <a
-            href={backTo}
-            class="group text-muted hover:text-primary inline-flex items-center gap-1.5 pt-6 transition-colors duration-200"
-          >
-            <Icon
-              name="arrow-left"
-              class="size-4 transition-transform duration-200 group-hover:-translate-x-0.5"
-            />
-            {backToLabel}
-          </a>
-        )
-      }
     </main>
 
     <Footer />

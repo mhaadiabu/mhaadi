@@ -1,0 +1,32 @@
+---
+// Option 2: Icon Cards — each activity in a card with a colored accent dot
+---
+
+<section class="wido-icons grid grid-cols-2 gap-2">
+  {
+    [
+      { text: 'build web & mobile apps', hue: 210 },
+      { text: 'obsess over AI', hue: 280 },
+      { text: 'read code and docs (a lot)', hue: 160 },
+      { text: 'refactor for fun', hue: 30 },
+    ].map(({ text, hue }) => (
+      <div
+        class="flex items-center gap-3 rounded-lg border border-transparent p-3 transition-all duration-300"
+        style={`--hue: ${hue}`}
+      >
+        <div
+          class="size-2 shrink-0 rounded-full"
+          style={`background: hsl(var(--hue) 60% 60%)`}
+        ></div>
+        <span class="text-muted text-xs">{text}</span>
+      </div>
+    ))
+  }
+</section>
+
+<style>
+  .wido-icons > div:hover {
+    background: hsl(var(--hue) 50% 50% / 0.08);
+    border-color: hsl(var(--hue) 50% 50% / 0.3);
+  }
+</style>
