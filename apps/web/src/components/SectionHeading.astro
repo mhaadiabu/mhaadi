@@ -1,0 +1,136 @@
+---
+interface Props {
+  text: string;
+  variant?: 'slash' | 'arrow' | 'line' | 'pill' | 'edge' | 'bracket' | 'dot';
+}
+
+const { text, variant = 'slash' } = Astro.props;
+---
+
+{
+  variant === 'slash' && (
+    <h5 class="text-secondary font-medium">
+      <span class="text-secondary/30">//</span> {text}
+    </h5>
+  )
+}
+
+{
+  variant === 'arrow' && (
+    <h5 class="text-secondary font-medium">
+      <span class="text-secondary/30">▸</span> {text}
+    </h5>
+  )
+}
+
+{
+  variant === 'line' && (
+    <div class="flex items-center gap-3">
+      <h5 class="text-secondary font-medium whitespace-nowrap">{text}</h5>
+      <span class="h-px flex-1 bg-border"></span>
+    </div>
+  )
+}
+
+{
+  variant === 'pill' && (
+    <h5 class="text-secondary border-border bg-bg-secondary inline-flex items-center rounded-full border px-3 py-0.5 text-xs font-medium tracking-wide">
+      {text}
+    </h5>
+  )
+}
+
+{
+  variant === 'edge' && (
+    <h5 class="section-heading-edge relative text-secondary text-sm font-semibold">
+      {text}
+    </h5>
+  )
+}
+
+{
+  variant === 'bracket' && (
+    <h5 class="section-heading-bracket relative text-secondary text-sm font-semibold">
+      {text}
+    </h5>
+  )
+}
+
+{
+  variant === 'dot' && (
+    <h5 class="section-heading-dot relative text-secondary text-sm font-semibold">
+      <span class="sr-only">✦</span>
+      {text}
+    </h5>
+  )
+}
+
+<style>
+  .section-heading-edge {
+    padding-left: 1rem;
+  }
+
+  .section-heading-edge::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 3px;
+    bottom: 3px;
+    width: 3px;
+    background: var(--color-accent);
+    border-radius: 1px;
+  }
+
+  .section-heading-bracket {
+    padding-left: 1rem;
+  }
+
+  .section-heading-bracket::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 3px;
+    bottom: 3px;
+    width: 3px;
+    background: var(--color-accent);
+    border-radius: 1px;
+  }
+
+  .section-heading-bracket::after {
+    content: '';
+    position: absolute;
+    bottom: 3px;
+    left: 3px;
+    height: 3px;
+    width: 0.75rem;
+    background: var(--color-accent);
+    border-radius: 1px;
+  }
+
+  .section-heading-dot {
+    padding-left: 1rem;
+  }
+
+  .section-heading-dot::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 3px;
+    bottom: 3px;
+    width: 3px;
+    background: var(--color-accent);
+    border-radius: 1px;
+  }
+
+  .section-heading-dot::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -1px;
+    width: 5px;
+    height: 5px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    box-shadow: 0 0 6px 1px var(--color-accent);
+  }
+</style>

@@ -3,13 +3,13 @@ import { Icon } from 'astro-icon/components';
 import { tools } from '../data/tools';
 ---
 
-<section class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+<section class="tech-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
   {
     tools.map(({ icon, name }, i) => {
       const hue = (i * 47 + 180) % 360;
       return (
         <div
-          class="flex flex-col items-center gap-1.5 rounded-lg border border-transparent p-3 transition-colors duration-300"
+          class="tech-cell relative flex flex-col items-center gap-1.5 p-3 transition-colors duration-300"
           style={`--hue: ${hue}`}
         >
           <Icon name={icon} class="text-primary size-8" />
@@ -21,10 +21,41 @@ import { tools } from '../data/tools';
 </section>
 
 <style>
-  .flex {
-    &:hover {
-      background: hsl(var(--hue) 50% 50% / 0.08);
-      border-color: hsl(var(--hue) 50% 50% / 0.3);
-    }
+  .tech-cell:hover {
+    background: hsl(var(--hue) 50% 50% / 0.08);
+    outline: 2px solid hsl(var(--hue) 50% 50% / 0.4);
+    outline-offset: -1px;
+  }
+
+  .tech-cell::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    translate: -50% -50%;
+    width: 8px;
+    height: 8px;
+    background:
+      linear-gradient(var(--color-border), var(--color-border)) center / 8px 1px no-repeat,
+      linear-gradient(var(--color-border), var(--color-border)) center / 1px 8px no-repeat;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.7;
+  }
+
+  .tech-cell::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    translate: 50% 50%;
+    width: 8px;
+    height: 8px;
+    background:
+      linear-gradient(var(--color-border), var(--color-border)) center / 8px 1px no-repeat,
+      linear-gradient(var(--color-border), var(--color-border)) center / 1px 8px no-repeat;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.7;
   }
 </style>

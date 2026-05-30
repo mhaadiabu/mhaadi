@@ -4,6 +4,7 @@ import { Icon } from 'astro-icon/components';
 import ProjectCard from '../components/ProjectCard.astro';
 import Tech from '../components/Tech.astro';
 import WhatIDo from '../components/WhatIDo.astro';
+import SectionHeading from '../components/SectionHeading.astro';
 import { featuredProjects } from '../data/projects';
 
 const stagger = (index: number) => ({
@@ -26,7 +27,7 @@ const stagger = (index: number) => ({
     class="animate-fade-in-up flex flex-col gap-2.5 pt-6 opacity-0"
     {...stagger(2)}
   >
-    <h5 class="text-secondary font-medium">what i do</h5>
+    <SectionHeading text="what i do" variant="edge" />
     <WhatIDo />
   </div>
 
@@ -34,7 +35,7 @@ const stagger = (index: number) => ({
     class="animate-fade-in-up flex flex-col gap-2.5 pt-6 opacity-0"
     {...stagger(3)}
   >
-    <h5 class="text-secondary font-medium">what i work with</h5>
+    <SectionHeading text="what i work with" variant="edge" />
     <Tech />
     <!-- <ul class="list-inside list-disc [&>li]:leading-loose">
       <li>react</li>
@@ -50,7 +51,7 @@ const stagger = (index: number) => ({
     class="animate-fade-in-up flex w-full flex-col gap-4 pt-6 opacity-0"
     {...stagger(4)}
   >
-    <h5 class="text-secondary font-medium">projects</h5>
+    <SectionHeading text="projects" variant="edge" />
     {featuredProjects.map((project, index) => <ProjectCard {...project} />)}
     <p class="text-muted pt-2 text-sm">
       interested in other things i&apos;ve worked on?
