@@ -1,12 +1,41 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+
+const modules = import.meta.glob('../posts/*.md', { eager: true });
+const posts = Object.entries(modules).map(([filepath, mod]) => ({
+  slug: filepath.split('/').pop()?.replace('.md', ''),
+  title: mod.frontmatter.title,
+  mod,
+}));
+
+const stagger = (index: number) => ({
+  style: `animation-delay: ${index * 0.2}s`,
+});
 ---
 
 <Layout
   title="blog"
   description="i'm not smart. but i think a lot. though my thoughts are almost never complete. i dump them here when they are. enjoy (or don't)."
 >
-  <p class="text-primary animate-fade-in-up text-lg font-bold opacity-0">
-    writing...
-  </p>
+  <ul class="flex w-full flex-col gap-4">
+    {
+      posts.map(
+        (post, index) => (
+          <li class="animate-fade-in-up opacity-0" {...stagger(index)}>
+            <a
+              href={`/blog/${post.slug}`}
+              class="group text-secondary hover:text-primary inline-flex items-center gap-1.5 transition-colors"
+            >
+              <span>{post.title}</span>
+              <Icon
+                name="arrow-right"
+                class="size-3.5 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100"
+              />
+            </a>
+          </li>
+        ),
+      )
+    }
+  </ul>
 </Layout>

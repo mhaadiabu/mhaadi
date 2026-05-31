@@ -21,32 +21,6 @@ const {
 const isHomepage = Astro.url.pathname === '/';
 const showBackButton = !isHomepage && !centered;
 
-const customFade = {
-  forwards: {
-    old: {
-      name: 'fade-to-left',
-      duration: '0.2s',
-      easing: 'ease-in-out',
-    },
-    new: {
-      name: 'fade-from-right',
-      duration: '0.2s',
-      easing: 'ease-in-out',
-    },
-  },
-  backwards: {
-    old: {
-      name: 'fade-to-right',
-      duration: '0.2s',
-      easing: 'ease-in-out',
-    },
-    new: {
-      name: 'fade-from-left',
-      duration: '0.2s',
-      easing: 'ease-in-out',
-    },
-  },
-};
 ---
 
 <!doctype html>
@@ -81,7 +55,7 @@ const customFade = {
   </head>
   <body
     class="bg-bg text-muted font-paper-mono container mx-auto flex min-h-screen w-full max-w-5xl flex-col py-4 text-sm transition-colors duration-200"
-    transition:animate={customFade}
+    transition:animate="morph"
   >
     <!-- Theme toggle -->
     <ThemeToggle />
@@ -161,29 +135,3 @@ const customFade = {
   document.addEventListener('astro:page-load', setupScrollToTop);
 </script>
 
-<style is:global>
-  @keyframes fade-to-left {
-    to {
-      opacity: 0;
-      transform: translateX(-24px);
-    }
-  }
-  @keyframes fade-from-right {
-    from {
-      opacity: 0;
-      transform: translateX(24px);
-    }
-  }
-  @keyframes fade-to-right {
-    to {
-      opacity: 0;
-      transform: translateX(24px);
-    }
-  }
-  @keyframes fade-from-left {
-    from {
-      opacity: 0;
-      transform: translateX(-24px);
-    }
-  }
-</style>

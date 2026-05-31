@@ -1,0 +1,93 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const modules = import.meta.glob('../../posts/*.md', { eager: true });
+  return Object.entries(modules).map(([filepath, mod]) => ({
+    params: { slug: filepath.split('/').pop()?.replace('.md', '') },
+    props: { mod },
+  }));
+}
+
+const { mod } = Astro.props;
+const { frontmatter, Content } = mod;
+---
+
+<Layout title={frontmatter.title} backTo="/blog">
+  <article class="flex flex-col gap-4 animate-fade-in-up opacity-0">
+    <Content />
+  </article>
+</Layout>
+
+<style>
+  article :deep(h1) {
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+  }
+
+  article :deep(h2) {
+    color: var(--color-primary);
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+  }
+
+  article :deep(p) {
+    color: var(--color-muted);
+    line-height: 1.75;
+  }
+
+  article :deep(a) {
+    color: var(--color-secondary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s;
+  }
+
+  article :deep(a:hover) {
+    color: var(--color-primary);
+  }
+
+  article :deep(ul),
+  article :deep(ol) {
+    padding-left: 1.5rem;
+    color: var(--color-muted);
+    line-height: 1.75;
+  }
+
+  article :deep(li) {
+    margin-bottom: 0.25rem;
+  }
+
+  article :deep(code) {
+    background: var(--color-bg-secondary);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.8125rem;
+  }
+
+  article :deep(pre) {
+    background: var(--color-bg-secondary);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+
+  article :deep(blockquote) {
+    border-left: 3px solid var(--color-accent);
+    padding-left: 1rem;
+    color: var(--color-secondary);
+    font-style: italic;
+  }
+
+  article :deep(hr) {
+    border: none;
+    height: 1px;
+    background: var(--color-border);
+    margin: 1.5rem 0;
+  }
+</style>
