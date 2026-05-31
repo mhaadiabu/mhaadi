@@ -5,9 +5,11 @@ import { config } from "dotenv";
 config({ path: "./.env" });
 config({ path: "../../apps/web/.env" });
 
-const app = await alchemy("mhaadi");
+const app = await alchemy("mhaadi", { stage: "prod" });
 
 export const web = await Vite("web", {
+  name: "mhaadi",
+  adopt: true,
   cwd: "../../apps/web",
   assets: "dist",
   bindings: {
