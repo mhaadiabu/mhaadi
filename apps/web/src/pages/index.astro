@@ -2,10 +2,19 @@
 import Layout from '../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import ProjectCard from '../components/ProjectCard.astro';
+import PackageCard from '../components/PackageCard.astro';
 import Tech from '../components/Tech.astro';
 import WhatIDo from '../components/WhatIDo.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import { featuredProjects } from '../data/projects';
+import { featuredProjects, type Project } from '../data/projects';
+import { packages, type Package } from '../data/packages';
+
+type PortfolioItem = Project | Package;
+
+const projectsSection: PortfolioItem[] = [
+  ...featuredProjects,
+  ...packages,
+];
 
 const stagger = (index: number) => ({
   style: `animation-delay: ${index * 0.2}s`,
@@ -52,7 +61,13 @@ const stagger = (index: number) => ({
     {...stagger(4)}
   >
     <SectionHeading text="projects" variant="edge" />
-    {featuredProjects.map((project, index) => <ProjectCard {...project} />)}
+    {projectsSection.map((item) =>
+      item.type === 'project' ? (
+        <ProjectCard {...item} />
+      ) : (
+        <PackageCard {...item} />
+      ),
+    )}
     <p class="text-muted pt-2 text-sm">
       interested in other things i&apos;ve worked on?
       <a
@@ -67,7 +82,7 @@ const stagger = (index: number) => ({
     </p>
   </div>
 
-  <nav class="animate-fade-in-up flex gap-4 pt-6 opacity-0" {...stagger(5)}>
+  <nav class="animate-fade-in-up flex gap-4 pt-6 opacity-0" {...stagger(6)}>
     <a
       href="/blog"
       class="group text-secondary hover:text-primary inline-flex items-center gap-1 transition-colors"

@@ -31,6 +31,7 @@ export type Stack =
   | 'tanstack-query';
 
 export interface Project {
+  type: 'project';
   title: string;
   description: string;
   image: string;
@@ -43,6 +44,7 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    type: 'project',
     title: 'UPSA HMS',
     description:
       'A comprehensive Hospital Management System built for the UPSA Ewuntoma Clinic.',
@@ -51,6 +53,7 @@ export const projects: Project[] = [
     disabled: true,
   },
   {
+    type: 'project',
     title: 'SchoolThing',
     description:
       'A comprehensive school management system with student and teacher dashboards.',
@@ -60,6 +63,7 @@ export const projects: Project[] = [
     disabled: true,
   },
   {
+    type: 'project',
     title: 'TaskThing',
     description: 'A simple full-stack todo application for tracking tasks.',
     image: '/projects/task-thing.png',

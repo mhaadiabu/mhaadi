@@ -1,11 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import { projects } from '../data/projects';
+import PackageCard from '../components/PackageCard.astro';
+import { projects, type Project } from '../data/projects';
+import { packages, type Package } from '../data/packages';
 
-const sorted = [...projects].sort((a, b) => {
-  if (a.disabled && !b.disabled) return 1;
-  if (!a.disabled && b.disabled) return -1;
+type PortfolioItem = Project | Package;
+
+const allItems: PortfolioItem[] = [...projects, ...packages];
+
+const sorted = allItems.sort((a, b) => {
+  const aFeatured = a.type === 'project' && a.featured;
+  const bFeatured = b.type === 'project' && b.featured;
+  if (aFeatured && !bFeatured) return -1;
+  if (!aFeatured && bFeatured) return 1;
+  if (a.type === 'package' && b.type !== 'package') return -1;
+  if (a.type !== 'package' && b.type === 'package') return 1;
+  if (a.type === 'project' && b.type === 'project') {
+    if (a.disabled && !b.disabled) return 1;
+    if (!a.disabled && b.disabled) return -1;
+  }
   return 0;
 });
 
@@ -17,9 +31,13 @@ const stagger = (index: number) => ({
 <Layout title="projects" description="things i have built.">
   <div class="flex w-full flex-col gap-4">
     {
-      sorted.map((project, index) => (
+      sorted.map((item, index) => (
         <div class="animate-fade-in-up opacity-0" {...stagger(index)}>
-          <ProjectCard {...project} />
+          {item.type === 'project' ? (
+            <ProjectCard {...item} />
+          ) : (
+            <PackageCard {...item} />
+          )}
         </div>
       ))
     }
