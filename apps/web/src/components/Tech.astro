@@ -9,7 +9,7 @@ import { tools } from '../data/tools';
       const hue = (i * 47 + 180) % 360;
       return (
         <div
-          class="tech-cell relative flex flex-col items-center gap-1.5 border border-border p-3 transition-colors duration-300"
+          class="tech-cell relative flex flex-col items-center gap-1.5 p-3 transition-colors duration-300"
           style={`--hue: ${hue}`}
         >
           <Icon name={icon} class="text-primary size-8" />
@@ -21,18 +21,9 @@ import { tools } from '../data/tools';
 </section>
 
 <style>
-  .tech-grid {
-    overflow: clip;
-  }
-
-  .tech-cell {
-    margin-right: -1px;
-    margin-bottom: -1px;
-  }
-
   .tech-cell:hover {
     background: hsl(var(--hue) 50% 50% / 0.08);
-    border-color: hsl(var(--hue) 50% 50% / 0.5);
-    z-index: 1;
+    outline: 2px solid hsl(var(--hue) 50% 50% / 0.5);
+    outline-offset: -1px;
   }
 </style>
