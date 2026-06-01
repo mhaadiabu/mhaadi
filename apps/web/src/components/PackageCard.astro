@@ -11,7 +11,7 @@ const fullName = scope ? `@${scope}/${name}` : name;
 const cmd = installCommand ?? `npm install ${fullName}`;
 ---
 
-<article class="group border-border bg-bg-secondary/50 flex w-full flex-col gap-3 border p-4 transition-all duration-300 hover:border-secondary hover:bg-bg-secondary">
+<article class="surface-card group flex w-full flex-col gap-3 p-4 hover:-translate-y-0.5">
   <div class="bg-bg-secondary border-border flex items-center gap-2 border px-3 py-2 font-mono text-xs">
     <span class="text-secondary/50 select-none">$</span>
     <code class="text-primary">{cmd}</code>
@@ -32,16 +32,16 @@ const cmd = installCommand ?? `npm install ${fullName}`;
         href={npm}
         target="_blank"
         rel="noopener noreferrer"
-        class="text-muted hover:text-primary transition-colors duration-200"
+        class="icon-link"
       >
         <Icon name="npm" class="size-4" />
       </a>
       {github && (
         <a
-        href={github}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-muted hover:text-primary transition-colors duration-200"
+          href={github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="icon-link"
         >
           <Icon name="github-logo" class="size-4" />
         </a>

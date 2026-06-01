@@ -1,7 +1,3 @@
----
-
----
-
 <button
   id="theme-toggle"
   type="button"
@@ -51,10 +47,6 @@
     opacity: 1;
   }
 
-  #theme-toggle {
-    position: fixed;
-  }
-
   #theme-toggle.scrolled {
     background-color: var(--color-bg-secondary);
     border: 1px solid var(--color-border);
@@ -71,6 +63,19 @@
     const sunIcon = document.getElementById('sun-icon');
     const moonIcon = document.getElementById('moon-icon');
     if (!toggle || !sunIcon || !moonIcon) return;
+
+    const updateScrollState = () => {
+      if (window.scrollY > 100) {
+        toggle.classList.add('scrolled');
+      } else {
+        toggle.classList.remove('scrolled');
+      }
+    };
+
+    if (toggle.dataset.bound === 'true') {
+      updateScrollState();
+      return;
+    }
 
     const getTheme = (): 'dark' | 'light' => {
       const stored = localStorage.getItem('theme');
@@ -103,14 +108,6 @@
       setTheme(current === 'dark' ? 'light' : 'dark');
     };
 
-    const updateScrollState = () => {
-      if (window.scrollY > 100) {
-        toggle.classList.add('scrolled');
-      } else {
-        toggle.classList.remove('scrolled');
-      }
-    };
-
     // Initialize
     const currentTheme = getTheme();
     setTheme(currentTheme);
@@ -120,6 +117,7 @@
     toggle.addEventListener('click', switchTheme);
 
     window.addEventListener('scroll', updateScrollState);
+    toggle.dataset.bound = 'true';
   }
 
   // Run on initial load and after Astro page transitions

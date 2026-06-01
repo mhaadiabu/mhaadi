@@ -11,7 +11,7 @@
       { text: 'refactor for fun', hue: 30 },
     ].map(({ text, hue }) => (
       <div
-        class="flex items-center gap-3 rounded-lg border border-transparent p-3 transition-all duration-300"
+        class="hue-card flex items-center gap-3 rounded-lg p-3"
         style={`--hue: ${hue}`}
       >
         <div
@@ -23,10 +23,3 @@
     ))
   }
 </section>
-
-<style>
-  .wido-icons > div:hover {
-    background: hsl(var(--hue) 50% 50% / 0.08);
-    border-color: hsl(var(--hue) 50% 50% / 0.3);
-  }
-</style>
