@@ -7,11 +7,27 @@ config({ path: "../../apps/web/.env" });
 
 const app = await alchemy("mhaadi", { stage: "prod" });
 
+const REDIRECT_SCRIPT = `
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    if (url.hostname === "mhaadi.mhabubakar999.workers.dev") {
+      return Response.redirect("https://mhaadi.dev", 301);
+    }
+    return env.ASSETS.fetch(request);
+  }
+};
+`;
+
 export const web = await Vite("web", {
   name: "mhaadi",
   adopt: true,
   cwd: "../../apps/web",
-  assets: "dist",
+  assets: {
+    directory: "dist",
+    run_worker_first: true,
+  },
+  script: REDIRECT_SCRIPT,
   bindings: {
     PUBLIC_SERVER_URL: alchemy.env.PUBLIC_SERVER_URL!,
   },
