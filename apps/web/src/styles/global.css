@@ -87,18 +87,7 @@
   --theme-muted: oklch(0.556 0 0);
 }
 
-* {
-  scroll-behavior: smooth;
-}
 
-@media (prefers-reduced-motion: reduce) {
-  * {
-    scroll-behavior: auto;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
 
 .surface-card {
   border: 1px solid var(--color-border);
