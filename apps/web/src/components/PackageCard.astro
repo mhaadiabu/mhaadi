@@ -4,7 +4,7 @@ import type { Package } from '../data/packages';
 
 interface Props extends Package {}
 
-const { name, scope, description, version, npm, github, installCommand } =
+const { name, scope, description, version, npm, github, website, installCommand } =
   Astro.props;
 
 const fullName = scope ? `@${scope}/${name}` : name;
@@ -27,23 +27,41 @@ const cmd = installCommand ?? `npm install ${fullName}`;
 
     <p class="text-muted text-sm">{description}</p>
 
-    <div class="flex gap-2 pt-1">
-      <a
-        href={npm}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="icon-link"
-      >
-        <Icon name="npm" class="size-4" />
-      </a>
-      {github && (
+    <div class="flex items-center justify-between pt-1">
+      <div class="flex gap-2">
         <a
-          href={github}
+          href={npm}
           target="_blank"
           rel="noopener noreferrer"
           class="icon-link"
         >
-          <Icon name="github-logo" class="size-4" />
+          <Icon name="npm" class="size-4" />
+          <span class="sr-only">npm package</span>
+        </a>
+        {github && (
+          <a
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="icon-link"
+          >
+            <Icon name="github-logo" class="size-4" />
+            <span class="sr-only">GitHub repository</span>
+          </a>
+        )}
+      </div>
+      {website && (
+        <a
+          href={website}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="icon-link group/link"
+        >
+          <Icon
+            name="arrow-top-right"
+            class="size-4 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+          />
+          <span class="sr-only">View website</span>
         </a>
       )}
     </div>

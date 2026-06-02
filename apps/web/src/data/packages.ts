@@ -6,6 +6,7 @@ export interface Package {
   version: string;
   npm: string;
   github?: string;
+  website?: string;
   installCommand?: string;
 }
 
@@ -18,6 +19,7 @@ export const packages: Package[] = [
     version: '0.1.1',
     npm: 'https://www.npmjs.com/package/@mhaadi/svg',
     github: 'https://github.com/mhaadiabu/better-svg',
+    website: 'https://svg.mhaadi.dev',
     installCommand: 'pnpm add @mhaadi/svg',
   },
 ];
