@@ -1,11 +1,14 @@
 import alchemy from "alchemy";
 import { Vite } from "alchemy/cloudflare";
+import { FileSystemStateStore } from "alchemy/state";
 import { config } from "dotenv";
 
 config({ path: "./.env" });
 config({ path: "../../apps/web/.env" });
 
-const app = await alchemy("mhaadi", { stage: "prod" });
+const app = await alchemy("mhaadi", {
+  stateStore: (scope) => new FileSystemStateStore(scope),
+});
 
 const REDIRECT_SCRIPT = `
 export default {
@@ -28,9 +31,11 @@ export const web = await Vite("web", {
     run_worker_first: true,
   },
   script: REDIRECT_SCRIPT,
-  bindings: {
-    PUBLIC_SERVER_URL: alchemy.env.PUBLIC_SERVER_URL!,
-  },
+  bindings: process.env.PUBLIC_SERVER_URL
+    ? {
+        PUBLIC_SERVER_URL: process.env.PUBLIC_SERVER_URL,
+      }
+    : {},
   build: {
     command: "bun run build",
   },
