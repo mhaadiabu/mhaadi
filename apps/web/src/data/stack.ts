@@ -5,7 +5,8 @@ export type StackItemCategory =
   | 'database'
   | 'orm'
   | 'service'
-  | 'tooling';
+  | 'tooling'
+  | 'design';
 
 export type StackItem = {
   name: string;
@@ -40,4 +41,9 @@ export const stack: StackItem[] = [
   { name: 'pnpm', icon: 'pnpm', category: 'tooling' },
   { name: 'Turborepo', icon: 'turborepo', category: 'tooling' },
   { name: 'Zed', icon: 'zed', category: 'tooling' },
+
+  { name: 'Figma', icon: 'figma', category: 'design' },
+  { name: 'Photoshop', icon: 'photoshop', category: 'design' },
+  { name: 'Illustrator', icon: 'illustrator', category: 'design' },
+  { name: 'Canva', icon: 'canva', category: 'design' },
 ];
