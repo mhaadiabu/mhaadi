@@ -1,6 +1,16 @@
+export type ToolCategory =
+  | 'language'
+  | 'frontend'
+  | 'backend'
+  | 'database'
+  | 'orm'
+  | 'service'
+  | 'tooling';
+
 export type Tool = {
   name: string;
   icon: string;
+  category: ToolCategory;
 };
 
 export const iconLabels: Record<string, string> = {
@@ -39,15 +49,24 @@ export const iconLabels: Record<string, string> = {
 };
 
 export const tools: Tool[] = [
-  { name: 'React', icon: 'reactjs' },
-  { name: 'Next.js', icon: 'nextjs' },
-  { name: 'Tailwind CSS', icon: 'tailwindcss' },
-  { name: 'TanStack Start', icon: 'tanstack' },
-  { name: 'tRPC', icon: 'trpc' },
-  { name: 'Drizzle', icon: 'drizzle' },
-  { name: 'Astro', icon: 'astro' },
-  { name: 'Convex', icon: 'convex' },
-  { name: 'Expo', icon: 'expo' },
-  { name: 'TanStack Query', icon: 'tanstack-query' },
-  { name: 'Clerk', icon: 'clerk' },
+  { name: 'TypeScript', icon: 'typescript', category: 'language' },
+
+  { name: 'React', icon: 'reactjs', category: 'frontend' },
+  { name: 'Next.js', icon: 'nextjs', category: 'frontend' },
+  { name: 'Astro', icon: 'astro', category: 'frontend' },
+  { name: 'Expo', icon: 'expo', category: 'frontend' },
+  { name: 'Tailwind CSS', icon: 'tailwindcss', category: 'frontend' },
+  { name: 'TanStack Start', icon: 'tanstack', category: 'frontend' },
+  { name: 'TanStack Query', icon: 'tanstack-query', category: 'frontend' },
+
+  { name: 'tRPC', icon: 'trpc', category: 'backend' },
+
+  { name: 'Neon', icon: 'neondb', category: 'database' },
+
+  { name: 'Drizzle', icon: 'drizzle', category: 'orm' },
+
+  { name: 'Convex', icon: 'convex', category: 'service' },
+  { name: 'Clerk', icon: 'clerk', category: 'service' },
+
+  { name: 'Vite', icon: 'vite', category: 'tooling' },
 ];
