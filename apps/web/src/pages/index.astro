@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import ProjectCard from '../components/ProjectCard.astro';
 import PackageCard from '../components/PackageCard.astro';
-import Tech from '../components/Tech.astro';
+import Stack from '../components/Stack.astro';
 import WhatIDo from '../components/WhatIDo.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import { featuredProjects, type Project } from '../data/projects';
@@ -45,7 +45,7 @@ const stagger = (index: number) => ({
     {...stagger(3)}
   >
     <SectionHeading text="what i work with" variant="edge" />
-    <Tech />
+    <Stack />
     <!-- <ul class="list-inside list-disc [&>li]:leading-loose">
       <li>react</li>
       <li>nextjs</li>
