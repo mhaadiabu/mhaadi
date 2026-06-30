@@ -16,7 +16,7 @@ export const packages: Package[] = [
     name: 'svg',
     scope: 'mhaadi',
     description: 'Inline SVG rendering for React.',
-    version: '0.2.1',
+    version: '0.2.3',
     npm: 'https://www.npmjs.com/package/@mhaadi/svg',
     github: 'https://github.com/mhaadiabu/better-svg',
     website: 'https://svg.mhaadi.dev',
