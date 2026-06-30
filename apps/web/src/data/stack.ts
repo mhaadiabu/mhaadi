@@ -1,4 +1,4 @@
-export type ToolCategory =
+export type StackItemCategory =
   | 'language'
   | 'frontend'
   | 'backend'
@@ -7,48 +7,13 @@ export type ToolCategory =
   | 'service'
   | 'tooling';
 
-export type Tool = {
+export type StackItem = {
   name: string;
   icon: string;
-  category: ToolCategory;
+  category: StackItemCategory;
 };
 
-export const iconLabels: Record<string, string> = {
-  nextjs: 'Next.js',
-  tanstack: 'TanStack Start',
-  reactjs: 'React',
-  typescript: 'TypeScript',
-  javascript: 'JavaScript',
-  tailwindcss: 'Tailwind CSS',
-  trpc: 'tRPC',
-  convex: 'Convex',
-  vite: 'Vite',
-  'shadcn-ui': 'shadcn/ui',
-  prisma: 'Prisma',
-  drizzle: 'Drizzle',
-  nodejs: 'Node.js',
-  express: 'Express',
-  mongodb: 'MongoDB',
-  postgresql: 'PostgreSQL',
-  redis: 'Redis',
-  graphql: 'GraphQL',
-  docker: 'Docker',
-  aws: 'AWS',
-  vercel: 'Vercel',
-  supabase: 'Supabase',
-  firebase: 'Firebase',
-  clerk: 'Clerk',
-  zod: 'Zod',
-  zustand: 'Zustand',
-  'framer-motion': 'Framer Motion',
-  'radix-ui': 'Radix UI',
-  neondb: 'Neon',
-  'tanstack-query': 'TanStack Query',
-  astro: 'Astro',
-  expo: 'Expo',
-};
-
-export const tools: Tool[] = [
+export const stack: StackItem[] = [
   { name: 'TypeScript', icon: 'typescript', category: 'language' },
 
   { name: 'React', icon: 'reactjs', category: 'frontend' },

@@ -1,11 +1,11 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { tools } from '../data/tools';
+import { stack } from '../data/stack';
 ---
 
 <section class="tech-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
   {
-    tools.map(({ icon, name }, i) => {
+    stack.map(({ icon, name }, i) => {
       const hue = (i * 47 + 180) % 360;
       return (
         <div
