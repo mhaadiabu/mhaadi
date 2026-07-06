@@ -14,7 +14,7 @@ const REDIRECT_SCRIPT = `
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    if (url.hostname === "mhaadi.mhabubakar999.workers.dev") {
+    if (url.hostname === "mhaadi.mhaadi.workers.dev") {
       return Response.redirect("https://mhaadi.dev", 301);
     }
     return env.ASSETS.fetch(request);
