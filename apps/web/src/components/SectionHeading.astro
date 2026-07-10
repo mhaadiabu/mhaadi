@@ -27,7 +27,7 @@ const { text, variant = 'slash' } = Astro.props;
   variant === 'line' && (
     <div class="flex items-center gap-3">
       <h5 class="text-secondary font-medium whitespace-nowrap">{text}</h5>
-      <span class="h-px flex-1 bg-border"></span>
+      <span class="bg-border h-px flex-1" />
     </div>
   )
 }
@@ -43,7 +43,7 @@ const { text, variant = 'slash' } = Astro.props;
 {
   variant === 'edge' && (
     <div class="section-heading-edge-wrapper flex flex-col gap-1.5">
-      <h5 class="section-heading-edge relative text-secondary text-sm font-semibold">
+      <h5 class="section-heading-edge text-secondary relative text-sm font-semibold">
         {text}
       </h5>
     </div>
@@ -52,7 +52,7 @@ const { text, variant = 'slash' } = Astro.props;
 
 {
   variant === 'bracket' && (
-    <h5 class="section-heading-bracket relative text-secondary text-sm font-semibold">
+    <h5 class="section-heading-bracket text-secondary relative text-sm font-semibold">
       {text}
     </h5>
   )
@@ -60,7 +60,7 @@ const { text, variant = 'slash' } = Astro.props;
 
 {
   variant === 'dot' && (
-    <h5 class="section-heading-dot relative text-secondary text-sm font-semibold">
+    <h5 class="section-heading-dot text-secondary relative text-sm font-semibold">
       <span class="sr-only">✦</span>
       {text}
     </h5>

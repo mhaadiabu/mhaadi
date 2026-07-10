@@ -20,22 +20,20 @@ const stagger = (index: number) => ({
 >
   <ul class="flex w-full flex-col gap-4">
     {
-      posts.map(
-        (post, index) => (
-          <li class="animate-fade-in-up opacity-0" {...stagger(index)}>
-            <a
-              href={`/blog/${post.slug}`}
-              class="group text-secondary hover:text-primary inline-flex items-center gap-1.5 transition-colors"
-            >
-              <span>{post.title}</span>
-              <Icon
-                name="arrow-right"
-                class="size-3.5 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100"
-              />
-            </a>
-          </li>
-        ),
-      )
+      posts.map((post, index) => (
+        <li class="animate-fade-in-up opacity-0" {...stagger(index)}>
+          <a
+            href={`/blog/${post.slug}`}
+            class="group text-secondary hover:text-primary inline-flex items-center gap-1.5 transition-colors"
+          >
+            <span>{post.title}</span>
+            <Icon
+              name="arrow-right"
+              class="size-3.5 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100"
+            />
+          </a>
+        </li>
+      ))
     }
   </ul>
 </Layout>

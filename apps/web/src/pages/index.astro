@@ -11,10 +11,7 @@ import { packages, type Package } from '../data/packages';
 
 type PortfolioItem = Project | Package;
 
-const projectsSection: PortfolioItem[] = [
-  ...featuredProjects,
-  ...packages,
-];
+const projectsSection: PortfolioItem[] = [...featuredProjects, ...packages];
 
 const stagger = (index: number) => ({
   style: `animation-delay: ${index * 0.2}s`,
@@ -61,13 +58,15 @@ const stagger = (index: number) => ({
     {...stagger(4)}
   >
     <SectionHeading text="projects" variant="edge" />
-    {projectsSection.map((item) =>
-      item.type === 'project' ? (
-        <ProjectCard {...item} />
-      ) : (
-        <PackageCard {...item} />
-      ),
-    )}
+    {
+      projectsSection.map((item) =>
+        item.type === 'project' ? (
+          <ProjectCard {...item} />
+        ) : (
+          <PackageCard {...item} />
+        ),
+      )
+    }
     <p class="text-muted pt-2 text-sm">
       interested in other things i&apos;ve worked on?
       <a
