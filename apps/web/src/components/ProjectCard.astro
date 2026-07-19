@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { iconLabels } from '../icons/labels';
+import { Image } from 'astro:assets';
 
 interface Props {
   title: string;
@@ -30,9 +31,11 @@ const {
   ]}
 >
   <div class="relative aspect-video overflow-hidden">
-    <img
+    <Image
       src={image}
       alt={title}
+      width={640}
+      height={360}
       class:list={[
         'h-full w-full object-cover transition-transform duration-300',
         !disabled && 'group-hover:scale-105',
