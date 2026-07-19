@@ -1,5 +1,7 @@
 ---
 title: 'hello'
+date: 'May 30, 2026'
+description: 'a subtle intro'
 ---
 
 # welcome to my blog
