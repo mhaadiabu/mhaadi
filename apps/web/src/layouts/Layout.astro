@@ -66,21 +66,30 @@ const showBackButton = !isHomepage && !centered;
       {
         showBackButton && (
           <>
-            <div class="inline-flex gap-1.5">
+            <div class="flex flex-col gap-1.5">
               <a
                 href={backTo}
-                class="group text-muted hover:text-primary p-1.5 text-xs transition-colors duration-200"
+                class="group text-muted hover:text-primary transition-colors duration-200"
               >
                 {!isHomepage && (
-                  <Icon
+                <span class="inline-flex items-center gap-1">
+                    <Icon
                     name="arrow-left"
-                    class="size-4 transition-transform duration-200 group-hover:-translate-x-0.5"
-                  />
+                    class="size-5 shrink-0 transition-transform duration-200 group-hover:-translate-x-0.5"
+                    />
+                    <h3 class="m-0 text-base leading-none">back</h3>
+                </span>
                 )}
               </a>
-              <h2 class="text-primary mb-2.5 text-lg font-bold">{title}</h2>
+              <h2>{title}</h2>
+              <h5>{date}</h5>
+
+
             </div>
-            <p class="text-secondary">{description}</p>
+            <p>
+                {description}
+            </p>
+            <hr class="w-full" />
           </>
         )
       }
