@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@portfolio/config": "workspace:*",
-    "alchemy": "^0.91.2",
+    "alchemy": "^0.93.12",
     "typescript": "catalog:"
   }
 }
