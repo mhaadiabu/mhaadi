@@ -1,0 +1,21 @@
+/*
+ * shadcn/typeset overrides
+ * https://ui.shadcn.com/docs/typeset#overrides
+ *
+ * Imported after typeset.css so these win the cascade.
+ */
+
+@layer components {
+  .typeset {
+    --typeset-font-body: var(--font-geist-mono);
+    --typeset-font-heading: var(--font-geist-mono);
+    --typeset-font-mono: var(--font-geist-mono);
+
+    color: var(--color-muted);
+  }
+
+  .typeset :is(h1, h2, h3, h4, h5, h6) {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+}
