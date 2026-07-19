@@ -16,6 +16,6 @@
 
   .typeset :is(h1, h2, h3, h4) {
     color: var(--color-primary);
-    font-weight: 600;
+    font-weight: 500;
   }
 }

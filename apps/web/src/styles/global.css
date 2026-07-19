@@ -7,7 +7,7 @@
   --typeset-font-body: var(--font-geist-mono);
   --typeset-font-heading: var(--font-geist-mono);
   --typeset-font-mono: var(--font-geist-mono);
-  --typeset-size: 17px;
+  --typeset-size: 16px;
   --typeset-leading: 1.75;
   --typeset-flow: 1em;
 }
@@ -70,7 +70,7 @@
   --theme-bg: oklch(0.967 0.003 264);
   --theme-bg-secondary: oklch(0.928 0.006 264);
   --theme-border: oklch(0.871 0.006 286);
-  --theme-muted: oklch(0.37 0 0);
+  --theme-muted: oklch(0.35 0 0);
 }
 
 :root.dark {
@@ -80,7 +80,7 @@
   --theme-bg: oklch(0.145 0 0);
   --theme-bg-secondary: oklch(0.205 0 0);
   --theme-border: oklch(0.269 0 0);
-  --theme-muted: oklch(0.556 0 0);
+  --theme-muted: oklch(0.60 0 0);
 }
 
 .surface-card {
