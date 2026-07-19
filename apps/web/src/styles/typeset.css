@@ -8,7 +8,7 @@
     --typeset-font-body: inherit;
     --typeset-font-heading: var(--font-heading);
     --typeset-font-mono: var(--font-mono);
-    --typeset-size: 1em;
+    --typeset-size: 1.5em;
     --typeset-leading: 1.75;
     --typeset-flow: 1.25em;
   }
