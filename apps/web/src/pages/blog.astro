@@ -23,35 +23,32 @@ const fmt = (d: string) =>
 <Layout
   title="blog"
   description="i'm not smart. but i think a lot. though my thoughts are almost never complete. i dump them here when they are. enjoy (or don't)."
-  tight
 >
-  <ul class="m-0 flex w-full list-none flex-col gap-6 p-0">
+  <div class="flex w-full flex-col gap-6">
     {
       posts.map((post) => (
-        <li class="m-0 p-0">
-          <a
-            href={`/blog/${post.slug}`}
-            class="group grid grid-cols-[1fr_auto] items-center gap-x-6"
+        <a
+          href={`/blog/${post.slug}`}
+          class="group flex w-full justify-between items-baseline gap-4"
+        >
+          <div class="flex flex-col gap-0.5">
+            <span class="text-primary inline-flex items-center gap-1.5 font-medium">
+              {post.title}
+              <Icon
+                name="arrow-right"
+                class="text-muted size-3 -translate-x-1 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
+              />
+            </span>
+            <span class="text-muted text-sm line-clamp-3">{post.description}</span>
+          </div>
+          <time
+            datetime={post.date}
+            class="text-muted whitespace-nowrap tabular-nums"
           >
-            <div class="flex flex-col gap-0.5">
-              <span class="text-primary inline-flex items-center gap-1.5 font-medium">
-                {post.title}
-                <Icon
-                  name="arrow-right"
-                  class="text-muted size-3 -translate-x-1 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
-                />
-              </span>
-              <span class="text-muted text-sm">{post.description}</span>
-            </div>
-            <time
-              datetime={post.date}
-              class="text-muted whitespace-nowrap tabular-nums"
-            >
-              {fmt(post.date)}
-            </time>
-          </a>
-        </li>
+            {fmt(post.date)}
+          </time>
+        </a>
       ))
     }
-  </ul>
+  </div>
 </Layout>

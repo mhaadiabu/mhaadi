@@ -11,7 +11,6 @@ interface Props {
   backTo?: string;
   description?: string;
   centered?: boolean;
-  tight?: boolean;
 }
 
 const {
@@ -20,7 +19,6 @@ const {
   backTo = '/',
   description,
   centered = false,
-  tight = false,
 } = Astro.props;
 const isHomepage = Astro.url.pathname === '/';
 const showBackButton = !isHomepage && !centered;
@@ -50,7 +48,7 @@ const showBackButton = !isHomepage && !centered;
     <ClientRouter />
   </head>
   <body
-    class="bg-bg text-muted typeset typeset-docs container mx-auto flex min-h-screen w-full max-w-5xl flex-col py-4 text-sm antialiased transition-colors duration-200"
+    class="bg-bg text-muted typeset typeset-docs container mx-auto flex min-h-screen w-full max-w-5xl flex-col py-4 antialiased transition-colors duration-200"
   >
     <!-- Theme toggle -->
     <ThemeToggle />
@@ -69,26 +67,26 @@ const showBackButton = !isHomepage && !centered;
                 class="group text-muted hover:text-primary transition-colors duration-200"
               >
                 {!isHomepage && (
-                  <span class="inline-flex items-center gap-1">
+                  <span class="inline-flex items-center gap-1.5">
                     <Icon
                       name="arrow-left"
-                      class="size-5 shrink-0 transition-transform duration-200 group-hover:-translate-x-0.5"
+                      class="size-4 shrink-0 transition-transform duration-200 group-hover:-translate-x-0.5"
                     />
-                    <h3 class="m-0 text-base leading-none">back</h3>
+                    <p class="m-0 text-base leading-none">back</p>
                   </span>
                 )}
               </a>
-              <h2>{title}</h2>
-              <h5>{date}</h5>
+              <h1>{title}</h1>
+              {date && <h5>{date}</h5>}
             </div>
-            <p>{description}</p>
-            <hr class="w-full" />
+            <p class="leading-loose pb-1.5">{description}</p>
+            <hr class="w-full mt-0" />
           </>
         )
       }
       <section
         class:list={[
-          'flex flex-1 flex-col py-4',
+          'flex flex-1 flex-col py-4 w-full',
           centered && 'items-center justify-center',
         ]}
       >
