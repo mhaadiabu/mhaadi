@@ -7,16 +7,20 @@ import { Icon } from 'astro-icon/components';
 
 interface Props {
   title?: string;
+  date?: string;
   backTo?: string;
   description?: string;
   centered?: boolean;
+  tight?: boolean;
 }
 
 const {
   title = 'Haadi',
+  date,
   backTo = '/',
   description,
   centered = false,
+  tight = false,
 } = Astro.props;
 const isHomepage = Astro.url.pathname === '/';
 const showBackButton = !isHomepage && !centered;
