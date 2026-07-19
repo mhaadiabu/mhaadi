@@ -1,25 +1,22 @@
 @import 'tailwindcss';
+@import './typeset.css';
+@import './config/typeset.css';
+@import "@fontsource-variable/geist-mono";
 
-@font-face {
-  font-family: 'Paper Mono';
-  src: url('/assets/fonts/PaperMono-Regular.ttf') format('truetype');
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Berkeley Mono';
-  src: url('/assets/fonts/BerkeleyMonoTrial-Regular.otf') format('opentype');
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
+.typeset-docs {
+  --typeset-font-body: var(--font-geist-mono);
+  --typeset-font-heading: var(--font-geist-mono);
+  --typeset-font-mono: var(--font-geist-mono);
+  --typeset-size: 16px;
+  --typeset-leading: 1.75;
+  --typeset-flow: 1em;
 }
 
 @theme {
   --font-sans: 'Helvetica', sans-serif;
   --font-paper-mono: 'Paper Mono', monospace;
   --font-berkeley-mono: 'Berkeley Mono', monospace;
+  --font-geist-mono: 'Geist Mono Variable', monospace;
 
   /* Theme colors */
   --color-primary: var(--theme-primary);
@@ -65,6 +62,7 @@
   );
   --transition-fast: 180ms;
   --transition-base: 260ms;
+  --font-geist-mono: 'Geist Mono Variable', monospace;
 }
 
 :root {
