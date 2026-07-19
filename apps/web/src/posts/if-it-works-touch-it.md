@@ -2,9 +2,10 @@
 title: if it works, don't touch it
 date: 'July 19, 2026'
 description: 'a half-baked truth about software engineering'
+time: 2
 ---
 
-one thing every software engineer has heard at least once in their career is "if it works, don't touch it". this phrase is often used to discourage developers from making changes to a system that is functioning correctly, even if there are potential improvements that could be made.
+one thing every software engineer has heard at least once in their career is "_if it works, don't touch it_". this phrase is often used to discourage developers from making changes to a system that is functioning correctly, even if there are potential improvements that could be made.
 getting into the field, i never really had anyone to guide me through the nuances of software engineering. i was left to tinker and figure things out on my own, for the 6 years i spent learning and making stuff with vanilla javascript, html, and css (and a little bit of jQuery later on). it was until 3 years ago i got into react and typescript, and even as at then, i had never heard of the phrase "if it works, don't touch it". i always learnt to improve and refactor code, and to always try to make things better, which in my opinion is the most effective way to learn and grow as a software engineer.
 
 i wouldn't necessarily call the phrase is wrong, but it is a half-baked truth. while it is true that making changes to a system that is functioning correctly can introduce new bugs and issues, it is also true that not making changes can lead to stagnation and missed opportunities for improvement.
