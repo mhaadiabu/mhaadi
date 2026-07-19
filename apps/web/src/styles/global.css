@@ -14,8 +14,6 @@
 
 @theme {
   --font-sans: 'Helvetica', sans-serif;
-  --font-paper-mono: 'Paper Mono', monospace;
-  --font-berkeley-mono: 'Berkeley Mono', monospace;
   --font-geist-mono: 'Geist Mono Variable', monospace;
 
   /* Theme colors */
