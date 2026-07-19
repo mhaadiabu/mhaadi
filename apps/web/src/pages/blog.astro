@@ -3,34 +3,52 @@ import Layout from '../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 
 const modules = import.meta.glob('../posts/*.md', { eager: true });
-const posts = Object.entries(modules).map(([filepath, mod]) => ({
-  slug: filepath.split('/').pop()?.replace('.md', ''),
-  title: mod.frontmatter.title,
-  mod,
-}));
+const posts = Object.entries(modules)
+  .map(([filepath, mod]) => ({
+    slug: filepath.split('/').pop()?.replace('.md', ''),
+    title: mod.frontmatter.title,
+    date: mod.frontmatter.date,
+    description: mod.frontmatter.description,
+  }))
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-const stagger = (index: number) => ({
-  style: `animation-delay: ${index * 0.2}s`,
-});
+const fmt = (d: string) =>
+  new Date(d).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
 ---
 
 <Layout
   title="blog"
   description="i'm not smart. but i think a lot. though my thoughts are almost never complete. i dump them here when they are. enjoy (or don't)."
+  tight
 >
-  <ul class="flex w-full flex-col gap-4">
+  <ul class="m-0 flex w-full list-none flex-col gap-6 p-0">
     {
-      posts.map((post, index) => (
-        <li class="animate-fade-in-up opacity-0" {...stagger(index)}>
+      posts.map((post) => (
+        <li class="m-0 p-0">
           <a
             href={`/blog/${post.slug}`}
-            class="group text-secondary hover:text-primary inline-flex items-center gap-1.5 transition-colors"
+            class="group grid grid-cols-[1fr_auto] items-center gap-x-6"
           >
-            <span>{post.title}</span>
-            <Icon
-              name="arrow-right"
-              class="size-3.5 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100"
-            />
+            <div class="flex flex-col gap-0.5">
+              <span class="text-primary inline-flex items-center gap-1.5 font-medium">
+                {post.title}
+                <Icon
+                  name="arrow-right"
+                  class="text-muted size-3 -translate-x-1 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
+                />
+              </span>
+              <span class="text-muted text-sm">{post.description}</span>
+            </div>
+            <time
+              datetime={post.date}
+              class="text-muted tabular-nums whitespace-nowrap"
+            >
+              {fmt(post.date)}
+            </time>
           </a>
         </li>
       ))
