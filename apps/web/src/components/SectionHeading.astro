@@ -9,24 +9,24 @@ const { text, variant = 'slash' } = Astro.props;
 
 {
   variant === 'slash' && (
-    <h5 class="text-secondary font-medium">
+    <h4 class="text-secondary font-medium">
       <span class="text-secondary/30">//</span> {text}
-    </h5>
+    </h4>
   )
 }
 
 {
   variant === 'arrow' && (
-    <h5 class="text-secondary font-medium">
+    <h4 class="text-secondary font-medium">
       <span class="text-secondary/30">▸</span> {text}
-    </h5>
+    </h4>
   )
 }
 
 {
   variant === 'line' && (
     <div class="flex items-center gap-3">
-      <h5 class="text-secondary font-medium whitespace-nowrap">{text}</h5>
+      <h4 class="text-secondary font-medium whitespace-nowrap">{text}</h4>
       <span class="bg-border h-px flex-1" />
     </div>
   )
@@ -34,36 +34,36 @@ const { text, variant = 'slash' } = Astro.props;
 
 {
   variant === 'pill' && (
-    <h5 class="text-secondary border-border bg-bg-secondary inline-flex items-center rounded-full border px-3 py-0.5 text-xs font-medium tracking-wide">
+    <h4 class="text-secondary border-border bg-bg-secondary inline-flex items-center rounded-full border px-3 py-0.5 text-xs font-medium tracking-wide">
       {text}
-    </h5>
+    </h4>
   )
 }
 
 {
   variant === 'edge' && (
     <div class="section-heading-edge-wrapper flex flex-col gap-1.5">
-      <h5 class="section-heading-edge text-secondary relative text-sm font-semibold">
+      <h4 class="section-heading-edge text-secondary relative">
         {text}
-      </h5>
+      </h4>
     </div>
   )
 }
 
 {
   variant === 'bracket' && (
-    <h5 class="section-heading-bracket text-secondary relative text-sm font-semibold">
+    <h4 class="section-heading-bracket text-secondary relative">
       {text}
-    </h5>
+    </h4>
   )
 }
 
 {
   variant === 'dot' && (
-    <h5 class="section-heading-dot text-secondary relative text-sm font-semibold">
+    <h4 class="section-heading-dot text-secondary relative">
       <span class="sr-only">✦</span>
       {text}
-    </h5>
+    </h4>
   )
 }
 
