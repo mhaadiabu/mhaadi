@@ -51,13 +51,13 @@ const showBackButton = !isHomepage && !centered;
     <ClientRouter />
   </head>
   <body
-    class="bg-bg text-muted typeset typeset-docs container mx-auto flex min-h-screen w-full max-w-5xl flex-col py-4 antialiased transition-colors duration-200"
+    class="bg-bg text-muted typeset typeset-docs container mx-auto flex min-h-screen w-full max-w-5xl 2xl:max-w-7xl flex-col py-4 antialiased transition-colors duration-200"
   >
     <!-- Theme toggle -->
     <ThemeToggle />
     <main
       class:list={[
-        'm-auto flex w-full max-w-3xl flex-1 flex-col justify-center px-4 py-6',
+        'm-auto flex w-full max-w-3xl 2xl:max-w-5xl flex-1 flex-col justify-center px-4 py-6',
         centered ? 'items-center text-center' : 'items-start text-left',
       ]}
     >
