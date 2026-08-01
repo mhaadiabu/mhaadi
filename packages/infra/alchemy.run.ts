@@ -29,6 +29,7 @@ export const web = await Vite("web", {
   assets: {
     directory: "dist",
     run_worker_first: true,
+    not_found_handling: "404-page",
   },
   script: REDIRECT_SCRIPT,
   bindings: process.env.PUBLIC_SERVER_URL
