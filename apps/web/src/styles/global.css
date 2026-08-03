@@ -10,9 +10,9 @@
   --typeset-flow: 1em;
 }
 
-@theme {
+@theme inline {
   --font-sans: 'Helvetica', sans-serif;
-  --font-geist-mono: 'Geist Mono Variable', monospace;
+  --font-mono: var(--font-geist-mono);
 
   /* Theme colors */
   --color-primary: var(--theme-primary);
@@ -46,7 +46,6 @@
   );
   --transition-fast: 180ms;
   --transition-base: 260ms;
-  --font-geist-mono: 'Geist Mono Variable', monospace;
 }
 
 :root {

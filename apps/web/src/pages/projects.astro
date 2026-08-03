@@ -30,7 +30,7 @@ const sorted = allItems.sort((a, b) => {
     <h2 class="sr-only">project list</h2>
     {
       sorted.map((item, index) => (
-        <div>
+        <div class="[content-visibility:auto] [contain-intrinsic-size:auto_380px]">
           {item.type === 'project' ? (
             <ProjectCard {...item} priority={index === 0} />
           ) : (
