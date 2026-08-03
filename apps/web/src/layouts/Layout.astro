@@ -1,13 +1,15 @@
 ---
 import '../styles/global.css';
+import { Font } from 'astro:assets';
 import Footer from '../components/Footer.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
-import { ClientRouter } from 'astro:transitions';
 import { Icon } from 'astro-icon/components';
+import { site } from '../data/site';
 
 interface Props {
   title?: string;
   date?: string;
+  dateTime?: string;
   backTo?: string;
   description?: string;
   centered?: boolean;
@@ -15,10 +17,11 @@ interface Props {
 }
 
 const {
-  title = 'Haadi',
+  title = site.name,
   date,
+  dateTime,
   backTo = '/',
-  description,
+  description = site.description,
   centered = false,
   time
 } = Astro.props;
@@ -34,6 +37,18 @@ const showBackButton = !isHomepage && !centered;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, site.url)} />
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={new URL(Astro.url.pathname, site.url)} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <Font cssVariable="--font-geist-mono" preload />
+    <slot name="head" />
     <title>
       {`${title.charAt(0).toUpperCase()}${title.slice(1).toLowerCase()}`}
     </title>
@@ -48,7 +63,6 @@ const showBackButton = !isHomepage && !centered;
       document.documentElement.classList.toggle('dark', theme === 'dark');
     </script>
 
-    <ClientRouter />
   </head>
   <body
     class="bg-bg text-muted typeset typeset-docs container mx-auto flex min-h-screen w-full max-w-5xl 2xl:max-w-7xl flex-col py-4 antialiased transition-colors duration-200"
@@ -80,7 +94,9 @@ const showBackButton = !isHomepage && !centered;
                 )}
               </a>
               <h1>{title}</h1>
-              {date && <h5>{date}</h5>}
+              {date && (
+                <time class="text-secondary text-sm" datetime={dateTime}>{date}</time>
+              )}
             </div>
             <p class="leading-loose text-sm">{description}</p>
             {time && (
@@ -130,19 +146,13 @@ const showBackButton = !isHomepage && !centered;
       }
     };
 
-    if (btn.dataset.bound === 'true') {
-      toggleVisibility();
-      return;
-    }
-
-    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
     btn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    btn.dataset.bound = 'true';
     toggleVisibility();
   }
 
-  document.addEventListener('astro:page-load', setupScrollToTop);
+  setupScrollToTop();
 </script>

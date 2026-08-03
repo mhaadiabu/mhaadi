@@ -34,7 +34,7 @@ export interface Project {
   type: 'project';
   title: string;
   description: string;
-  image: string;
+  image: ImageMetadata;
   stack: Stack[];
   href?: string;
   github?: string;
@@ -48,7 +48,7 @@ export const projects: Project[] = [
     title: 'UPSA HMS',
     description:
       'A comprehensive Hospital Management System built for the UPSA Ewuntoma Clinic.',
-    image: '/projects/school-thing.png',
+    image: schoolThingImage,
     stack: ['tanstack', 'convex'],
     disabled: true,
   },
@@ -57,7 +57,7 @@ export const projects: Project[] = [
     title: 'SchoolThing',
     description:
       'A comprehensive school management system with student and teacher dashboards.',
-    image: '/projects/school-thing.png',
+    image: schoolThingImage,
     stack: ['tanstack', 'convex'],
     href: 'https://school-thing-zeta.vercel.app',
     disabled: true,
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     type: 'project',
     title: 'TaskThing',
     description: 'A simple full-stack todo application for tracking tasks.',
-    image: '/projects/task-thing.png',
+    image: taskThingImage,
     stack: [
       'reactjs',
       'vite',
@@ -84,3 +84,6 @@ export const projects: Project[] = [
 ];
 
 export const featuredProjects = projects.filter((p) => p.featured);
+import type { ImageMetadata } from 'astro';
+import schoolThingImage from '../assets/projects/school-thing.png';
+import taskThingImage from '../assets/projects/task-thing.png';

@@ -1,12 +1,12 @@
 <button
   id="theme-toggle"
   type="button"
-  class="text-muted hover:text-primary fixed top-4 right-4 z-50 cursor-pointer rounded-full p-2.5 transition-all duration-200"
+  class="text-muted hover:text-primary fixed top-4 right-4 z-50 size-10 cursor-pointer rounded-full border border-transparent transition-all duration-200"
   aria-label="Toggle theme"
 >
   <svg
     id="sun-icon"
-    class="theme-icon size-5"
+    class="pointer-events-none absolute top-1/2 left-1/2 size-5 -translate-x-1/2 -translate-y-1/2 scale-0 opacity-0 transition duration-200 [&.active]:scale-100 [&.active]:opacity-100"
     xmlns="http://www.w3.org/2000/svg"
     width="32"
     height="32"
@@ -18,7 +18,7 @@
   >
   <svg
     id="moon-icon"
-    class="theme-icon size-5"
+    class="pointer-events-none absolute top-1/2 left-1/2 size-5 -translate-x-1/2 -translate-y-1/2 scale-0 opacity-0 transition duration-200 [&.active]:scale-100 [&.active]:opacity-100"
     xmlns="http://www.w3.org/2000/svg"
     width="32"
     height="32"
@@ -30,33 +30,6 @@
   >
 </button>
 
-<style>
-  .theme-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0;
-    transition:
-      transform 0.2s ease-out,
-      opacity 0.2s ease-out;
-  }
-
-  .theme-icon.active {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-
-  #theme-toggle.scrolled {
-    background-color: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-  }
-
-  #theme-toggle:not(.scrolled) {
-    border: 1px solid transparent;
-  }
-</style>
-
 <script>
   function setupThemeToggle() {
     const toggle = document.getElementById('theme-toggle');
@@ -66,16 +39,13 @@
 
     const updateScrollState = () => {
       if (window.scrollY > 100) {
-        toggle.classList.add('scrolled');
+        toggle.classList.add('bg-bg-secondary', 'border-border');
+        toggle.classList.remove('border-transparent');
       } else {
-        toggle.classList.remove('scrolled');
+        toggle.classList.add('border-transparent');
+        toggle.classList.remove('bg-bg-secondary', 'border-border');
       }
     };
-
-    if (toggle.dataset.bound === 'true') {
-      updateScrollState();
-      return;
-    }
 
     const getTheme = (): 'dark' | 'light' => {
       const stored = localStorage.getItem('theme');
@@ -108,18 +78,13 @@
       setTheme(current === 'dark' ? 'light' : 'dark');
     };
 
-    // Initialize
     const currentTheme = getTheme();
     setTheme(currentTheme);
     updateScrollState();
 
-    // Event listeners
     toggle.addEventListener('click', switchTheme);
-
-    window.addEventListener('scroll', updateScrollState);
-    toggle.dataset.bound = 'true';
+    window.addEventListener('scroll', updateScrollState, { passive: true });
   }
 
-  // Run on initial load and after Astro page transitions
-  document.addEventListener('astro:page-load', setupThemeToggle);
+  setupThemeToggle();
 </script>

@@ -12,14 +12,12 @@ import { packages, type Package } from '../data/packages';
 type PortfolioItem = Project | Package;
 
 const projectsSection: PortfolioItem[] = [...featuredProjects, ...packages];
+const firstProjectIndex = projectsSection.findIndex((item) => item.type === 'project');
 
-const stagger = (index: number) => ({
-  style: `animation-delay: ${index * 0.2}s`,
-});
 ---
 
 <Layout>
-  <header class="animate-fade-in-up opacity-0" {...stagger(0)}>
+  <header>
     <h1 class="text-primary text-lg font-semibold">Haadi</h1>
     <p class="text-muted mb-6 text-sm">larp maestro. potential man. vibe coder</p>
     <p>
@@ -30,16 +28,14 @@ const stagger = (index: number) => ({
   </header>
 
   <div
-    class="animate-fade-in-up flex flex-col gap-2.5 pt-6 opacity-0"
-    {...stagger(2)}
+    class="flex flex-col gap-2.5 pt-6 [content-visibility:auto] [contain-intrinsic-size:auto_300px]"
   >
     <SectionHeading text="what i do" variant="edge" />
     <WhatIDo />
   </div>
 
   <div
-    class="animate-fade-in-up flex flex-col gap-2.5 pt-6 opacity-0"
-    {...stagger(3)}
+    class="flex flex-col gap-2.5 pt-6 [content-visibility:auto] [contain-intrinsic-size:auto_900px]"
   >
     <SectionHeading text="what i work with" variant="edge" />
     <Stack />
@@ -54,14 +50,13 @@ const stagger = (index: number) => ({
   </div>
 
   <div
-    class="animate-fade-in-up flex w-full flex-col gap-4 pt-6 opacity-0"
-    {...stagger(4)}
+    class="flex w-full flex-col gap-4 pt-6 [content-visibility:auto] [contain-intrinsic-size:auto_850px]"
   >
     <SectionHeading text="projects" variant="edge" />
     {
-      projectsSection.map((item) =>
+      projectsSection.map((item, index) =>
         item.type === 'project' ? (
-          <ProjectCard {...item} />
+          <ProjectCard {...item} priority={index === firstProjectIndex} />
         ) : (
           <PackageCard {...item} />
         ),
@@ -81,7 +76,7 @@ const stagger = (index: number) => ({
     </p>
   </div>
 
-  <nav class="animate-fade-in-up flex gap-4 pt-6 opacity-0" {...stagger(6)}>
+  <nav class="flex gap-4 pt-6">
     <a
       href="/blog"
       class="group text-secondary hover:text-primary inline-flex items-center gap-1 transition-colors"

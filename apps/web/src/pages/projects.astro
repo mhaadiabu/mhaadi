@@ -22,19 +22,18 @@ const sorted = allItems.sort((a, b) => {
   }
   return 0;
 });
+const firstProjectIndex = sorted.findIndex((item) => item.type === 'project');
 
-const stagger = (index: number) => ({
-  style: `animation-delay: ${index * 0.2}s`,
-});
 ---
 
 <Layout title="projects" description="stuff i built.">
   <div class="flex w-full flex-col gap-4">
+    <h2 class="sr-only">project list</h2>
     {
       sorted.map((item, index) => (
-        <div class="animate-fade-in-up opacity-0" {...stagger(index)}>
+        <div class="[content-visibility:auto] [contain-intrinsic-size:auto_380px]">
           {item.type === 'project' ? (
-            <ProjectCard {...item} />
+            <ProjectCard {...item} priority={index === firstProjectIndex} />
           ) : (
             <PackageCard {...item} />
           )}

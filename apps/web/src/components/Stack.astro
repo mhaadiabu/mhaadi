@@ -3,13 +3,13 @@ import { Icon } from 'astro-icon/components';
 import { stack } from '../data/stack';
 ---
 
-<section class="tech-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+<section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
   {
     stack.map(({ icon, name }, i) => {
       const hue = (i * 47 + 180) % 360;
       return (
         <div
-          class="tech-cell relative flex flex-col items-center gap-1.5 p-3 transition-colors duration-300"
+          class="relative flex flex-col items-center gap-1.5 p-3 transition-colors duration-200 hover:bg-[hsl(var(--hue)_50%_50%/0.08)] hover:outline-2 hover:-outline-offset-1 hover:outline-[hsl(var(--hue)_50%_50%/0.5)]"
           style={`--hue: ${hue}`}
         >
           <Icon name={icon} class="text-primary size-8" />
@@ -19,11 +19,3 @@ import { stack } from '../data/stack';
     })
   }
 </section>
-
-<style>
-  .tech-cell:hover {
-    background: hsl(var(--hue) 50% 50% / 0.08);
-    outline: 2px solid hsl(var(--hue) 50% 50% / 0.5);
-    outline-offset: -1px;
-  }
-</style>
