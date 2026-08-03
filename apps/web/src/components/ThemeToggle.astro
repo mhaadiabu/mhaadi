@@ -72,9 +72,9 @@
       updateIcons(theme);
     };
 
-    const applyStoredTheme = () => {
+    const applyStoredTheme = (documentRoot = document.documentElement) => {
       const theme = getTheme();
-      document.documentElement.classList.toggle('dark', theme === 'dark');
+      documentRoot.classList.toggle('dark', theme === 'dark');
       updateIcons(theme);
     };
 
@@ -91,7 +91,9 @@
 
     toggle.addEventListener('click', switchTheme);
     window.addEventListener('scroll', updateScrollState, { passive: true });
-    document.addEventListener('astro:after-swap', applyStoredTheme);
+    document.addEventListener('astro:before-swap', (event) => {
+      applyStoredTheme(event.newDocument.documentElement);
+    });
   }
 
   setupThemeToggle();
