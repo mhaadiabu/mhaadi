@@ -9,6 +9,7 @@ import { site } from '../data/site';
 interface Props {
   title?: string;
   date?: string;
+  dateTime?: string;
   backTo?: string;
   description?: string;
   centered?: boolean;
@@ -18,6 +19,7 @@ interface Props {
 const {
   title = site.name,
   date,
+  dateTime,
   backTo = '/',
   description = site.description,
   centered = false,
@@ -92,7 +94,9 @@ const showBackButton = !isHomepage && !centered;
                 )}
               </a>
               <h1>{title}</h1>
-              {date && <time class="text-secondary text-sm">{date}</time>}
+              {date && (
+                <time class="text-secondary text-sm" datetime={dateTime}>{date}</time>
+              )}
             </div>
             <p class="leading-loose text-sm">{description}</p>
             {time && (

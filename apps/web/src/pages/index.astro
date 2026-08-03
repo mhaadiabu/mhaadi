@@ -12,6 +12,7 @@ import { packages, type Package } from '../data/packages';
 type PortfolioItem = Project | Package;
 
 const projectsSection: PortfolioItem[] = [...featuredProjects, ...packages];
+const firstProjectIndex = projectsSection.findIndex((item) => item.type === 'project');
 
 ---
 
@@ -55,7 +56,7 @@ const projectsSection: PortfolioItem[] = [...featuredProjects, ...packages];
     {
       projectsSection.map((item, index) =>
         item.type === 'project' ? (
-          <ProjectCard {...item} priority={index === 0} />
+          <ProjectCard {...item} priority={index === firstProjectIndex} />
         ) : (
           <PackageCard {...item} />
         ),

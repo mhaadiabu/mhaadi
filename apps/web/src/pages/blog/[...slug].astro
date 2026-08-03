@@ -17,6 +17,7 @@ const { Content } = await render(post);
 <Layout
   title={post.data.title}
   date={post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+  dateTime={post.data.date.toISOString()}
   time={post.data.time}
   description={post.data.description}
   backTo="/blog"

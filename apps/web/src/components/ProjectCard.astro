@@ -2,11 +2,12 @@
 import { Icon } from 'astro-icon/components';
 import { iconLabels } from '../icons/labels';
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 
 interface Props {
   title: string;
   description: string;
-  image: string;
+  image: ImageMetadata | string;
   stack: string[];
   href?: string;
   github?: string;
