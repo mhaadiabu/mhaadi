@@ -1,5 +1,6 @@
 <button
   id="theme-toggle"
+  transition:persist="theme-toggle"
   type="button"
   class="text-muted hover:text-primary fixed top-4 right-4 z-50 size-10 cursor-pointer rounded-full border border-transparent transition-all duration-200"
   aria-label="Toggle theme"
@@ -71,6 +72,12 @@
       updateIcons(theme);
     };
 
+    const applyStoredTheme = (documentRoot = document.documentElement) => {
+      const theme = getTheme();
+      documentRoot.classList.toggle('dark', theme === 'dark');
+      updateIcons(theme);
+    };
+
     const switchTheme = () => {
       const current = document.documentElement.classList.contains('dark')
         ? 'dark'
@@ -84,6 +91,9 @@
 
     toggle.addEventListener('click', switchTheme);
     window.addEventListener('scroll', updateScrollState, { passive: true });
+    document.addEventListener('astro:before-swap', (event) => {
+      applyStoredTheme(event.newDocument.documentElement);
+    });
   }
 
   setupThemeToggle();
