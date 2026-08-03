@@ -1,22 +1,24 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  const modules = import.meta.glob('../../posts/*.md', { eager: true });
-  return Object.entries(modules).map(([filepath, mod]) => ({
-    params: { slug: filepath.split('/').pop()?.replace('.md', '') },
-    props: { mod },
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
   }));
 }
 
-const { mod } = Astro.props;
-const { frontmatter, Content } = mod;
+const { post } = Astro.props;
+const { Content } = await render(post);
 ---
 
 <Layout
-  title={frontmatter.title}
-  date={frontmatter.date}
-  time={frontmatter.time}
+  title={post.data.title}
+  date={post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+  time={post.data.time}
+  description={post.data.description}
   backTo="/blog"
 >
   <article class="animate-fade-in-up flex flex-col gap-4 opacity-0">

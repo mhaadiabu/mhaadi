@@ -1,19 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
 
-const modules = import.meta.glob('../posts/*.md', { eager: true });
-const posts = Object.entries(modules)
-  .map(([filepath, mod]) => ({
-    slug: filepath.split('/').pop()?.replace('.md', ''),
-    title: mod.frontmatter.title,
-    date: mod.frontmatter.date,
-    description: mod.frontmatter.description,
-  }))
-  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
 
-const fmt = (d: string) =>
-  new Date(d).toLocaleDateString('en-US', {
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
@@ -28,24 +23,24 @@ const fmt = (d: string) =>
     {
       posts.map((post) => (
         <a
-          href={`/blog/${post.slug}`}
+          href={`/blog/${post.id}`}
           class="group flex w-full justify-between items-baseline gap-4"
         >
           <div class="flex flex-col gap-0.5">
             <span class="text-primary inline-flex items-center gap-1.5 font-normal">
-              {post.title}
+              {post.data.title}
               <Icon
                 name="arrow-right"
                 class="text-muted size-3 -translate-x-1 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
               />
             </span>
-            <span class="text-muted text-xs line-clamp-3">{post.description}</span>
+            <span class="text-muted text-xs line-clamp-3">{post.data.description}</span>
           </div>
           <time
-            datetime={post.date}
+            datetime={post.data.date.toISOString()}
             class="text-muted whitespace-nowrap tabular-nums"
           >
-            {fmt(post.date)}
+            {fmt(post.data.date)}
           </time>
         </a>
       ))

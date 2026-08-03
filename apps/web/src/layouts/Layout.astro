@@ -1,9 +1,10 @@
 ---
 import '../styles/global.css';
+import { Font } from 'astro:assets';
 import Footer from '../components/Footer.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
-import { ClientRouter } from 'astro:transitions';
 import { Icon } from 'astro-icon/components';
+import { site } from '../data/site';
 
 interface Props {
   title?: string;
@@ -15,10 +16,10 @@ interface Props {
 }
 
 const {
-  title = 'Haadi',
+  title = site.name,
   date,
   backTo = '/',
-  description,
+  description = site.description,
   centered = false,
   time
 } = Astro.props;
@@ -34,6 +35,9 @@ const showBackButton = !isHomepage && !centered;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, site.url)} />
+    <meta name="theme-color" content="#0a0a0a" />
+    <Font cssVariable="--font-geist-mono" preload />
     <title>
       {`${title.charAt(0).toUpperCase()}${title.slice(1).toLowerCase()}`}
     </title>
@@ -48,7 +52,6 @@ const showBackButton = !isHomepage && !centered;
       document.documentElement.classList.toggle('dark', theme === 'dark');
     </script>
 
-    <ClientRouter />
   </head>
   <body
     class="bg-bg text-muted typeset typeset-docs container mx-auto flex min-h-screen w-full max-w-5xl 2xl:max-w-7xl flex-col py-4 antialiased transition-colors duration-200"

@@ -36,6 +36,9 @@ const {
       alt={title}
       width={640}
       height={360}
+      layout="constrained"
+      widths={[320, 640]}
+      sizes="(min-width: 48rem) 640px, 100vw"
       class:list={[
         'h-full w-full object-cover transition-transform duration-300',
         !disabled && 'group-hover:scale-105',
