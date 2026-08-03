@@ -23,16 +23,14 @@ const sorted = allItems.sort((a, b) => {
   return 0;
 });
 
-const stagger = (index: number) => ({
-  style: `animation-delay: ${index * 0.08}s`,
-});
 ---
 
 <Layout title="projects" description="stuff i built.">
   <div class="flex w-full flex-col gap-4">
+    <h2 class="sr-only">project list</h2>
     {
       sorted.map((item, index) => (
-        <div class="animate-fade-in-up opacity-0" {...stagger(index)}>
+        <div>
           {item.type === 'project' ? (
             <ProjectCard {...item} priority={index === 0} />
           ) : (

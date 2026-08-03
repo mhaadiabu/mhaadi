@@ -142,19 +142,13 @@ const showBackButton = !isHomepage && !centered;
       }
     };
 
-    if (btn.dataset.bound === 'true') {
-      toggleVisibility();
-      return;
-    }
-
-    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
     btn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    btn.dataset.bound = 'true';
     toggleVisibility();
   }
 
-  document.addEventListener('astro:page-load', setupScrollToTop);
+  setupScrollToTop();
 </script>

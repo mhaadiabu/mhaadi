@@ -13,9 +13,6 @@ type PortfolioItem = Project | Package;
 
 const projectsSection: PortfolioItem[] = [...featuredProjects, ...packages];
 
-const stagger = (index: number) => ({
-  style: `animation-delay: ${index * 0.08}s`,
-});
 ---
 
 <Layout>
@@ -30,16 +27,14 @@ const stagger = (index: number) => ({
   </header>
 
   <div
-    class="animate-fade-in-up flex flex-col gap-2.5 pt-6 opacity-0"
-    {...stagger(2)}
+    class="flex flex-col gap-2.5 pt-6"
   >
     <SectionHeading text="what i do" variant="edge" />
     <WhatIDo />
   </div>
 
   <div
-    class="animate-fade-in-up flex flex-col gap-2.5 pt-6 opacity-0"
-    {...stagger(3)}
+    class="flex flex-col gap-2.5 pt-6"
   >
     <SectionHeading text="what i work with" variant="edge" />
     <Stack />
@@ -54,8 +49,7 @@ const stagger = (index: number) => ({
   </div>
 
   <div
-    class="animate-fade-in-up flex w-full flex-col gap-4 pt-6 opacity-0"
-    {...stagger(4)}
+    class="flex w-full flex-col gap-4 pt-6"
   >
     <SectionHeading text="projects" variant="edge" />
     {
@@ -81,7 +75,7 @@ const stagger = (index: number) => ({
     </p>
   </div>
 
-  <nav class="animate-fade-in-up flex gap-4 pt-6 opacity-0" {...stagger(6)}>
+  <nav class="flex gap-4 pt-6">
     <a
       href="/blog"
       class="group text-secondary hover:text-primary inline-flex items-center gap-1 transition-colors"

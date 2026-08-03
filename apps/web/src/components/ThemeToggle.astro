@@ -47,11 +47,6 @@
       }
     };
 
-    if (toggle.dataset.bound === 'true') {
-      updateScrollState();
-      return;
-    }
-
     const getTheme = (): 'dark' | 'light' => {
       const stored = localStorage.getItem('theme');
       if (stored === 'dark' || stored === 'light') return stored;
@@ -83,18 +78,13 @@
       setTheme(current === 'dark' ? 'light' : 'dark');
     };
 
-    // Initialize
     const currentTheme = getTheme();
     setTheme(currentTheme);
     updateScrollState();
 
-    // Event listeners
     toggle.addEventListener('click', switchTheme);
-
-    window.addEventListener('scroll', updateScrollState);
-    toggle.dataset.bound = 'true';
+    window.addEventListener('scroll', updateScrollState, { passive: true });
   }
 
-  // Run on initial load and after Astro page transitions
-  document.addEventListener('astro:page-load', setupThemeToggle);
+  setupThemeToggle();
 </script>
