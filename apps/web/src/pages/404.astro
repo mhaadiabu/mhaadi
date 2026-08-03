@@ -4,6 +4,7 @@ import { Icon } from 'astro-icon/components';
 ---
 
 <Layout title="404" centered>
+  <Fragment slot="head"><meta name="robots" content="noindex" /></Fragment>
   <span class="text-primary mb-4 text-8xl font-semibold">404</span>
   <p class="mb-4">nothing to see here.</p>
   <a

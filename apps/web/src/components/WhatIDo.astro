@@ -27,7 +27,7 @@
       },
     ].map(({ text, detail, hue }) => (
       <div
-        class="hue-card flex flex-col gap-1 rounded-lg p-3"
+        class="flex flex-col gap-1 rounded-lg border border-transparent p-3 transition-colors duration-200 hover:border-[hsl(var(--hue)_50%_50%/0.3)] hover:bg-[hsl(var(--hue)_50%_50%/0.08)]"
         style={`--hue: ${hue}`}
       >
         <div class="flex items-center gap-2">

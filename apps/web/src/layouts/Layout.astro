@@ -37,7 +37,16 @@ const showBackButton = !isHomepage && !centered;
     <meta name="description" content={description} />
     <link rel="canonical" href={new URL(Astro.url.pathname, site.url)} />
     <meta name="theme-color" content="#0a0a0a" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={new URL(Astro.url.pathname, site.url)} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <Font cssVariable="--font-geist-mono" preload />
+    <slot name="head" />
     <title>
       {`${title.charAt(0).toUpperCase()}${title.slice(1).toLowerCase()}`}
     </title>
@@ -83,7 +92,7 @@ const showBackButton = !isHomepage && !centered;
                 )}
               </a>
               <h1>{title}</h1>
-              {date && <h5>{date}</h5>}
+              {date && <time class="text-secondary text-sm">{date}</time>}
             </div>
             <p class="leading-loose text-sm">{description}</p>
             {time && (

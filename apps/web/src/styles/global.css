@@ -23,12 +23,12 @@
   --color-border: var(--theme-border);
   --color-muted: var(--theme-muted);
 
-  --animate-fade-in-up: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-fade-in-up: fade-in-up 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 
   @keyframes fade-in-up {
     0% {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(8px);
     }
     100% {
       opacity: 1;
@@ -81,37 +81,17 @@
   --theme-muted: oklch(0.60 0 0);
 }
 
-.surface-card {
-  border: 1px solid var(--color-border);
-  background: color-mix(in oklab, var(--color-bg-secondary) 75%, transparent);
-  transition:
-    border-color var(--transition-base) ease,
-    background-color var(--transition-base) ease,
-    transform var(--transition-base) ease;
+@view-transition {
+  navigation: auto;
 }
 
-.surface-card:hover {
-  border-color: var(--color-secondary);
-  background: var(--color-bg-secondary);
-}
-
-.icon-link {
-  color: var(--color-muted);
-  transition: color var(--transition-fast) ease;
-}
-
-.icon-link:hover {
-  color: var(--color-primary);
-}
-
-.hue-card {
-  border: 1px solid transparent;
-  transition:
-    background-color var(--transition-base) ease,
-    border-color var(--transition-base) ease;
-}
-
-.hue-card:hover {
-  background: hsl(var(--hue) 50% 50% / 0.08);
-  border-color: hsl(var(--hue) 50% 50% / 0.3);
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

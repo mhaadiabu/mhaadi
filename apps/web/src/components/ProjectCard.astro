@@ -11,6 +11,7 @@ interface Props {
   href?: string;
   github?: string;
   disabled?: boolean;
+  priority?: boolean;
 }
 
 const {
@@ -21,13 +22,14 @@ const {
   href,
   github,
   disabled = false,
+  priority = false,
 } = Astro.props;
 ---
 
 <article
   class:list={[
-    'surface-card group flex w-full flex-col gap-3 p-4',
-    disabled ? 'cursor-not-allowed opacity-50' : 'hover:-translate-y-0.5',
+    'group bg-bg-secondary/75 border-border hover:border-secondary hover:bg-bg-secondary flex w-full flex-col gap-3 border p-4 transition duration-200',
+    disabled ? 'cursor-not-allowed' : 'hover:-translate-y-0.5',
   ]}
 >
   <div class="relative aspect-video overflow-hidden">
@@ -39,6 +41,8 @@ const {
       layout="constrained"
       widths={[320, 640]}
       sizes="(min-width: 48rem) 640px, 100vw"
+      loading={priority ? 'eager' : 'lazy'}
+      fetchpriority={priority ? 'high' : 'auto'}
       class:list={[
         'h-full w-full object-cover transition-transform duration-300',
         !disabled && 'group-hover:scale-105',
@@ -66,7 +70,7 @@ const {
               href={github}
               target="_blank"
               rel="noopener noreferrer"
-              class="icon-link"
+              class="text-muted hover:text-primary transition-colors duration-200"
             >
               <Icon name="github-logo" class="size-4" />
               <span class="sr-only">GitHub repository</span>
@@ -79,7 +83,7 @@ const {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              class="icon-link group/link"
+              class="text-muted hover:text-primary group/link transition-colors duration-200"
             >
               <Icon
                 name="arrow-top-right"

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@fontsource-variable/geist-mono": "^5.3.0",
+    "@astrojs/sitemap": "^3.6.0",
     "@portfolio/env": "workspace:*",
     "astro": "^7.1.1",
     "astro-icon": "^1.1.5",

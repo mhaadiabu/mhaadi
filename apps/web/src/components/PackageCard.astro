@@ -20,7 +20,7 @@ const cmd = installCommand ?? `npm install ${fullName}`;
 ---
 
 <article
-  class="surface-card group flex w-full flex-col gap-3 p-4 hover:-translate-y-0.5"
+  class="group bg-bg-secondary/75 border-border hover:border-secondary hover:bg-bg-secondary flex w-full flex-col gap-3 border p-4 transition duration-200 hover:-translate-y-0.5"
 >
   <div
     class="bg-bg-secondary border-border flex items-center gap-2 border px-3 py-2 font-mono text-xs"
@@ -47,7 +47,7 @@ const cmd = installCommand ?? `npm install ${fullName}`;
           href={npm}
           target="_blank"
           rel="noopener noreferrer"
-          class="icon-link"
+          class="text-muted hover:text-primary transition-colors duration-200"
         >
           <Icon name="npm" class="size-4" />
           <span class="sr-only">npm package</span>
@@ -58,7 +58,7 @@ const cmd = installCommand ?? `npm install ${fullName}`;
               href={github}
               target="_blank"
               rel="noopener noreferrer"
-              class="icon-link"
+              class="text-muted hover:text-primary transition-colors duration-200"
             >
               <Icon name="github-logo" class="size-4" />
               <span class="sr-only">GitHub repository</span>
@@ -72,7 +72,7 @@ const cmd = installCommand ?? `npm install ${fullName}`;
             href={website}
             target="_blank"
             rel="noopener noreferrer"
-            class="icon-link group/link"
+            class="text-muted hover:text-primary group/link transition-colors duration-200"
           >
             <Icon
               name="arrow-top-right"

@@ -3,11 +3,15 @@ import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, fontProviders } from 'astro/config';
 
 import icon from 'astro-icon';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
   site: 'https://mhaadi.dev',
+  build: {
+    inlineStylesheets: 'always',
+  },
   fonts: [{
     provider: fontProviders.fontsource(),
     name: 'Geist Mono',
@@ -25,5 +29,5 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [icon()],
+  integrations: [icon(), sitemap()],
 });
