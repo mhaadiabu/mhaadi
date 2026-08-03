@@ -10,7 +10,7 @@ export default defineConfig({
   output: 'static',
   site: 'https://mhaadi.dev',
   build: {
-    inlineStylesheets: 'always',
+    inlineStylesheets: 'auto',
   },
   fonts: [{
     provider: fontProviders.fontsource(),
