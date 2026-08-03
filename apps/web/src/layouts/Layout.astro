@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import { Icon } from 'astro-icon/components';
 import { site } from '../data/site';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title?: string;
@@ -47,6 +48,7 @@ const showBackButton = !isHomepage && !centered;
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <ClientRouter />
     <Font cssVariable="--font-geist-mono" preload />
     <slot name="head" />
     <title>
@@ -81,6 +83,7 @@ const showBackButton = !isHomepage && !centered;
             <div class="flex flex-col gap-1.5">
               <a
                 href={backTo}
+                data-astro-prefetch
                 class="group text-muted hover:text-primary transition-colors duration-200"
               >
                 {!isHomepage && (
@@ -123,6 +126,7 @@ const showBackButton = !isHomepage && !centered;
     <!-- Scroll to top button -->
     <button
       id="scroll-to-top"
+      transition:persist="scroll-to-top"
       class="bg-bg-secondary border-border text-muted hover:text-primary hover:border-secondary invisible fixed right-6 bottom-6 cursor-pointer rounded-full border p-2.5 opacity-0 transition-all duration-200"
       aria-label="Scroll to top"
     >
