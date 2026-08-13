@@ -22,4 +22,15 @@ export const packages: Package[] = [
     website: 'https://svg.mhaadi.dev',
     installCommand: 'pnpm add @mhaadi/svg',
   },
+  {
+    type: 'package',
+    name: 'thinking-orbs-native',
+    scope: 'mhaadi',
+    description: 'Thinking orbs for React Native.',
+    version: '0.1.1',
+    npm: 'https://www.npmjs.com/package/@mhaadi/thinking-orbs-native',
+    github: 'https://github.com/mhaadiabu/thinking-orbs-native',
+    website: 'https://orbs-native.mhaadi.dev',
+    installCommand: 'pnpm add @mhaadi/thinking-orbs-native'
+  }
 ];
