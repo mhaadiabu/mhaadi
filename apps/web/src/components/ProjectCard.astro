@@ -29,11 +29,11 @@ const {
 
 <article
   class:list={[
-    'group bg-bg-secondary/75 border-border hover:border-secondary hover:bg-bg-secondary flex w-full flex-col gap-3 border p-4 transition duration-200',
+    'group bg-bg-secondary/75 border-border hover:border-secondary hover:bg-bg-secondary flex w-full flex-col gap-3 rounded-lg border p-4 transition duration-200',
     disabled ? 'cursor-not-allowed' : 'hover:-translate-y-0.5',
   ]}
 >
-  <div class="relative aspect-video overflow-hidden">
+  <div class="relative aspect-video overflow-hidden rounded-md">
     <Image
       src={image}
       alt={title}
@@ -53,7 +53,7 @@ const {
     {
       disabled && (
         <div class="bg-bg-secondary/70 absolute inset-0 flex items-center justify-center">
-          <span class="text-muted border-border bg-bg-secondary border px-2 py-1 text-xs font-medium tracking-wider uppercase">
+          <span class="text-muted border-border bg-bg-secondary rounded-md border px-2 py-1 text-xs font-medium tracking-wider uppercase">
             Coming Soon
           </span>
         </div>

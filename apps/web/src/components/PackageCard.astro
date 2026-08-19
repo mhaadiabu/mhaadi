@@ -20,10 +20,10 @@ const cmd = installCommand ?? `npm install ${fullName}`;
 ---
 
 <article
-  class="group bg-bg-secondary/75 border-border hover:border-secondary hover:bg-bg-secondary flex w-full flex-col gap-3 border p-4 transition duration-200 hover:-translate-y-0.5"
+  class="group bg-bg-secondary/75 border-border hover:border-secondary hover:bg-bg-secondary flex w-full flex-col gap-3 rounded-lg border p-4 transition duration-200 hover:-translate-y-0.5"
 >
   <div
-    class="bg-bg-secondary border-border flex items-center gap-2 border px-3 py-2 font-mono text-xs"
+    class="bg-bg-secondary border-border flex items-center gap-2 rounded-md border px-3 py-2 font-mono text-xs"
   >
     <span class="text-secondary/50 select-none">$</span>
     <code class="text-primary bg-transparent!">{cmd}</code>
@@ -33,7 +33,7 @@ const cmd = installCommand ?? `npm install ${fullName}`;
     <div class="flex items-center justify-between">
       <h3 class="text-primary text-sm font-normal">{fullName}</h3>
       <span
-        class="text-muted border-border bg-bg-secondary/50 border px-1.5 py-0.5 font-mono text-xs"
+        class="text-muted border-border bg-bg-secondary/50 rounded-md border px-1.5 py-0.5 font-mono text-xs"
       >
         v{version}
       </span>
