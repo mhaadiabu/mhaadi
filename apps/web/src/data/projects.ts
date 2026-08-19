@@ -56,7 +56,7 @@ export const projects: Project[] = [
     type: 'project',
     title: 'SchoolThing',
     description:
-      'A comprehensive school management system with student and teacher dashboards.',
+      'A unified school management system for tertiary institutions. It brings coursework, announcements, messaging, and other student workflows into one focused experience.',
     image: schoolThingImage,
     stack: ['tanstack', 'convex'],
     href: 'https://school-thing-zeta.vercel.app',
