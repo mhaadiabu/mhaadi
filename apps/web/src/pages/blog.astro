@@ -28,14 +28,14 @@ const fmt = (d: Date) =>
           class="group flex w-full justify-between items-baseline gap-4"
         >
           <div class="flex flex-col gap-0.5">
-            <span class="text-primary inline-flex items-center gap-1.5 font-normal">
+            <span class="text-primary inline-flex items-center gap-1.5 text-base font-normal">
               {post.data.title}
               <Icon
                 name="arrow-right"
                 class="text-muted size-3 -translate-x-1 opacity-0 transition-[opacity,transform] duration-[var(--duration-fast)] ease-[var(--ease-in-out)] group-hover:translate-x-0 group-hover:opacity-100"
               />
             </span>
-            <span class="text-muted text-xs line-clamp-3">{post.data.description}</span>
+            <span class="text-muted line-clamp-3 text-sm">{post.data.description}</span>
           </div>
           <time
             datetime={post.data.date.toISOString()}

@@ -25,8 +25,7 @@ const cmd = installCommand ?? `npm install ${fullName}`;
   <div
     class="bg-bg-secondary border-border flex items-center gap-2 rounded-md border px-3 py-2 font-mono text-xs"
   >
-    <span class="text-secondary/50 select-none">$</span>
-    <code class="text-primary min-w-0 flex-1 truncate bg-transparent!">{cmd}</code>
+    <code class="text-primary min-w-0 flex-1 truncate bg-transparent! text-sm">{cmd}</code>
     <button
       type="button"
       class="text-muted hover:text-primary shrink-0 transition-colors duration-[var(--duration-fast)]"
@@ -40,7 +39,7 @@ const cmd = installCommand ?? `npm install ${fullName}`;
 
   <div class="flex flex-col gap-2">
     <div class="flex items-center justify-between">
-      <h3 class="text-primary text-sm font-normal">{fullName}</h3>
+      <h3 class="text-primary text-base font-normal">{fullName}</h3>
       <span
         class="text-muted border-border bg-bg-secondary/50 rounded-md border px-1.5 py-0.5 font-mono text-xs"
       >
@@ -48,7 +47,7 @@ const cmd = installCommand ?? `npm install ${fullName}`;
       </span>
     </div>
 
-    <p class="text-muted text-xs">{description}</p>
+    <p class="text-muted text-sm">{description}</p>
 
     <div class="flex items-center justify-between pt-1">
       <div class="flex gap-2">
@@ -96,20 +95,31 @@ const cmd = installCommand ?? `npm install ${fullName}`;
 </article>
 
 <script>
+  const copyTimers = new WeakMap<HTMLButtonElement, number>();
+  const copySequences = new WeakMap<HTMLButtonElement, number>();
+
   document.querySelectorAll<HTMLButtonElement>('[data-copy-command]').forEach((button) => {
     button.addEventListener('click', async () => {
       const command = button.dataset.copyCommand;
       if (!command) return;
 
+      const sequence = (copySequences.get(button) ?? 0) + 1;
+      copySequences.set(button, sequence);
       await navigator.clipboard.writeText(command);
+      if (copySequences.get(button) !== sequence) return;
+
+      const existingTimer = copyTimers.get(button);
+      if (existingTimer) window.clearTimeout(existingTimer);
       button.querySelector('[data-copy-icon]')?.classList.add('hidden');
       button.querySelector('[data-copied-icon]')?.classList.remove('hidden');
       button.setAttribute('aria-label', 'Command copied');
-      window.setTimeout(() => {
+      copyTimers.set(button, window.setTimeout(() => {
+        if (copySequences.get(button) !== sequence) return;
         button.querySelector('[data-copy-icon]')?.classList.remove('hidden');
         button.querySelector('[data-copied-icon]')?.classList.add('hidden');
         button.setAttribute('aria-label', `Copy ${command}`);
-      }, 1500);
+        copyTimers.delete(button);
+      }, 1500));
     });
   });
 </script>
