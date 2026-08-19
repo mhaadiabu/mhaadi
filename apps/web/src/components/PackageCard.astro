@@ -26,7 +26,16 @@ const cmd = installCommand ?? `npm install ${fullName}`;
     class="bg-bg-secondary border-border flex items-center gap-2 rounded-md border px-3 py-2 font-mono text-xs"
   >
     <span class="text-secondary/50 select-none">$</span>
-    <code class="text-primary bg-transparent!">{cmd}</code>
+    <code class="text-primary min-w-0 flex-1 truncate bg-transparent!">{cmd}</code>
+    <button
+      type="button"
+      class="text-muted hover:text-primary shrink-0 transition-colors duration-[var(--duration-fast)]"
+      data-copy-command={cmd}
+      aria-label={`Copy ${cmd}`}
+    >
+      <Icon name="copy" class="size-4" data-copy-icon />
+      <Icon name="check" class="hidden size-4" data-copied-icon />
+    </button>
   </div>
 
   <div class="flex flex-col gap-2">
@@ -85,3 +94,22 @@ const cmd = installCommand ?? `npm install ${fullName}`;
     </div>
   </div>
 </article>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy-command]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const command = button.dataset.copyCommand;
+      if (!command) return;
+
+      await navigator.clipboard.writeText(command);
+      button.querySelector('[data-copy-icon]')?.classList.add('hidden');
+      button.querySelector('[data-copied-icon]')?.classList.remove('hidden');
+      button.setAttribute('aria-label', 'Command copied');
+      window.setTimeout(() => {
+        button.querySelector('[data-copy-icon]')?.classList.remove('hidden');
+        button.querySelector('[data-copied-icon]')?.classList.add('hidden');
+        button.setAttribute('aria-label', `Copy ${command}`);
+      }, 1500);
+    });
+  });
+</script>
