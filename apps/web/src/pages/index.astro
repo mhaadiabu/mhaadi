@@ -17,7 +17,7 @@ const firstProjectIndex = projectsSection.findIndex((item) => item.type === 'pro
 
 const blogPosts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
+).slice(0, 3);
 
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', {
@@ -84,7 +84,11 @@ const fmt = (d: Date) =>
       variant="edge"
       action={
         <a href="/blog" class="group text-sm">
-          view all <Icon name="arrow-right" class="size-3.5" />
+          view all
+          <Icon
+            name="arrow-right"
+            class="size-3.5 -translate-x-1 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
+          />
         </a>
       }
     />
