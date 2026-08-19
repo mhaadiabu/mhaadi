@@ -29,8 +29,8 @@ const {
 
 <article
   class:list={[
-    'group bg-bg-secondary/75 border-border hover:border-secondary hover:bg-bg-secondary flex w-full flex-col gap-3 rounded-lg border p-4 transition duration-200',
-    disabled ? 'cursor-not-allowed' : 'hover:-translate-y-0.5',
+    'bg-bg-secondary flex w-full flex-col gap-3 rounded-lg p-4 shadow-card',
+    disabled && 'cursor-not-allowed',
   ]}
 >
   <div class="relative aspect-video overflow-hidden rounded-md">
@@ -45,8 +45,7 @@ const {
       loading={priority ? 'eager' : 'lazy'}
       fetchpriority={priority ? 'high' : 'auto'}
       class:list={[
-        'h-full w-full object-cover transition-transform duration-300',
-        !disabled && 'group-hover:scale-105',
+        'h-full w-full object-cover',
         disabled && 'blur-sm',
       ]}
     />
