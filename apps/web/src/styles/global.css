@@ -8,13 +8,16 @@
   --typeset-font-heading: 'Public Sans Variable', sans-serif;
   --typeset-font-mono: 'Geist Mono Variable', monospace;
   --typeset-size: 15.5px;
-  --typeset-leading: 1.75;
+  --typeset-leading: 1.8;
   --typeset-flow: 1em;
 }
 
 @theme inline {
   --font-sans: 'Public Sans Variable', sans-serif;
   --font-mono: 'Geist Mono Variable', monospace;
+  --radius-lg: 0.625rem;
+  --radius-md: 0.5rem;
+  --shadow-card: 0 1px 2px oklch(0 0 0 / 0.06), 0 8px 24px oklch(0 0 0 / 0.06);
 
   /* Theme colors */
   --color-primary: var(--theme-primary);
@@ -55,8 +58,8 @@
   --theme-secondary: oklch(0.32 0 0);
   --theme-accent: oklch(0.623 0.214 259);
   --theme-bg: oklch(1 0 0);
-  --theme-bg-secondary: oklch(0.97 0.002 264);
-  --theme-border: oklch(0.88 0.004 286);
+  --theme-bg-secondary: oklch(0.975 0.001 264);
+  --theme-border: oklch(0.9 0.003 286);
   --theme-muted: oklch(0.35 0 0);
 }
 
