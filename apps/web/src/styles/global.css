@@ -4,17 +4,17 @@
 @import './typeset.css';
 @import './config/typeset.css';
 .typeset-docs {
-  --typeset-font-body: 'Public Sans', sans-serif;
-  --typeset-font-heading: 'Public Sans', sans-serif;
-  --typeset-font-mono: 'Geist Mono', monospace;
+  --typeset-font-body: 'Public Sans Variable', sans-serif;
+  --typeset-font-heading: 'Public Sans Variable', sans-serif;
+  --typeset-font-mono: 'Geist Mono Variable', monospace;
   --typeset-size: 15.5px;
   --typeset-leading: 1.75;
   --typeset-flow: 1em;
 }
 
 @theme inline {
-  --font-sans: 'Public Sans', sans-serif;
-  --font-mono: 'Geist Mono', monospace;
+  --font-sans: 'Public Sans Variable', sans-serif;
+  --font-mono: 'Geist Mono Variable', monospace;
 
   /* Theme colors */
   --color-primary: var(--theme-primary);
