@@ -28,13 +28,9 @@ export const stack: StackItem[] = [
 
   { name: 'tRPC', icon: 'trpc', category: 'backend' },
 
-  { name: 'PostgreSQL', icon: 'postgresql', category: 'database' },
-  { name: 'Neon', icon: 'neondb', category: 'database' },
-
   { name: 'Drizzle', icon: 'drizzle', category: 'orm' },
 
   { name: 'Convex', icon: 'convex', category: 'service' },
-  { name: 'Clerk', icon: 'clerk', category: 'service' },
   { name: 'Appwrite', icon: 'appwrite', category: 'service' },
 
   { name: 'Vite', icon: 'vite', category: 'tooling' },
@@ -45,5 +41,5 @@ export const stack: StackItem[] = [
   { name: 'Figma', icon: 'figma', category: 'design' },
   { name: 'Photoshop', icon: 'photoshop', category: 'design' },
   { name: 'Illustrator', icon: 'illustrator', category: 'design' },
-  { name: 'Canva', icon: 'canva', category: 'design' },
+  // { name: 'Canva', icon: 'canva', category: 'design' },
 ];

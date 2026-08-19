@@ -8,23 +8,30 @@ import WhatIDo from '../components/WhatIDo.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import { featuredProjects, type Project } from '../data/projects';
 import { packages, type Package } from '../data/packages';
+import { getCollection } from 'astro:content';
 
 type PortfolioItem = Project | Package;
 
 const projectsSection: PortfolioItem[] = [...featuredProjects, ...packages];
 const firstProjectIndex = projectsSection.findIndex((item) => item.type === 'project');
 
+const blogPosts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+
 ---
 
 <Layout>
   <header>
-    <h1 class="text-primary text-lg font-semibold">Haadi</h1>
-    <p class="text-muted mb-6 text-sm">larp maestro. potential man. vibe coder</p>
-    <p>
-      hey. i&apos;m haadi. a frontend-forward fullstack developer who enjoys the
-      art of software engineering. i&apos;m open to collaborate on any projects
-      you might have in mind. feel free to reach out.
-    </p>
+    <h1 class="text-primary font-semibold">haadi</h1>
+    <p class="text-muted text-sm">frontend engineer</p>
   </header>
 
   <div
@@ -39,14 +46,6 @@ const firstProjectIndex = projectsSection.findIndex((item) => item.type === 'pro
   >
     <SectionHeading text="what i work with" variant="edge" />
     <Stack />
-    <!-- <ul class="list-inside list-disc [&>li]:leading-loose">
-      <li>react</li>
-      <li>nextjs</li>
-      <li>tanstack start</li>
-      <li>astro</li>
-      <li>drizzle + sql</li>
-      <li>convex</li>
-    </ul> -->
   </div>
 
   <div
@@ -77,15 +76,43 @@ const firstProjectIndex = projectsSection.findIndex((item) => item.type === 'pro
     </p>
   </div>
 
-  <nav class="flex gap-4 pt-6">
-    <a
-      href="/blog"
-      data-astro-prefetch
-      class="group text-secondary hover:text-primary inline-flex items-center gap-1 transition-colors"
-      ><span>blog</span> <Icon
-        name="arrow-right"
-        class="size-4 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100"
-      /></a
-    >
-  </nav>
+  <div
+    class="flex flex-col gap-2.5 pt-6 [content-visibility:auto] [contain-intrinsic-size:auto_300px]"
+  >
+    <SectionHeading
+      text="blog"
+      variant="edge"
+      action={
+        <a href="/blog" class="group text-sm">
+          view all <Icon name="arrow-right" class="size-3.5" />
+        </a>
+      }
+    />
+    {
+      blogPosts.map((post) => (
+        <a
+          href={`/blog/${post.id}`}
+          data-astro-prefetch
+          class="group flex w-full items-baseline justify-between gap-4"
+        >
+          <div class="flex flex-col gap-0.5">
+            <span class="text-primary inline-flex items-center gap-1.5 font-normal">
+              {post.data.title}
+              <Icon
+                name="arrow-right"
+                class="text-muted size-3 -translate-x-1 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
+              />
+            </span>
+            <span class="text-muted line-clamp-3 text-xs">{post.data.description}</span>
+          </div>
+          <time
+            datetime={post.data.date.toISOString()}
+            class="text-muted whitespace-nowrap tabular-nums"
+          >
+            {fmt(post.data.date)}
+          </time>
+        </a>
+      ))
+    }
+  </div>
 </Layout>

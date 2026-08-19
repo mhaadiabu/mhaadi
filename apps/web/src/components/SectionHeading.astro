@@ -1,10 +1,11 @@
 ---
 interface Props {
+  action?: any;
   text: string;
   variant?: 'slash' | 'arrow' | 'line' | 'pill' | 'edge' | 'bracket' | 'dot';
 }
 
-const { text, variant = 'slash' } = Astro.props;
+const { action, text, variant = 'slash' } = Astro.props;
 ---
 
 {
@@ -44,7 +45,10 @@ const { text, variant = 'slash' } = Astro.props;
   variant === 'edge' && (
     <div class="after:bg-border flex flex-col gap-1.5 after:h-px after:w-full after:content-['']">
       <h2 class="text-secondary before:bg-accent relative pl-4 before:absolute before:top-[3px] before:bottom-[3px] before:left-0 before:w-[3px] before:rounded-[1px] before:content-['']">
-        {text}
+        <div class="flex w-full items-baseline justify-between">
+          {text}
+          {action}
+        </div>
       </h2>
     </div>
   )

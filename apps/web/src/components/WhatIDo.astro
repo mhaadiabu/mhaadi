@@ -1,33 +1,25 @@
----
-
----
-
-<section class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+<ul class="list-none list-outside ml-0 pl-0">
   {
     [
       {
         text: 'build web & mobile apps',
-        detail: 'react, next.js, expo, tailwind',
         hue: 210,
       },
       {
         text: 'obsess over AI',
-        detail: 'llms, embeddings, agents, tooling',
         hue: 280,
       },
       {
         text: 'read code and docs (a lot)',
-        detail: 'github, mdn, spec sheets, blogs',
         hue: 160,
       },
       {
         text: 'refactor for fun',
-        detail: 'clean architecture, patterns, types',
         hue: 30,
       },
-    ].map(({ text, detail, hue }) => (
-      <div
-        class="flex flex-col gap-1 rounded-lg border border-transparent p-3 transition-colors duration-200 hover:border-[hsl(var(--hue)_50%_50%/0.3)] hover:bg-[hsl(var(--hue)_50%_50%/0.08)]"
+    ].map(({ text, hue }) => (
+      <li
+        class="flex flex-col gap-1 rounded-lg border border-transparent transition-colors duration-200"
         style={`--hue: ${hue}`}
       >
         <div class="flex items-center gap-2">
@@ -37,8 +29,7 @@
           />
           <span class="text-primary text-sm font-medium">{text}</span>
         </div>
-        <span class="text-muted ml-4 text-xs">{detail}</span>
-      </div>
+      </li>
     ))
   }
-</section>
+</ul>
