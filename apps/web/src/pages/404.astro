@@ -10,11 +10,11 @@ import { Icon } from 'astro-icon/components';
   <a
     href="/"
     data-astro-prefetch
-    class="group text-secondary hover:text-primary inline-flex items-center gap-1 transition-colors"
+    class="group text-secondary hover:text-primary inline-flex items-center gap-1 transition-colors duration-[var(--duration-fast)]"
   >
     <Icon
       name="arrow-left"
-      class="size-4 transition-transform duration-200 group-hover:-translate-x-0.5"
+      class="size-4 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-smooth-out)] group-hover:-translate-x-0.5"
     />
     go back home
   </a>

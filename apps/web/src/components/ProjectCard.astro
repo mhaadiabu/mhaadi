@@ -70,7 +70,7 @@ const {
               href={github}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-muted hover:text-primary transition-colors duration-200"
+              class="text-muted hover:text-primary transition-colors duration-[var(--duration-fast)]"
             >
               <Icon name="github-logo" class="size-4" />
               <span class="sr-only">GitHub repository</span>
@@ -83,11 +83,11 @@ const {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-muted hover:text-primary group/link transition-colors duration-200"
+              class="text-muted hover:text-primary group/link transition-colors duration-[var(--duration-fast)]"
             >
               <Icon
                 name="arrow-top-right"
-                class="size-4 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+                class="size-4 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-smooth-out)] group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
               />
               <span class="sr-only">View project</span>
             </a>
@@ -102,7 +102,7 @@ const {
       {
         stack.map((tech) => (
           <div
-            class="text-secondary hover:text-primary flex items-center gap-1.5 transition-colors duration-200"
+            class="text-secondary hover:text-primary flex items-center gap-1.5 transition-colors duration-[var(--duration-fast)]"
             title={iconLabels[tech] ?? tech}
           >
             <Icon name={tech} class="size-4" />

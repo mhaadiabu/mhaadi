@@ -66,11 +66,11 @@ const fmt = (d: Date) =>
       <a
         href="/projects"
         data-astro-prefetch
-        class="group text-secondary hover:text-primary inline-flex items-center gap-1 transition-colors"
+        class="group text-secondary hover:text-primary inline-flex items-center gap-1 transition-colors duration-[var(--duration-fast)]"
       >
         check them out <Icon
           name="arrow-right"
-          class="size-3.5 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100"
+          class="size-3.5 -translate-x-1 opacity-0 transition-[opacity,transform] duration-[var(--duration-fast)] ease-[var(--ease-in-out)] group-hover:translate-x-0.5 group-hover:opacity-100"
         />
       </a>
     </p>
@@ -87,7 +87,7 @@ const fmt = (d: Date) =>
           view all
           <Icon
             name="arrow-right"
-            class="size-3 -translate-x-1 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
+            class="size-3 -translate-x-1 opacity-0 transition-[opacity,transform] duration-[var(--duration-fast)] ease-[var(--ease-in-out)] group-hover:translate-x-0 group-hover:opacity-100"
           />
         </a>
       }
@@ -100,11 +100,11 @@ const fmt = (d: Date) =>
           class="group flex w-full items-baseline justify-between gap-4"
         >
           <div class="flex flex-col gap-0.5">
-            <span class="text-primary inline-flex items-center gap-1.5 font-normal">
+            <span class="group/title text-primary inline-flex items-center gap-1.5 font-normal">
               {post.data.title}
               <Icon
                 name="arrow-right"
-                class="text-muted size-3 -translate-x-1 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
+                class="text-muted size-3 -translate-x-1 opacity-0 transition-[opacity,transform] duration-[var(--duration-fast)] ease-[var(--ease-in-out)] group-hover/title:translate-x-0 group-hover/title:opacity-100"
               />
             </span>
             <span class="text-muted line-clamp-3 text-xs">{post.data.description}</span>

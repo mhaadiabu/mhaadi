@@ -65,7 +65,7 @@ const showBackButton = !isHomepage && !centered;
 
   </head>
   <body
-    class="bg-bg text-muted typeset typeset-docs container mx-auto flex min-h-screen w-full max-w-5xl 2xl:max-w-7xl flex-col py-4 antialiased transition-colors duration-200"
+    class="bg-bg text-muted typeset typeset-docs container mx-auto flex min-h-screen w-full max-w-5xl 2xl:max-w-7xl flex-col py-4 antialiased transition-colors duration-[var(--duration-fast)]"
   >
     <!-- Theme toggle -->
     <ThemeToggle />
@@ -82,13 +82,13 @@ const showBackButton = !isHomepage && !centered;
               <a
                 href={backTo}
                 data-astro-prefetch
-                class="group text-muted hover:text-primary transition-colors duration-200"
+                class="group text-muted hover:text-primary transition-colors duration-[var(--duration-fast)]"
               >
                 {!isHomepage && (
                   <span class="inline-flex items-center gap-1.5">
                     <Icon
                       name="arrow-left"
-                      class="size-4 shrink-0 transition-transform duration-200 group-hover:-translate-x-0.5"
+                      class="size-4 shrink-0 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-smooth-out)] group-hover:-translate-x-0.5"
                     />
                     <p class="m-0 text-base leading-none">back</p>
                   </span>
@@ -125,7 +125,7 @@ const showBackButton = !isHomepage && !centered;
     <button
       id="scroll-to-top"
       transition:persist="scroll-to-top"
-      class="bg-bg-secondary border-border text-muted hover:text-primary hover:border-secondary invisible fixed right-6 bottom-6 cursor-pointer rounded-full border p-2.5 opacity-0 transition-all duration-200"
+      class="bg-bg-secondary text-muted hover:text-primary invisible fixed right-6 bottom-6 cursor-pointer rounded-full p-2.5 opacity-0 transition-opacity duration-[var(--duration-fast)]"
       aria-label="Scroll to top"
     >
       <Icon name="arrow-top" class="size-4" />

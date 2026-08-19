@@ -9,7 +9,7 @@ import { stack } from '../data/stack';
       const hue = (i * 47 + 180) % 360;
       return (
         <div
-          class="relative flex flex-col items-center gap-1.5 p-3 transition-colors duration-200 hover:bg-[hsl(var(--hue)_50%_50%/0.08)] hover:outline-2 hover:-outline-offset-1 hover:outline-[hsl(var(--hue)_50%_50%/0.5)]"
+          class="relative flex flex-col items-center gap-1.5 rounded-md p-3 transition-colors duration-[var(--duration-fast)] hover:bg-[hsl(var(--hue)_50%_50%/0.08)]"
           style={`--hue: ${hue}`}
         >
           <Icon name={icon} class="text-primary size-8" />
