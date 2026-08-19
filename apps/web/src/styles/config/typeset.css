@@ -7,9 +7,9 @@
 
 @layer components {
   .typeset {
-    --typeset-font-body: var(--font-geist-mono);
-    --typeset-font-heading: var(--font-geist-mono);
-    --typeset-font-mono: var(--font-geist-mono);
+    --typeset-font-body: 'Public Sans', sans-serif;
+    --typeset-font-heading: 'Public Sans', sans-serif;
+    --typeset-font-mono: 'Geist Mono', monospace;
 
     color: var(--color-muted);
   }
