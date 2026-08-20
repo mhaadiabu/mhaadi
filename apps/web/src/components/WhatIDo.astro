@@ -1,4 +1,4 @@
-<ul class="list-none list-outside ml-0 pl-0">
+<ul class='ml-0 list-outside list-none pl-0'>
   {
     [
       {
@@ -18,16 +18,13 @@
         hue: 30,
       },
     ].map(({ text, hue }) => (
-      <li
-        class="flex flex-col gap-1 rounded-md"
-        style={`--hue: ${hue}`}
-      >
-        <div class="flex items-center gap-2">
+      <li class='flex flex-col gap-1 rounded-md' style={`--hue: ${hue}`}>
+        <div class='flex items-center gap-2'>
           <div
-            class="size-2 shrink-0 rounded-full"
+            class='size-2 shrink-0 rounded-full'
             style={`background: hsl(var(--hue) 60% 60%)`}
           />
-          <span class="text-primary text-sm">{text}</span>
+          <span class='text-primary text-sm'>{text}</span>
         </div>
       </li>
     ))

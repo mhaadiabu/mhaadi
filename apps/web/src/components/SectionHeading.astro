@@ -10,32 +10,32 @@ const { action, text, variant = 'slash' } = Astro.props;
 
 {
   variant === 'slash' && (
-    <h2 class="text-secondary font-medium">
-      <span class="text-secondary/30">//</span> {text}
+    <h2 class='text-secondary font-medium'>
+      <span class='text-secondary/30'>//</span> {text}
     </h2>
   )
 }
 
 {
   variant === 'arrow' && (
-    <h2 class="text-secondary font-medium">
-      <span class="text-secondary/30">▸</span> {text}
+    <h2 class='text-secondary font-medium'>
+      <span class='text-secondary/30'>▸</span> {text}
     </h2>
   )
 }
 
 {
   variant === 'line' && (
-    <div class="flex items-center gap-3">
-      <h2 class="text-secondary font-medium whitespace-nowrap">{text}</h2>
-      <span class="bg-border h-px flex-1" />
+    <div class='flex items-center gap-3'>
+      <h2 class='text-secondary font-medium whitespace-nowrap'>{text}</h2>
+      <span class='bg-border h-px flex-1' />
     </div>
   )
 }
 
 {
   variant === 'pill' && (
-    <h2 class="text-secondary border-border bg-bg-secondary inline-flex items-center rounded-full border px-3 py-0.5 text-xs font-medium tracking-wide">
+    <h2 class='text-secondary border-border bg-bg-secondary inline-flex items-center rounded-full border px-3 py-0.5 text-xs font-medium tracking-wide'>
       {text}
     </h2>
   )
@@ -45,7 +45,7 @@ const { action, text, variant = 'slash' } = Astro.props;
   variant === 'edge' && (
     <div class="after:bg-border flex flex-col gap-1.5 after:h-px after:w-full after:content-['']">
       <h2 class="text-secondary before:bg-accent relative pl-4 before:absolute before:top-[3px] before:bottom-[3px] before:left-0 before:w-[3px] before:rounded-[1px] before:content-['']">
-        <div class="flex w-full items-baseline justify-between">
+        <div class='flex w-full items-baseline justify-between'>
           {text}
           {action}
         </div>
@@ -65,7 +65,7 @@ const { action, text, variant = 'slash' } = Astro.props;
 {
   variant === 'dot' && (
     <h2 class="text-secondary before:bg-accent after:bg-accent relative pl-4 before:absolute before:top-[3px] before:bottom-[3px] before:left-0 before:w-[3px] before:rounded-[1px] before:content-[''] after:absolute after:top-[-2px] after:left-[-1px] after:size-[5px] after:rounded-full after:shadow-[0_0_6px_1px_var(--color-accent)] after:content-['']">
-      <span class="sr-only">✦</span>
+      <span class='sr-only'>✦</span>
       {text}
     </h2>
   )

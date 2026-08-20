@@ -23,32 +23,32 @@ const {
   backTo = '/',
   description = site.description,
   centered = false,
-  time
+  time,
 } = Astro.props;
 const isHomepage = Astro.url.pathname === '/';
 const showBackButton = !isHomepage && !centered;
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang='en' class='dark'>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
-    <link rel="canonical" href={new URL(Astro.url.pathname, site.url)} />
-    <meta name="theme-color" content="#0a0a0a" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content={site.name} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={new URL(Astro.url.pathname, site.url)} />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='generator' content={Astro.generator} />
+    <meta name='description' content={description} />
+    <link rel='canonical' href={new URL(Astro.url.pathname, site.url)} />
+    <meta name='theme-color' content='#0a0a0a' />
+    <meta property='og:type' content='website' />
+    <meta property='og:site_name' content={site.name} />
+    <meta property='og:title' content={title} />
+    <meta property='og:description' content={description} />
+    <meta property='og:url' content={new URL(Astro.url.pathname, site.url)} />
+    <meta name='twitter:card' content='summary' />
+    <meta name='twitter:title' content={title} />
+    <meta name='twitter:description' content={description} />
     <ClientRouter />
-    <slot name="head" />
+    <slot name='head' />
     <title>
       {`${title.charAt(0).toUpperCase()}${title.slice(1).toLowerCase()}`}
     </title>
@@ -62,56 +62,57 @@ const showBackButton = !isHomepage && !centered;
           : 'light');
       document.documentElement.classList.toggle('dark', theme === 'dark');
     </script>
-
   </head>
   <body
-    class="bg-bg text-muted typeset typeset-docs container mx-auto flex min-h-screen w-full max-w-5xl 2xl:max-w-7xl flex-col py-4 antialiased transition-colors duration-[var(--duration-fast)]"
+    class='bg-bg text-muted typeset typeset-docs container mx-auto flex min-h-screen w-full max-w-5xl flex-col py-4 antialiased transition-colors duration-[var(--duration-fast)] 2xl:max-w-7xl'
   >
     <!-- Theme toggle -->
     <ThemeToggle />
     <main
       class:list={[
-        'm-auto flex w-full max-w-3xl 2xl:max-w-5xl flex-1 flex-col justify-center px-4 py-6',
+        'm-auto flex w-full max-w-3xl flex-1 flex-col justify-center px-4 py-6 2xl:max-w-5xl',
         centered ? 'items-center text-center' : 'items-start text-left',
       ]}
     >
       {
         showBackButton && (
           <>
-            <div class="flex flex-col gap-1.5">
+            <div class='flex flex-col gap-1.5'>
               <a
                 href={backTo}
                 data-astro-prefetch
-                class="group text-muted hover:text-primary transition-colors duration-[var(--duration-fast)]"
+                class='group text-muted hover:text-primary transition-colors duration-[var(--duration-fast)]'
               >
                 {!isHomepage && (
-                  <span class="inline-flex items-center gap-1.5">
+                  <span class='inline-flex items-center gap-1.5'>
                     <Icon
-                      name="arrow-left"
-                      class="size-4 shrink-0 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-smooth-out)] group-hover:-translate-x-0.5"
+                      name='arrow-left'
+                      class='size-4 shrink-0 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-smooth-out)] group-hover:-translate-x-0.5'
                     />
-                    <p class="m-0 text-base leading-none">back</p>
+                    <p class='m-0 text-base leading-none'>back</p>
                   </span>
                 )}
               </a>
               <h1>{title}</h1>
               {date && (
-                <time class="text-secondary text-sm" datetime={dateTime}>{date}</time>
+                <time class='text-secondary text-sm' datetime={dateTime}>
+                  {date}
+                </time>
               )}
             </div>
-            <p class="leading-loose text-sm">{description}</p>
+            <p class='text-sm leading-loose'>{description}</p>
             {time && (
-              <p class="text-sm pb-1.5">
-                Reading time: <span class="font-semibold">{time} min</span>
+              <p class='pb-1.5 text-sm'>
+                Reading time: <span class='font-semibold'>{time} min</span>
               </p>
             )}
-            <hr class="w-full mt-0" />
+            <hr class='mt-0 w-full' />
           </>
         )
       }
       <section
         class:list={[
-          'flex flex-1 flex-col py-4 w-full',
+          'flex w-full flex-1 flex-col py-4',
           centered && 'items-center justify-center',
         ]}
       >
@@ -123,12 +124,12 @@ const showBackButton = !isHomepage && !centered;
 
     <!-- Scroll to top button -->
     <button
-      id="scroll-to-top"
-      transition:persist="scroll-to-top"
-      class="bg-bg-secondary text-muted hover:text-primary invisible fixed right-6 bottom-6 cursor-pointer rounded-full p-2.5 opacity-0 transition-opacity duration-[var(--duration-fast)]"
-      aria-label="Scroll to top"
+      id='scroll-to-top'
+      transition:persist='scroll-to-top'
+      class='bg-bg-secondary text-muted hover:text-primary invisible fixed right-6 bottom-6 cursor-pointer rounded-full p-2.5 opacity-0 transition-opacity duration-[var(--duration-fast)]'
+      aria-label='Scroll to top'
     >
-      <Icon name="arrow-top" class="size-4" />
+      <Icon name='arrow-top' class='size-4' />
     </button>
   </body>
 </html>

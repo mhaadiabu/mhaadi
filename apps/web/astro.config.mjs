@@ -16,18 +16,29 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'auto',
   },
-  fonts: [{
-    provider: fontProviders.fontsource(),
-    name: 'Geist Mono',
-    cssVariable: '--font-geist-mono',
-    weights: ['100 900'],
-    styles: ['normal'],
-    subsets: ['latin'],
-    formats: ['woff2'],
-    fallbacks: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
-    optimizedFallbacks: true,
-    display: 'swap',
-  }],
+  fonts: [
+    {
+      provider: fontProviders.fontsource(),
+      name: 'Geist Mono',
+      cssVariable: '--font-geist-mono',
+      weights: ['100 900'],
+      styles: ['normal'],
+      subsets: ['latin'],
+      formats: ['woff2'],
+      fallbacks: [
+        'ui-monospace',
+        'SFMono-Regular',
+        'Menlo',
+        'Monaco',
+        'Consolas',
+        'Liberation Mono',
+        'Courier New',
+        'monospace',
+      ],
+      optimizedFallbacks: true,
+      display: 'swap',
+    },
+  ],
 
   vite: {
     plugins: [tailwindcss()],

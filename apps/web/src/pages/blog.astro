@@ -16,30 +16,32 @@ const fmt = (d: Date) =>
 ---
 
 <Layout
-  title="blog"
+  title='blog'
   description="i'm not smart. but i think a lot. though my thoughts are almost never complete. i dump them here when they are. enjoy (or don't)."
 >
-  <div class="flex w-full flex-col gap-6">
+  <div class='flex w-full flex-col gap-6'>
     {
       posts.map((post) => (
         <a
           href={`/blog/${post.id}`}
           data-astro-prefetch
-          class="group flex w-full justify-between items-baseline gap-4"
+          class='group flex w-full items-baseline justify-between gap-4'
         >
-          <div class="flex flex-col gap-0.5">
-            <span class="text-primary inline-flex items-center gap-1.5 text-base font-normal">
+          <div class='flex flex-col gap-0.5'>
+            <span class='text-primary inline-flex items-center gap-1.5 text-base font-normal'>
               {post.data.title}
               <Icon
-                name="arrow-right"
-                class="text-muted size-3 -translate-x-1 opacity-0 transition-[opacity,transform] duration-[var(--duration-fast)] ease-[var(--ease-in-out)] group-hover:translate-x-0 group-hover:opacity-100"
+                name='arrow-right'
+                class='text-muted size-3 -translate-x-1 opacity-0 transition-[opacity,transform] duration-[var(--duration-fast)] ease-[var(--ease-in-out)] group-hover:translate-x-0 group-hover:opacity-100'
               />
             </span>
-            <span class="text-muted line-clamp-3 text-sm">{post.data.description}</span>
+            <span class='text-muted line-clamp-3 text-sm'>
+              {post.data.description}
+            </span>
           </div>
           <time
             datetime={post.data.date.toISOString()}
-            class="text-muted whitespace-nowrap tabular-nums"
+            class='text-muted whitespace-nowrap tabular-nums'
           >
             {fmt(post.data.date)}
           </time>

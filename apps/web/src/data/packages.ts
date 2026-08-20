@@ -31,6 +31,6 @@ export const packages: Package[] = [
     npm: 'https://www.npmjs.com/package/@mhaadi/thinking-orbs-native',
     github: 'https://github.com/mhaadiabu/thinking-orbs-native',
     website: 'https://orbs-native.mhaadi.dev',
-    installCommand: 'pnpm add @mhaadi/thinking-orbs-native'
-  }
+    installCommand: 'pnpm add @mhaadi/thinking-orbs-native',
+  },
 ];

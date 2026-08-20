@@ -13,11 +13,13 @@ import { getCollection } from 'astro:content';
 type PortfolioItem = Project | Package;
 
 const projectsSection: PortfolioItem[] = [...featuredProjects, ...packages];
-const firstProjectIndex = projectsSection.findIndex((item) => item.type === 'project');
+const firstProjectIndex = projectsSection.findIndex(
+  (item) => item.type === 'project',
+);
 
-const blogPosts = (await getCollection('blog')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-).slice(0, 3);
+const blogPosts = (await getCollection('blog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
 
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', {
@@ -25,33 +27,25 @@ const fmt = (d: Date) =>
     month: 'short',
     day: 'numeric',
   });
-
 ---
 
 <Layout>
   <header>
-    <h1 class="text-primary font-semibold">haadi</h1>
-    <p class="text-muted text-sm">frontend engineer</p>
+    <h1 class='text-primary font-semibold'>haadi</h1>
+    <p class='text-muted text-sm'>frontend engineer</p>
   </header>
 
   <div
-    class="flex flex-col gap-2.5 pt-6 [content-visibility:auto] [contain-intrinsic-size:auto_300px]"
+    class='flex flex-col gap-2.5 pt-6 [contain-intrinsic-size:auto_300px] [content-visibility:auto]'
   >
-    <SectionHeading text="what i do" variant="edge" />
+    <SectionHeading text='what i do' variant='edge' />
     <WhatIDo />
   </div>
 
   <div
-    class="flex flex-col gap-2.5 pt-6 [content-visibility:auto] [contain-intrinsic-size:auto_900px]"
+    class='flex w-full flex-col gap-4 pt-6 [contain-intrinsic-size:auto_850px] [content-visibility:auto]'
   >
-    <SectionHeading text="what i work with" variant="edge" />
-    <Stack />
-  </div>
-
-  <div
-    class="flex w-full flex-col gap-4 pt-6 [content-visibility:auto] [contain-intrinsic-size:auto_850px]"
-  >
-    <SectionHeading text="projects" variant="edge" />
+    <SectionHeading text='projects' variant='edge' />
     {
       projectsSection.map((item, index) =>
         item.type === 'project' ? (
@@ -64,59 +58,68 @@ const fmt = (d: Date) =>
     <p>
       interested in other things i&apos;ve worked on? {' '}
       <a
-        href="/projects"
+        href='/projects'
         data-astro-prefetch
-        class="group text-secondary hover:text-primary inline-flex items-center gap-1 transition-colors duration-[var(--duration-fast)]"
+        class='group text-secondary hover:text-primary inline-flex items-center gap-1 transition-colors duration-[var(--duration-fast)]'
       >
         check them out <Icon
-          name="arrow-right"
-          class="size-3.5 -translate-x-1 opacity-0 transition-[opacity,transform] duration-[var(--duration-fast)] ease-[var(--ease-in-out)] group-hover:translate-x-0.5 group-hover:opacity-100"
+          name='arrow-right'
+          class='size-3.5 -translate-x-1 opacity-0 transition-[opacity,transform] duration-[var(--duration-fast)] ease-[var(--ease-in-out)] group-hover:translate-x-0.5 group-hover:opacity-100'
         />
       </a>
     </p>
   </div>
 
   <div
-    class="flex flex-col gap-2.5 pt-6 [content-visibility:auto] [contain-intrinsic-size:auto_300px]"
+    class='flex flex-col gap-2.5 pt-6 [contain-intrinsic-size:auto_300px] [content-visibility:auto]'
   >
     <SectionHeading
-      text="blog"
-      variant="edge"
-      action={
-        <a href="/blog" class="group text-sm flex gap-1.5 items-center">
+      text='blog'
+      variant='edge'
+      action={(
+        <a href='/blog' class='group flex items-center gap-1.5 text-sm'>
           view all
           <Icon
-            name="arrow-right"
-            class="size-3 -translate-x-1 opacity-0 transition-[opacity,transform] duration-[var(--duration-fast)] ease-[var(--ease-in-out)] group-hover:translate-x-0 group-hover:opacity-100"
+            name='arrow-right'
+            class='size-3 -translate-x-1 opacity-0 transition-[opacity,transform] duration-[var(--duration-fast)] ease-[var(--ease-in-out)] group-hover:translate-x-0 group-hover:opacity-100'
           />
         </a>
-      }
+      )}
     />
     {
       blogPosts.map((post) => (
         <a
           href={`/blog/${post.id}`}
           data-astro-prefetch
-          class="group flex w-full items-baseline justify-between gap-4"
+          class='group flex w-full items-baseline justify-between gap-4'
         >
-          <div class="flex flex-col gap-0.5">
-            <span class="group/title text-primary inline-flex items-center gap-1.5 text-base font-normal">
+          <div class='flex flex-col gap-0.5'>
+            <span class='group/title text-primary inline-flex items-center gap-1.5 text-base font-normal'>
               {post.data.title}
               <Icon
-                name="arrow-right"
-                class="text-muted size-3 -translate-x-1 opacity-0 transition-[opacity,transform] duration-[var(--duration-fast)] ease-[var(--ease-in-out)] group-hover/title:translate-x-0 group-hover/title:opacity-100"
+                name='arrow-right'
+                class='text-muted size-3 -translate-x-1 opacity-0 transition-[opacity,transform] duration-[var(--duration-fast)] ease-[var(--ease-in-out)] group-hover/title:translate-x-0 group-hover/title:opacity-100'
               />
             </span>
-            <span class="text-muted line-clamp-3 text-sm">{post.data.description}</span>
+            <span class='text-muted line-clamp-3 text-sm'>
+              {post.data.description}
+            </span>
           </div>
           <time
             datetime={post.data.date.toISOString()}
-            class="text-muted whitespace-nowrap tabular-nums"
+            class='text-muted whitespace-nowrap tabular-nums'
           >
             {fmt(post.data.date)}
           </time>
         </a>
       ))
     }
+  </div>
+
+  <div
+    class='flex flex-col gap-2.5 pt-6 [contain-intrinsic-size:auto_900px] [content-visibility:auto]'
+  >
+    <SectionHeading text='what i work with' variant='edge' />
+    <Stack />
   </div>
 </Layout>
