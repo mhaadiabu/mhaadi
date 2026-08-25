@@ -19,7 +19,7 @@ const firstProjectIndex = projectsSection.findIndex(
 
 const blogPosts = (await getCollection('blog'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
+  .slice(0, 2);
 
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', {
@@ -45,7 +45,7 @@ const fmt = (d: Date) =>
   <div
     class='flex w-full flex-col gap-4 pt-6 [contain-intrinsic-size:auto_850px] [content-visibility:auto]'
   >
-    <SectionHeading text='projects' variant='edge' />
+    <SectionHeading text='my works' variant='edge' />
     {
       projectsSection.map((item, index) =>
         item.type === 'project' ? (
@@ -74,7 +74,7 @@ const fmt = (d: Date) =>
     class='flex flex-col gap-2.5 pt-6 [contain-intrinsic-size:auto_300px] [content-visibility:auto]'
   >
     <SectionHeading
-      text='blog'
+      text='recent writes'
       variant='edge'
       action={(
         <a href='/blog' class='group flex items-center gap-1.5 text-sm'>
