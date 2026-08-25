@@ -18,4 +18,28 @@
     color: var(--color-primary);
     font-weight: 500;
   }
+
+  .typeset h1 {
+    font-size: 24.125px;
+  }
+
+  .typeset h2 {
+    font-size: 17.375px;
+  }
+
+  .typeset h3 {
+    font-size: 15.4375px;
+  }
+
+  .typeset h4 {
+    font-size: 14.5px;
+  }
+
+  .typeset h5 {
+    font-size: 13.5625px;
+  }
+
+  .typeset h6 {
+    font-size: 12.59375px;
+  }
 }
