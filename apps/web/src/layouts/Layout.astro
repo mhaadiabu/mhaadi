@@ -11,7 +11,7 @@ interface Props {
   date?: string;
   dateTime?: string;
   backTo?: string;
-  description?: string;
+  description?: string | null;
   centered?: boolean;
   time?: number;
 }
@@ -36,17 +36,17 @@ const showBackButton = !isHomepage && !centered;
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
     <meta name='generator' content={Astro.generator} />
-    <meta name='description' content={description} />
+    {description && <meta name='description' content={description} />}
     <link rel='canonical' href={new URL(Astro.url.pathname, site.url)} />
     <meta name='theme-color' content='#0a0a0a' />
     <meta property='og:type' content='website' />
     <meta property='og:site_name' content={site.name} />
     <meta property='og:title' content={title} />
-    <meta property='og:description' content={description} />
+    {description && <meta property='og:description' content={description} />}
     <meta property='og:url' content={new URL(Astro.url.pathname, site.url)} />
     <meta name='twitter:card' content='summary' />
     <meta name='twitter:title' content={title} />
-    <meta name='twitter:description' content={description} />
+    {description && <meta name='twitter:description' content={description} />}
     <ClientRouter />
     <slot name='head' />
     <title>
