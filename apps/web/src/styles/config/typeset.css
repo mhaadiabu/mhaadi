@@ -11,7 +11,7 @@
     --typeset-font-heading: 'Public Sans Variable', sans-serif;
     --typeset-font-mono: 'Geist Mono Variable', monospace;
 
-    color: var(--color-muted);
+    color: var(--color-secondary);
   }
 
   .typeset :is(h1, h2, h3, h4) {

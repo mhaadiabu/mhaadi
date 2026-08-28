@@ -110,12 +110,22 @@
 
     /* Links. */
     &:where(a) {
-      color: inherit;
+      color: color-mix(
+        in oklab,
+        var(--color-primary) 65%,
+        var(--color-secondary)
+      );
       font-weight: 500;
-      text-decoration-line: none;
-      text-decoration-color: color-mix(in oklab, currentColor 30%, transparent);
+      text-decoration-line: underline;
+      text-decoration-color: color-mix(in oklab, currentColor 50%, transparent);
+      text-underline-offset: 0.25em;
+      text-decoration-thickness: 1px;
+      transition:
+        color var(--duration-fast) var(--ease-smooth-out),
+        text-decoration-color var(--duration-fast) var(--ease-smooth-out);
     }
     &:where(a:hover) {
+      color: var(--color-primary);
       text-decoration-color: currentColor;
     }
     &:where(a:focus-visible) {
@@ -272,9 +282,11 @@
     /* Inline code. */
     &:where(:not(pre) > code) {
       background-color: var(
-        --color-muted,
+        --color-bg-secondary,
         color-mix(in oklab, currentColor 8%, transparent)
       );
+      color: var(--color-primary);
+      border: 1px solid var(--color-border);
       font-family: var(--typeset-font-mono);
       font-size: 0.85em;
       border-radius: min(calc(var(--radius, 0.5em) * 0.6), 0.35em);
@@ -284,9 +296,10 @@
     /* Code blocks. */
     &:where(pre) {
       background-color: var(
-        --color-muted,
+        --color-bg-secondary,
         color-mix(in oklab, currentColor 8%, transparent)
       );
+      border: 1px solid var(--color-border);
       font-family: var(--typeset-font-mono);
       font-size: 0.875em;
       line-height: 1.5;
