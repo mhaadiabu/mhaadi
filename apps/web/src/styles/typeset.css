@@ -110,22 +110,12 @@
 
     /* Links. */
     &:where(a) {
-      color: color-mix(
-        in oklab,
-        var(--color-primary) 65%,
-        var(--color-secondary)
-      );
+      color: inherit;
       font-weight: 500;
-      text-decoration-line: underline;
-      text-decoration-color: color-mix(in oklab, currentColor 50%, transparent);
-      text-underline-offset: 0.25em;
-      text-decoration-thickness: 1px;
-      transition:
-        color var(--duration-fast) var(--ease-smooth-out),
-        text-decoration-color var(--duration-fast) var(--ease-smooth-out);
+      text-decoration-line: none;
+      text-decoration-color: color-mix(in oklab, currentColor 30%, transparent);
     }
     &:where(a:hover) {
-      color: var(--color-primary);
       text-decoration-color: currentColor;
     }
     &:where(a:focus-visible) {
