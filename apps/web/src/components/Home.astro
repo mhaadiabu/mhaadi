@@ -1,0 +1,191 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import ProjectCard from '../components/ProjectCard.astro';
+import PackageCard from '../components/PackageCard.astro';
+import Stack from '../components/Stack.astro';
+import WhatIDo from '../components/WhatIDo.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { featuredProjects, type Project } from '../data/projects';
+import { packages, type Package } from '../data/packages';
+import { getCollection } from 'astro:content';
+
+/** ui revamp variation picker — one will be kept, the rest deleted */
+export type Variation = 'a' | 'b' | 'c';
+
+interface Props {
+  variation: Variation;
+}
+
+const { variation: v } = Astro.props;
+
+type PortfolioItem = Project | Package;
+
+const projectsSection: PortfolioItem[] = [...featuredProjects, ...packages];
+const firstProjectIndex = projectsSection.findIndex(
+  (item) => item.type === 'project',
+);
+
+const blogPosts = (await getCollection('blog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 2);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+
+const headingVariant =
+  v === 'a' ? 'editorial' : v === 'b' ? 'dot' : ('slash' as const);
+const stackVariant = v === 'a' ? 'grid' : v === 'b' ? 'quiet' : 'mono';
+const idx = (n: number) => String(n).padStart(2, '0');
+const sectionIndex = v === 'b' ? undefined : idx;
+---
+
+<Layout>
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href="/_astro/task-thing.BRPFQif3_EUqFM.webp"
+    imagesrcset="/_astro/task-thing.BRPFQif3_ZtDqDx.webp 320w, /_astro/task-thing.BRPFQif3_EUqFM.webp 640w"
+    imagesizes="(min-width: 48rem) 640px, 100vw"
+    fetchpriority="high"
+  />
+
+  {
+    v === 'a' && (
+      <header class='flex flex-col gap-1'>
+        <h1 class='text-primary text-5xl font-semibold tracking-tight sm:text-6xl'>
+          haadi
+        </h1>
+        <p class='text-muted mt-2 font-mono text-xs tracking-[0.2em] uppercase'>
+          frontend engineer
+        </p>
+      </header>
+    )
+  }
+  {
+    v === 'b' && (
+      <header class='flex flex-col gap-1.5'>
+        <h1 class='text-primary text-4xl font-semibold tracking-tight sm:text-5xl'>
+          haadi
+        </h1>
+        <p class='text-muted text-base'>frontend engineer</p>
+      </header>
+    )
+  }
+  {
+    v === 'c' && (
+      <header class='flex flex-col gap-1.5'>
+        <h1 class='text-primary text-4xl font-semibold tracking-tight sm:text-5xl'>
+          haadi
+        </h1>
+        <p class='text-accent font-mono text-sm'>
+          <span class='text-muted'>&gt;</span> frontend engineer
+        </p>
+      </header>
+    )
+  }
+
+  <div
+    class='flex flex-col gap-2.5 pt-10 [contain-intrinsic-size:auto_300px] [content-visibility:auto]'
+  >
+    <SectionHeading
+      text='what i like to do'
+      variant={headingVariant}
+      index={sectionIndex?.(1)}
+    />
+    <WhatIDo />
+  </div>
+
+  <div
+    class='flex w-full flex-col gap-4 pt-10 [contain-intrinsic-size:auto_850px] [content-visibility:auto]'
+  >
+    <SectionHeading
+      text='my works'
+      variant={headingVariant}
+      index={sectionIndex?.(2)}
+    />
+    {
+      projectsSection.map((item, index) =>
+        item.type === 'project' ? (
+          <ProjectCard {...item} priority={index === firstProjectIndex} />
+        ) : (
+          <PackageCard {...item} />
+        ),
+      )
+    }
+    <p>
+      interested in other things i&apos;ve worked on? {' '}
+      <a
+        href='/projects'
+        data-astro-prefetch
+        class='group text-secondary hover:text-primary inline-flex items-center gap-1 transition-colors duration-(--duration-fast)'
+      >
+        check them out <Icon
+          name='arrow-right'
+          class='size-3.5 transition-transform duration-[var(--duration-quick)] ease-[var(--ease-smooth-out)] group-hover:translate-x-0.5'
+        />
+      </a>
+    </p>
+  </div>
+
+  <div
+    class='flex flex-col gap-2.5 pt-10 [contain-intrinsic-size:auto_300px] [content-visibility:auto]'
+  >
+    <SectionHeading
+      text='recent writes'
+      variant={headingVariant}
+      index={sectionIndex?.(3)}
+      action={(
+        <a href='/blog' class='group flex items-center gap-1.5 text-sm'>
+          view all
+          <Icon
+            name='arrow-right'
+            class='size-3 transition-transform duration-[var(--duration-quick)] ease-[var(--ease-smooth-out)] group-hover:translate-x-0.5'
+          />
+        </a>
+      )}
+    />
+    <div class='blog-list flex flex-col gap-4'>
+      {
+        blogPosts.map((post) => (
+          <a
+            href={`/blog/${post.id}`}
+            data-astro-prefetch
+            class='flex w-full items-baseline justify-between gap-4 transition-opacity duration-[var(--duration-fast)] ease-[var(--ease-in-out)]'
+          >
+            <div class='flex flex-col gap-0.5'>
+              <span class='text-primary text-base font-normal'>
+                {post.data.title}
+              </span>
+              <span class='text-muted line-clamp-3 text-sm'>
+                {post.data.description}
+              </span>
+            </div>
+            <time
+              datetime={post.data.date.toISOString()}
+              class='text-muted whitespace-nowrap font-mono text-xs tabular-nums'
+            >
+              {fmt(post.data.date)}
+            </time>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  <div
+    class='flex flex-col gap-2.5 pt-10 [contain-intrinsic-size:auto_900px] [content-visibility:auto]'
+  >
+    <SectionHeading
+      text='what i work with'
+      variant={headingVariant}
+      index={sectionIndex?.(4)}
+    />
+    <Stack variant={stackVariant} />
+  </div>
+</Layout>

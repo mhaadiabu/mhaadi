@@ -2,17 +2,53 @@
 interface Props {
   action?: any;
   text: string;
-  variant?: 'slash' | 'arrow' | 'line' | 'pill' | 'edge' | 'bracket' | 'dot';
+  /** mono section index, e.g. '01' — rendered before the text */
+  index?: string;
+  variant?:
+    | 'slash'
+    | 'arrow'
+    | 'line'
+    | 'pill'
+    | 'edge'
+    | 'bracket'
+    | 'dot'
+    | 'editorial';
 }
 
-const { action, text, variant = 'slash' } = Astro.props;
+const { action, text, index, variant = 'slash' } = Astro.props;
 ---
 
 {
+  variant === 'editorial' && (
+    <div class='flex items-baseline gap-3'>
+      {index && <span class='text-accent font-mono text-xs'>{index}</span>}
+      <h2 class='text-secondary text-sm font-semibold tracking-wide uppercase'>
+        <div class='flex w-full items-baseline justify-between'>
+          {text}
+          {action}
+        </div>
+      </h2>
+      <span class='bg-border h-px flex-1' />
+    </div>
+  )
+}
+
+{
   variant === 'slash' && (
-    <h2 class='text-secondary font-medium'>
+    <h2 class='text-secondary flex items-baseline gap-2.5 font-medium'>
+      {index && <span class='text-accent font-mono text-xs'>{index}</span>}
       <span class='text-secondary/30'>//</span> {text}
     </h2>
+  )
+}
+
+{
+  variant === 'line' && (
+    <div class='flex items-center gap-3'>
+      {index && <span class='text-accent font-mono text-xs'>{index}</span>}
+      <h2 class='text-secondary font-medium whitespace-nowrap'>{text}</h2>
+      <span class='bg-border h-px flex-1' />
+    </div>
   )
 }
 
@@ -21,15 +57,6 @@ const { action, text, variant = 'slash' } = Astro.props;
     <h2 class='text-secondary font-medium'>
       <span class='text-secondary/30'>▸</span> {text}
     </h2>
-  )
-}
-
-{
-  variant === 'line' && (
-    <div class='flex items-center gap-3'>
-      <h2 class='text-secondary font-medium whitespace-nowrap'>{text}</h2>
-      <span class='bg-border h-px flex-1' />
-    </div>
   )
 }
 

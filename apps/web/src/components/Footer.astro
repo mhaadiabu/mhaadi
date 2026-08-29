@@ -26,19 +26,22 @@ const socials = [
 ---
 
 <footer
-  class='mt-auto flex w-full flex-row items-center justify-center gap-3 pt-4'
+  class='text-muted mt-auto flex w-full flex-row items-center justify-between gap-3 pt-4'
 >
-  {
-    socials.map(({ label, href, icon }) => (
-      <a
-        href={href}
-        rel='noopener noreferrer'
-        target='_blank'
-        class='hover:text-primary transition-colors duration-[var(--duration-fast)]'
-      >
-        <Icon name={icon} class='size-5.5' />
-        <span class='sr-only'>{label} link</span>
-      </a>
-    ))
-  }
+  <span class='font-mono text-xs'>&copy; {new Date().getFullYear()} haadi</span>
+  <div class='flex flex-row items-center gap-3'>
+    {
+      socials.map(({ label, href, icon }) => (
+        <a
+          href={href}
+          rel='noopener noreferrer'
+          target='_blank'
+          class='hover:text-primary transition-colors duration-[var(--duration-fast)]'
+        >
+          <Icon name={icon} class='size-5.5' />
+          <span class='sr-only'>{label} link</span>
+        </a>
+      ))
+    }
+  </div>
 </footer>
