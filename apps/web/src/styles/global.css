@@ -95,6 +95,13 @@
   navigation: auto;
 }
 
+@media (hover: hover) {
+  .blog-list:has(a:hover) a:not(:hover),
+  .blog-list:has(a:focus-visible) a:not(:focus-visible) {
+    opacity: 0.4;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
