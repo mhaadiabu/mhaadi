@@ -24,6 +24,7 @@ const { Content } = await render(post);
   dateTime={post.data.date.toISOString()}
   time={post.data.time}
   description={post.data.description}
+  hideDescription
   backTo='/blog'
 >
   <article class='blog-post flex flex-col gap-4'>

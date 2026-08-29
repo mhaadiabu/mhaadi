@@ -14,6 +14,7 @@ interface Props {
   description?: string | null;
   centered?: boolean;
   time?: number;
+  hideDescription?: boolean;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   description = site.description,
   centered = false,
   time,
+  hideDescription = false,
 } = Astro.props;
 const isHomepage = Astro.url.pathname === '/';
 const showBackButton = !isHomepage && !centered;
@@ -100,7 +102,7 @@ const showBackButton = !isHomepage && !centered;
                 </time>
               )}
             </div>
-            {description && <p class='text-sm leading-loose'>{description}</p>}
+            {description && !hideDescription && <p class='text-sm leading-loose'>{description}</p>}
             {time && (
               <p class='pb-1.5 text-sm'>
                 Reading time: <span class='font-semibold'>{time} min</span>
