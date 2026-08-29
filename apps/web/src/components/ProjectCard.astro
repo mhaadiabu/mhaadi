@@ -79,32 +79,40 @@ const {
 
 <script>
   // fullscreen lightbox for project screenshots
-  const lightbox = document.createElement('div');
-  lightbox.className =
-    'fixed inset-0 z-50 hidden items-center justify-center bg-bg/90 p-4 backdrop-blur-sm';
-  lightbox.innerHTML = '<img class="max-h-full max-w-full rounded-lg" />';
-  document.body.append(lightbox);
-
-  const lightboxImg = lightbox.querySelector('img')!;
+  // delegated so buttons keep working after view-transition DOM swaps
+  let lightbox: HTMLElement | null = null;
 
   const closeLightbox = () => {
+    if (!lightbox) return;
     lightbox.classList.replace('flex', 'hidden');
-    lightboxImg.src = '';
+    lightbox.querySelector('img')!.src = '';
   };
 
-  lightbox.addEventListener('click', closeLightbox);
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeLightbox();
+  document.addEventListener('click', (event) => {
+    const button = (event.target as HTMLElement).closest<HTMLElement>(
+      '[data-lightbox]',
+    );
+    if (!lightbox) {
+      lightbox = document.createElement('div');
+      lightbox.className =
+        'fixed inset-0 z-50 hidden items-center justify-center bg-bg/90 p-4 backdrop-blur-sm';
+      lightbox.innerHTML =
+        '<img class="aspect-video max-h-full w-auto max-w-full rounded-lg object-cover" />';
+      lightbox.addEventListener('click', closeLightbox);
+      document.body.append(lightbox);
+    }
+    if (!button) return;
+
+    const img = button.querySelector('img');
+    if (!img) return;
+    const lightboxImg = lightbox.querySelector('img')!;
+    lightboxImg.src = img.currentSrc || img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.classList.replace('hidden', 'flex');
   });
 
-  document.querySelectorAll<HTMLButtonElement>('[data-lightbox]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const img = button.querySelector('img');
-      if (!img) return;
-      lightboxImg.src = img.currentSrc || img.src;
-      lightboxImg.alt = img.alt;
-      lightbox.classList.replace('hidden', 'flex');
-    });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeLightbox();
   });
 </script>
 

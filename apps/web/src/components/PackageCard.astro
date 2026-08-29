@@ -91,38 +91,40 @@ const cmd = installCommand ?? `npm install ${fullName}`;
 </article>
 
 <script>
+  // delegated so copy buttons keep working after view-transition DOM swaps
   const copyTimers = new WeakMap<HTMLButtonElement, number>();
   const copySequences = new WeakMap<HTMLButtonElement, number>();
 
-  document
-    .querySelectorAll<HTMLButtonElement>('[data-copy-command]')
-    .forEach((button) => {
-      button.addEventListener('click', async () => {
-        const command = button.dataset.copyCommand;
-        if (!command) return;
+  document.addEventListener('click', async (event) => {
+    const button = (event.target as HTMLElement).closest<HTMLButtonElement>(
+      '[data-copy-command]',
+    );
+    if (!button) return;
 
-        const sequence = (copySequences.get(button) ?? 0) + 1;
-        copySequences.set(button, sequence);
-        await navigator.clipboard.writeText(command);
+    const command = button.dataset.copyCommand;
+    if (!command) return;
+
+    const sequence = (copySequences.get(button) ?? 0) + 1;
+    copySequences.set(button, sequence);
+    await navigator.clipboard.writeText(command);
+    if (copySequences.get(button) !== sequence) return;
+
+    const existingTimer = copyTimers.get(button);
+    if (existingTimer) window.clearTimeout(existingTimer);
+    button.querySelector('[data-copy-icon]')?.classList.add('hidden');
+    button.querySelector('[data-copied-icon]')?.classList.remove('hidden');
+    button.setAttribute('aria-label', 'Command copied');
+    copyTimers.set(
+      button,
+      window.setTimeout(() => {
         if (copySequences.get(button) !== sequence) return;
-
-        const existingTimer = copyTimers.get(button);
-        if (existingTimer) window.clearTimeout(existingTimer);
-        button.querySelector('[data-copy-icon]')?.classList.add('hidden');
-        button.querySelector('[data-copied-icon]')?.classList.remove('hidden');
-        button.setAttribute('aria-label', 'Command copied');
-        copyTimers.set(
-          button,
-          window.setTimeout(() => {
-            if (copySequences.get(button) !== sequence) return;
-            button
-              .querySelector('[data-copy-icon]')
-              ?.classList.remove('hidden');
-            button.querySelector('[data-copied-icon]')?.classList.add('hidden');
-            button.setAttribute('aria-label', `Copy ${command}`);
-            copyTimers.delete(button);
-          }, 1500),
-        );
-      });
-    });
+        button
+          .querySelector('[data-copy-icon]')
+          ?.classList.remove('hidden');
+        button.querySelector('[data-copied-icon]')?.classList.add('hidden');
+        button.setAttribute('aria-label', `Copy ${command}`);
+        copyTimers.delete(button);
+      }, 1500),
+    );
+  });
 </script>
