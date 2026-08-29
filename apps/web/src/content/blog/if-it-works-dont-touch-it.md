@@ -2,7 +2,6 @@
 title: if it works, don't touch it
 date: 'July 19, 2026'
 description: 'a half-baked truth about software engineering'
-time: 2
 ---
 
 one thing every software engineer has heard at least once in their career is "_if it works, don't touch it_". this phrase is often used to discourage developers from making changes to a system that is functioning correctly, even if there are potential improvements that could be made.

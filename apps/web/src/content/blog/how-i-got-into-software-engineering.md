@@ -2,7 +2,6 @@
 title: how i got into software engineering
 date: August 28, 2026
 description: a not so short story
-time: 6
 ---
 
 i've always been quite the curious kid, tinkering and trying to break apart and understand the things i found interesting enough. and i've learnt quite a lot through that, one of which i'm going to tell you a story about.
