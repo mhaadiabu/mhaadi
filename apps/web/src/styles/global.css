@@ -1,8 +1,25 @@
 @import 'tailwindcss';
-@import '@fontsource-variable/public-sans';
-@import '@fontsource-variable/geist-mono';
 @import './typeset.css';
 @import './config/typeset.css';
+
+/* latin-only variable fonts — single woff2 each, browser fetches only these */
+@font-face {
+  font-family: 'Public Sans Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('@fontsource-variable/public-sans/files/public-sans-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Geist Mono Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
 .typeset-docs {
   --typeset-font-body: 'Public Sans Variable', sans-serif;
   --typeset-font-heading: 'Public Sans Variable', sans-serif;
@@ -11,7 +28,6 @@
   --typeset-leading: 1.85;
   --typeset-flow: 1em;
 }
-
 @theme inline {
   --font-sans: 'Public Sans Variable', sans-serif;
   --font-mono: 'Geist Mono Variable', monospace;
@@ -19,8 +35,6 @@
   --radius-md: 0.5rem;
   --shadow-card: 0 1px 2px oklch(0 0 0 / 0.025), 0 0 0 1px oklch(0 0 0 / 0.06);
   --default-transition-timing-function: var(--ease-smooth-out);
-
-  /* Theme colors */
   --color-primary: var(--theme-primary);
   --color-secondary: var(--theme-secondary);
   --color-accent: var(--theme-accent);
@@ -29,86 +43,9 @@
   --color-border: var(--theme-border);
   --color-muted: var(--theme-muted);
 }
-
-:root {
-  --duration-stagger: 40ms;
-  --duration-micro: 80ms;
-  --duration-quick: 150ms;
-  --duration-fast: 250ms;
-  --duration-medium: 350ms;
-  --duration-slow: 400ms;
-  --duration-very-slow: 500ms;
-  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-in-out: ease-in-out;
-  --ease-out: ease-out;
-  --ease-linear: linear;
-  --ease-bounce: cubic-bezier(0.34, 1.36, 0.64, 1);
-  --ease-bounce-strong: cubic-bezier(0.34, 3.85, 0.64, 1);
-  --distance-micro: 4px;
-  --distance-small: 6px;
-  --distance-base: 8px;
-  --distance-medium: 12px;
-  --distance-large: 30px;
-  --expo-out: linear(
-    0 0%,
-    0.1684 2.66%,
-    0.3165 5.49%,
-    0.446 8.52%,
-    0.5581 11.78%,
-    0.6535 15.29%,
-    0.7341 19.11%,
-    0.8011 23.3%,
-    0.8557 27.93%,
-    0.8962 32.68%,
-    0.9283 38.01%,
-    0.9529 44.08%,
-    0.9711 51.14%,
-    0.9833 59.06%,
-    0.9915 68.74%,
-    1 100%
-  );
-  --transition-fast: 180ms;
-  --transition-base: 260ms;
-}
-
-:root {
-  --theme-primary: oklch(0.16 0 0);
-  --theme-secondary: oklch(0.38 0 0);
-  --theme-accent: oklch(0.623 0.214 259);
-  --theme-bg: oklch(1 0 0);
-  --theme-bg-secondary: oklch(0.975 0.001 264);
-  --theme-border: oklch(0.9 0.003 286);
-  --theme-muted: oklch(0.52 0 0);
-}
-
-:root.dark {
-  --theme-primary: oklch(0.985 0 0);
-  --theme-secondary: oklch(0.72 0 0);
-  --theme-accent: oklch(0.707 0.165 254);
-  --theme-bg: oklch(0.145 0 0);
-  --theme-bg-secondary: oklch(0.205 0 0);
-  --theme-border: oklch(0.269 0 0);
-  --theme-muted: oklch(0.62 0 0);
-}
-
-@view-transition {
-  navigation: auto;
-}
-
-@media (hover: hover) {
-  .blog-list:has(a:hover) a:not(:hover),
-  .blog-list:has(a:focus-visible) a:not(:focus-visible) {
-    opacity: 0.4;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
+:root { --duration-stagger:40ms; --duration-micro:80ms; --duration-quick:150ms; --duration-fast:250ms; --duration-medium:350ms; --duration-slow:400ms; --duration-very-slow:500ms; --ease-smooth-out:cubic-bezier(0.22,1,0.36,1); --ease-in-out:ease-in-out; --ease-out:ease-out; --ease-linear:linear; --ease-bounce:cubic-bezier(0.34,1.36,0.64,1); --ease-bounce-strong:cubic-bezier(0.34,3.85,0.64,1); --distance-micro:4px; --distance-small:6px; --distance-base:8px; --distance-medium:12px; --distance-large:30px; --expo-out:linear(0 0%,0.1684 2.66%,0.3165 5.49%,0.446 8.52%,0.5581 11.78%,0.6535 15.29%,0.7341 19.11%,0.8011 23.3%,0.8557 27.93%,0.8962 32.68%,0.9283 38.01%,0.9529 44.08%,0.9711 51.14%,0.9833 59.06%,0.9915 68.74%,1 100%); --transition-fast:180ms; --transition-base:260ms; }
+:root { --theme-primary:oklch(0.16 0 0); --theme-secondary:oklch(0.38 0 0); --theme-accent:oklch(0.623 0.214 259); --theme-bg:oklch(1 0 0); --theme-bg-secondary:oklch(0.975 0.001 264); --theme-border:oklch(0.9 0.003 286); --theme-muted:oklch(0.52 0 0); }
+:root.dark { --theme-primary:oklch(0.985 0 0); --theme-secondary:oklch(0.72 0 0); --theme-accent:oklch(0.707 0.165 254); --theme-bg:oklch(0.145 0 0); --theme-bg-secondary:oklch(0.205 0 0); --theme-border:oklch(0.269 0 0); --theme-muted:oklch(0.62 0 0); }
+@view-transition { navigation: auto; }
+@media (hover: hover) { .blog-list:has(a:hover) a:not(:hover), .blog-list:has(a:focus-visible) a:not(:focus-visible) { opacity: 0.4; } }
+@media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
