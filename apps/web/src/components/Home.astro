@@ -80,7 +80,7 @@ const idx = (n: number) => String(n).padStart(2, '0');
       variant={headingVariant}
       index={idx(2)}
     />
-    <div class='dim-list flex w-full flex-col'>
+    <div class='dim-list flex w-full flex-col divide-y divide-border'>
       {
         projectsSection.map((item, index) =>
           item.type === 'project' ? (

@@ -5,6 +5,8 @@ import type { Package } from '../data/packages';
 interface Props extends Package {}
 
 const {
+  title,
+  icon,
   name,
   scope,
   description,
@@ -20,11 +22,12 @@ const cmd = installCommand ?? `npm install ${fullName}`;
 ---
 
 <article
-  class='flex w-full flex-col gap-1.5 border-b border-border py-5 transition-opacity duration-[var(--duration-fast)] ease-[var(--ease-in-out)]'
+  class='flex w-full flex-col gap-1.5 py-5 transition-opacity duration-[var(--duration-fast)] ease-[var(--ease-in-out)]'
 >
   <div class='flex items-baseline justify-between gap-4'>
     <h3 class='text-primary text-base font-normal'>
-      {fullName}
+      {icon && <Icon name={icon} class='mr-1.5 inline-block size-4 align-[-0.125em]' />}
+      {title ?? fullName}
       <span class='text-muted ml-1.5 font-mono text-xs'>v{version}</span>
     </h3>
     <div class='flex shrink-0 gap-2'>

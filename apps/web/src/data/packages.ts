@@ -1,5 +1,9 @@
 export interface Package {
   type: 'package';
+  /** display title, e.g. "BetterSVG" — falls back to the package name */
+  title?: string;
+  /** astro-icon name shown next to the title */
+  icon?: string;
   name: string;
   scope?: string;
   description: string;
@@ -13,6 +17,7 @@ export interface Package {
 export const packages: Package[] = [
   {
     type: 'package',
+    title: 'BetterSVG',
     name: 'svg',
     scope: 'mhaadi',
     description: 'Inline SVG rendering for React.',
@@ -24,6 +29,7 @@ export const packages: Package[] = [
   },
   {
     type: 'package',
+    title: 'Thinking Orbs Native',
     name: 'thinking-orbs-native',
     scope: 'mhaadi',
     description: 'Thinking orbs for React Native.',
