@@ -88,7 +88,7 @@
   --theme-bg: oklch(0.145 0 0);
   --theme-bg-secondary: oklch(0.205 0 0);
   --theme-border: oklch(0.269 0 0);
-  --theme-muted: oklch(0.58 0 0);
+  --theme-muted: oklch(0.62 0 0);
 }
 
 @view-transition {
