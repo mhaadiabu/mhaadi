@@ -42,7 +42,7 @@ const {
           width={640}
           height={360}
           layout='constrained'
-          widths={[320, 640]}
+          widths={[320, 640, 1280]}
           sizes='(min-width: 48rem) 640px, 100vw'
           loading={priority ? 'eager' : 'lazy'}
           fetchpriority={priority ? 'high' : 'auto'}
@@ -67,7 +67,7 @@ const {
           width={640}
           height={360}
           layout='constrained'
-          widths={[320, 640]}
+          widths={[320, 640, 1280]}
           sizes='(min-width: 48rem) 640px, 100vw'
           loading={priority ? 'eager' : 'lazy'}
           fetchpriority={priority ? 'high' : 'auto'}
@@ -106,7 +106,14 @@ const {
     const img = button.querySelector('img');
     if (!img) return;
     const lightboxImg = lightbox.querySelector('img')!;
-    lightboxImg.src = img.currentSrc || img.src;
+    // currentSrc is the thumbnail-sized variant; the lightbox wants the largest
+    const largest =
+      img.srcset
+        .split(',')
+        .map((entry) => entry.trim().split(/\s+/))
+        .sort((a, b) => parseInt(b[1] ?? '0', 10) - parseInt(a[1] ?? '0', 10))[0]?.[0] ??
+      img.src;
+    lightboxImg.src = largest;
     lightboxImg.alt = img.alt;
     lightbox.classList.replace('hidden', 'flex');
   });
