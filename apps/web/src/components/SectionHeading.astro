@@ -22,11 +22,8 @@ const { action, text, index, variant = 'slash' } = Astro.props;
   variant === 'editorial' && (
     <div class='flex items-baseline gap-3'>
       {index && <span class='text-accent font-mono text-xs'>{index}</span>}
-      <h2 class='text-secondary text-sm min-w-0 flex-1 font-semibold tracking-wide'>
-        <div class='flex w-full items-baseline justify-between'>
-          {text}
-          {action}
-        </div>
+      <h2 class='text-secondary text-sm font-semibold tracking-wide'>
+        {text}
       </h2>
       <span class='bg-border h-px flex-1' />
     </div>
