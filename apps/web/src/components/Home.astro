@@ -33,15 +33,20 @@ const idx = (n: number) => String(n).padStart(2, '0');
 ---
 
 <Layout>
-  <link
-    slot="head"
-    rel="preload"
-    as="image"
-    href="/_astro/task-thing.BRPFQif3_EUqFM.webp"
-    imagesrcset="/_astro/task-thing.BRPFQif3_ZtDqDx.webp 320w, /_astro/task-thing.BRPFQif3_EUqFM.webp 640w"
-    imagesizes="(min-width: 48rem) 640px, 100vw"
-    fetchpriority="high"
-  />
+  {
+    // hashed /_astro URLs only exist in a production build
+    import.meta.env.PROD && (
+      <link
+        slot="head"
+        rel="preload"
+        as="image"
+        href="/_astro/task-thing.BRPFQif3_EUqFM.webp"
+        imagesrcset="/_astro/task-thing.BRPFQif3_ZtDqDx.webp 320w, /_astro/task-thing.BRPFQif3_EUqFM.webp 640w"
+        imagesizes="(min-width: 48rem) 640px, 100vw"
+        fetchpriority="high"
+      />
+    )
+  }
 
   {
     (
