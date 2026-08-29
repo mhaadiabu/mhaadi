@@ -73,23 +73,25 @@ const idx = (n: number) => String(n).padStart(2, '0');
   </div>
 
   <div
-    class='dim-list flex w-full flex-col gap-4 pt-10 [contain-intrinsic-size:auto_850px] [content-visibility:auto]'
+    class='flex w-full flex-col pt-10 [contain-intrinsic-size:auto_850px] [content-visibility:auto]'
   >
     <SectionHeading
       text='my works'
       variant={headingVariant}
       index={idx(2)}
     />
-    {
-      projectsSection.map((item, index) =>
-        item.type === 'project' ? (
-          <ProjectCard {...item} priority={index === firstProjectIndex} />
-        ) : (
-          <PackageCard {...item} />
-        ),
-      )
-    }
-    <p>
+    <div class='dim-list flex w-full flex-col'>
+      {
+        projectsSection.map((item, index) =>
+          item.type === 'project' ? (
+            <ProjectCard {...item} priority={index === firstProjectIndex} />
+          ) : (
+            <PackageCard {...item} />
+          ),
+        )
+      }
+    </div>
+    <p class='pt-4'>
       interested in other things i&apos;ve worked on? {' '}
       <a
         href='/projects'

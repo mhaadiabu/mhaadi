@@ -20,62 +20,36 @@ const cmd = installCommand ?? `npm install ${fullName}`;
 ---
 
 <article
-  class='bg-bg-secondary shadow-card flex w-full flex-col gap-3 rounded-lg p-4 transition-opacity duration-[var(--duration-fast)] ease-[var(--ease-in-out)]'
+  class='flex w-full flex-col gap-1.5 border-b border-border py-5 transition-opacity duration-[var(--duration-fast)] ease-[var(--ease-in-out)]'
 >
-  <div
-    class='bg-bg-secondary border-border flex items-center gap-2 rounded-md border px-3 py-2 font-mono text-xs'
-  >
-    <code class='text-primary min-w-0 flex-1 truncate bg-transparent! text-sm'
-      >{cmd}</code
-    >
-    <button
-      type='button'
-      class='text-muted hover:text-primary shrink-0 transition-colors duration-[var(--duration-fast)]'
-      data-copy-command={cmd}
-      aria-label={`Copy ${cmd}`}
-    >
-      <Icon name='copy' class='size-4' data-copy-icon />
-      <Icon name='check' class='hidden size-4' data-copied-icon />
-    </button>
-  </div>
-
-  <div class='flex flex-col gap-2'>
-    <div class='flex items-center justify-between'>
-      <h3 class='text-primary text-base font-normal'>{fullName}</h3>
-      <span
-        class='text-muted border-border bg-bg-secondary/50 rounded-md border px-1.5 py-0.5 font-mono text-xs'
+  <div class='flex items-baseline justify-between gap-4'>
+    <h3 class='text-primary text-base font-normal'>
+      {fullName}
+      <span class='text-muted ml-1.5 font-mono text-xs'>v{version}</span>
+    </h3>
+    <div class='flex shrink-0 gap-2'>
+      <a
+        href={npm}
+        target='_blank'
+        rel='noopener noreferrer'
+        class='text-muted hover:text-primary transition-colors duration-[var(--duration-fast)]'
       >
-        v{version}
-      </span>
-    </div>
-
-    <p class='text-muted text-sm'>{description}</p>
-
-    <div class='flex items-center justify-between pt-1'>
-      <div class='flex gap-2'>
-        <a
-          href={npm}
-          target='_blank'
-          rel='noopener noreferrer'
-          class='text-muted hover:text-primary transition-colors duration-[var(--duration-fast)]'
-        >
-          <Icon name='npm' class='size-4' />
-          <span class='sr-only'>npm package</span>
-        </a>
-        {
-          github && (
-            <a
-              href={github}
-              target='_blank'
-              rel='noopener noreferrer'
-              class='text-muted hover:text-primary transition-colors duration-[var(--duration-fast)]'
-            >
-              <Icon name='github-logo' class='size-4' />
-              <span class='sr-only'>GitHub repository</span>
-            </a>
-          )
-        }
-      </div>
+        <Icon name='npm' class='size-4' />
+        <span class='sr-only'>npm package</span>
+      </a>
+      {
+        github && (
+          <a
+            href={github}
+            target='_blank'
+            rel='noopener noreferrer'
+            class='text-muted hover:text-primary transition-colors duration-[var(--duration-fast)]'
+          >
+            <Icon name='github-logo' class='size-4' />
+            <span class='sr-only'>GitHub repository</span>
+          </a>
+        )
+      }
       {
         website && (
           <a
@@ -93,6 +67,23 @@ const cmd = installCommand ?? `npm install ${fullName}`;
         )
       }
     </div>
+  </div>
+
+  <p class='text-muted text-sm'>{description}</p>
+
+  <div
+    class='text-muted flex items-center gap-2 pt-1 font-mono text-xs'
+  >
+    <code class='text-secondary min-w-0 truncate'>$ {cmd}</code>
+    <button
+      type='button'
+      class='text-muted hover:text-primary shrink-0 transition-colors duration-[var(--duration-fast)]'
+      data-copy-command={cmd}
+      aria-label={`Copy ${cmd}`}
+    >
+      <Icon name='copy' class='size-3.5' data-copy-icon />
+      <Icon name='check' class='hidden size-3.5' data-copied-icon />
+    </button>
   </div>
 </article>
 

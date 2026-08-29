@@ -29,11 +29,11 @@ const {
 
 <article
   class:list={[
-    'group/project bg-bg-secondary shadow-card flex w-full flex-col gap-3 rounded-lg p-4 transition-opacity duration-[var(--duration-fast)] ease-[var(--ease-in-out)]',
+    'group/project flex w-full flex-col gap-4 border-b border-border py-5 transition-opacity duration-[var(--duration-fast)] ease-[var(--ease-in-out)] sm:flex-row',
     disabled && 'cursor-not-allowed',
   ]}
 >
-  <div class='relative aspect-video overflow-hidden rounded-md'>
+  <div class='relative aspect-video shrink-0 overflow-hidden sm:w-36'>
     <Image
       src={image}
       alt={title}
@@ -52,19 +52,19 @@ const {
     />
     {
       disabled && (
-        <div class='bg-bg-secondary/70 absolute inset-0 flex items-center justify-center'>
-          <span class='text-muted border-border bg-bg-secondary rounded-md border px-2 py-1 text-xs font-medium tracking-wider uppercase'>
-            Coming Soon
+        <div class='bg-bg/70 absolute inset-0 flex items-center justify-center'>
+          <span class='text-muted text-xs font-medium tracking-wide'>
+            coming soon
           </span>
         </div>
       )
     }
   </div>
 
-  <div class='flex flex-col gap-2'>
-    <div class='flex items-center justify-between'>
+  <div class='flex min-w-0 flex-1 flex-col gap-1.5'>
+    <div class='flex items-baseline justify-between gap-4'>
       <h3 class='text-primary text-base font-normal'>{title}</h3>
-      <div class='flex gap-2'>
+      <div class='flex shrink-0 gap-2'>
         {
           github && !disabled && (
             <a
