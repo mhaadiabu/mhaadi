@@ -86,4 +86,4 @@ export const projects: Project[] = [
 export const featuredProjects = projects.filter((p) => p.featured);
 import type { ImageMetadata } from 'astro';
 import schoolThingImage from '../assets/projects/school-thing.png';
-import taskThingImage from '../assets/projects/task-thing.webp';
+import taskThingImage from '../assets/projects/task-thing.png';
