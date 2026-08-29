@@ -5,6 +5,7 @@ import ThemeToggle from '../components/ThemeToggle.astro';
 import { Icon } from 'astro-icon/components';
 import { site } from '../data/site';
 import { ClientRouter } from 'astro:transitions';
+import publicSansLatin from '@fontsource-variable/public-sans/files/public-sans-latin-wght-normal.woff2?url';
 
 interface Props {
   title?: string;
@@ -50,6 +51,7 @@ const showBackButton = !isHomepage && !centered;
     <meta name='twitter:title' content={title} />
     {description && <meta name='twitter:description' content={description} />}
     <ClientRouter />
+    <link rel="preload" href={publicSansLatin} as="font" type="font/woff2" crossorigin />
     <slot name='head' />
     <title>
       {`${title.charAt(0).toUpperCase()}${title.slice(1).toLowerCase()}`}
