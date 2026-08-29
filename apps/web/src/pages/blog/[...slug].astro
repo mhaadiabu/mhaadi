@@ -23,7 +23,7 @@ const { Content } = await render(post);
   })}
   dateTime={post.data.date.toISOString()}
   time={post.data.time}
-  description={null}
+  description={post.data.description}
   backTo='/blog'
 >
   <article class='blog-post flex flex-col gap-4'>
