@@ -99,7 +99,7 @@ const showBackButton = !isHomepage && !centered;
               </a>
               <h1>{title}</h1>
               {date && (
-                <time class='text-secondary text-sm' datetime={dateTime}>
+                <time class='text-secondary font-mono text-xs' datetime={dateTime}>
                   {date}
                 </time>
               )}
@@ -125,6 +125,12 @@ const showBackButton = !isHomepage && !centered;
     </main>
 
     <Footer />
+
+    <!-- keeps the footer year correct even on a stale static build -->
+    <script is:inline>
+      const year = document.querySelector('[data-footer-year]');
+      if (year) year.textContent = String(new Date().getFullYear());
+    </script>
 
     <!-- Scroll to top button -->
     <button

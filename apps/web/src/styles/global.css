@@ -47,5 +47,10 @@
 :root { --theme-primary:oklch(0.16 0 0); --theme-secondary:oklch(0.38 0 0); --theme-accent:oklch(0.623 0.214 259); --theme-bg:oklch(1 0 0); --theme-bg-secondary:oklch(0.975 0.001 264); --theme-border:oklch(0.9 0.003 286); --theme-muted:oklch(0.52 0 0); }
 :root.dark { --theme-primary:oklch(0.985 0 0); --theme-secondary:oklch(0.72 0 0); --theme-accent:oklch(0.707 0.165 254); --theme-bg:oklch(0.145 0 0); --theme-bg-secondary:oklch(0.205 0 0); --theme-border:oklch(0.269 0 0); --theme-muted:oklch(0.62 0 0); }
 @view-transition { navigation: auto; }
+
+/* dims non-hovered cards — same treatment as the blog list */
+@media (hover: hover) {
+  .dim-list:has(> :hover) > :not(:has(:hover)) { opacity: 0.5; }
+}
 @media (hover: hover) { .blog-list:has(a:hover) a:not(:hover), .blog-list:has(a:focus-visible) a:not(:focus-visible) { opacity: 0.4; } }
 @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }

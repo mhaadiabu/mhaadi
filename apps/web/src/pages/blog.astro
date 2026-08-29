@@ -18,13 +18,13 @@ const fmt = (d: Date) =>
   title='blog'
   description="i'm not smart. but i think a lot. though my thoughts are almost never complete. i dump them here when they are. enjoy (or don't)."
 >
-  <div class='blog-list flex w-full flex-col gap-6'>
+  <div class='blog-list flex w-full flex-col gap-1'>
       {
         posts.map((post) => (
           <a
             href={`/blog/${post.id}`}
             data-astro-prefetch
-            class='flex w-full items-baseline justify-between gap-4 transition-opacity duration-[var(--duration-fast)] ease-[var(--ease-in-out)]'
+            class='hover:bg-bg-secondary/70 -mx-3 flex w-full items-baseline justify-between gap-4 rounded-lg px-3 py-2.5 transition-[opacity,background-color] duration-[var(--duration-fast)] ease-[var(--ease-in-out)]'
           >
           <div class='flex flex-col gap-0.5'>
             <span class='text-primary text-base font-normal'>
@@ -36,7 +36,7 @@ const fmt = (d: Date) =>
           </div>
           <time
             datetime={post.data.date.toISOString()}
-            class='text-muted whitespace-nowrap tabular-nums'
+            class='text-muted whitespace-nowrap font-mono text-xs tabular-nums'
           >
             {fmt(post.data.date)}
           </time>

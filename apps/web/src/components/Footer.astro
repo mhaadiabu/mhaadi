@@ -28,7 +28,7 @@ const socials = [
 <footer
   class='text-muted mt-auto flex w-full flex-row items-center justify-between gap-3 pt-4'
 >
-  <span class='font-mono text-xs'>&copy; {new Date().getFullYear()} haadi</span>
+  <span class='font-mono text-xs'>&copy; <span data-footer-year>{new Date().getFullYear()}</span> haadi</span>
   <div class='flex flex-row items-center gap-3'>
     {
       socials.map(({ label, href, icon }) => (
