@@ -75,8 +75,6 @@
    bleeding rules still run edge to edge past the rails. */
 @media (max-width: 39.99rem) {
   body {
-    /* hidden fallback for the same pre-Safari-16 reason as html above */
-    overflow-x: hidden;
     overflow-x: clip;
     padding-inline: 0.5rem;
   }
@@ -87,11 +85,19 @@
    which lands them exactly on the visible edges — 50vw math would miss
    by the scrollbar width. the clip must live on html alone: body carries
    the `container` class, so it's narrower than the viewport and would
-   cut the rules at its own box. hidden comes first as the fallback —
-   overflow-x: clip needs Safari 16, older WebKit stops at hidden. */
-html {
-  overflow-x: hidden;
-  overflow-x: clip;
+   cut the rules at its own box. */
+html { overflow-x: clip; }
+
+/* overflow-x: clip needs Safari 16. older WebKit gets hidden instead.
+   written as @supports rather than a hidden-then-clip declaration pair —
+   lightningcss dedupes the pair in production builds and drops the
+   fallback. */
+@supports not (overflow-x: clip) {
+  html { overflow-x: hidden; }
+
+  @media (max-width: 39.99rem) {
+    body { overflow-x: hidden; }
+  }
 }
 
 .home-stack,
