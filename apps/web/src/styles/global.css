@@ -103,6 +103,35 @@ html { overflow-x: clip; }
 
   .site-guard { overflow-x: hidden; }
 
+  /* on these builds the frame's own borders don't paint, while the bleed
+     rules' pseudo-element borders do. so legacy browsers draw the rails
+     as pseudos too, and the dead element borders are zeroed so the lines
+     land on the same edge they occupy on modern browsers. */
+  .site-frame {
+    position: relative;
+    border-left-width: 0;
+    border-right-width: 0;
+  }
+
+  .site-frame::before,
+  .site-footer::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-left: 1px solid var(--theme-border);
+    border-right: 1px solid var(--theme-border);
+    content: '';
+    pointer-events: none;
+  }
+
+  .site-footer {
+    border-left-width: 0;
+    border-right-width: 0;
+    border-inline-width: 0;
+  }
+
   @media (max-width: 39.99rem) {
     .site-guard {
       margin-inline: -0.5rem;
