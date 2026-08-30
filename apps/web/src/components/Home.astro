@@ -54,7 +54,7 @@ const idx = (n: number) => String(n).padStart(2, '0');
         <h1 class='text-primary text-4xl font-semibold tracking-tight sm:text-5xl'>
           haadi
         </h1>
-        <p class='text-accent font-mono text-sm'>
+        <p class='text-accent font-mono text-base'>
           <span class='text-muted'>&gt;</span> frontend engineer
         </p>
       </header>
@@ -120,19 +120,19 @@ const idx = (n: number) => String(n).padStart(2, '0');
           <a
             href={`/blog/${post.id}`}
             data-astro-prefetch
-            class='-mx-3 flex w-full items-baseline justify-between gap-4 px-3 py-2.5'
+            class='-mx-3 flex w-full flex-col gap-0.5 px-3 py-2.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4'
           >
             <div class='flex flex-col gap-0.5'>
-              <span class='text-primary text-base font-normal'>
+              <span class='text-primary text-lg font-normal'>
                 {post.data.title}
               </span>
-              <span class='text-muted line-clamp-3 text-sm'>
+              <span class='text-muted line-clamp-3 text-base'>
                 {post.data.description}
               </span>
             </div>
             <time
               datetime={post.data.date.toISOString()}
-              class='text-muted whitespace-nowrap font-mono text-xs tabular-nums'
+              class='text-muted pt-1.5 whitespace-nowrap font-mono text-sm tabular-nums sm:pt-0'
             >
               {fmt(post.data.date)}
             </time>
@@ -143,7 +143,7 @@ const idx = (n: number) => String(n).padStart(2, '0');
     <a
       href='/blog'
       data-astro-prefetch
-      class='text-muted hover:text-primary group mt-1 inline-flex w-fit items-center gap-1.5 text-xs transition-colors duration-[var(--duration-fast)]'
+      class='text-muted hover:text-primary group mt-1 inline-flex w-fit items-center gap-1.5 text-sm transition-colors duration-[var(--duration-fast)]'
     >
       view all posts
       <Icon

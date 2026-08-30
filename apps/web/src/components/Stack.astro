@@ -3,7 +3,7 @@ import { Icon } from 'astro-icon/components';
 import { stack } from '../data/stack';
 ---
 
-<section class='grid grid-cols-4 lg:grid-cols-6'>
+<section class='grid grid-cols-3 lg:grid-cols-6'>
   {
     stack.map(({ icon, name }, i) => {
       const hue = (i * 47 + 180) % 360;

@@ -46,10 +46,10 @@ const {
           sizes='(min-width: 48rem) 640px, 100vw'
           loading={priority ? 'eager' : 'lazy'}
           fetchpriority={priority ? 'high' : 'auto'}
-          class='blur-sm h-full w-full object-cover'
+          class='blur-sm h-full w-full rounded-none object-cover'
         />
         <div class='bg-bg/70 absolute inset-0 flex items-center justify-center'>
-          <span class='text-muted text-xs font-medium tracking-wide'>
+          <span class='text-muted text-sm font-medium tracking-wide'>
             coming soon
           </span>
         </div>
@@ -71,7 +71,7 @@ const {
           sizes='(min-width: 48rem) 640px, 100vw'
           loading={priority ? 'eager' : 'lazy'}
           fetchpriority={priority ? 'high' : 'auto'}
-          class='group-hover/project:scale-[1.03] h-full w-full object-cover transition-transform duration-[var(--duration-medium)] ease-[var(--ease-smooth-out)]'
+          class='group-hover/project:scale-[1.03] h-full w-full rounded-none object-cover transition-transform duration-[var(--duration-medium)] ease-[var(--ease-smooth-out)]'
         />
       </button>
     )
@@ -128,7 +128,7 @@ const {
 
   <div class='flex min-w-0 flex-1 flex-col gap-1.5'>
     <div class='flex items-baseline justify-between gap-4'>
-      <h3 class='text-primary text-base font-normal'>{title}</h3>
+      <h3 class='text-primary text-lg font-normal'>{title}</h3>
       <div class='flex shrink-0 gap-2'>
         {
           github && !disabled && (
@@ -162,7 +162,7 @@ const {
       </div>
     </div>
 
-    <p class='text-muted line-clamp-2 text-sm'>{description}</p>
+    <p class='text-muted line-clamp-2 text-base'>{description}</p>
 
     <div class='flex flex-wrap gap-2 pt-1'>
       {
