@@ -67,18 +67,16 @@
   border-inline: 1px solid var(--theme-border);
 }
 
-/* keep the frame rails visible on phones (chanhdai-style): inset the frame
-   and footer from the screen edges instead of letting the rails hug them.
-   full-bleed lists pull out the extra 0.5rem so they stay flush with the
-   rails; the bleeding rules still run edge to edge past them. */
+/* keep the frame rails visible on phones (chanhdai-style): pad the body so
+   the frame and footer sit inset from the screen edges instead of hugging
+   them. padding rather than margin on the frame — firefox mis-sizes a
+   full-width flex item that carries margins and pushes the right rail past
+   the clip. full-bleed lists cancel the page padding (rail-list) and the
+   bleeding rules still run edge to edge past the rails. */
 @media (max-width: 39.99rem) {
-  .site-frame,
-  .site-footer {
-    margin-inline: 0.5rem;
-  }
-
-  .rail-list {
-    margin-inline: -1.5rem;
+  body {
+    overflow-x: clip;
+    padding-inline: 0.5rem;
   }
 }
 
@@ -89,14 +87,6 @@
    the `container` class, so it's narrower than the viewport and would
    cut the rules at its own box. */
 html { overflow-x: clip; }
-
-/* some mobile browsers still let you scroll sideways past the html clip.
-   below sm the body container spans the full viewport, so clipping body
-   there equals a viewport clip and can't re-break desktop, where body is
-   narrower than the rules' reach. */
-@media (max-width: 39.99rem) {
-  body { overflow-x: clip; }
-}
 
 .home-stack,
 .home-blog-list,
