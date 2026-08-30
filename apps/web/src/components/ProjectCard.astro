@@ -35,18 +35,16 @@ const {
 >
   {
     disabled ? (
-      <div class='relative aspect-video shrink-0 overflow-hidden sm:w-36'>
+      <div class='relative shrink-0 overflow-hidden sm:w-36'>
         <Image
           src={image}
           alt={title}
-          width={640}
-          height={360}
           layout='constrained'
           widths={[320, 640, 1280]}
           sizes='(min-width: 48rem) 640px, 100vw'
           loading={priority ? 'eager' : 'lazy'}
           fetchpriority={priority ? 'high' : 'auto'}
-          class='blur-sm h-full w-full rounded-none object-cover'
+          class='blur-sm w-full rounded-none object-cover'
         />
         <div class='bg-bg/70 absolute inset-0 flex items-center justify-center'>
           <span class='text-muted text-sm font-medium tracking-wide'>
@@ -59,19 +57,17 @@ const {
         type='button'
         data-lightbox
         aria-label={`Open ${title} screenshot fullscreen`}
-        class='group/lightbox hover:bg-bg-secondary relative aspect-video shrink-0 cursor-zoom-in overflow-hidden p-1 transition-colors duration-[var(--duration-fast)] sm:w-36'
+        class='group/lightbox hover:bg-bg-secondary relative shrink-0 cursor-zoom-in overflow-hidden p-1 transition-colors duration-[var(--duration-fast)] sm:w-36'
       >
         <Image
           src={image}
           alt={title}
-          width={640}
-          height={360}
           layout='constrained'
           widths={[320, 640, 1280]}
           sizes='(min-width: 48rem) 640px, 100vw'
           loading={priority ? 'eager' : 'lazy'}
           fetchpriority={priority ? 'high' : 'auto'}
-          class='group-hover/lightbox:opacity-100 h-full w-full rounded-none object-cover opacity-80 transition-opacity duration-[var(--duration-fast)] ease-[var(--ease-in-out)]'
+          class='group-hover/lightbox:opacity-100 group-hover/project:opacity-100 w-full rounded-none object-cover opacity-90 transition-opacity duration-[var(--duration-very-slow)] ease-[var(--ease-out)]'
         />
       </button>
     )
@@ -98,7 +94,7 @@ const {
       lightbox.className =
         'fixed inset-0 z-50 hidden items-center justify-center bg-bg/90 p-4 backdrop-blur-sm';
       lightbox.innerHTML =
-        '<img class="aspect-video max-h-full w-auto max-w-full rounded-lg object-cover" />';
+        '<img class="max-h-full w-auto max-w-full rounded-lg object-contain" />';
       lightbox.addEventListener('click', closeLightbox);
       document.body.append(lightbox);
     }
