@@ -16,6 +16,7 @@ interface Props {
   centered?: boolean;
   time?: number;
   hideDescription?: boolean;
+  hideFooter?: boolean;
 }
 
 const {
@@ -27,6 +28,7 @@ const {
   centered = false,
   time,
   hideDescription = false,
+  hideFooter = false,
 } = Astro.props;
 const isHomepage = Astro.url.pathname === '/';
 const showBackButton = !isHomepage && !centered;
@@ -124,13 +126,7 @@ const showBackButton = !isHomepage && !centered;
       </section>
     </main>
 
-    <Footer />
-
-    <!-- keeps the footer year correct even on a stale static build -->
-    <script is:inline>
-      const year = document.querySelector('[data-footer-year]');
-      if (year) year.textContent = String(new Date().getFullYear());
-    </script>
+    {!hideFooter && <Footer />}
 
     <!-- Scroll to top button -->
     <button
