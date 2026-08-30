@@ -107,26 +107,41 @@ html, body { overflow-x: clip; }
   padding: 4rem 1rem 3rem;
 }
 
-/* section header band: centered title between two rules that bleed to the
-   viewport edges (inset-inline trick above). full-bleed lists (stack, blog)
-   sit flush under the band's bottom rule. */
+/* section header band: left-aligned title under a dotted separator band.
+   both the band and the rule below it bleed to the viewport edges
+   (inset-inline trick above). full-bleed lists (stack, blog) sit flush
+   under the band's bottom rule. */
 .home-section-head {
   position: relative;
-  padding-block: 2.75rem 0.75rem;
-  text-align: center;
+  padding: 2.75rem 1rem 0.75rem;
 }
 
-.home-section-head::before,
+/* dotted separator band between sections */
+.home-section-head::before {
+  position: absolute;
+  top: 0;
+  inset-inline: -100vw;
+  height: 0.5rem;
+  border-top: 1px solid var(--theme-border);
+  border-bottom: 1px solid var(--theme-border);
+  background-image: radial-gradient(
+    color-mix(in oklch, var(--theme-border) 65%, transparent) 1px,
+    transparent 1.25px
+  );
+  background-size: 0.5rem 0.5rem;
+  background-position: center;
+  content: '';
+  pointer-events: none;
+}
+
 .home-section-head::after {
   position: absolute;
+  bottom: 0;
   inset-inline: -100vw;
   border-top: 1px solid var(--theme-border);
   content: '';
   pointer-events: none;
 }
-
-.home-section-head::before { top: 0; }
-.home-section-head::after { bottom: 0; }
 
 .home-title {
   /* typeset gives headings a margin-top that would break the band spacing */
@@ -151,6 +166,7 @@ html, body { overflow-x: clip; }
 
 @media (min-width: 40rem) {
   .home-hero { padding-inline: 1.5rem; }
+  .home-section-head { padding-inline: 1.5rem; }
   .home-section-inner { margin-inline: 1.5rem; }
   .home-project-list > article { padding-inline: 1.5rem; }
 }
