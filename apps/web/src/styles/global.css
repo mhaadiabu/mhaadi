@@ -91,12 +91,20 @@ html { overflow-x: clip; }
 /* overflow-x: clip needs Safari 16. older WebKit gets hidden instead.
    written as @supports rather than a hidden-then-clip declaration pair —
    lightningcss dedupes the pair in production builds and drops the
-   fallback. */
+   fallback. pre-16 iOS also ignores root-level overflow for touch panning,
+   so legacy browsers clip on the .site-guard wrapper. its negative margin
+   cancels body's mobile padding to keep the clip box at viewport width,
+   otherwise the bleeding rules would cut at the frame rails. */
 @supports not (overflow-x: clip) {
   html { overflow-x: hidden; }
 
+  .site-guard { overflow-x: hidden; }
+
   @media (max-width: 39.99rem) {
-    body { overflow-x: hidden; }
+    .site-guard {
+      margin-inline: -0.5rem;
+      padding-inline: 0.5rem;
+    }
   }
 }
 

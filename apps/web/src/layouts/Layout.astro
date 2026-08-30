@@ -70,73 +70,75 @@ const showBackButton = !isHomepage && !centered;
     </script>
   </head>
   <body
-    class='bg-bg text-secondary typeset typeset-docs container mx-auto flex min-h-screen w-full max-w-5xl flex-col antialiased transition-colors duration-(--duration-fast) 2xl:max-w-7xl'
+    class='bg-bg text-secondary typeset typeset-docs container mx-auto w-full max-w-5xl antialiased transition-colors duration-(--duration-fast) 2xl:max-w-7xl'
   >
-    <!-- Theme toggle -->
-    <ThemeToggle />
-    <main
-      class:list={[
-        'site-frame mx-auto flex w-full max-w-3xl flex-1 flex-col 2xl:max-w-5xl',
-        centered ? 'items-center text-center' : 'items-start text-left',
-      ]}
-    >
-      {
-        showBackButton && (
-          <header class='page-header flex w-full flex-col gap-4'>
-            <div class='flex flex-col gap-1.5'>
-              <a
-                href={backTo}
-                data-astro-prefetch
-                class='link-underline group text-muted hover:text-primary w-fit self-start'
-              >
-                {!isHomepage && (
-                  <span class='inline-flex items-center gap-1.5'>
-                    <Icon
-                      name='arrow-left'
-                      class='size-4 shrink-0 transition-transform duration-[var(--duration-quick)] ease-[var(--ease-smooth-out)] group-hover:-translate-x-0.5'
-                    />
-                    <p class='m-0 text-lg leading-none'>back</p>
-                  </span>
-                )}
-              </a>
-              <h1>{title}</h1>
-              {date && (
-                <time class='text-secondary font-mono text-sm' datetime={dateTime}>
-                  {date}
-                </time>
-              )}
-            </div>
-            {description && !hideDescription && <p class='text-base leading-loose'>{description}</p>}
-            {time && (
-              <p class='text-base'>
-                Reading time: <span class='font-semibold'>{time} min</span>
-              </p>
-            )}
-          </header>
-        )
-      }
-      <section
+    <div class='site-guard flex min-h-screen flex-col'>
+      <!-- Theme toggle -->
+      <ThemeToggle />
+      <main
         class:list={[
-          'page-content flex w-full flex-1 flex-col',
-          isHomepage ? 'p-0' : 'px-4 py-8 sm:px-6',
-          centered && 'items-center justify-center',
+          'site-frame mx-auto flex w-full max-w-3xl flex-1 flex-col 2xl:max-w-5xl',
+          centered ? 'items-center text-center' : 'items-start text-left',
         ]}
       >
-        <slot />
-      </section>
-    </main>
+        {
+          showBackButton && (
+            <header class='page-header flex w-full flex-col gap-4'>
+              <div class='flex flex-col gap-1.5'>
+                <a
+                  href={backTo}
+                  data-astro-prefetch
+                  class='link-underline group text-muted hover:text-primary w-fit self-start'
+                >
+                  {!isHomepage && (
+                    <span class='inline-flex items-center gap-1.5'>
+                      <Icon
+                        name='arrow-left'
+                        class='size-4 shrink-0 transition-transform duration-[var(--duration-quick)] ease-[var(--ease-smooth-out)] group-hover:-translate-x-0.5'
+                      />
+                      <p class='m-0 text-lg leading-none'>back</p>
+                    </span>
+                  )}
+                </a>
+                <h1>{title}</h1>
+                {date && (
+                  <time class='text-secondary font-mono text-sm' datetime={dateTime}>
+                    {date}
+                  </time>
+                )}
+              </div>
+              {description && !hideDescription && <p class='text-base leading-loose'>{description}</p>}
+              {time && (
+                <p class='text-base'>
+                  Reading time: <span class='font-semibold'>{time} min</span>
+                </p>
+              )}
+            </header>
+          )
+        }
+        <section
+          class:list={[
+            'page-content flex w-full flex-1 flex-col',
+            isHomepage ? 'p-0' : 'px-4 py-8 sm:px-6',
+            centered && 'items-center justify-center',
+          ]}
+        >
+          <slot />
+        </section>
+      </main>
 
-    {!hideFooter && <Footer />}
+      {!hideFooter && <Footer />}
 
-    <!-- Scroll to top button -->
-    <button
-      id='scroll-to-top'
-      transition:persist='scroll-to-top'
-      class='bg-bg-secondary text-muted hover:text-primary invisible fixed right-6 bottom-6 cursor-pointer rounded-full p-2.5 opacity-0 transition-opacity duration-(--duration-fast)'
-      aria-label='Scroll to top'
-    >
-      <Icon name='arrow-top' class='size-4' />
-    </button>
+      <!-- Scroll to top button -->
+      <button
+        id='scroll-to-top'
+        transition:persist='scroll-to-top'
+        class='bg-bg-secondary text-muted hover:text-primary invisible fixed right-6 bottom-6 cursor-pointer rounded-full p-2.5 opacity-0 transition-opacity duration-(--duration-fast)'
+        aria-label='Scroll to top'
+      >
+        <Icon name='arrow-top' class='size-4' />
+      </button>
+    </div>
   </body>
 </html>
 
