@@ -5,7 +5,6 @@ import ProjectCard from '../components/ProjectCard.astro';
 import PackageCard from '../components/PackageCard.astro';
 import Stack from '../components/Stack.astro';
 import WhatIDo from '../components/WhatIDo.astro';
-import SectionHeading from '../components/SectionHeading.astro';
 import { featuredProjects, type Project } from '../data/projects';
 import { packages, type Package } from '../data/packages';
 import { getCollection } from 'astro:content';
@@ -27,9 +26,6 @@ const fmt = (d: Date) =>
     month: 'short',
     day: 'numeric',
   });
-
-const headingVariant = 'editorial' as const;
-const idx = (n: number) => String(n).padStart(2, '0');
 ---
 
 <Layout>
@@ -54,31 +50,25 @@ const idx = (n: number) => String(n).padStart(2, '0');
         <h1 class='text-primary text-4xl font-semibold tracking-tight sm:text-5xl'>
           haadi
         </h1>
-        <p class='text-accent font-mono text-base'>
-          <span class='text-muted'>&gt;</span> frontend engineer
-        </p>
+        <p class='text-secondary font-mono text-base'>frontend engineer</p>
       </header>
     )
   }
 
   <div class='home-section flex flex-col'>
     <div class='home-section-inner flex flex-col gap-2.5'>
-      <SectionHeading
-        text='what i like to do'
-        variant={headingVariant}
-        index={idx(1)}
-      />
+      <h2 class='home-title text-muted font-mono text-sm tracking-wide'>
+        what i like to do
+      </h2>
       <WhatIDo />
     </div>
   </div>
 
   <div class='home-section flex w-full flex-col'>
     <div class='home-section-inner'>
-      <SectionHeading
-        text='my works'
-        variant={headingVariant}
-        index={idx(2)}
-      />
+      <h2 class='home-title text-muted font-mono text-sm tracking-wide'>
+        my works
+      </h2>
     </div>
     <div class='home-project-list dim-list flex w-full flex-col'>
       {
@@ -108,11 +98,9 @@ const idx = (n: number) => String(n).padStart(2, '0');
 
   <div class='home-section flex flex-col'>
     <div class='home-section-inner'>
-      <SectionHeading
-        text='recent writes'
-        variant={headingVariant}
-        index={idx(3)}
-      />
+      <h2 class='home-title text-muted font-mono text-sm tracking-wide'>
+        recent writes
+      </h2>
     </div>
     <div class='home-blog-list blog-list flex flex-col'>
       {
@@ -153,15 +141,11 @@ const idx = (n: number) => String(n).padStart(2, '0');
     </a>
   </div>
 
-  <div
-    class='home-section flex flex-col [contain-intrinsic-size:auto_900px] [content-visibility:auto]'
-  >
+  <div class='home-section flex flex-col'>
     <div class='home-section-inner'>
-      <SectionHeading
-        text='what i work with'
-        variant={headingVariant}
-        index={idx(4)}
-      />
+      <h2 class='home-title text-muted font-mono text-sm tracking-wide'>
+        what i work with
+      </h2>
     </div>
     <div class='home-stack'>
       <Stack />
