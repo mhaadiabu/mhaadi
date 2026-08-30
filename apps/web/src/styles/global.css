@@ -90,6 +90,14 @@
    cut the rules at its own box. */
 html { overflow-x: clip; }
 
+/* some mobile browsers still let you scroll sideways past the html clip.
+   below sm the body container spans the full viewport, so clipping body
+   there equals a viewport clip and can't re-break desktop, where body is
+   narrower than the rules' reach. */
+@media (max-width: 39.99rem) {
+  body { overflow-x: clip; }
+}
+
 .home-stack,
 .home-blog-list,
 .page-header,
