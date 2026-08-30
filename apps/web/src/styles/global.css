@@ -70,10 +70,10 @@
 /* horizontal rules bleed past the frame rails to the viewport edges.
    they overshoot by 100vw each side and get cut by the overflow clip,
    which lands them exactly on the visible edges — 50vw math would miss
-   by the scrollbar width. the clip needs both elements: overflow on
-   either alone propagates to the viewport, which turns clip into a
-   scrollbar. */
-html, body { overflow-x: clip; }
+   by the scrollbar width. the clip must live on html alone: body carries
+   the `container` class, so it's narrower than the viewport and would
+   cut the rules at its own box. */
+html { overflow-x: clip; }
 
 .home-stack,
 .home-blog-list,
