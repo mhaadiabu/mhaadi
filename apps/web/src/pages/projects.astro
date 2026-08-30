@@ -26,18 +26,16 @@ const firstProjectIndex = sorted.findIndex((item) => item.type === 'project');
 ---
 
 <Layout title='projects' description='stuff i built.'>
-  <div class='rail-list dim-list flex w-full flex-col divide-y divide-border'>
+  <div class='rail-list dim-list flex w-full flex-col'>
     <h2 class='sr-only'>project list</h2>
     {
-      sorted.map((item, index) => (
-        <div class='[contain-intrinsic-size:auto_380px] [content-visibility:auto]'>
-          {item.type === 'project' ? (
-            <ProjectCard {...item} priority={index === firstProjectIndex} />
-          ) : (
-            <PackageCard {...item} />
-          )}
-        </div>
-      ))
+      sorted.map((item, index) =>
+        item.type === 'project' ? (
+          <ProjectCard {...item} priority={index === firstProjectIndex} />
+        ) : (
+          <PackageCard {...item} />
+        ),
+      )
     }
   </div>
 </Layout>

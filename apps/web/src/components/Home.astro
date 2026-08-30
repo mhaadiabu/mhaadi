@@ -61,9 +61,7 @@ const idx = (n: number) => String(n).padStart(2, '0');
     )
   }
 
-  <div
-    class='home-section flex flex-col [contain-intrinsic-size:auto_300px] [content-visibility:auto]'
-  >
+  <div class='home-section flex flex-col'>
     <div class='home-section-inner flex flex-col gap-2.5'>
       <SectionHeading
         text='what i like to do'
@@ -74,9 +72,7 @@ const idx = (n: number) => String(n).padStart(2, '0');
     </div>
   </div>
 
-  <div
-    class='home-section flex w-full flex-col [contain-intrinsic-size:auto_850px] [content-visibility:auto]'
-  >
+  <div class='home-section flex w-full flex-col'>
     <div class='home-section-inner'>
       <SectionHeading
         text='my works'
@@ -84,7 +80,7 @@ const idx = (n: number) => String(n).padStart(2, '0');
         index={idx(2)}
       />
     </div>
-    <div class='home-project-list dim-list flex w-full flex-col divide-y divide-border'>
+    <div class='home-project-list dim-list flex w-full flex-col'>
       {
         projectsSection.map((item, index) =>
           item.type === 'project' ? (
@@ -110,9 +106,7 @@ const idx = (n: number) => String(n).padStart(2, '0');
     </p>
   </div>
 
-  <div
-    class='home-section flex flex-col [contain-intrinsic-size:auto_300px] [content-visibility:auto]'
-  >
+  <div class='home-section flex flex-col'>
     <div class='home-section-inner'>
       <SectionHeading
         text='recent writes'
@@ -120,7 +114,7 @@ const idx = (n: number) => String(n).padStart(2, '0');
         index={idx(3)}
       />
     </div>
-    <div class='home-blog-list blog-list border-border flex flex-col divide-y divide-border border-y'>
+    <div class='home-blog-list blog-list flex flex-col'>
       {
         blogPosts.map((post) => (
           <a

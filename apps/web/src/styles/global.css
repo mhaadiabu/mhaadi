@@ -67,6 +67,45 @@
   border-inline: 1px solid var(--theme-border);
 }
 
+/* horizontal rules bleed past the frame rails to the viewport edges.
+   paint containment from content-visibility would clip them, so sections
+   that own rules stay eagerly rendered. the clip needs both elements:
+   overflow on either alone propagates to the viewport, which turns clip
+   into a scrollbar. */
+html, body { overflow-x: clip; }
+
+.home-stack,
+.home-blog-list,
+.page-header,
+.site-footer,
+.dim-list > *,
+.blog-list > * { position: relative; }
+
+.home-stack::before,
+.home-stack::after,
+.home-blog-list::before,
+.home-blog-list::after,
+.page-header::after,
+.site-footer::before,
+.dim-list > * + *::before,
+.blog-list > * + *::before {
+  position: absolute;
+  inset-inline: calc(50% - 50vw);
+  border-top: 1px solid var(--theme-border);
+  content: '';
+  pointer-events: none;
+}
+
+.home-stack::before,
+.home-blog-list::before,
+.site-footer::before,
+.dim-list > * + *::before,
+.blog-list > * + *::before { top: 0; }
+
+.home-stack::after,
+.home-blog-list::after,
+.page-header::after { bottom: 0; }
+
 .home-hero {
   padding: 4rem 1rem 3rem;
 }
@@ -74,7 +113,6 @@
 .home-section {
   position: relative;
   padding-block: 3.25rem 3rem;
-  border-top: 1px solid var(--theme-border);
 }
 
 .home-section-inner {
@@ -91,14 +129,13 @@
   padding-inline: 1rem;
 }
 
-.home-stack {
-  border-block: 1px solid var(--theme-border);
-}
-
 .home-section::before {
   position: absolute;
   inset: 0 0 auto;
+  /* bleed past the frame rails to the viewport edges */
+  inset-inline: calc(50% - 50vw);
   height: 0.5rem;
+  border-top: 1px solid var(--theme-border);
   border-bottom: 1px solid var(--theme-border);
   background-image: radial-gradient(
     color-mix(in oklch, var(--theme-border) 65%, transparent) 1px,
@@ -118,7 +155,6 @@
 
 .page-header {
   padding: 3rem 1rem 2rem;
-  border-bottom: 1px solid var(--theme-border);
 }
 
 .rail-list {
@@ -126,6 +162,7 @@
   margin-inline: -1rem;
 }
 
+.rail-list > article,
 .rail-list > :is(article, div) > article {
   padding-inline: 1rem;
 }
