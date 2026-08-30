@@ -5,7 +5,7 @@ import ThemeToggle from '../components/ThemeToggle.astro';
 import { Icon } from 'astro-icon/components';
 import { site } from '../data/site';
 import { ClientRouter } from 'astro:transitions';
-import publicSansLatin from '@fontsource-variable/public-sans/files/public-sans-latin-wght-normal.woff2?url';
+import instrumentSansLatin from '@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2?url';
 
 interface Props {
   title?: string;
@@ -51,7 +51,7 @@ const showBackButton = !isHomepage && !centered;
     <meta name='twitter:title' content={title} />
     {description && <meta name='twitter:description' content={description} />}
     <ClientRouter />
-    <link rel="preload" href={publicSansLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={instrumentSansLatin} as="font" type="font/woff2" crossorigin />
     <slot name='head' />
     <title>
       {`${title.charAt(0).toUpperCase()}${title.slice(1).toLowerCase()}`}
@@ -93,20 +93,20 @@ const showBackButton = !isHomepage && !centered;
                       name='arrow-left'
                       class='size-4 shrink-0 transition-transform duration-[var(--duration-quick)] ease-[var(--ease-smooth-out)] group-hover:-translate-x-0.5'
                     />
-                    <p class='m-0 text-base leading-none'>back</p>
+                    <p class='m-0 text-lg leading-none'>back</p>
                   </span>
                 )}
               </a>
               <h1>{title}</h1>
               {date && (
-                <time class='text-secondary font-mono text-xs' datetime={dateTime}>
+                <time class='text-secondary font-mono text-sm' datetime={dateTime}>
                   {date}
                 </time>
               )}
             </div>
-            {description && !hideDescription && <p class='text-sm leading-loose'>{description}</p>}
+            {description && !hideDescription && <p class='text-base leading-loose'>{description}</p>}
             {time && (
-              <p class='pb-1.5 text-sm'>
+              <p class='pb-1.5 text-base'>
                 Reading time: <span class='font-semibold'>{time} min</span>
               </p>
             )}

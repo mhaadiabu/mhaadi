@@ -21,8 +21,8 @@ const { action, text, index, variant = 'slash' } = Astro.props;
 {
   variant === 'editorial' && (
     <div class='flex items-baseline gap-3'>
-      {index && <span class='text-accent font-mono text-xs'>{index}</span>}
-      <h2 class='text-secondary text-sm font-semibold tracking-wide'>
+      {index && <span class='text-accent font-mono text-sm'>{index}</span>}
+      <h2 class='text-secondary text-base font-semibold tracking-wide'>
         {text}
       </h2>
       <span class='bg-border h-px flex-1' />
@@ -33,7 +33,7 @@ const { action, text, index, variant = 'slash' } = Astro.props;
 {
   variant === 'slash' && (
     <h2 class='text-secondary flex items-baseline gap-2.5 font-medium'>
-      {index && <span class='text-accent font-mono text-xs'>{index}</span>}
+      {index && <span class='text-accent font-mono text-sm'>{index}</span>}
       <span class='text-secondary/30'>//</span> {text}
     </h2>
   )
@@ -42,7 +42,7 @@ const { action, text, index, variant = 'slash' } = Astro.props;
 {
   variant === 'line' && (
     <div class='flex items-center gap-3'>
-      {index && <span class='text-accent font-mono text-xs'>{index}</span>}
+      {index && <span class='text-accent font-mono text-sm'>{index}</span>}
       <h2 class='text-secondary font-medium whitespace-nowrap'>{text}</h2>
       <span class='bg-border h-px flex-1' />
     </div>
@@ -59,7 +59,7 @@ const { action, text, index, variant = 'slash' } = Astro.props;
 
 {
   variant === 'pill' && (
-    <h2 class='text-secondary border-border bg-bg-secondary inline-flex items-center rounded-full border px-3 py-0.5 text-xs font-medium tracking-wide'>
+    <h2 class='text-secondary border-border bg-bg-secondary inline-flex items-center rounded-full border px-3 py-0.5 text-sm font-medium tracking-wide'>
       {text}
     </h2>
   )

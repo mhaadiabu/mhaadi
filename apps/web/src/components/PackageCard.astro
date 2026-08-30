@@ -25,10 +25,10 @@ const cmd = installCommand ?? `npm install ${fullName}`;
   class='flex w-full flex-col gap-1.5 py-5 transition-opacity duration-[var(--duration-fast)] ease-[var(--ease-in-out)]'
 >
   <div class='flex items-baseline justify-between gap-4'>
-    <h3 class='text-primary text-base font-normal'>
+    <h3 class='text-primary text-lg font-normal'>
       {icon && <Icon name={icon} class='mr-1.5 inline-block size-4 align-[-0.125em]' />}
       {title ?? fullName}
-      <span class='text-muted ml-1.5 font-mono text-xs'>v{version}</span>
+      <span class='text-muted ml-1.5 font-mono text-sm'>v{version}</span>
     </h3>
     <div class='flex shrink-0 gap-2'>
       <a
@@ -72,10 +72,10 @@ const cmd = installCommand ?? `npm install ${fullName}`;
     </div>
   </div>
 
-  <p class='text-muted text-sm'>{description}</p>
+  <p class='text-muted text-base'>{description}</p>
 
   <div
-    class='text-muted flex items-center gap-2 pt-1 font-mono text-xs'
+    class='text-muted flex items-center gap-2 pt-1 font-mono text-sm'
   >
     <code class='text-secondary min-w-0 truncate'>$ {cmd}</code>
     <button
