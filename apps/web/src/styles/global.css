@@ -67,6 +67,21 @@
   border-inline: 1px solid var(--theme-border);
 }
 
+/* keep the frame rails visible on phones (chanhdai-style): inset the frame
+   and footer from the screen edges instead of letting the rails hug them.
+   full-bleed lists pull out the extra 0.5rem so they stay flush with the
+   rails; the bleeding rules still run edge to edge past them. */
+@media (max-width: 39.99rem) {
+  .site-frame,
+  .site-footer {
+    margin-inline: 0.5rem;
+  }
+
+  .rail-list {
+    margin-inline: -1.5rem;
+  }
+}
+
 /* horizontal rules bleed past the frame rails to the viewport edges.
    they overshoot by 100vw each side and get cut by the overflow clip,
    which lands them exactly on the visible edges — 50vw math would miss
