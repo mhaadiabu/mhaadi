@@ -68,10 +68,11 @@
 }
 
 /* horizontal rules bleed past the frame rails to the viewport edges.
-   paint containment from content-visibility would clip them, so sections
-   that own rules stay eagerly rendered. the clip needs both elements:
-   overflow on either alone propagates to the viewport, which turns clip
-   into a scrollbar. */
+   they overshoot by 100vw each side and get cut by the overflow clip,
+   which lands them exactly on the visible edges — 50vw math would miss
+   by the scrollbar width. the clip needs both elements: overflow on
+   either alone propagates to the viewport, which turns clip into a
+   scrollbar. */
 html, body { overflow-x: clip; }
 
 .home-stack,
@@ -90,7 +91,7 @@ html, body { overflow-x: clip; }
 .dim-list > * + *::before,
 .blog-list > * + *::before {
   position: absolute;
-  inset-inline: calc(50% - 50vw);
+  inset-inline: -100vw;
   border-top: 1px solid var(--theme-border);
   content: '';
   pointer-events: none;
@@ -112,7 +113,20 @@ html, body { overflow-x: clip; }
 
 .home-section {
   position: relative;
-  padding-block: 3.25rem 3rem;
+  padding-block: 2.75rem 3rem;
+}
+
+/* section title straddles the rule above its content, fieldset-legend
+   style. no left/right keeps the static position, so it stays aligned
+   with the section content across breakpoints. */
+.home-title {
+  position: absolute;
+  top: 0;
+  /* typeset gives headings a margin-top that would push this off the rule */
+  margin: 0 -0.625rem;
+  padding-inline: 0.625rem;
+  transform: translateY(-50%);
+  background: var(--theme-bg);
 }
 
 .home-section-inner {
@@ -131,18 +145,9 @@ html, body { overflow-x: clip; }
 
 .home-section::before {
   position: absolute;
-  inset: 0 0 auto;
-  /* bleed past the frame rails to the viewport edges */
-  inset-inline: calc(50% - 50vw);
-  height: 0.5rem;
+  top: 0;
+  inset-inline: -100vw;
   border-top: 1px solid var(--theme-border);
-  border-bottom: 1px solid var(--theme-border);
-  background-image: radial-gradient(
-    color-mix(in oklch, var(--theme-border) 65%, transparent) 1px,
-    transparent 1.25px
-  );
-  background-size: 0.5rem 0.5rem;
-  background-position: center;
   content: '';
   pointer-events: none;
 }
