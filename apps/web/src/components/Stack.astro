@@ -3,21 +3,13 @@ import { Icon } from 'astro-icon/components';
 import { stack } from '../data/stack';
 ---
 
-<section
-  class='bg-border grid grid-cols-2 gap-px sm:grid-cols-4'
->
+<section class='bg-border grid grid-cols-2 gap-px sm:grid-cols-4'>
   {
-    stack.map(({ icon, name }, i) => {
-      const hue = (i * 47 + 180) % 360;
-      return (
-        <div
-          class='bg-bg relative flex min-w-0 items-center gap-2.5 px-4 py-3 transition-colors duration-[var(--duration-fast)] hover:bg-[hsl(var(--hue)_50%_50%/0.08)] sm:px-5'
-          style={`--hue: ${hue}`}
-        >
-          <Icon name={icon} class='text-primary size-5 shrink-0' />
-          <span class='text-secondary truncate text-sm'>{name}</span>
-        </div>
-      );
-    })
+    stack.map(({ icon, name }) => (
+      <div class='bg-bg text-secondary hover:bg-bg-secondary relative flex min-w-0 items-center gap-2.5 px-4 py-3 transition-colors duration-[var(--duration-fast)] sm:px-5'>
+        <Icon name={icon} class='text-primary size-5 shrink-0' />
+        <span class='truncate text-sm'>{name}</span>
+      </div>
+    ))
   }
 </section>
