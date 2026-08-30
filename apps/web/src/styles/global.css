@@ -63,8 +63,11 @@
 :root.dark { --theme-primary:oklch(0.985 0 0); --theme-secondary:oklch(0.72 0 0); --theme-accent:oklch(0.707 0.165 254); --theme-bg:oklch(0.145 0 0); --theme-bg-secondary:oklch(0.205 0 0); --theme-border:oklch(0.269 0 0); --theme-muted:oklch(0.62 0 0); }
 @view-transition { navigation: auto; }
 
+/* physical borders, not border-inline — the logical shorthand doesn't
+   paint on the legacy WebKit builds we still support */
 .site-frame {
-  border-inline: 1px solid var(--theme-border);
+  border-left: 1px solid var(--theme-border);
+  border-right: 1px solid var(--theme-border);
 }
 
 /* keep the frame rails visible on phones (chanhdai-style): pad the body so
