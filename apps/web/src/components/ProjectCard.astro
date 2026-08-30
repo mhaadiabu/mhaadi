@@ -86,6 +86,7 @@ const {
     if (!lightbox) return;
     lightbox.classList.replace('flex', 'hidden');
     lightbox.querySelector('img')!.src = '';
+    document.body.style.overflow = '';
   };
 
   document.addEventListener('click', (event) => {
@@ -116,6 +117,8 @@ const {
     lightboxImg.src = largest;
     lightboxImg.alt = img.alt;
     lightbox.classList.replace('hidden', 'flex');
+    // lock page scroll while the modal is open
+    document.body.style.overflow = 'hidden';
   });
 
   document.addEventListener('keydown', (event) => {
