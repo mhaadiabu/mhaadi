@@ -82,9 +82,7 @@ html, body { overflow-x: clip; }
 .dim-list > *,
 .blog-list > * { position: relative; }
 
-.home-stack::before,
 .home-stack::after,
-.home-blog-list::before,
 .home-blog-list::after,
 .page-header::after,
 .site-footer::before,
@@ -97,8 +95,6 @@ html, body { overflow-x: clip; }
   pointer-events: none;
 }
 
-.home-stack::before,
-.home-blog-list::before,
 .site-footer::before,
 .dim-list > * + *::before,
 .blog-list > * + *::before { top: 0; }
@@ -111,45 +107,46 @@ html, body { overflow-x: clip; }
   padding: 4rem 1rem 3rem;
 }
 
-.home-section {
+/* section header band: centered title between two rules that bleed to the
+   viewport edges (inset-inline trick above). full-bleed lists (stack, blog)
+   sit flush under the band's bottom rule. */
+.home-section-head {
   position: relative;
-  padding-block: 2.75rem 3rem;
+  padding-block: 2.75rem 0.75rem;
+  text-align: center;
 }
 
-/* section title straddles the rule above its content, fieldset-legend
-   style. no left/right keeps the static position, so it stays aligned
-   with the section content across breakpoints. */
-.home-title {
+.home-section-head::before,
+.home-section-head::after {
   position: absolute;
-  top: 0;
-  /* typeset gives headings a margin-top that would push this off the rule */
-  margin: 0 -0.625rem;
-  padding-inline: 0.625rem;
-  transform: translateY(-50%);
-  background: var(--theme-bg);
+  inset-inline: -100vw;
+  border-top: 1px solid var(--theme-border);
+  content: '';
+  pointer-events: none;
+}
+
+.home-section-head::before { top: 0; }
+.home-section-head::after { bottom: 0; }
+
+.home-title {
+  /* typeset gives headings a margin-top that would break the band spacing */
+  margin: 0;
+}
+
+.home-section-body {
+  padding-block: 0 3rem;
 }
 
 .home-section-inner {
   margin-inline: 1rem;
 }
 
-.home-project-list,
-.home-blog-list,
-.home-stack {
+.home-project-list {
   margin-top: 1.5rem;
 }
 
 .home-project-list > article {
   padding-inline: 1rem;
-}
-
-.home-section::before {
-  position: absolute;
-  top: 0;
-  inset-inline: -100vw;
-  border-top: 1px solid var(--theme-border);
-  content: '';
-  pointer-events: none;
 }
 
 @media (min-width: 40rem) {

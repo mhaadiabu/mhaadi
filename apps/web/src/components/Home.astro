@@ -55,100 +55,108 @@ const fmt = (d: Date) =>
     )
   }
 
-  <div class='home-section flex flex-col'>
-    <div class='home-section-inner flex flex-col gap-2.5'>
+  <section class='home-section flex flex-col'>
+    <div class='home-section-head'>
       <h2 class='home-title text-muted font-mono text-sm tracking-wide'>
         01 what i like to do
       </h2>
+    </div>
+    <div class='home-section-body home-section-inner'>
       <WhatIDo />
     </div>
-  </div>
+  </section>
 
-  <div class='home-section flex w-full flex-col'>
-    <div class='home-section-inner'>
+  <section class='home-section flex w-full flex-col'>
+    <div class='home-section-head'>
       <h2 class='home-title text-muted font-mono text-sm tracking-wide'>
         02 my works
       </h2>
     </div>
-    <div class='home-project-list dim-list flex w-full flex-col'>
-      {
-        projectsSection.map((item, index) =>
-          item.type === 'project' ? (
-            <ProjectCard {...item} priority={index === firstProjectIndex} />
-          ) : (
-            <PackageCard {...item} />
-          ),
-        )
-      }
+    <div class='home-section-body flex w-full flex-col'>
+      <div class='home-project-list dim-list flex w-full flex-col'>
+        {
+          projectsSection.map((item, index) =>
+            item.type === 'project' ? (
+              <ProjectCard {...item} priority={index === firstProjectIndex} />
+            ) : (
+              <PackageCard {...item} />
+            ),
+          )
+        }
+      </div>
+      <p class='home-section-inner pt-4'>
+        interested in other things i&apos;ve worked on? {' '}
+        <a
+          href='/projects'
+          data-astro-prefetch
+          class='link-underline group text-secondary hover:text-primary inline-flex items-center gap-1'
+        >
+          check them out <Icon
+            name='arrow-right'
+            class='size-3.5 transition-transform duration-[var(--duration-quick)] ease-[var(--ease-smooth-out)] group-hover:translate-x-0.5'
+          />
+        </a>
+      </p>
     </div>
-    <p class='home-section-inner pt-4'>
-      interested in other things i&apos;ve worked on? {' '}
-      <a
-        href='/projects'
-        data-astro-prefetch
-        class='link-underline group text-secondary hover:text-primary inline-flex items-center gap-1'
-      >
-        check them out <Icon
-          name='arrow-right'
-          class='size-3.5 transition-transform duration-[var(--duration-quick)] ease-[var(--ease-smooth-out)] group-hover:translate-x-0.5'
-        />
-      </a>
-    </p>
-  </div>
+  </section>
 
-  <div class='home-section flex flex-col'>
-    <div class='home-section-inner'>
+  <section class='home-section flex flex-col'>
+    <div class='home-section-head'>
       <h2 class='home-title text-muted font-mono text-sm tracking-wide'>
         03 recent writes
       </h2>
     </div>
-    <div class='home-blog-list blog-list flex flex-col'>
-      {
-        blogPosts.map((post) => (
-          <a
-            href={`/blog/${post.id}`}
-            data-astro-prefetch
-            class='flex w-full flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4 sm:px-6'
-          >
-            <div class='flex flex-col gap-0.5'>
-              <span class='text-primary text-lg font-normal'>
-                {post.data.title}
-              </span>
-              <span class='text-muted line-clamp-3 text-base'>
-                {post.data.description}
-              </span>
-            </div>
-            <time
-              datetime={post.data.date.toISOString()}
-              class='text-muted pt-1.5 whitespace-nowrap font-mono text-sm tabular-nums sm:pt-0'
+    <div class='home-section-body flex flex-col'>
+      <div class='home-blog-list blog-list flex flex-col'>
+        {
+          blogPosts.map((post) => (
+            <a
+              href={`/blog/${post.id}`}
+              data-astro-prefetch
+              class='flex w-full flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4 sm:px-6'
             >
-              {fmt(post.data.date)}
-            </time>
-          </a>
-        ))
-      }
+              <div class='flex flex-col gap-0.5'>
+                <span class='text-primary text-lg font-normal'>
+                  {post.data.title}
+                </span>
+                <span class='text-muted line-clamp-3 text-base'>
+                  {post.data.description}
+                </span>
+              </div>
+              <time
+                datetime={post.data.date.toISOString()}
+                class='text-muted pt-1.5 whitespace-nowrap font-mono text-sm tabular-nums sm:pt-0'
+              >
+                {fmt(post.data.date)}
+              </time>
+            </a>
+          ))
+        }
+      </div>
+      <a
+        href='/blog'
+        data-astro-prefetch
+        class='home-section-inner link-underline text-muted hover:text-primary group mt-3 inline-flex w-fit items-center gap-1.5 text-sm'
+      >
+        view all posts
+        <Icon
+          name='arrow-right'
+          class='size-3 transition-transform duration-[var(--duration-quick)] ease-[var(--ease-smooth-out)] group-hover:translate-x-0.5'
+        />
+      </a>
     </div>
-    <a
-      href='/blog'
-      data-astro-prefetch
-      class='home-section-inner link-underline text-muted hover:text-primary group mt-3 inline-flex w-fit items-center gap-1.5 text-sm'
-    >
-      view all posts
-      <Icon
-        name='arrow-right'
-        class='size-3 transition-transform duration-[var(--duration-quick)] ease-[var(--ease-smooth-out)] group-hover:translate-x-0.5'
-      />
-    </a>
-  </div>
+  </section>
 
-  <div class='home-section flex flex-col'>
-    <div class='home-section-inner'>
+  <section class='home-section flex flex-col'>
+    <div class='home-section-head'>
       <h2 class='home-title text-muted font-mono text-sm tracking-wide'>
         04 what i work with
       </h2>
     </div>
-    <div class='home-stack'>
-      <Stack />
+    <div class='home-section-body flex flex-col'>
+      <div class='home-stack'>
+        <Stack />
+      </div>
     </div>
-  </div>
+  </section>
 </Layout>
