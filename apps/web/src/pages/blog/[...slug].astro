@@ -36,21 +36,14 @@ const time = readingTime(post.body ?? '');
 </Layout>
 
 <style is:global>
-  /* Blog post links: underlined, 50% muted then full on hover, brighter/darker per mode */
+  /* Blog post links stay muted until hover; the underline motion lives globally. */
   .blog-post a {
     color: color-mix(in oklab, var(--color-primary) 65%, var(--color-secondary));
     font-weight: 500;
-    text-decoration-line: underline;
-    text-decoration-color: color-mix(in oklab, currentColor 50%, transparent);
-    text-underline-offset: 0.25em;
-    text-decoration-thickness: 1px;
-    transition:
-      color var(--duration-fast) var(--ease-smooth-out),
-      text-decoration-color var(--duration-fast) var(--ease-smooth-out);
+    transition: color var(--duration-fast) var(--ease-smooth-out);
   }
   .blog-post a:hover {
     color: var(--color-primary);
-    text-decoration-color: currentColor;
   }
   /* Headings links keep inherited weight */
   .blog-post :is(h1, h2, h3, h4) a {

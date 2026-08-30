@@ -59,21 +59,37 @@
 @property --theme-border { syntax:'<color>'; inherits:true; initial-value:oklch(0.9 0.003 286); }
 @property --theme-muted { syntax:'<color>'; inherits:true; initial-value:oklch(0.52 0 0); }
 :root { --duration-stagger:40ms; --duration-micro:80ms; --duration-quick:150ms; --duration-fast:250ms; --duration-medium:350ms; --duration-slow:400ms; --duration-very-slow:500ms; --ease-smooth-out:cubic-bezier(0.22,1,0.36,1); --ease-in-out:ease-in-out; --ease-out:ease-out; --ease-linear:linear; --ease-bounce:cubic-bezier(0.34,1.36,0.64,1); --ease-bounce-strong:cubic-bezier(0.34,3.85,0.64,1); --distance-micro:4px; --distance-small:6px; --distance-base:8px; --distance-medium:12px; --distance-large:30px; --expo-out:linear(0 0%,0.1684 2.66%,0.3165 5.49%,0.446 8.52%,0.5581 11.78%,0.6535 15.29%,0.7341 19.11%,0.8011 23.3%,0.8557 27.93%,0.8962 32.68%,0.9283 38.01%,0.9529 44.08%,0.9711 51.14%,0.9833 59.06%,0.9915 68.74%,1 100%); --transition-fast:180ms; --transition-base:260ms; }
-:root { --theme-primary:oklch(0.16 0 0); --theme-secondary:oklch(0.38 0 0); --theme-accent:oklch(0.623 0.214 259); --theme-bg:oklch(1 0 0); --theme-bg-secondary:oklch(0.975 0.001 264); --theme-border:oklch(0.9 0.003 286); --theme-muted:oklch(0.52 0 0); transition:--theme-primary var(--duration-slow) var(--ease-out),--theme-secondary var(--duration-slow) var(--ease-out),--theme-accent var(--duration-slow) var(--ease-out),--theme-bg var(--duration-slow) var(--ease-out),--theme-bg-secondary var(--duration-slow) var(--ease-out),--theme-border var(--duration-slow) var(--ease-out),--theme-muted var(--duration-slow) var(--ease-out); }
+:root { --theme-primary:oklch(0.16 0 0); --theme-secondary:oklch(0.38 0 0); --theme-accent:oklch(0.623 0.214 259); --theme-bg:oklch(1 0 0); --theme-bg-secondary:oklch(0.975 0.001 264); --theme-border:oklch(0.9 0.003 286); --theme-muted:oklch(0.52 0 0); transition:--theme-primary var(--duration-fast) var(--ease-out),--theme-secondary var(--duration-fast) var(--ease-out),--theme-accent var(--duration-fast) var(--ease-out),--theme-bg var(--duration-fast) var(--ease-out),--theme-bg-secondary var(--duration-fast) var(--ease-out),--theme-border var(--duration-fast) var(--ease-out),--theme-muted var(--duration-fast) var(--ease-out); }
 :root.dark { --theme-primary:oklch(0.985 0 0); --theme-secondary:oklch(0.72 0 0); --theme-accent:oklch(0.707 0.165 254); --theme-bg:oklch(0.145 0 0); --theme-bg-secondary:oklch(0.205 0 0); --theme-border:oklch(0.269 0 0); --theme-muted:oklch(0.62 0 0); }
 @view-transition { navigation: auto; }
 
-.link-underline {
-  background-image: linear-gradient(currentColor, currentColor);
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  background-size: 0 1px;
-  transition-property: color, background-size;
-  transition-duration: var(--duration-fast);
-  transition-timing-function: var(--ease-smooth-out);
+.link-underline,
+.blog-post a { position:relative; text-decoration:none; }
+.link-underline::after,
+.blog-post a::after {
+  position:absolute;
+  right:0;
+  bottom:0;
+  left:0;
+  height:1px;
+  background:currentColor;
+  content:'';
+  pointer-events:none;
+  transform:scaleX(0);
+  transform-origin:right;
+  transition:transform var(--duration-fast) var(--ease-smooth-out);
 }
-.link-underline:hover,
-.link-underline:focus-visible { background-size: 100% 1px; }
+.link-underline:hover::after,
+.link-underline:focus-visible::after,
+.blog-post a:hover::after,
+.blog-post a:focus-visible::after {
+  transform:scaleX(1);
+  transform-origin:left;
+}
+
+/* Theme tokens own the palette transition; nested color transitions would lag behind it. */
+html.theme-switching body,
+html.theme-switching [class*='transition-colors'] { transition-property:none; }
 
 /* dims non-hovered cards — same treatment as the blog list */
 @media (hover: hover) {

@@ -37,6 +37,7 @@
     const sunIcon = document.getElementById('sun-icon');
     const moonIcon = document.getElementById('moon-icon');
     if (!toggle || !sunIcon || !moonIcon) return;
+    let themeTransitionTimer: number | undefined;
 
     const updateScrollState = () => {
       if (window.scrollY > 100) {
@@ -79,10 +80,18 @@
     };
 
     const switchTheme = () => {
+      const documentRoot = document.documentElement;
       const current = document.documentElement.classList.contains('dark')
         ? 'dark'
         : 'light';
+
+      documentRoot.classList.add('theme-switching');
       setTheme(current === 'dark' ? 'light' : 'dark');
+      if (themeTransitionTimer) window.clearTimeout(themeTransitionTimer);
+      themeTransitionTimer = window.setTimeout(() => {
+        documentRoot.classList.remove('theme-switching');
+        themeTransitionTimer = undefined;
+      }, 250);
     };
 
     const currentTheme = getTheme();
