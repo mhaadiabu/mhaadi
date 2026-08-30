@@ -1,32 +1,9 @@
 <ul class='ml-0 list-outside list-none pl-0'>
   {
-    [
-      {
-        text: 'build web & mobile apps',
-        hue: 210,
-      },
-      {
-        text: 'obsess over AI',
-        hue: 280,
-      },
-      {
-        text: 'read code and docs (a lot)',
-        hue: 160,
-      },
-      {
-        text: 'refactor for fun',
-        hue: 30,
-      },
-    ].map(({ text, hue }) => (
-      <li class='flex flex-col gap-1 rounded-md' style={`--hue: ${hue}`}>
-        <div class='flex items-center gap-2'>
-          <div
-            class='size-2 shrink-0 rounded-full'
-            style={`background: hsl(var(--hue) 60% 60%)`}
-          />
-          <span class='text-primary text-base'>{text}</span>
-        </div>
-      </li>
-    ))
+    ['build web & mobile apps', 'obsess over AI', 'read code and docs (a lot)', 'refactor for fun'].map(
+      (text) => (
+        <li class='text-primary text-base'>{text}</li>
+      ),
+    )
   }
 </ul>
