@@ -70,19 +70,19 @@ const showBackButton = !isHomepage && !centered;
     </script>
   </head>
   <body
-    class='bg-bg text-secondary typeset typeset-docs container mx-auto flex min-h-screen w-full max-w-5xl flex-col py-4 antialiased transition-colors duration-(--duration-fast) 2xl:max-w-7xl'
+    class='bg-bg text-secondary typeset typeset-docs container mx-auto flex min-h-screen w-full max-w-5xl flex-col antialiased transition-colors duration-(--duration-fast) 2xl:max-w-7xl'
   >
     <!-- Theme toggle -->
     <ThemeToggle />
     <main
       class:list={[
-        'm-auto flex w-full max-w-3xl flex-1 flex-col justify-center px-4 py-6 sm:px-6 2xl:max-w-5xl',
+        'site-frame m-auto flex w-full max-w-3xl flex-1 flex-col justify-center 2xl:max-w-5xl',
         centered ? 'items-center text-center' : 'items-start text-left',
       ]}
     >
       {
         showBackButton && (
-          <>
+          <header class='page-header flex w-full flex-col gap-4'>
             <div class='flex flex-col gap-1.5'>
               <a
                 href={backTo}
@@ -108,17 +108,17 @@ const showBackButton = !isHomepage && !centered;
             </div>
             {description && !hideDescription && <p class='text-base leading-loose'>{description}</p>}
             {time && (
-              <p class='pb-1.5 text-base'>
+              <p class='text-base'>
                 Reading time: <span class='font-semibold'>{time} min</span>
               </p>
             )}
-            <hr class='mt-0 w-full' />
-          </>
+          </header>
         )
       }
       <section
         class:list={[
-          'flex w-full flex-1 flex-col py-4',
+          'page-content flex w-full flex-1 flex-col',
+          isHomepage ? 'p-0' : 'px-4 py-8 sm:px-6',
           centered && 'items-center justify-center',
         ]}
       >

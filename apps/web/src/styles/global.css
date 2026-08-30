@@ -63,6 +63,79 @@
 :root.dark { --theme-primary:oklch(0.985 0 0); --theme-secondary:oklch(0.72 0 0); --theme-accent:oklch(0.707 0.165 254); --theme-bg:oklch(0.145 0 0); --theme-bg-secondary:oklch(0.205 0 0); --theme-border:oklch(0.269 0 0); --theme-muted:oklch(0.62 0 0); }
 @view-transition { navigation: auto; }
 
+.site-frame {
+  border-inline: 1px solid var(--theme-border);
+}
+
+.home-hero {
+  padding: 4rem 1rem 3rem;
+}
+
+.home-section {
+  position: relative;
+  padding-block: 3.25rem 3rem;
+  border-top: 1px solid var(--theme-border);
+}
+
+.home-section-inner {
+  margin-inline: 1rem;
+}
+
+.home-project-list,
+.home-blog-list,
+.home-stack {
+  margin-top: 1.5rem;
+}
+
+.home-project-list > article {
+  padding-inline: 1rem;
+}
+
+.home-stack {
+  border-block: 1px solid var(--theme-border);
+}
+
+.home-section::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 0.625rem;
+  border-bottom: 1px solid var(--theme-border);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0 4px,
+    color-mix(in oklch, var(--theme-border) 55%, transparent) 4px 5px
+  );
+  content: '';
+  pointer-events: none;
+}
+
+@media (min-width: 40rem) {
+  .home-hero { padding-inline: 1.5rem; }
+  .home-section-inner { margin-inline: 1.5rem; }
+  .home-project-list > article { padding-inline: 1.5rem; }
+}
+
+.page-header {
+  padding: 3rem 1rem 2rem;
+  border-bottom: 1px solid var(--theme-border);
+}
+
+.rail-list {
+  width: auto;
+  margin-inline: -1rem;
+}
+
+.rail-list > :is(article, div) > article {
+  padding-inline: 1rem;
+}
+
+@media (min-width: 40rem) {
+  .page-header { padding-inline: 1.5rem; }
+  .rail-list { margin-inline: -1.5rem; }
+  .rail-list > :is(article, div) > article { padding-inline: 1.5rem; }
+}
+
+
 .link-underline,
 .blog-post a { position:relative; text-decoration:none; }
 .link-underline::after,
@@ -91,9 +164,17 @@
 html.theme-switching body,
 html.theme-switching [class*='transition-colors'] { transition-property:none; }
 
-/* dims non-hovered cards — same treatment as the blog list */
+/* dims non-hovered cards. row dividers live on the card itself (divide-y),
+   so the fade targets the card's children — the rules between rows keep
+   their colour at all times. :not(:has([data-lightbox]:hover)) keeps the
+   lightbox out of it: hovering a screenshot shouldn't dim the rest. */
 @media (hover: hover) {
-  .dim-list:has(> :hover) > :not(:has(:hover)) { opacity: 0.5; }
+  .dim-list > * > * { transition: opacity var(--duration-fast) var(--ease-in-out); }
+  .dim-list:has(> :hover:not(:has([data-lightbox]:hover))) > :not(:has(:hover)) > * { opacity: 0.5; }
 }
-@media (hover: hover) { .blog-list:has(a:hover) a:not(:hover), .blog-list:has(a:focus-visible) a:not(:focus-visible) { opacity: 0.4; } }
+@media (hover: hover) {
+  .blog-list > * > * { transition: opacity var(--duration-fast) var(--ease-in-out); }
+  .blog-list:has(a:hover) a:not(:hover) > *,
+  .blog-list:has(a:focus-visible) a:not(:focus-visible) > * { opacity: 0.4; }
+}
 @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }

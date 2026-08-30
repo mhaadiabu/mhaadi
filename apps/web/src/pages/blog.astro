@@ -18,13 +18,13 @@ const fmt = (d: Date) =>
   title='blog'
   description="i'm not smart. but i think a lot. though my thoughts are almost never complete. i dump them here when they are. enjoy (or don't)."
 >
-  <div class='blog-list flex w-full flex-col gap-1'>
+  <div class='rail-list blog-list flex w-full flex-col divide-y divide-border'>
       {
         posts.map((post) => (
           <a
             href={`/blog/${post.id}`}
             data-astro-prefetch
-            class='-mx-3 flex w-full flex-col gap-0.5 px-3 py-2.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4'
+            class='flex w-full flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4 sm:px-6'
           >
           <div class='flex flex-col gap-0.5'>
             <span class='text-primary text-lg font-normal'>
