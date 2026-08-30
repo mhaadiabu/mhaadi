@@ -32,7 +32,7 @@
   --typeset-font-body: 'Instrument Sans Variable', sans-serif;
   --typeset-font-heading: 'Public Sans Variable', sans-serif;
   --typeset-font-mono: 'Geist Mono Variable', monospace;
-  --typeset-size: 16px;
+  --typeset-size: 15px;
   --typeset-leading: 1.85;
   --typeset-flow: 1em;
 }
@@ -77,7 +77,7 @@
   pointer-events:none;
   transform:scaleX(0);
   transform-origin:right;
-  transition:transform var(--duration-medium) var(--ease-smooth-out);
+  transition:transform var(--duration-slow) var(--ease-smooth-out);
 }
 .link-underline:hover::after,
 .link-underline:focus-visible::after,
