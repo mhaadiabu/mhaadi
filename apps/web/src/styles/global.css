@@ -143,11 +143,13 @@ html, body { overflow-x: clip; }
   padding-inline: 1rem;
 }
 
+/* the rule a section title straddles is the brightest one on the page —
+   it marks the section boundary, everything inside stays border-gray */
 .home-section::before {
   position: absolute;
   top: 0;
   inset-inline: -100vw;
-  border-top: 1px solid var(--theme-border);
+  border-top: 1px solid var(--theme-primary);
   content: '';
   pointer-events: none;
 }
