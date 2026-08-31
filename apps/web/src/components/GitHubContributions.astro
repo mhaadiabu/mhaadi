@@ -107,14 +107,6 @@ const monthLabels = contributions.weeks.reduce<
       <span class='font-semibold tabular-nums'>{contributions.total}</span>{' '}
       contributions in the last year
     </p>
-    <a
-      href={`https://github.com/${contributions.username}`}
-      target='_blank'
-      rel='noopener noreferrer'
-      class='link-underline text-secondary hover:text-primary text-sm'
-    >
-      view profile
-    </a>
     <div
       class='text-muted flex items-center gap-2 font-mono text-[0.625rem]'
       aria-label='Contribution intensity legend'
@@ -136,3 +128,22 @@ const monthLabels = contributions.weeks.reduce<
     </div>
   </figcaption>
 </figure>
+
+<script>
+  function setupContributionScroll() {
+    const scrollRegion = document.querySelector<HTMLElement>(
+      '[data-contribution-scroll]',
+    );
+    if (!scrollRegion) return;
+
+    const scrollToLatest = () => {
+      scrollRegion.scrollLeft = scrollRegion.scrollWidth;
+    };
+
+    scrollToLatest();
+    requestAnimationFrame(scrollToLatest);
+  }
+
+  setupContributionScroll();
+  document.addEventListener('astro:page-load', setupContributionScroll);
+</script>
