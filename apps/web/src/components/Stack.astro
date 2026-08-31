@@ -1,15 +1,36 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { stack } from '../data/stack';
+import { stack, type StackItemCategory } from '../data/stack';
+
+const groups: { label: string; categories: StackItemCategory[] }[] = [
+  { label: 'language', categories: ['language'] },
+  { label: 'frontend', categories: ['frontend'] },
+  { label: 'data & services', categories: ['backend', 'database', 'orm', 'service'] },
+  { label: 'tooling & design', categories: ['tooling', 'design'] },
+];
+
+const itemsFor = ({ categories }: { categories: StackItemCategory[] }) =>
+  stack.filter((item) => categories.includes(item.category));
 ---
 
-<section class='bg-border grid grid-cols-2 gap-px sm:grid-cols-4'>
-  {
-    stack.map(({ icon, name }) => (
-      <div class='bg-bg text-secondary hover:bg-bg-secondary relative flex min-w-0 items-center gap-2.5 px-4 py-3 transition-colors duration-[var(--duration-fast)] sm:px-5'>
-        <Icon name={icon} class='text-secondary size-5 shrink-0' />
-        <span class='truncate text-sm'>{name}</span>
+<div class="stack-rows">
+  {groups.map((group) => (
+    <div class="stack-row flex flex-col gap-2 px-4 py-4 sm:flex-row sm:items-center sm:gap-6 sm:px-6">
+      <h3 class="text-muted font-mono text-xs tracking-wide w-full shrink-0 sm:w-28">{group.label}</h3>
+      <div class="flex flex-wrap gap-2">
+        {itemsFor(group).map(({ name, icon }) => (
+          <span class="border-border text-muted pointer-events-none inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1">
+            <Icon name={icon} class="size-3.5 shrink-0" />
+            <span class="text-xs">{name}</span>
+          </span>
+        ))}
       </div>
-    ))
+    </div>
+  ))}
+</div>
+
+<style>
+  .stack-row + .stack-row {
+    border-top: 1px solid var(--theme-border);
   }
-</section>
+</style>
