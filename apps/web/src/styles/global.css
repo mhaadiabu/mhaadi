@@ -169,7 +169,18 @@ html { overflow-x: clip; }
 .page-header::after { bottom: 0; }
 
 .home-hero {
+  position: relative;
   padding: 4rem 1rem 3rem;
+}
+
+/* border cut above the hero, bleeding to the viewport edges */
+.home-hero::before {
+  position: absolute;
+  top: 0;
+  inset-inline: -100vw;
+  border-top: 1px solid var(--theme-border);
+  content: '';
+  pointer-events: none;
 }
 
 /* section header band: left-aligned title under a dotted separator band.
@@ -215,6 +226,11 @@ html { overflow-x: clip; }
 
 .home-section-body {
   padding-block: 0 3rem;
+}
+
+/* last section sits flush against the footer rule */
+.home-section:last-child .home-section-body {
+  padding-block-end: 0;
 }
 
 .home-section-inner {

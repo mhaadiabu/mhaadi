@@ -35,11 +35,10 @@ const itemsFor = ({ categories }: { categories: StackItemCategory[] }) =>
   }
 
   .stack-pill {
-    opacity: 0.9;
-    transition: opacity var(--duration-fast) var(--ease-out);
+    transition: background-color var(--duration-fast) var(--ease-out);
   }
 
   .stack-pill:hover {
-    opacity: 1;
+    background-color: color-mix(in oklch, var(--theme-muted) 10%, transparent);
   }
 </style>
