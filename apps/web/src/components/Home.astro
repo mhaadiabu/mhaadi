@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import face from '../assets/face.png';
 import ProjectCard from '../components/ProjectCard.astro';
 import PackageCard from '../components/PackageCard.astro';
 import Stack from '../components/Stack.astro';
@@ -46,11 +48,21 @@ const fmt = (d: Date) =>
 
   {
     (
-      <header class='home-hero flex flex-col gap-1.5'>
-        <h1 class='text-primary text-4xl font-semibold tracking-tight sm:text-5xl'>
-          haadi
-        </h1>
-        <p class='text-secondary font-mono text-base'>frontend engineer</p>
+      <header class='home-hero flex flex-wrap items-center justify-between gap-4'>
+        <div class='flex flex-col gap-1.5'>
+          <h1 class='text-primary text-4xl font-semibold tracking-tight sm:text-5xl'>
+            haadi
+          </h1>
+          <p class='text-secondary font-mono text-base'>frontend engineer</p>
+        </div>
+        <Image
+          src={face}
+          alt='haadi'
+          width={96}
+          height={96}
+          class='size-16 sm:size-20'
+          loading='eager'
+        />
       </header>
     )
   }
