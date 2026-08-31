@@ -32,6 +32,7 @@ const {
 } = Astro.props;
 const isHomepage = Astro.url.pathname === '/';
 const showBackButton = !isHomepage && !centered;
+const ogImage = new URL('/og-image.png', site.url);
 ---
 
 <!doctype html>
@@ -50,9 +51,15 @@ const showBackButton = !isHomepage && !centered;
     <meta property='og:title' content={title} />
     {description && <meta property='og:description' content={description} />}
     <meta property='og:url' content={new URL(Astro.url.pathname, site.url)} />
-    <meta name='twitter:card' content='summary' />
+    <meta property='og:image' content={ogImage} />
+    <meta property='og:image:width' content='1200' />
+    <meta property='og:image:height' content='1200' />
+    <meta property='og:image:alt' content='Haadi' />
+    <meta name='twitter:card' content='summary_large_image' />
     <meta name='twitter:title' content={title} />
     {description && <meta name='twitter:description' content={description} />}
+    <meta name='twitter:image' content={ogImage} />
+    <meta name='twitter:image:alt' content='Haadi' />
     <ClientRouter />
     <link
       rel='preload'
