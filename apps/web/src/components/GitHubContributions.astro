@@ -1,0 +1,141 @@
+---
+import contributions from '../data/github-contributions.json';
+
+const levelClasses = {
+  0: 'bg-border/60',
+  1: 'bg-emerald-300 dark:bg-emerald-900',
+  2: 'bg-emerald-400 dark:bg-emerald-700',
+  3: 'bg-emerald-600 dark:bg-emerald-500',
+  4: 'bg-emerald-800 dark:bg-emerald-300',
+} as const;
+
+const formatter = new Intl.DateTimeFormat('en-US', {
+  day: 'numeric',
+  month: 'short',
+  timeZone: 'UTC',
+  year: 'numeric',
+});
+const monthFormatter = new Intl.DateTimeFormat('en-US', {
+  month: 'short',
+  timeZone: 'UTC',
+});
+const updatedFormatter = new Intl.DateTimeFormat('en-US', {
+  day: 'numeric',
+  month: 'short',
+  timeZone: 'UTC',
+  year: 'numeric',
+});
+
+const parseDate = (date: string) => {
+  const [year, month, day] = date.split('-').map(Number);
+  return new Date(Date.UTC(year, month - 1, day));
+};
+
+const formatContributions = (count: number) =>
+  `${count} contribution${count === 1 ? '' : 's'}`;
+
+const days = contributions.weeks.flat();
+const monthLabels = contributions.weeks.reduce<
+  Array<{ name: string; column: number }>
+>((labels, week, index) => {
+  const firstDay = week[0];
+  if (!firstDay) return labels;
+
+  const name = monthFormatter.format(parseDate(firstDay.date));
+  if (labels.at(-1)?.name !== name) labels.push({ name, column: index + 1 });
+  return labels;
+}, []);
+
+const updatedDate = updatedFormatter.format(new Date(contributions.fetchedAt));
+---
+
+<section class='flex flex-col' aria-labelledby='github-contributions-heading'>
+  <div class='home-section-head relative px-4 pt-11 pb-3 sm:px-6'>
+    <h2 id='github-contributions-heading' class='m-0 text-lg font-normal'>
+      <span class='text-primary'>github activity</span>
+    </h2>
+  </div>
+
+  <div class='flex flex-col gap-5 px-4 pt-6 pb-12 sm:px-6'>
+    <div class='flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2'>
+      <p class='text-primary m-0 text-base'>
+        <span class='font-semibold tabular-nums'>{contributions.total}</span>{
+          ' '
+        }
+        contributions in the last year
+      </p>
+      <a
+        href={`https://github.com/${contributions.username}`}
+        target='_blank'
+        rel='noopener noreferrer'
+        class='link-underline text-secondary hover:text-primary text-sm'
+      >
+        view profile
+      </a>
+    </div>
+
+    <div
+      class='min-w-0'
+      aria-label={`${contributions.total} GitHub contributions in the last year`}
+    >
+      <div
+        class='text-muted mb-1 hidden grid-cols-[repeat(53,minmax(0,1fr))] gap-1 px-px font-mono text-[0.625rem] leading-none sm:grid'
+        aria-hidden='true'
+      >
+        {
+          monthLabels.map((month) => (
+            <span style={`grid-column: ${month.column}`}>{month.name}</span>
+          ))
+        }
+      </div>
+
+      <div
+        class='grid grid-flow-col grid-cols-[repeat(53,minmax(0,1fr))] grid-rows-7 gap-1 sm:gap-1.5'
+        role='group'
+        aria-label='Daily contribution activity'
+      >
+        {
+          days.map((day) => {
+            const label = `${formatContributions(day.count)} on ${formatter.format(parseDate(day.date))}`;
+            return (
+              <span
+                class:list={[
+                  levelClasses[day.level],
+                  'aspect-square min-w-0 rounded-[2px] sm:rounded-[3px]',
+                ]}
+                title={label}
+                role='img'
+                aria-label={label}
+              />
+            );
+          })
+        }
+      </div>
+    </div>
+
+    <div
+      class='text-muted flex flex-wrap items-center justify-between gap-x-4 gap-y-2 font-mono text-[0.625rem]'
+    >
+      <p class='m-0'>updated {updatedDate}</p>
+      <div
+        class='flex items-center gap-2'
+        aria-label='Contribution intensity legend'
+      >
+        <span>less</span>
+        <div class='flex gap-1' aria-hidden='true'>
+          {
+            [0, 1, 2, 3, 4].map((level) => (
+              <span
+                class:list={[
+                  levelClasses[level as keyof typeof levelClasses],
+                  'size-2.5 rounded-[2px]',
+                ]}
+              />
+            ))
+          }
+        </div>
+        <span>more</span>
+      </div>
+    </div>
+  </div>
+</section>

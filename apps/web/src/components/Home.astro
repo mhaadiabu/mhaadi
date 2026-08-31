@@ -7,6 +7,7 @@ import ProjectCard from '../components/ProjectCard.astro';
 import PackageCard from '../components/PackageCard.astro';
 import Stack from '../components/Stack.astro';
 import WhatIDo from '../components/WhatIDo.astro';
+import GitHubContributions from '../components/GitHubContributions.astro';
 import { featuredProjects } from '../data/projects';
 import { packages } from '../data/packages';
 import { getCollection } from 'astro:content';
@@ -116,6 +117,8 @@ const blogPosts = (await getCollection('blog'))
       </div>
     </div>
   </section>
+
+  <GitHubContributions />
 
   <section class='flex flex-col'>
     <div class='home-section-head relative px-4 pt-11 pb-3 sm:px-6'>

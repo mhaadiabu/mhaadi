@@ -22,6 +22,7 @@
     "dev:web": "turbo -F web dev",
     "deploy": "turbo -F @portfolio/infra deploy",
     "destroy": "turbo -F @portfolio/infra destroy",
+    "update:contributions": "bun scripts/update-contributions.ts",
     "check": "oxlint && bun run format",
     "format": "bun run --cwd apps/web format",
     "lint": "turbo lint",
