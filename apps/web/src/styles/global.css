@@ -147,7 +147,6 @@ html { overflow-x: clip; }
 .dim-list > *,
 .blog-list > * { position: relative; }
 
-.home-stack::after,
 .home-blog-list::after,
 .page-header::after,
 .site-footer::before,
@@ -164,23 +163,15 @@ html { overflow-x: clip; }
 .dim-list > * + *::before,
 .blog-list > * + *::before { top: 0; }
 
-.home-stack::after,
 .home-blog-list::after,
 .page-header::after { bottom: 0; }
 
-.home-hero {
-  position: relative;
-  padding: 4rem 1rem 3rem;
-}
+/* the stack section sits flush against the footer (zero bottom padding),
+   so its bottom rule and the footer's top rule would land on the same
+   line. the footer's ::before draws it alone. */
 
-/* border cut above the hero, bleeding to the viewport edges */
-.home-hero::before {
-  position: absolute;
-  top: 0;
-  inset-inline: -100vw;
-  border-top: 1px solid var(--theme-border);
-  content: '';
-  pointer-events: none;
+.home-hero {
+  padding: 4rem 1rem 3rem;
 }
 
 /* section header band: left-aligned title under a dotted separator band.
