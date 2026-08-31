@@ -46,105 +46,93 @@ const monthLabels = contributions.weeks.reduce<
 }, []);
 ---
 
-<section class='flex flex-col' aria-labelledby='github-contributions-heading'>
-  <div class='home-section-head relative px-4 pt-11 pb-3 sm:px-6'>
-    <h2 id='github-contributions-heading' class='m-0 text-lg font-normal'>
-      <span class='text-primary'>github activity</span>
-    </h2>
-  </div>
-
-  <div class='flex flex-col gap-5 px-4 pt-6 pb-12 sm:px-6'>
-    <figure
-      class='min-w-0'
-      aria-label={`${contributions.total} GitHub contributions in the last year`}
-    >
+<figure
+  class='col-span-full min-w-0 pt-6'
+  aria-label={`${contributions.total} GitHub contributions in the last year`}
+>
+  <div
+    class='min-w-0 touch-pan-x [scrollbar-width:none] overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden'
+    data-contribution-scroll
+    tabindex='0'
+    role='region'
+    aria-label='Scrollable contribution graph'
+  >
+    <div class='w-max'>
       <div
-        class='min-w-0 touch-pan-x [scrollbar-width:none] overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden'
-        data-contribution-scroll
-        tabindex='0'
-        role='region'
-        aria-label='Scrollable contribution graph'
+        class='text-muted mb-1 grid grid-cols-[repeat(53,0.625rem)] gap-1 px-px font-mono text-[0.625rem] leading-none'
+        aria-hidden='true'
       >
-        <div class='w-max'>
-          <div
-            class='text-muted mb-1 grid grid-cols-[repeat(53,0.625rem)] gap-1 px-px font-mono text-[0.625rem] leading-none'
-            aria-hidden='true'
-          >
-            {
-              monthLabels.map((month) => (
-                <span
-                  class='whitespace-nowrap'
-                  style={`grid-column: ${month.column}`}
-                >
-                  {month.name}
-                </span>
-              ))
-            }
-          </div>
-
-          <div
-            class='grid grid-flow-col grid-cols-[repeat(53,0.625rem)] grid-rows-7 gap-1'
-            data-contribution-graph
-            role='group'
-            aria-label='Daily contribution activity'
-          >
-            {
-              days.map((day) => {
-                const label = `${formatContributions(day.count)} on ${formatter.format(parseDate(day.date))}`;
-                return (
-                  <span
-                    class:list={[
-                      levelClasses[day.level],
-                      'size-2.5 rounded-[2px] select-none',
-                    ]}
-                    data-tooltip={label}
-                    role='img'
-                    aria-label={label}
-                  />
-                );
-              })
-            }
-          </div>
-        </div>
+        {
+          monthLabels.map((month) => (
+            <span
+              class='whitespace-nowrap'
+              style={`grid-column: ${month.column}`}
+            >
+              {month.name}
+            </span>
+          ))
+        }
       </div>
 
-      <figcaption
-        class='mt-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-3'
+      <div
+        class='grid grid-flow-col grid-cols-[repeat(53,0.625rem)] grid-rows-7 gap-1'
+        data-contribution-graph
+        role='group'
+        aria-label='Daily contribution activity'
       >
-        <p class='text-primary m-0 text-base'>
-          <span class='font-semibold tabular-nums'>{contributions.total}</span>{
-            ' '
-          }
-          contributions in the last year
-        </p>
-        <a
-          href={`https://github.com/${contributions.username}`}
-          target='_blank'
-          rel='noopener noreferrer'
-          class='link-underline text-secondary hover:text-primary text-sm'
-        >
-          view profile
-        </a>
-        <div
-          class='text-muted flex items-center gap-2 font-mono text-[0.625rem]'
-          aria-label='Contribution intensity legend'
-        >
-          <span>less</span>
-          <div class='flex gap-1' aria-hidden='true'>
-            {
-              [0, 1, 2, 3, 4].map((level) => (
-                <span
-                  class:list={[
-                    levelClasses[level as keyof typeof levelClasses],
-                    'size-2.5 rounded-[2px]',
-                  ]}
-                />
-              ))
-            }
-          </div>
-          <span>more</span>
-        </div>
-      </figcaption>
-    </figure>
+        {
+          days.map((day) => {
+            const label = `${formatContributions(day.count)} on ${formatter.format(parseDate(day.date))}`;
+            return (
+              <span
+                class:list={[
+                  levelClasses[day.level],
+                  'size-2.5 rounded-[2px] select-none',
+                ]}
+                data-tooltip={label}
+                role='img'
+                aria-label={label}
+              />
+            );
+          })
+        }
+      </div>
+    </div>
   </div>
-</section>
+
+  <figcaption
+    class='mt-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-3'
+  >
+    <p class='text-primary m-0 text-base'>
+      <span class='font-semibold tabular-nums'>{contributions.total}</span>{' '}
+      contributions in the last year
+    </p>
+    <a
+      href={`https://github.com/${contributions.username}`}
+      target='_blank'
+      rel='noopener noreferrer'
+      class='link-underline text-secondary hover:text-primary text-sm'
+    >
+      view profile
+    </a>
+    <div
+      class='text-muted flex items-center gap-2 font-mono text-[0.625rem]'
+      aria-label='Contribution intensity legend'
+    >
+      <span>less</span>
+      <div class='flex gap-1' aria-hidden='true'>
+        {
+          [0, 1, 2, 3, 4].map((level) => (
+            <span
+              class:list={[
+                levelClasses[level as keyof typeof levelClasses],
+                'size-2.5 rounded-[2px]',
+              ]}
+            />
+          ))
+        }
+      </div>
+      <span>more</span>
+    </div>
+  </figcaption>
+</figure>
