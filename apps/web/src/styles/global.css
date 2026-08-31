@@ -144,18 +144,25 @@
 }
 
 /* horizontal rules bleed past the frame rails to the viewport edges.
-   they overshoot by 100vw each side and get cut by the overflow clip,
-   which lands them exactly on the visible edges — 50vw math would miss
-   by the scrollbar width. the clip must live on html alone: body carries
-   the `container` class, so it's narrower than the viewport and would
-   cut the rules at its own box. */
+   each pseudo-element is centered on its containing block and sized to the
+   viewport, so it reaches both edges without creating a horizontal scroll
+   area. the clip remains on html alone: body carries the `container` class,
+   so it is narrower than the viewport. */
 /* overflow-x: clip needs Safari 16. older WebKit gets hidden instead.
    written as @supports rather than a hidden-then-clip declaration pair —
    lightningcss dedupes the pair in production builds and drops the
    fallback. pre-16 iOS also ignores root-level overflow for touch panning,
-   so legacy browsers clip on the .site-guard wrapper. its negative margin
+   so mobile browsers clip on the .site-guard wrapper. its negative margin
    cancels body's mobile padding to keep the clip box at viewport width,
    otherwise the bleeding rules would cut at the frame rails. */
+@media (max-width: 39.99rem) {
+  .site-guard {
+    overflow-x: clip;
+    margin-inline: -0.5rem;
+    padding-inline: 0.5rem;
+  }
+}
+
 @supports not (overflow-x: clip) {
   html {
     overflow-x: hidden;
@@ -193,13 +200,6 @@
     border-right-width: 0;
     border-inline-width: 0;
   }
-
-  @media (max-width: 39.99rem) {
-    .site-guard {
-      margin-inline: -0.5rem;
-      padding-inline: 0.5rem;
-    }
-  }
 }
 
 .home-blog-list::after,
@@ -208,10 +208,12 @@
 .dim-list > * + *::before,
 .blog-list > * + *::before {
   position: absolute;
-  inset-inline: -100vw;
+  left: 50%;
+  width: 100vw;
   border-top: 1px solid var(--theme-border);
   content: '';
   pointer-events: none;
+  transform: translateX(-50%);
 }
 
 .site-footer::before,
@@ -237,7 +239,8 @@
 .home-section-head::before {
   position: absolute;
   top: 0;
-  inset-inline: -100vw;
+  left: 50%;
+  width: 100vw;
   height: 0.5rem;
   border-top: 1px solid var(--theme-border);
   border-bottom: 1px solid var(--theme-border);
@@ -249,15 +252,18 @@
   background-position: center;
   content: '';
   pointer-events: none;
+  transform: translateX(-50%);
 }
 
 .home-section-head::after {
   position: absolute;
   bottom: 0;
-  inset-inline: -100vw;
+  left: 50%;
+  width: 100vw;
   border-top: 1px solid var(--theme-border);
   content: '';
   pointer-events: none;
+  transform: translateX(-50%);
 }
 
 .link-underline,
