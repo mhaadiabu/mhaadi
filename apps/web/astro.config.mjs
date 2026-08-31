@@ -8,6 +8,14 @@ export default defineConfig({
   site: 'https://mhaadi.dev',
   prefetch: { prefetchAll: false, defaultStrategy: 'hover' },
   build: { inlineStylesheets: 'auto' },
-  vite: { plugins: [tailwindcss()] },
+  vite: {
+    plugins: [tailwindcss()],
+    build: {
+      // lightningcss minifies media queries into range syntax ((width>=40rem)),
+      // which Safari < 16.4 can't parse — every breakpoint dies on old iOS.
+      // esbuild keeps plain max-width/min-width queries.
+      cssMinify: 'esbuild',
+    },
+  },
   integrations: [icon(), sitemap()],
 });
