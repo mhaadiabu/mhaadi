@@ -8,24 +8,36 @@
   font-style: normal;
   font-display: swap;
   font-weight: 100 900;
-  src: url('@fontsource-variable/public-sans/files/public-sans-latin-wght-normal.woff2') format('woff2-variations');
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+  src: url('@fontsource-variable/public-sans/files/public-sans-latin-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
   font-family: 'Instrument Sans Variable';
   font-style: normal;
   font-display: swap;
   font-weight: 400 700;
-  src: url('@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2') format('woff2-variations');
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+  src: url('@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
   font-family: 'Geist Mono Variable';
   font-style: normal;
   font-display: swap;
   font-weight: 100 900;
-  src: url('@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2') format('woff2-variations');
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+  src: url('@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
 }
 
 .typeset-docs {
@@ -41,7 +53,6 @@
   --font-mono: 'Geist Mono Variable', monospace;
   --radius-lg: 0.625rem;
   --radius-md: 0.5rem;
-  --shadow-card: 0 1px 2px oklch(0 0 0 / 0.025), 0 0 0 1px oklch(0 0 0 / 0.06);
   --default-transition-timing-function: var(--ease-smooth-out);
   --color-primary: var(--theme-primary);
   --color-secondary: var(--theme-secondary);
@@ -51,17 +62,79 @@
   --color-border: var(--theme-border);
   --color-muted: var(--theme-muted);
 }
-@property --theme-primary { syntax:'<color>'; inherits:true; initial-value:oklch(0.16 0 0); }
-@property --theme-secondary { syntax:'<color>'; inherits:true; initial-value:oklch(0.38 0 0); }
-@property --theme-accent { syntax:'<color>'; inherits:true; initial-value:oklch(0.623 0.214 259); }
-@property --theme-bg { syntax:'<color>'; inherits:true; initial-value:oklch(1 0 0); }
-@property --theme-bg-secondary { syntax:'<color>'; inherits:true; initial-value:oklch(0.975 0.001 264); }
-@property --theme-border { syntax:'<color>'; inherits:true; initial-value:oklch(0.9 0.003 286); }
-@property --theme-muted { syntax:'<color>'; inherits:true; initial-value:oklch(0.52 0 0); }
-:root { --duration-stagger:40ms; --duration-micro:80ms; --duration-quick:150ms; --duration-fast:250ms; --duration-medium:350ms; --duration-slow:400ms; --duration-very-slow:500ms; --ease-smooth-out:cubic-bezier(0.22,1,0.36,1); --ease-in-out:ease-in-out; --ease-out:ease-out; --ease-linear:linear; --ease-bounce:cubic-bezier(0.34,1.36,0.64,1); --ease-bounce-strong:cubic-bezier(0.34,3.85,0.64,1); --distance-micro:4px; --distance-small:6px; --distance-base:8px; --distance-medium:12px; --distance-large:30px; --expo-out:linear(0 0%,0.1684 2.66%,0.3165 5.49%,0.446 8.52%,0.5581 11.78%,0.6535 15.29%,0.7341 19.11%,0.8011 23.3%,0.8557 27.93%,0.8962 32.68%,0.9283 38.01%,0.9529 44.08%,0.9711 51.14%,0.9833 59.06%,0.9915 68.74%,1 100%); --transition-fast:180ms; --transition-base:260ms; }
-:root { --theme-primary:oklch(0.16 0 0); --theme-secondary:oklch(0.38 0 0); --theme-accent:oklch(0.623 0.214 259); --theme-bg:oklch(1 0 0); --theme-bg-secondary:oklch(0.975 0.001 264); --theme-border:oklch(0.9 0.003 286); --theme-muted:oklch(0.52 0 0); transition:--theme-primary var(--duration-fast) var(--ease-out),--theme-secondary var(--duration-fast) var(--ease-out),--theme-accent var(--duration-fast) var(--ease-out),--theme-bg var(--duration-fast) var(--ease-out),--theme-bg-secondary var(--duration-fast) var(--ease-out),--theme-border var(--duration-fast) var(--ease-out),--theme-muted var(--duration-fast) var(--ease-out); }
-:root.dark { --theme-primary:oklch(0.985 0 0); --theme-secondary:oklch(0.72 0 0); --theme-accent:oklch(0.707 0.165 254); --theme-bg:oklch(0.145 0 0); --theme-bg-secondary:oklch(0.205 0 0); --theme-border:oklch(0.269 0 0); --theme-muted:oklch(0.62 0 0); }
-@view-transition { navigation: auto; }
+@property --theme-primary {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: oklch(0.16 0 0);
+}
+@property --theme-secondary {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: oklch(0.38 0 0);
+}
+@property --theme-accent {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: oklch(0.623 0.214 259);
+}
+@property --theme-bg {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: oklch(1 0 0);
+}
+@property --theme-bg-secondary {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: oklch(0.975 0.001 264);
+}
+@property --theme-border {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: oklch(0.9 0.003 286);
+}
+@property --theme-muted {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: oklch(0.52 0 0);
+}
+:root {
+  --duration-quick: 150ms;
+  --duration-fast: 250ms;
+  --duration-slow: 400ms;
+  --duration-very-slow: 500ms;
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: ease-in-out;
+  --ease-out: ease-out;
+}
+:root {
+  --theme-primary: oklch(0.16 0 0);
+  --theme-secondary: oklch(0.38 0 0);
+  --theme-accent: oklch(0.623 0.214 259);
+  --theme-bg: oklch(1 0 0);
+  --theme-bg-secondary: oklch(0.975 0.001 264);
+  --theme-border: oklch(0.9 0.003 286);
+  --theme-muted: oklch(0.52 0 0);
+  transition:
+    --theme-primary var(--duration-fast) var(--ease-out),
+    --theme-secondary var(--duration-fast) var(--ease-out),
+    --theme-accent var(--duration-fast) var(--ease-out),
+    --theme-bg var(--duration-fast) var(--ease-out),
+    --theme-bg-secondary var(--duration-fast) var(--ease-out),
+    --theme-border var(--duration-fast) var(--ease-out),
+    --theme-muted var(--duration-fast) var(--ease-out);
+}
+:root.dark {
+  --theme-primary: oklch(0.985 0 0);
+  --theme-secondary: oklch(0.72 0 0);
+  --theme-accent: oklch(0.707 0.165 254);
+  --theme-bg: oklch(0.145 0 0);
+  --theme-bg-secondary: oklch(0.205 0 0);
+  --theme-border: oklch(0.269 0 0);
+  --theme-muted: oklch(0.62 0 0);
+}
+@view-transition {
+  navigation: auto;
+}
 
 /* physical borders, not border-inline — the logical shorthand doesn't
    paint on the legacy WebKit builds we still support */
@@ -70,27 +143,12 @@
   border-right: 1px solid var(--theme-border);
 }
 
-/* keep the frame rails visible on phones (chanhdai-style): pad the body so
-   the frame and footer sit inset from the screen edges instead of hugging
-   them. padding rather than margin on the frame — firefox mis-sizes a
-   full-width flex item that carries margins and pushes the right rail past
-   the clip. full-bleed lists cancel the page padding (rail-list) and the
-   bleeding rules still run edge to edge past the rails. */
-@media (max-width: 39.99rem) {
-  body {
-    overflow-x: clip;
-    padding-inline: 0.5rem;
-  }
-}
-
 /* horizontal rules bleed past the frame rails to the viewport edges.
    they overshoot by 100vw each side and get cut by the overflow clip,
    which lands them exactly on the visible edges — 50vw math would miss
    by the scrollbar width. the clip must live on html alone: body carries
    the `container` class, so it's narrower than the viewport and would
    cut the rules at its own box. */
-html { overflow-x: clip; }
-
 /* overflow-x: clip needs Safari 16. older WebKit gets hidden instead.
    written as @supports rather than a hidden-then-clip declaration pair —
    lightningcss dedupes the pair in production builds and drops the
@@ -99,9 +157,13 @@ html { overflow-x: clip; }
    cancels body's mobile padding to keep the clip box at viewport width,
    otherwise the bleeding rules would cut at the frame rails. */
 @supports not (overflow-x: clip) {
-  html { overflow-x: hidden; }
+  html {
+    overflow-x: hidden;
+  }
 
-  .site-guard { overflow-x: hidden; }
+  .site-guard {
+    overflow-x: hidden;
+  }
 
   /* on these builds the frame's own borders don't paint, while the bleed
      rules' pseudo-element borders do. so legacy browsers draw the rails
@@ -140,13 +202,6 @@ html { overflow-x: clip; }
   }
 }
 
-.home-stack,
-.home-blog-list,
-.page-header,
-.site-footer,
-.dim-list > *,
-.blog-list > * { position: relative; }
-
 .home-blog-list::after,
 .page-header::after,
 .site-footer::before,
@@ -161,28 +216,23 @@ html { overflow-x: clip; }
 
 .site-footer::before,
 .dim-list > * + *::before,
-.blog-list > * + *::before { top: 0; }
+.blog-list > * + *::before {
+  top: 0;
+}
 
 .home-blog-list::after,
-.page-header::after { bottom: 0; }
+.page-header::after {
+  bottom: 0;
+}
 
 /* the stack section sits flush against the footer (zero bottom padding),
    so its bottom rule and the footer's top rule would land on the same
    line. the footer's ::before draws it alone. */
 
-.home-hero {
-  padding: 4rem 1rem 3rem;
-}
-
 /* section header band: left-aligned title under a dotted separator band.
    both the band and the rule below it bleed to the viewport edges
    (inset-inline trick above). full-bleed lists (stack, blog) sit flush
    under the band's bottom rule. */
-.home-section-head {
-  position: relative;
-  padding: 2.75rem 1rem 0.75rem;
-}
-
 /* dotted separator band between sections */
 .home-section-head::before {
   position: absolute;
@@ -210,99 +260,69 @@ html { overflow-x: clip; }
   pointer-events: none;
 }
 
-.home-title {
-  /* typeset gives headings a margin-top that would break the band spacing */
-  margin: 0;
-}
-
-.home-section-body {
-  padding-block: 0 3rem;
-}
-
-/* last section sits flush against the footer rule */
-.home-section:last-child .home-section-body {
-  padding-block-end: 0;
-}
-
-.home-section-inner {
-  margin-inline: 1rem;
-}
-
-.home-project-list {
-  margin-top: 1.5rem;
-}
-
-.home-project-list > article {
-  padding-inline: 1rem;
-}
-
-@media (min-width: 40rem) {
-  .home-hero { padding-inline: 1.5rem; }
-  .home-section-head { padding-inline: 1.5rem; }
-  .home-section-inner { margin-inline: 1.5rem; }
-  .home-project-list > article { padding-inline: 1.5rem; }
-}
-
-.page-header {
-  padding: 3rem 1rem 2rem;
-}
-
-.rail-list {
-  width: auto;
-  margin-inline: -1rem;
-}
-
-.rail-list > article,
-.rail-list > :is(article, div) > article {
-  padding-inline: 1rem;
-}
-
-@media (min-width: 40rem) {
-  .page-header { padding-inline: 1.5rem; }
-  .rail-list { margin-inline: -1.5rem; }
-  .rail-list > :is(article, div) > article { padding-inline: 1.5rem; }
-}
-
-
 .link-underline,
-.blog-post a { position:relative; text-decoration:none; }
+.blog-post a {
+  position: relative;
+  text-decoration: none;
+}
 .link-underline::after,
 .blog-post a::after {
-  position:absolute;
-  right:0;
-  bottom:0;
-  left:0;
-  height:1px;
-  background:currentColor;
-  content:'';
-  pointer-events:none;
-  transform:scaleX(0);
-  transform-origin:right;
-  transition:transform var(--duration-slow) cubic-bezier(.65,0,.35,1);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  content: '';
+  pointer-events: none;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--duration-slow) cubic-bezier(0.65, 0, 0.35, 1);
 }
 .link-underline:hover::after,
 .link-underline:focus-visible::after,
 .blog-post a:hover::after,
 .blog-post a:focus-visible::after {
-  transform:scaleX(1);
-  transform-origin:left;
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 /* Theme tokens own the palette transition; nested color transitions would lag behind it. */
 html.theme-switching body,
-html.theme-switching [class*='transition-colors'] { transition-property:none; }
+html.theme-switching [class*='transition-colors'] {
+  transition-property: none;
+}
 
 /* dims non-hovered cards. row dividers live on the card itself (divide-y),
    so the fade targets the card's children — the rules between rows keep
    their colour at all times. :not(:has([data-lightbox]:hover)) keeps the
    lightbox out of it: hovering a screenshot shouldn't dim the rest. */
 @media (hover: hover) {
-  .dim-list > * > * { transition: opacity var(--duration-fast) var(--ease-in-out); }
-  .dim-list:has(> :hover:not(:has([data-lightbox]:hover))) > :not(:has(:hover)) > * { opacity: 0.5; }
+  .dim-list > * > * {
+    transition: opacity var(--duration-fast) var(--ease-in-out);
+  }
+  .dim-list:has(> :hover:not(:has([data-lightbox]:hover)))
+    > :not(:has(:hover))
+    > * {
+    opacity: 0.5;
+  }
 }
 @media (hover: hover) {
-  .blog-list > * > * { transition: opacity var(--duration-fast) var(--ease-in-out); }
+  .blog-list > * > * {
+    transition: opacity var(--duration-fast) var(--ease-in-out);
+  }
   .blog-list:has(a:hover) a:not(:hover) > *,
-  .blog-list:has(a:focus-visible) a:not(:focus-visible) > * { opacity: 0.4; }
+  .blog-list:has(a:focus-visible) a:not(:focus-visible) > * {
+    opacity: 0.4;
+  }
 }
-@media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,31 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { formatDate } from '../utils/formatDate';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
-
-const fmt = (d: Date) =>
-  d.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
 ---
 
 <Layout
   title='blog'
   description="i'm not smart. but i think a lot. though my thoughts are almost never complete. i dump them here when they are. enjoy (or don't)."
 >
-  <div class='rail-list blog-list flex w-full flex-col'>
-      {
-        posts.map((post) => (
-          <a
-            href={`/blog/${post.id}`}
-            data-astro-prefetch
-            class='flex w-full flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4 sm:px-6'
-          >
+  <div class='blog-list -mx-4 flex w-auto flex-col sm:-mx-6 [&>*]:relative'>
+    {
+      posts.map((post) => (
+        <a
+          href={`/blog/${post.id}`}
+          data-astro-prefetch
+          class='flex w-full flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4 sm:px-6'
+        >
           <div class='flex flex-col gap-0.5'>
             <span class='text-primary text-lg font-normal'>
               {post.data.title}
@@ -36,9 +30,9 @@ const fmt = (d: Date) =>
           </div>
           <time
             datetime={post.data.date.toISOString()}
-            class='text-muted pt-1.5 whitespace-nowrap font-mono text-sm tabular-nums sm:pt-0'
+            class='text-muted pt-1.5 font-mono text-sm whitespace-nowrap tabular-nums sm:pt-0'
           >
-            {fmt(post.data.date)}
+            {formatDate(post.data.date)}
           </time>
         </a>
       ))

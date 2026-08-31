@@ -26,7 +26,14 @@ const cmd = installCommand ?? `npm install ${fullName}`;
 >
   <div class='flex items-baseline justify-between gap-4'>
     <h3 class='text-primary text-lg font-normal'>
-      {icon && <Icon name={icon} class='mr-1.5 inline-block size-4 align-[-0.125em]' />}
+      {
+        icon && (
+          <Icon
+            name={icon}
+            class='mr-1.5 inline-block size-4 align-[-0.125em]'
+          />
+        )
+      }
       {title ?? fullName}
       <span class='text-muted ml-1.5 font-mono text-sm'>v{version}</span>
     </h3>
@@ -74,9 +81,7 @@ const cmd = installCommand ?? `npm install ${fullName}`;
 
   <p class='text-muted text-base'>{description}</p>
 
-  <div
-    class='text-muted flex items-center gap-2 pt-1 font-mono text-sm'
-  >
+  <div class='text-muted flex items-center gap-2 pt-1 font-mono text-sm'>
     <code class='text-secondary min-w-0 truncate'>$ {cmd}</code>
     <button
       type='button'
@@ -118,9 +123,7 @@ const cmd = installCommand ?? `npm install ${fullName}`;
       button,
       window.setTimeout(() => {
         if (copySequences.get(button) !== sequence) return;
-        button
-          .querySelector('[data-copy-icon]')
-          ?.classList.remove('hidden');
+        button.querySelector('[data-copy-icon]')?.classList.remove('hidden');
         button.querySelector('[data-copied-icon]')?.classList.add('hidden');
         button.setAttribute('aria-label', `Copy ${command}`);
         copyTimers.delete(button);

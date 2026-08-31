@@ -5,7 +5,10 @@ import { stack, type StackItemCategory } from '../data/stack';
 const groups: { label: string; categories: StackItemCategory[] }[] = [
   { label: 'language', categories: ['language'] },
   { label: 'frontend', categories: ['frontend'] },
-  { label: 'data & services', categories: ['backend', 'database', 'orm', 'service'] },
+  {
+    label: 'data & services',
+    categories: ['backend', 'database', 'orm', 'service'],
+  },
   { label: 'tooling & design', categories: ['tooling', 'design'] },
 ];
 
@@ -13,32 +16,22 @@ const itemsFor = ({ categories }: { categories: StackItemCategory[] }) =>
   stack.filter((item) => categories.includes(item.category));
 ---
 
-<div class="stack-rows">
-  {groups.map((group) => (
-    <div class="stack-row flex flex-col gap-2 px-4 py-3 sm:flex-row sm:items-center sm:gap-6 sm:px-6">
-      <h3 class="text-muted font-mono m-0 text-xs tracking-wide w-full shrink-0 sm:w-36">{group.label}</h3>
-      <div class="m-0 flex flex-wrap gap-2">
-        {itemsFor(group).map(({ name, icon }) => (
-          <span class="stack-pill border-border text-muted inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1">
-            <Icon name={icon} class="size-4 shrink-0" />
-            <span class="text-xs">{name}</span>
-          </span>
-        ))}
+<div class='divide-border divide-y'>
+  {
+    groups.map((group) => (
+      <div class='flex flex-col gap-2 px-4 py-3 sm:flex-row sm:items-center sm:gap-6 sm:px-6'>
+        <h3 class='text-muted m-0 w-full shrink-0 font-mono text-xs tracking-wide sm:w-36'>
+          {group.label}
+        </h3>
+        <div class='m-0 flex flex-wrap gap-2'>
+          {itemsFor(group).map(({ name, icon }) => (
+            <span class='border-border text-muted hover:bg-muted/10 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 transition-colors duration-(--duration-fast)'>
+              <Icon name={icon} class='size-4 shrink-0' />
+              <span class='text-xs'>{name}</span>
+            </span>
+          ))}
+        </div>
       </div>
-    </div>
-  ))}
+    ))
+  }
 </div>
-
-<style>
-  .stack-row + .stack-row {
-    border-top: 1px solid var(--theme-border);
-  }
-
-  .stack-pill {
-    transition: background-color var(--duration-fast) var(--ease-out);
-  }
-
-  .stack-pill:hover {
-    background-color: color-mix(in oklch, var(--theme-muted) 10%, transparent);
-  }
-</style>

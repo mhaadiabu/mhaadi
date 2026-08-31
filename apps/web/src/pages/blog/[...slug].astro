@@ -39,7 +39,11 @@ const time = readingTime(post.body ?? '');
 <style is:global>
   /* Blog post links stay muted until hover; the underline motion lives globally. */
   .blog-post a {
-    color: color-mix(in oklab, var(--color-primary) 65%, var(--color-secondary));
+    color: color-mix(
+      in oklab,
+      var(--color-primary) 65%,
+      var(--color-secondary)
+    );
     font-weight: 500;
     transition: color var(--duration-fast) var(--ease-smooth-out);
   }

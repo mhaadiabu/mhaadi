@@ -44,7 +44,7 @@ const {
           sizes='(min-width: 48rem) 640px, 100vw'
           loading={priority ? 'eager' : 'lazy'}
           fetchpriority={priority ? 'high' : 'auto'}
-          class='blur-sm w-full rounded-none object-cover'
+          class='w-full rounded-none object-cover blur-sm'
         />
         <div class='bg-bg/70 absolute inset-0 flex items-center justify-center'>
           <span class='text-muted text-sm font-medium tracking-wide'>
@@ -67,60 +67,62 @@ const {
           sizes='(min-width: 48rem) 640px, 100vw'
           loading={priority ? 'eager' : 'lazy'}
           fetchpriority={priority ? 'high' : 'auto'}
-          class='group-hover/lightbox:opacity-100 group-hover/project:opacity-100 w-full rounded-none object-cover opacity-80 transition-opacity duration-[var(--duration-very-slow)] ease-[var(--ease-out)]'
+          class='w-full rounded-none object-cover opacity-80 transition-opacity duration-[var(--duration-very-slow)] ease-[var(--ease-out)] group-hover/lightbox:opacity-100 group-hover/project:opacity-100'
         />
       </button>
     )
   }
 
-<script>
-  // fullscreen lightbox for project screenshots
-  // delegated so buttons keep working after view-transition DOM swaps
-  let lightbox: HTMLElement | null = null;
+  <script>
+    // fullscreen lightbox for project screenshots
+    // delegated so buttons keep working after view-transition DOM swaps
+    let lightbox: HTMLElement | null = null;
 
-  const closeLightbox = () => {
-    if (!lightbox) return;
-    lightbox.classList.replace('flex', 'hidden');
-    lightbox.querySelector('img')!.src = '';
-    document.body.style.overflow = '';
-  };
+    const closeLightbox = () => {
+      if (!lightbox) return;
+      lightbox.classList.replace('flex', 'hidden');
+      lightbox.querySelector('img')!.src = '';
+      document.body.style.overflow = '';
+    };
 
-  document.addEventListener('click', (event) => {
-    const button = (event.target as HTMLElement).closest<HTMLElement>(
-      '[data-lightbox]',
-    );
-    if (!lightbox) {
-      lightbox = document.createElement('div');
-      lightbox.className =
-        'fixed inset-0 z-50 hidden items-center justify-center bg-bg/90 p-4 backdrop-blur-sm';
-      lightbox.innerHTML =
-        '<img class="max-h-full w-auto max-w-full rounded-lg object-contain" />';
-      lightbox.addEventListener('click', closeLightbox);
-      document.body.append(lightbox);
-    }
-    if (!button) return;
+    document.addEventListener('click', (event) => {
+      const button = (event.target as HTMLElement).closest<HTMLElement>(
+        '[data-lightbox]',
+      );
+      if (!button) return;
 
-    const img = button.querySelector('img');
-    if (!img) return;
-    const lightboxImg = lightbox.querySelector('img')!;
-    // currentSrc is the thumbnail-sized variant; the lightbox wants the largest
-    const largest =
-      img.srcset
-        .split(',')
-        .map((entry) => entry.trim().split(/\s+/))
-        .sort((a, b) => parseInt(b[1] ?? '0', 10) - parseInt(a[1] ?? '0', 10))[0]?.[0] ??
-      img.src;
-    lightboxImg.src = largest;
-    lightboxImg.alt = img.alt;
-    lightbox.classList.replace('hidden', 'flex');
-    // lock page scroll while the modal is open
-    document.body.style.overflow = 'hidden';
-  });
+      if (!lightbox) {
+        lightbox = document.createElement('div');
+        lightbox.className =
+          'fixed inset-0 z-50 hidden items-center justify-center bg-bg/90 p-4 backdrop-blur-sm';
+        lightbox.innerHTML =
+          '<img class="max-h-full w-auto max-w-full rounded-lg object-contain" />';
+        lightbox.addEventListener('click', closeLightbox);
+        document.body.append(lightbox);
+      }
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeLightbox();
-  });
-</script>
+      const img = button.querySelector('img');
+      if (!img) return;
+      const lightboxImg = lightbox.querySelector('img')!;
+      // currentSrc is the thumbnail-sized variant; the lightbox wants the largest
+      const largest =
+        img.srcset
+          .split(',')
+          .map((entry) => entry.trim().split(/\s+/))
+          .sort(
+            (a, b) => parseInt(b[1] ?? '0', 10) - parseInt(a[1] ?? '0', 10),
+          )[0]?.[0] ?? img.src;
+      lightboxImg.src = largest;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.replace('hidden', 'flex');
+      // lock page scroll while the modal is open
+      document.body.style.overflow = 'hidden';
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeLightbox();
+    });
+  </script>
 
   <div class='flex min-w-0 flex-1 flex-col gap-1.5'>
     <div class='flex items-baseline justify-between gap-4'>

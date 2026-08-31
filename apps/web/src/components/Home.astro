@@ -10,6 +10,7 @@ import WhatIDo from '../components/WhatIDo.astro';
 import { featuredProjects, type Project } from '../data/projects';
 import { packages, type Package } from '../data/packages';
 import { getCollection } from 'astro:content';
+import { formatDate } from '../utils/formatDate';
 
 type PortfolioItem = Project | Package;
 
@@ -21,13 +22,6 @@ const firstProjectIndex = projectsSection.findIndex(
 const blogPosts = (await getCollection('blog'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 2);
-
-const fmt = (d: Date) =>
-  d.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
 ---
 
 <Layout>
@@ -35,20 +29,20 @@ const fmt = (d: Date) =>
     // hashed /_astro URLs only exist in a production build
     import.meta.env.PROD && (
       <link
-        slot="head"
-        rel="preload"
-        as="image"
-        href="/_astro/task-thing.CZ4I6cSL_16B98y.webp"
-        imagesrcset="/_astro/task-thing.CZ4I6cSL_Z2WIbL.webp 320w, /_astro/task-thing.CZ4I6cSL_16B98y.webp 640w"
-        imagesizes="(min-width: 48rem) 640px, 100vw"
-        fetchpriority="high"
+        slot='head'
+        rel='preload'
+        as='image'
+        href='/_astro/task-thing.CZ4I6cSL_16B98y.webp'
+        imagesrcset='/_astro/task-thing.CZ4I6cSL_Z2WIbL.webp 320w, /_astro/task-thing.CZ4I6cSL_16B98y.webp 640w'
+        imagesizes='(min-width: 48rem) 640px, 100vw'
+        fetchpriority='high'
       />
     )
   }
 
   {
     (
-      <header class='home-hero flex flex-wrap items-center justify-between gap-4'>
+      <header class='flex flex-wrap items-center justify-between gap-4 px-4 pt-16 pb-12 sm:px-6'>
         <div class='flex flex-col gap-1.5'>
           <h1 class='text-primary text-4xl font-semibold tracking-tight sm:text-5xl'>
             haadi
@@ -67,27 +61,29 @@ const fmt = (d: Date) =>
     )
   }
 
-  <section class='home-section flex flex-col'>
-    <div class='home-section-head'>
-      <h2 class="home-title flex items-baseline gap-3 text-lg font-normal">
-        <span class="text-muted font-mono text-sm tracking-wide">01</span>
-        <span class="text-primary">what i like to do</span>
+  <section class='flex flex-col'>
+    <div class='home-section-head relative px-4 pt-11 pb-3 sm:px-6'>
+      <h2 class='m-0 flex items-baseline gap-3 text-lg font-normal'>
+        <span class='text-muted font-mono text-sm tracking-wide'>01</span>
+        <span class='text-primary'>what i like to do</span>
       </h2>
     </div>
-    <div class='home-section-body home-section-inner'>
+    <div class='mx-4 pb-12 sm:mx-6'>
       <WhatIDo />
     </div>
   </section>
 
-  <section class='home-section flex w-full flex-col'>
-    <div class='home-section-head'>
-      <h2 class="home-title flex items-baseline gap-3 text-lg font-normal">
-        <span class="text-muted font-mono text-sm tracking-wide">02</span>
-        <span class="text-primary">my works</span>
+  <section class='flex w-full flex-col'>
+    <div class='home-section-head relative px-4 pt-11 pb-3 sm:px-6'>
+      <h2 class='m-0 flex items-baseline gap-3 text-lg font-normal'>
+        <span class='text-muted font-mono text-sm tracking-wide'>02</span>
+        <span class='text-primary'>my works</span>
       </h2>
     </div>
-    <div class='home-section-body flex w-full flex-col'>
-      <div class='home-project-list dim-list flex w-full flex-col'>
+    <div class='flex w-full flex-col pb-12'>
+      <div
+        class='dim-list mt-6 flex w-full flex-col [&>*]:relative [&>article]:px-4 sm:[&>article]:px-6'
+      >
         {
           projectsSection.map((item, index) =>
             item.type === 'project' ? (
@@ -98,7 +94,7 @@ const fmt = (d: Date) =>
           )
         }
       </div>
-      <p class='home-section-inner pt-4'>
+      <p class='mx-4 pt-4 sm:mx-6'>
         interested in other things i&apos;ve worked on? {' '}
         <a
           href='/projects'
@@ -114,15 +110,17 @@ const fmt = (d: Date) =>
     </div>
   </section>
 
-  <section class='home-section flex flex-col'>
-    <div class='home-section-head'>
-      <h2 class="home-title flex items-baseline gap-3 text-lg font-normal">
-        <span class="text-muted font-mono text-sm tracking-wide">03</span>
-        <span class="text-primary">recent writes</span>
+  <section class='flex flex-col'>
+    <div class='home-section-head relative px-4 pt-11 pb-3 sm:px-6'>
+      <h2 class='m-0 flex items-baseline gap-3 text-lg font-normal'>
+        <span class='text-muted font-mono text-sm tracking-wide'>03</span>
+        <span class='text-primary'>recent writes</span>
       </h2>
     </div>
-    <div class='home-section-body flex flex-col'>
-      <div class='home-blog-list blog-list flex flex-col'>
+    <div class='flex flex-col pb-12'>
+      <div
+        class='home-blog-list blog-list relative flex flex-col [&>*]:relative'
+      >
         {
           blogPosts.map((post) => (
             <a
@@ -140,9 +138,9 @@ const fmt = (d: Date) =>
               </div>
               <time
                 datetime={post.data.date.toISOString()}
-                class='text-muted pt-1.5 whitespace-nowrap font-mono text-sm tabular-nums sm:pt-0'
+                class='text-muted pt-1.5 font-mono text-sm whitespace-nowrap tabular-nums sm:pt-0'
               >
-                {fmt(post.data.date)}
+                {formatDate(post.data.date)}
               </time>
             </a>
           ))
@@ -151,7 +149,7 @@ const fmt = (d: Date) =>
       <a
         href='/blog'
         data-astro-prefetch
-        class='home-section-inner link-underline text-muted hover:text-primary group mt-3 inline-flex w-fit items-center gap-1.5 text-sm'
+        class='link-underline text-muted hover:text-primary group mx-4 mt-3 inline-flex w-fit items-center gap-1.5 text-sm sm:mx-6'
       >
         view all posts
         <Icon
@@ -162,15 +160,15 @@ const fmt = (d: Date) =>
     </div>
   </section>
 
-  <section class='home-section flex flex-col'>
-    <div class='home-section-head'>
-      <h2 class="home-title flex items-baseline gap-3 text-lg font-normal">
-        <span class="text-muted font-mono text-sm tracking-wide">04</span>
-        <span class="text-primary">what i work with</span>
+  <section class='flex flex-col'>
+    <div class='home-section-head relative px-4 pt-11 pb-3 sm:px-6'>
+      <h2 class='m-0 flex items-baseline gap-3 text-lg font-normal'>
+        <span class='text-muted font-mono text-sm tracking-wide'>04</span>
+        <span class='text-primary'>what i work with</span>
       </h2>
     </div>
-    <div class='home-section-body flex flex-col'>
-      <div class='home-stack'>
+    <div class='flex flex-col pb-0'>
+      <div>
         <Stack />
       </div>
     </div>
