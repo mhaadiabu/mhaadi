@@ -194,7 +194,9 @@ const {
         stack.map((tech) => (
           <div
             class='text-secondary hover:text-primary flex items-center gap-1.5 transition-colors duration-[var(--duration-fast)]'
-            title={iconLabels[tech] ?? tech}
+            data-tooltip={iconLabels[tech] ?? tech}
+            role='img'
+            aria-label={iconLabels[tech] ?? tech}
           >
             <Icon name={tech} class='size-4' />
           </div>

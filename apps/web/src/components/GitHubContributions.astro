@@ -19,13 +19,6 @@ const monthFormatter = new Intl.DateTimeFormat('en-US', {
   month: 'short',
   timeZone: 'UTC',
 });
-const updatedFormatter = new Intl.DateTimeFormat('en-US', {
-  day: 'numeric',
-  month: 'short',
-  timeZone: 'UTC',
-  year: 'numeric',
-});
-
 const parseDate = (date: string) => {
   const [year, month, day] = date.split('-').map(Number);
   return new Date(Date.UTC(year, month - 1, day));
@@ -51,8 +44,6 @@ const monthLabels = contributions.weeks.reduce<
   if (labels.at(-1)?.name !== name) labels.push({ name, column: index + 1 });
   return labels;
 }, []);
-
-const updatedDate = updatedFormatter.format(new Date(contributions.fetchedAt));
 ---
 
 <section class='flex flex-col' aria-labelledby='github-contributions-heading'>
@@ -63,95 +54,79 @@ const updatedDate = updatedFormatter.format(new Date(contributions.fetchedAt));
   </div>
 
   <div class='flex flex-col gap-5 px-4 pt-6 pb-12 sm:px-6'>
-    <div class='flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2'>
-      <p class='text-primary m-0 text-base'>
-        <span class='font-semibold tabular-nums'>{contributions.total}</span>{
-          ' '
-        }
-        contributions in the last year
-      </p>
-      <a
-        href={`https://github.com/${contributions.username}`}
-        target='_blank'
-        rel='noopener noreferrer'
-        class='link-underline text-secondary hover:text-primary text-sm'
-      >
-        view profile
-      </a>
-    </div>
-
     <figure
-      class='border-border min-w-0 rounded-md border p-3 sm:p-4'
+      class='min-w-0'
       aria-label={`${contributions.total} GitHub contributions in the last year`}
     >
-      <div class='flex min-w-0 items-start gap-3'>
-        <div
-          class='text-muted grid w-7 shrink-0 grid-rows-7 pt-5 font-mono text-[0.625rem] leading-none'
-          aria-hidden='true'
-        >
-          <span class='row-start-2 self-center'>Mon</span>
-          <span class='row-start-4 self-center'>Wed</span>
-          <span class='row-start-6 self-center'>Fri</span>
-        </div>
+      <div
+        class='min-w-0 touch-pan-x [scrollbar-width:none] overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden'
+        data-contribution-scroll
+        tabindex='0'
+        role='region'
+        aria-label='Scrollable contribution graph'
+      >
+        <div class='w-max'>
+          <div
+            class='text-muted mb-1 grid grid-cols-[repeat(53,0.625rem)] gap-1 px-px font-mono text-[0.625rem] leading-none'
+            aria-hidden='true'
+          >
+            {
+              monthLabels.map((month) => (
+                <span
+                  class='whitespace-nowrap'
+                  style={`grid-column: ${month.column}`}
+                >
+                  {month.name}
+                </span>
+              ))
+            }
+          </div>
 
-        <div
-          class='min-w-0 flex-1 touch-pan-x overflow-x-auto overscroll-x-contain pb-2 [-webkit-overflow-scrolling:touch]'
-          data-contribution-scroll
-          tabindex='0'
-          role='region'
-          aria-label='Scrollable contribution graph'
-        >
-          <div class='w-max'>
-            <div
-              class='text-muted mb-1 grid grid-cols-[repeat(53,0.625rem)] gap-1 px-px font-mono text-[0.625rem] leading-none'
-              aria-hidden='true'
-            >
-              {
-                monthLabels.map((month) => (
+          <div
+            class='grid grid-flow-col grid-cols-[repeat(53,0.625rem)] grid-rows-7 gap-1'
+            data-contribution-graph
+            role='group'
+            aria-label='Daily contribution activity'
+          >
+            {
+              days.map((day) => {
+                const label = `${formatContributions(day.count)} on ${formatter.format(parseDate(day.date))}`;
+                return (
                   <span
-                    class='whitespace-nowrap'
-                    style={`grid-column: ${month.column}`}
-                  >
-                    {month.name}
-                  </span>
-                ))
-              }
-            </div>
-
-            <div
-              class='grid grid-flow-col grid-cols-[repeat(53,0.625rem)] grid-rows-7 gap-1'
-              data-contribution-graph
-              role='group'
-              aria-label='Daily contribution activity'
-            >
-              {
-                days.map((day) => {
-                  const label = `${formatContributions(day.count)} on ${formatter.format(parseDate(day.date))}`;
-                  return (
-                    <span
-                      class:list={[
-                        levelClasses[day.level],
-                        'size-2.5 rounded-[2px] select-none',
-                      ]}
-                      data-tooltip={label}
-                      role='img'
-                      aria-label={label}
-                    />
-                  );
-                })
-              }
-            </div>
+                    class:list={[
+                      levelClasses[day.level],
+                      'size-2.5 rounded-[2px] select-none',
+                    ]}
+                    data-tooltip={label}
+                    role='img'
+                    aria-label={label}
+                  />
+                );
+              })
+            }
           </div>
         </div>
       </div>
 
       <figcaption
-        class='text-muted mt-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 font-mono text-[0.625rem]'
+        class='mt-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-3'
       >
-        <span class='sm:hidden'>swipe to explore the full year</span>
-        <span class='hidden sm:inline'>updated {updatedDate}</span>
+        <p class='text-primary m-0 text-base'>
+          <span class='font-semibold tabular-nums'>{contributions.total}</span>{
+            ' '
+          }
+          contributions in the last year
+        </p>
+        <a
+          href={`https://github.com/${contributions.username}`}
+          target='_blank'
+          rel='noopener noreferrer'
+          class='link-underline text-secondary hover:text-primary text-sm'
+        >
+          view profile
+        </a>
         <div
-          class='flex items-center gap-2'
+          class='text-muted flex items-center gap-2 font-mono text-[0.625rem]'
           aria-label='Contribution intensity legend'
         >
           <span>less</span>
@@ -169,111 +144,7 @@ const updatedDate = updatedFormatter.format(new Date(contributions.fetchedAt));
           </div>
           <span>more</span>
         </div>
-        <span class='sm:hidden'>updated {updatedDate}</span>
       </figcaption>
     </figure>
-
-    <div
-      class='bg-bg-secondary text-primary border-border pointer-events-none fixed z-50 max-w-[calc(100vw-1rem)] rounded-md border px-2.5 py-1.5 font-mono text-xs shadow-lg transition-[opacity,transform] duration-(--duration-quick) data-[state=closed]:translate-y-1 data-[state=closed]:opacity-0 data-[state=open]:translate-y-0 data-[state=open]:opacity-100'
-      data-contribution-tooltip
-      data-state='closed'
-      role='tooltip'
-      aria-hidden='true'
-    >
-    </div>
   </div>
 </section>
-
-<script>
-  function setupContributionTooltips() {
-    const graph = document.querySelector<HTMLElement>(
-      '[data-contribution-graph]',
-    );
-    const scrollRegion = document.querySelector<HTMLElement>(
-      '[data-contribution-scroll]',
-    );
-    const tooltip = document.querySelector<HTMLElement>(
-      '[data-contribution-tooltip]',
-    );
-
-    if (!graph || !scrollRegion || !tooltip || graph.dataset.tooltipReady)
-      return;
-    graph.dataset.tooltipReady = 'true';
-
-    let activeCell: HTMLElement | null = null;
-
-    const positionTooltip = () => {
-      if (!activeCell) return;
-
-      const cellRect = activeCell.getBoundingClientRect();
-      const tooltipRect = tooltip.getBoundingClientRect();
-      const gap = 8;
-      const edge = 8;
-      const left = Math.min(
-        Math.max(
-          edge,
-          cellRect.left + cellRect.width / 2 - tooltipRect.width / 2,
-        ),
-        window.innerWidth - tooltipRect.width - edge,
-      );
-      const top =
-        cellRect.top - tooltipRect.height - gap >= edge
-          ? cellRect.top - tooltipRect.height - gap
-          : cellRect.bottom + gap;
-
-      tooltip.style.left = `${left}px`;
-      tooltip.style.top = `${top}px`;
-    };
-
-    const hideTooltip = () => {
-      activeCell = null;
-      tooltip.dataset.state = 'closed';
-      tooltip.setAttribute('aria-hidden', 'true');
-    };
-
-    const showTooltip = (cell: HTMLElement) => {
-      const label = cell.dataset.tooltip;
-      if (!label) return;
-
-      activeCell = cell;
-      tooltip.textContent = label;
-      tooltip.dataset.state = 'open';
-      tooltip.setAttribute('aria-hidden', 'false');
-      positionTooltip();
-    };
-
-    graph.addEventListener('pointerover', (event) => {
-      if (event.pointerType === 'touch') return;
-
-      const target = event.target;
-      if (!(target instanceof Element)) return;
-
-      const cell = target.closest<HTMLElement>('[data-tooltip]');
-      if (cell && graph.contains(cell)) showTooltip(cell);
-    });
-
-    graph.addEventListener('pointerout', (event) => {
-      const target = event.target;
-      if (!(target instanceof Element)) return;
-
-      const cell = target.closest<HTMLElement>('[data-tooltip]');
-      const relatedTarget = event.relatedTarget;
-      if (
-        cell &&
-        relatedTarget instanceof Node &&
-        cell.contains(relatedTarget)
-      ) {
-        return;
-      }
-
-      if (cell === activeCell) hideTooltip();
-    });
-
-    scrollRegion.addEventListener('scroll', hideTooltip, { passive: true });
-    window.addEventListener('resize', positionTooltip, { passive: true });
-    window.addEventListener('scroll', positionTooltip, { passive: true });
-  }
-
-  setupContributionTooltips();
-  document.addEventListener('astro:page-load', setupContributionTooltips);
-</script>

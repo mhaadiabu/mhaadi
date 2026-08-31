@@ -25,11 +25,21 @@ jobs:
 
       - run: bun install --frozen-lockfile
 
+      - name: Check GitHub token
+        env:
+          CONTRIBUTIONS_TOKEN: ${{ secrets.CONTRIBUTIONS_TOKEN }}
+        run: |
+          if [ -z "$CONTRIBUTIONS_TOKEN" ]; then
+            echo 'Missing required repository secret: CONTRIBUTIONS_TOKEN'
+            echo 'Use a personal access token with the read:user scope so private contributions match the GitHub profile.'
+            exit 1
+          fi
+
       - name: Update contribution snapshot
         id: contributions
         run: bun run update:contributions
         env:
-          GITHUB_TOKEN: ${{ secrets.CONTRIBUTIONS_TOKEN || github.token }}
+          GITHUB_TOKEN: ${{ secrets.CONTRIBUTIONS_TOKEN }}
           GITHUB_USERNAME: mhaadiabu
 
       - name: Check Cloudflare credentials

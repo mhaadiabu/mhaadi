@@ -150,6 +150,16 @@ const showBackButton = !isHomepage && !centered;
       >
         <Icon name='arrow-top' class='size-4' />
       </button>
+
+      <div
+        id='site-tooltip'
+        class='bg-bg-secondary text-primary border-border pointer-events-none fixed z-50 max-w-[calc(100vw-1rem)] rounded-md border px-2.5 py-1.5 font-mono text-xs shadow-lg transition-[opacity,transform] duration-(--duration-quick) data-[state=closed]:translate-y-1 data-[state=closed]:opacity-0 data-[state=open]:translate-y-0 data-[state=open]:opacity-100'
+        data-site-tooltip
+        data-state='closed'
+        role='tooltip'
+        aria-hidden='true'
+      >
+      </div>
     </div>
   </body>
 </html>
@@ -178,4 +188,117 @@ const showBackButton = !isHomepage && !centered;
   }
 
   setupScrollToTop();
+</script>
+
+<script>
+  function setupSiteTooltip() {
+    if (document.documentElement.dataset.siteTooltipReady) return;
+    document.documentElement.dataset.siteTooltipReady = 'true';
+
+    let activeTrigger: HTMLElement | null = null;
+
+    const getTooltip = () =>
+      document.querySelector<HTMLElement>('[data-site-tooltip]');
+
+    const positionTooltip = () => {
+      const tooltip = getTooltip();
+      if (!activeTrigger || !tooltip) return;
+
+      const triggerRect = activeTrigger.getBoundingClientRect();
+      const tooltipRect = tooltip.getBoundingClientRect();
+      const gap = 8;
+      const edge = 8;
+      const maxLeft = Math.max(
+        edge,
+        window.innerWidth - tooltipRect.width - edge,
+      );
+      const left = Math.min(
+        Math.max(
+          edge,
+          triggerRect.left + triggerRect.width / 2 - tooltipRect.width / 2,
+        ),
+        maxLeft,
+      );
+      const top =
+        triggerRect.top - tooltipRect.height - gap >= edge
+          ? triggerRect.top - tooltipRect.height - gap
+          : triggerRect.bottom + gap;
+
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
+    };
+
+    const hideTooltip = () => {
+      const tooltip = getTooltip();
+      activeTrigger?.removeAttribute('aria-describedby');
+      activeTrigger = null;
+      if (!tooltip) return;
+      tooltip.dataset.state = 'closed';
+      tooltip.setAttribute('aria-hidden', 'true');
+    };
+
+    const showTooltip = (trigger: HTMLElement) => {
+      const label = trigger.dataset.tooltip;
+      const tooltip = getTooltip();
+      if (!label || !tooltip) return;
+
+      activeTrigger?.removeAttribute('aria-describedby');
+      activeTrigger = trigger;
+      tooltip.textContent = label;
+      tooltip.dataset.state = 'open';
+      tooltip.setAttribute('aria-hidden', 'false');
+      trigger.setAttribute('aria-describedby', 'site-tooltip');
+      positionTooltip();
+    };
+
+    const getTrigger = (target: EventTarget | null) => {
+      if (!(target instanceof Element)) return null;
+      return target.closest<HTMLElement>('[data-tooltip]');
+    };
+
+    document.addEventListener('pointerover', (event) => {
+      if (event.pointerType === 'touch') return;
+      const trigger = getTrigger(event.target);
+      if (trigger) showTooltip(trigger);
+    });
+
+    document.addEventListener('pointerout', (event) => {
+      const trigger = getTrigger(event.target);
+      const relatedTarget = event.relatedTarget;
+      if (
+        trigger &&
+        relatedTarget instanceof Node &&
+        trigger.contains(relatedTarget)
+      ) {
+        return;
+      }
+
+      if (trigger === activeTrigger) hideTooltip();
+    });
+
+    document.addEventListener('focusin', (event) => {
+      const trigger = getTrigger(event.target);
+      if (trigger) showTooltip(trigger);
+    });
+
+    document.addEventListener('focusout', (event) => {
+      const trigger = getTrigger(event.target);
+      const relatedTarget = event.relatedTarget;
+      if (
+        trigger === activeTrigger &&
+        !(relatedTarget instanceof Node && trigger.contains(relatedTarget))
+      ) {
+        hideTooltip();
+      }
+    });
+
+    window.addEventListener('resize', positionTooltip, { passive: true });
+    window.addEventListener('scroll', hideTooltip, {
+      capture: true,
+      passive: true,
+    });
+  }
+
+  setupSiteTooltip();
+  document.addEventListener('astro:page-load', setupSiteTooltip);
 </script>
