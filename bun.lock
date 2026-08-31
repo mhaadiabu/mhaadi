@@ -11,6 +11,7 @@
       },
       "devDependencies": {
         "@portfolio/config": "workspace:*",
+        "@types/node": "^26.2.0",
         "oxlint": "^1.79.0",
         "turbo": "^2.10.11",
         "typescript": "^7.0.2",
@@ -64,6 +65,7 @@
         "zod": "catalog:",
       },
       "devDependencies": {
+        "@cloudflare/workers-types": "catalog:",
         "@portfolio/config": "workspace:*",
         "alchemy": "^0.93.12",
         "typescript": "catalog:",

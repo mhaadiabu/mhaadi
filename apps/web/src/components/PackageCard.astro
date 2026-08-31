@@ -37,12 +37,12 @@ const cmd = installCommand ?? `npm install ${fullName}`;
       {title ?? fullName}
       <span class='text-muted ml-1.5 font-mono text-sm'>v{version}</span>
     </h3>
-    <div class='flex shrink-0 gap-2'>
+    <div class='flex shrink-0 gap-1'>
       <a
         href={npm}
         target='_blank'
         rel='noopener noreferrer'
-        class='text-muted hover:text-primary transition-colors duration-[var(--duration-fast)]'
+        class='text-muted hover:text-primary inline-flex size-11 shrink-0 items-center justify-center transition-colors duration-[var(--duration-fast)]'
       >
         <Icon name='npm' class='size-4' />
         <span class='sr-only'>npm package</span>
@@ -53,7 +53,7 @@ const cmd = installCommand ?? `npm install ${fullName}`;
             href={github}
             target='_blank'
             rel='noopener noreferrer'
-            class='text-muted hover:text-primary transition-colors duration-[var(--duration-fast)]'
+            class='text-muted hover:text-primary inline-flex size-11 shrink-0 items-center justify-center transition-colors duration-[var(--duration-fast)]'
           >
             <Icon name='github-logo' class='size-4' />
             <span class='sr-only'>GitHub repository</span>
@@ -66,7 +66,7 @@ const cmd = installCommand ?? `npm install ${fullName}`;
             href={website}
             target='_blank'
             rel='noopener noreferrer'
-            class='text-muted hover:text-primary group/link transition-colors duration-[var(--duration-fast)]'
+            class='text-muted hover:text-primary group/link inline-flex size-11 shrink-0 items-center justify-center transition-colors duration-[var(--duration-fast)]'
           >
             <Icon
               name='arrow-top-right'
@@ -85,7 +85,7 @@ const cmd = installCommand ?? `npm install ${fullName}`;
     <code class='text-secondary min-w-0 truncate'>$ {cmd}</code>
     <button
       type='button'
-      class='text-muted hover:text-primary shrink-0 transition-colors duration-[var(--duration-fast)]'
+      class='text-muted hover:text-primary inline-flex size-11 shrink-0 items-center justify-center transition-colors duration-[var(--duration-fast)]'
       data-copy-command={cmd}
       aria-label={`Copy ${cmd}`}
     >
@@ -111,7 +111,23 @@ const cmd = installCommand ?? `npm install ${fullName}`;
 
     const sequence = (copySequences.get(button) ?? 0) + 1;
     copySequences.set(button, sequence);
-    await navigator.clipboard.writeText(command);
+    try {
+      if (!navigator.clipboard) throw new Error('Clipboard API unavailable');
+      await navigator.clipboard.writeText(command);
+    } catch {
+      button.setAttribute('aria-label', 'Copy failed');
+      const existingTimer = copyTimers.get(button);
+      if (existingTimer) window.clearTimeout(existingTimer);
+      copyTimers.set(
+        button,
+        window.setTimeout(() => {
+          if (copySequences.get(button) !== sequence) return;
+          button.setAttribute('aria-label', `Copy ${command}`);
+          copyTimers.delete(button);
+        }, 1500),
+      );
+      return;
+    }
     if (copySequences.get(button) !== sequence) return;
 
     const existingTimer = copyTimers.get(button);

@@ -56,6 +56,7 @@ const {
       <button
         type='button'
         data-lightbox
+        aria-haspopup='dialog'
         aria-label={`Open ${title} screenshot fullscreen`}
         class='group/lightbox relative shrink-0 cursor-pointer sm:w-36'
       >
@@ -77,12 +78,16 @@ const {
     // fullscreen lightbox for project screenshots
     // delegated so buttons keep working after view-transition DOM swaps
     let lightbox: HTMLElement | null = null;
+    let activeTrigger: HTMLElement | null = null;
 
     const closeLightbox = () => {
       if (!lightbox) return;
       lightbox.classList.replace('flex', 'hidden');
-      lightbox.querySelector('img')!.src = '';
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightbox.querySelector('img')?.removeAttribute('src');
       document.body.style.overflow = '';
+      activeTrigger?.focus();
+      activeTrigger = null;
     };
 
     document.addEventListener('click', (event) => {
@@ -95,9 +100,19 @@ const {
         lightbox = document.createElement('div');
         lightbox.className =
           'fixed inset-0 z-50 hidden items-center justify-center bg-bg/90 p-4 backdrop-blur-sm';
+        lightbox.setAttribute('role', 'dialog');
+        lightbox.setAttribute('aria-modal', 'true');
+        lightbox.setAttribute('aria-label', 'Screenshot preview');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightbox.tabIndex = -1;
         lightbox.innerHTML =
-          '<img class="max-h-full w-auto max-w-full rounded-lg object-contain" />';
-        lightbox.addEventListener('click', closeLightbox);
+          '<button type="button" data-lightbox-close class="text-primary hover:text-secondary absolute top-4 right-4 flex size-11 items-center justify-center rounded-full bg-bg-secondary text-2xl leading-none transition-colors" aria-label="Close screenshot">&times;</button><img class="max-h-full w-auto max-w-full rounded-lg object-contain" />';
+        lightbox.addEventListener('click', (event) => {
+          const target = event.target as HTMLElement;
+          if (target === lightbox || target.closest('[data-lightbox-close]')) {
+            closeLightbox();
+          }
+        });
         document.body.append(lightbox);
       }
 
@@ -114,27 +129,39 @@ const {
           )[0]?.[0] ?? img.src;
       lightboxImg.src = largest;
       lightboxImg.alt = img.alt;
+      activeTrigger = button;
+      lightbox.setAttribute('aria-hidden', 'false');
       lightbox.classList.replace('hidden', 'flex');
       // lock page scroll while the modal is open
       document.body.style.overflow = 'hidden';
+      lightbox
+        .querySelector<HTMLButtonElement>('[data-lightbox-close]')
+        ?.focus();
     });
 
     document.addEventListener('keydown', (event) => {
+      if (!lightbox || lightbox.classList.contains('hidden')) return;
       if (event.key === 'Escape') closeLightbox();
+      if (event.key === 'Tab') {
+        event.preventDefault();
+        lightbox
+          .querySelector<HTMLButtonElement>('[data-lightbox-close]')
+          ?.focus();
+      }
     });
   </script>
 
   <div class='flex min-w-0 flex-1 flex-col gap-1.5'>
     <div class='flex items-baseline justify-between gap-4'>
       <h3 class='text-primary text-lg font-normal'>{title}</h3>
-      <div class='flex shrink-0 gap-2'>
+      <div class='flex shrink-0 gap-1'>
         {
           github && !disabled && (
             <a
               href={github}
               target='_blank'
               rel='noopener noreferrer'
-              class='text-muted hover:text-primary transition-colors duration-[var(--duration-fast)]'
+              class='text-muted hover:text-primary inline-flex size-11 shrink-0 items-center justify-center transition-colors duration-[var(--duration-fast)]'
             >
               <Icon name='github-logo' class='size-4' />
               <span class='sr-only'>GitHub repository</span>
@@ -147,7 +174,7 @@ const {
               href={href}
               target='_blank'
               rel='noopener noreferrer'
-              class='text-muted hover:text-primary group/link transition-colors duration-[var(--duration-fast)]'
+              class='text-muted hover:text-primary group/link inline-flex size-11 shrink-0 items-center justify-center transition-colors duration-[var(--duration-fast)]'
             >
               <Icon
                 name='arrow-top-right'

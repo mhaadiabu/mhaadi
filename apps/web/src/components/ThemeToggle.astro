@@ -2,8 +2,8 @@
   id='theme-toggle'
   transition:persist='theme-toggle'
   type='button'
-  class='text-muted hover:text-primary fixed top-4 right-4 z-50 size-10 cursor-pointer rounded-full transition-colors duration-[var(--duration-fast)]'
-  aria-label='Toggle theme'
+  class='text-muted hover:text-primary fixed top-4 right-4 z-50 flex size-11 cursor-pointer items-center justify-center rounded-full border border-transparent transition-colors duration-[var(--duration-fast)]'
+  aria-label='Switch theme'
 >
   <svg
     id='sun-icon'
@@ -65,6 +65,11 @@
         moonIcon.classList.add('active');
         sunIcon.classList.remove('active');
       }
+      toggle.setAttribute(
+        'aria-label',
+        theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme',
+      );
+      toggle.setAttribute('aria-pressed', String(theme === 'dark'));
     };
 
     const setTheme = (theme: 'dark' | 'light') => {

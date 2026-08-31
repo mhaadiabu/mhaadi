@@ -33,6 +33,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@types/node": "^26.2.0",
     "@portfolio/config": "workspace:*",
     "oxlint": "^1.79.0",
     "turbo": "^2.10.11",

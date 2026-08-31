@@ -2,42 +2,40 @@
 import Layout from '../layouts/Layout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import PackageCard from '../components/PackageCard.astro';
-import { projects, type Project } from '../data/projects';
-import { packages, type Package } from '../data/packages';
+import { projects } from '../data/projects';
+import { packages } from '../data/packages';
 
-type PortfolioItem = Project | Package;
-
-const allItems: PortfolioItem[] = [...projects, ...packages];
-
-const sorted = allItems.sort((a, b) => {
-  const aFeatured = a.type === 'project' && a.featured;
-  const bFeatured = b.type === 'project' && b.featured;
-  if (aFeatured && !bFeatured) return -1;
-  if (!aFeatured && bFeatured) return 1;
-  if (a.type === 'package' && b.type !== 'package') return -1;
-  if (a.type !== 'package' && b.type === 'package') return 1;
-  if (a.type === 'project' && b.type === 'project') {
-    if (a.disabled && !b.disabled) return 1;
-    if (!a.disabled && b.disabled) return -1;
-  }
+const sortedProjects = [...projects].sort((a, b) => {
+  if (a.featured !== b.featured) return a.featured ? -1 : 1;
+  if (a.disabled !== b.disabled) return a.disabled ? 1 : -1;
   return 0;
 });
-const firstProjectIndex = sorted.findIndex((item) => item.type === 'project');
 ---
 
 <Layout title='projects' description='stuff i built.'>
-  <div
-    class='dim-list -mx-4 flex w-auto flex-col sm:-mx-6 [&>*]:relative [&>article]:px-4 sm:[&>article]:px-6'
-  >
-    <h2 class='sr-only'>project list</h2>
-    {
-      sorted.map((item, index) =>
-        item.type === 'project' ? (
-          <ProjectCard {...item} priority={index === firstProjectIndex} />
-        ) : (
-          <PackageCard {...item} />
-        ),
-      )
-    }
-  </div>
+  <section aria-labelledby='projects-heading'>
+    <h2 id='projects-heading' class='text-primary mb-2 text-lg font-normal'>
+      projects
+    </h2>
+    <div
+      class='dim-list -mx-4 flex w-auto flex-col sm:-mx-6 [&>*]:relative [&>article]:px-4 sm:[&>article]:px-6'
+    >
+      {
+        sortedProjects.map((project, index) => (
+          <ProjectCard {...project} priority={index === 0} />
+        ))
+      }
+    </div>
+  </section>
+
+  <section class='mt-12' aria-labelledby='packages-heading'>
+    <h2 id='packages-heading' class='text-primary mb-2 text-lg font-normal'>
+      open source packages
+    </h2>
+    <div
+      class='dim-list -mx-4 flex w-auto flex-col sm:-mx-6 [&>*]:relative [&>article]:px-4 sm:[&>article]:px-6'
+    >
+      {packages.map((pkg) => <PackageCard {...pkg} />)}
+    </div>
+  </section>
 </Layout>

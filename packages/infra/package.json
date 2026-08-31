@@ -5,13 +5,16 @@
   "scripts": {
     "dev": "alchemy dev",
     "deploy": "alchemy deploy",
-    "destroy": "alchemy destroy"
+    "destroy": "alchemy destroy",
+    "lint": "oxlint",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
     "dotenv": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "catalog:",
     "@portfolio/config": "workspace:*",
     "alchemy": "^0.93.12",
     "typescript": "catalog:"

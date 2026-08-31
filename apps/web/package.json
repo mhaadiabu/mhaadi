@@ -9,7 +9,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "dev:bare": "astro dev",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "lint": "oxlint",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

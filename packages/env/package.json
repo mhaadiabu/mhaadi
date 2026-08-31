@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "scripts": {
+    "lint": "oxlint",
+    "check-types": "tsc --noEmit"
+  },
   "exports": {
     "./web": "./src/web.ts"
   },
