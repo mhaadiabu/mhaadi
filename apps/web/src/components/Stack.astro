@@ -16,8 +16,8 @@ const itemsFor = ({ categories }: { categories: StackItemCategory[] }) =>
 <div class="stack-rows">
   {groups.map((group) => (
     <div class="stack-row flex flex-col gap-2 px-4 py-3 sm:flex-row sm:items-center sm:gap-6 sm:px-6">
-      <h3 class="text-muted font-mono text-xs tracking-wide w-full shrink-0 sm:w-28">{group.label}</h3>
-      <div class="flex flex-wrap gap-2">
+      <h3 class="text-muted font-mono m-0 text-xs tracking-wide w-full shrink-0 sm:w-36">{group.label}</h3>
+      <div class="m-0 flex flex-wrap gap-2">
         {itemsFor(group).map(({ name, icon }) => (
           <span class="stack-pill border-border text-muted inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1">
             <Icon name={icon} class="size-4 shrink-0" />
