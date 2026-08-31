@@ -273,6 +273,8 @@ const showBackButton = !isHomepage && !centered;
         return;
       }
 
+      if (getTrigger(relatedTarget)) return;
+
       if (trigger === activeTrigger) hideTooltip();
     });
 
@@ -286,7 +288,8 @@ const showBackButton = !isHomepage && !centered;
       const relatedTarget = event.relatedTarget;
       if (
         trigger === activeTrigger &&
-        !(relatedTarget instanceof Node && trigger.contains(relatedTarget))
+        !(relatedTarget instanceof Node && trigger.contains(relatedTarget)) &&
+        !getTrigger(relatedTarget)
       ) {
         hideTooltip();
       }

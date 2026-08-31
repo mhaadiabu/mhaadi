@@ -1,10 +1,14 @@
-<ul class='ml-0 list-outside list-none pl-0'>
+<ul class='space-y-2 pl-5'>
   {
     [
       'build web & mobile apps',
       'obsess over AI',
       'read code and docs (a lot)',
       'refactor for fun',
-    ].map((text) => <li class='text-primary text-base'>{text}</li>)
+    ].map((text) => (
+      <li class="text-primary before:bg-accent relative text-base before:absolute before:top-[0.65em] before:-left-4 before:size-1.5 before:content-['']">
+        {text}
+      </li>
+    ))
   }
 </ul>
