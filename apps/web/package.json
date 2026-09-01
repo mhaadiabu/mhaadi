@@ -11,7 +11,7 @@
     "dev:bare": "astro dev",
     "format": "prettier --write .",
     "lint": "oxlint",
-    "check-types": "tsc --noEmit"
+    "check-types": "astro sync && tsc --noEmit"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
