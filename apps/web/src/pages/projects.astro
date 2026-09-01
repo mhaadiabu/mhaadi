@@ -14,7 +14,12 @@ const sortedProjects = [...projects].sort((a, b) => {
 
 <Layout title='projects' description='stuff i built.'>
   <section aria-labelledby='projects-heading'>
-    <h2 id='projects-heading' class='text-primary mb-2 text-lg font-normal'>
+    <h2
+      id='projects-heading'
+      class='text-primary mb-2 text-lg font-normal'
+      data-page-reveal
+      style='--page-reveal-index: 1'
+    >
       projects
     </h2>
     <div
@@ -22,20 +27,36 @@ const sortedProjects = [...projects].sort((a, b) => {
     >
       {
         sortedProjects.map((project, index) => (
-          <ProjectCard {...project} priority={index === 0} />
+          <ProjectCard
+            {...project}
+            priority={index === 0}
+            revealIndex={2 + index}
+          />
         ))
       }
     </div>
   </section>
 
   <section class='mt-12' aria-labelledby='packages-heading'>
-    <h2 id='packages-heading' class='text-primary mb-2 text-lg font-normal'>
+    <h2
+      id='packages-heading'
+      class='text-primary mb-2 text-lg font-normal'
+      data-page-reveal
+      style={`--page-reveal-index: ${2 + sortedProjects.length}`}
+    >
       open source packages
     </h2>
     <div
       class='dim-list -mx-4 flex w-auto flex-col sm:-mx-6 [&>*]:relative [&>article]:px-4 sm:[&>article]:px-6'
     >
-      {packages.map((pkg) => <PackageCard {...pkg} />)}
+      {
+        packages.map((pkg, index) => (
+          <PackageCard
+            {...pkg}
+            revealIndex={3 + sortedProjects.length + index}
+          />
+        ))
+      }
     </div>
   </section>
 </Layout>

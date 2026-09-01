@@ -13,6 +13,7 @@ interface Props {
   github?: string;
   disabled?: boolean;
   priority?: boolean;
+  revealIndex?: number;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   github,
   disabled = false,
   priority = false,
+  revealIndex,
 } = Astro.props;
 ---
 
@@ -32,6 +34,10 @@ const {
     'group/project flex w-full flex-col gap-4 py-5 sm:flex-row',
     disabled && 'cursor-not-allowed',
   ]}
+  data-page-reveal={revealIndex !== undefined ? true : undefined}
+  style={revealIndex !== undefined
+    ? `--page-reveal-index: ${revealIndex}`
+    : undefined}
 >
   {
     disabled ? (

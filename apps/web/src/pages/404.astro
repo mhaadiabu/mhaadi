@@ -5,11 +5,21 @@ import { Icon } from 'astro-icon/components';
 
 <Layout title='404' centered>
   <Fragment slot='head'><meta name='robots' content='noindex' /></Fragment>
-  <h1 class='text-primary m-0 mb-4 text-8xl font-semibold'>404</h1>
-  <p class='mb-4'>nothing to see here.</p>
+  <h1
+    class='text-primary m-0 mb-4 text-8xl font-semibold'
+    data-page-reveal
+    style='--page-reveal-index: 0'
+  >
+    404
+  </h1>
+  <p class='mb-4' data-page-reveal style='--page-reveal-index: 1'>
+    nothing to see here.
+  </p>
   <a
     href='/'
     data-astro-prefetch
+    data-page-reveal
+    style='--page-reveal-index: 2'
     class='link-underline group text-secondary hover:text-primary inline-flex items-center gap-1'
   >
     <Icon

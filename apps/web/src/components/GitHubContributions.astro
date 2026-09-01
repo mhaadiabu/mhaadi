@@ -1,6 +1,12 @@
 ---
 import contributions from '../data/github-contributions.json';
 
+interface Props {
+  revealIndex?: number;
+}
+
+const { revealIndex } = Astro.props;
+
 const levelClasses = {
   0: 'bg-border/60',
   1: 'bg-emerald-300 dark:bg-emerald-900',
@@ -49,6 +55,10 @@ const monthLabels = contributions.weeks.reduce<
 <figure
   class='col-span-full min-w-0 pt-6'
   aria-label={`${contributions.total} GitHub contributions in the last year`}
+  data-page-reveal={revealIndex !== undefined ? true : undefined}
+  style={revealIndex !== undefined
+    ? `--page-reveal-index: ${revealIndex}`
+    : undefined}
 >
   <div
     class='min-w-0 touch-pan-x [scrollbar-width:none] overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden'

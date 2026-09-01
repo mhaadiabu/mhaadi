@@ -1,3 +1,11 @@
+---
+interface Props {
+  revealStart?: number;
+}
+
+const { revealStart = 0 } = Astro.props;
+---
+
 <ul class='space-y-2 pl-5'>
   {
     [
@@ -5,8 +13,12 @@
       'obsess over AI',
       'read code and docs (a lot)',
       'refactor for fun',
-    ].map((text) => (
-      <li class="text-primary before:bg-accent relative text-base before:absolute before:top-[0.65em] before:-left-4 before:size-1.5 before:content-['']">
+    ].map((text, index) => (
+      <li
+        class="text-primary before:bg-accent relative text-base before:absolute before:top-[0.65em] before:-left-4 before:size-1.5 before:content-['']"
+        data-page-reveal
+        style={`--page-reveal-index: ${revealStart + index}`}
+      >
         {text}
       </li>
     ))

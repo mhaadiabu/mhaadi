@@ -269,54 +269,94 @@
   transform: translateX(-50%);
 }
 
-/* Page-load reveals are applied to each top-level block so the layout settles
-   in reading order instead of making every nested element race in together. */
-.page-header,
-.page-content > * {
+/* Reveal meaningful pieces in reading order. Parents stay static so their
+   children can arrive independently instead of moving in one large chunk. */
+[data-page-reveal],
+.blog-post > * {
   --page-reveal-index: 0;
   animation: page-reveal-in var(--duration-page-reveal) var(--ease-page-reveal)
     both;
   animation-delay: calc(var(--page-reveal-index) * var(--stagger-page-reveal));
 }
 
-.page-content > :nth-child(2) {
+.page-header + .page-content .blog-post > :nth-child(1) {
   --page-reveal-index: 1;
 }
 
-.page-content > :nth-child(3) {
+.blog-post > :nth-child(2) {
   --page-reveal-index: 2;
 }
 
-.page-content > :nth-child(4) {
+.blog-post > :nth-child(3) {
   --page-reveal-index: 3;
 }
 
-.page-content > :nth-child(5) {
+.blog-post > :nth-child(4) {
   --page-reveal-index: 4;
 }
 
-.page-content > :nth-child(6) {
+.blog-post > :nth-child(5) {
   --page-reveal-index: 5;
 }
 
-.page-header + .page-content > :nth-child(1) {
-  --page-reveal-index: 1;
+.blog-post > :nth-child(6) {
+  --page-reveal-index: 6;
 }
 
-.page-header + .page-content > :nth-child(2) {
-  --page-reveal-index: 2;
+.blog-post > :nth-child(7) {
+  --page-reveal-index: 7;
 }
 
-.page-header + .page-content > :nth-child(3) {
-  --page-reveal-index: 3;
+.blog-post > :nth-child(8) {
+  --page-reveal-index: 8;
 }
 
-.page-header + .page-content > :nth-child(4) {
-  --page-reveal-index: 4;
+.blog-post > :nth-child(9) {
+  --page-reveal-index: 9;
 }
 
-.page-header + .page-content > :nth-child(5) {
-  --page-reveal-index: 5;
+.blog-post > :nth-child(10) {
+  --page-reveal-index: 10;
+}
+
+.blog-post > :nth-child(11) {
+  --page-reveal-index: 11;
+}
+
+.blog-post > :nth-child(12) {
+  --page-reveal-index: 12;
+}
+
+.blog-post > :nth-child(13) {
+  --page-reveal-index: 13;
+}
+
+.blog-post > :nth-child(14) {
+  --page-reveal-index: 14;
+}
+
+.blog-post > :nth-child(15) {
+  --page-reveal-index: 15;
+}
+
+.blog-post > :nth-child(16) {
+  --page-reveal-index: 16;
+}
+
+.blog-post > :nth-child(17) {
+  --page-reveal-index: 17;
+}
+
+.blog-post > :nth-child(18) {
+  --page-reveal-index: 18;
+}
+
+.blog-post > :nth-child(19) {
+  --page-reveal-index: 19;
+}
+
+.blog-post > :nth-child(20) {
+  --page-reveal-index: 20;
 }
 
 @keyframes page-reveal-in {
@@ -409,8 +449,8 @@ html.theme-switching [class*='transition-colors'] {
     transition-duration: 0.01ms !important;
   }
 
-  .page-header,
-  .page-content > * {
+  [data-page-reveal],
+  .blog-post > * {
     animation: page-reveal-reduced var(--duration-fast) var(--ease-smooth-out)
       both;
     animation-delay: 0ms !important;

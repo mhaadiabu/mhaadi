@@ -2,6 +2,12 @@
 import { Icon } from 'astro-icon/components';
 import { stack, type StackItemCategory } from '../data/stack';
 
+interface Props {
+  revealStart?: number;
+}
+
+const { revealStart = 0 } = Astro.props;
+
 const groups: { label: string; categories: StackItemCategory[] }[] = [
   { label: 'language', categories: ['language'] },
   { label: 'frontend', categories: ['frontend'] },
@@ -18,8 +24,12 @@ const itemsFor = ({ categories }: { categories: StackItemCategory[] }) =>
 
 <div class='divide-border divide-y'>
   {
-    groups.map((group) => (
-      <div class='flex flex-col gap-2 px-4 py-3 sm:flex-row sm:items-center sm:gap-6 sm:px-6'>
+    groups.map((group, index) => (
+      <div
+        class='flex flex-col gap-2 px-4 py-3 sm:flex-row sm:items-center sm:gap-6 sm:px-6'
+        data-page-reveal
+        style={`--page-reveal-index: ${revealStart + index}`}
+      >
         <h3 class='text-muted m-0 w-full shrink-0 font-mono text-xs tracking-wide sm:w-36'>
           {group.label}
         </h3>

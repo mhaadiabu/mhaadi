@@ -2,7 +2,9 @@
 import { Icon } from 'astro-icon/components';
 import type { Package } from '../data/packages';
 
-interface Props extends Package {}
+interface Props extends Package {
+  revealIndex?: number;
+}
 
 const {
   title,
@@ -15,6 +17,7 @@ const {
   github,
   website,
   installCommand,
+  revealIndex,
 } = Astro.props;
 
 const fullName = scope ? `@${scope}/${name}` : name;
@@ -23,6 +26,10 @@ const cmd = installCommand ?? `npm install ${fullName}`;
 
 <article
   class='flex w-full flex-col gap-1.5 py-5 transition-opacity duration-[var(--duration-fast)] ease-[var(--ease-in-out)]'
+  data-page-reveal={revealIndex !== undefined ? true : undefined}
+  style={revealIndex !== undefined
+    ? `--page-reveal-index: ${revealIndex}`
+    : undefined}
 >
   <div class='flex items-baseline justify-between gap-4'>
     <h3 class='text-primary text-lg font-normal'>
