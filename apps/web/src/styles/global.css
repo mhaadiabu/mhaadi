@@ -102,8 +102,9 @@
   --duration-fast: 250ms;
   --duration-slow: 400ms;
   --duration-very-slow: 500ms;
-  --duration-page-reveal: 500ms;
-  --stagger-page-reveal: 50ms;
+  --duration-page-reveal: 800ms;
+  --stagger-page-reveal: 60ms;
+  --ease-page-reveal: cubic-bezier(0.2, 0.6, 0.2, 1);
   --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: ease-in-out;
   --ease-out: ease-out;
@@ -273,7 +274,7 @@
 .page-header,
 .page-content > * {
   --page-reveal-index: 0;
-  animation: page-reveal-in var(--duration-page-reveal) var(--ease-smooth-out)
+  animation: page-reveal-in var(--duration-page-reveal) var(--ease-page-reveal)
     both;
   animation-delay: calc(var(--page-reveal-index) * var(--stagger-page-reveal));
 }
@@ -322,7 +323,7 @@
   from {
     filter: blur(6px);
     opacity: 0;
-    transform: translateY(1rem);
+    transform: translateY(1.25rem);
   }
 
   to {
