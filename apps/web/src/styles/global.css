@@ -102,6 +102,8 @@
   --duration-fast: 250ms;
   --duration-slow: 400ms;
   --duration-very-slow: 500ms;
+  --duration-page-reveal: 500ms;
+  --stagger-page-reveal: 50ms;
   --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: ease-in-out;
   --ease-out: ease-out;
@@ -266,6 +268,80 @@
   transform: translateX(-50%);
 }
 
+/* Page-load reveals are applied to each top-level block so the layout settles
+   in reading order instead of making every nested element race in together. */
+.page-header,
+.page-content > * {
+  --page-reveal-index: 0;
+  animation: page-reveal-in var(--duration-page-reveal) var(--ease-smooth-out)
+    both;
+  animation-delay: calc(var(--page-reveal-index) * var(--stagger-page-reveal));
+}
+
+.page-content > :nth-child(2) {
+  --page-reveal-index: 1;
+}
+
+.page-content > :nth-child(3) {
+  --page-reveal-index: 2;
+}
+
+.page-content > :nth-child(4) {
+  --page-reveal-index: 3;
+}
+
+.page-content > :nth-child(5) {
+  --page-reveal-index: 4;
+}
+
+.page-content > :nth-child(6) {
+  --page-reveal-index: 5;
+}
+
+.page-header + .page-content > :nth-child(1) {
+  --page-reveal-index: 1;
+}
+
+.page-header + .page-content > :nth-child(2) {
+  --page-reveal-index: 2;
+}
+
+.page-header + .page-content > :nth-child(3) {
+  --page-reveal-index: 3;
+}
+
+.page-header + .page-content > :nth-child(4) {
+  --page-reveal-index: 4;
+}
+
+.page-header + .page-content > :nth-child(5) {
+  --page-reveal-index: 5;
+}
+
+@keyframes page-reveal-in {
+  from {
+    filter: blur(6px);
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  to {
+    filter: blur(0);
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes page-reveal-reduced {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 .link-underline,
 .blog-post a {
   position: relative;
@@ -330,5 +406,13 @@ html.theme-switching [class*='transition-colors'] {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .page-header,
+  .page-content > * {
+    animation: page-reveal-reduced var(--duration-fast) var(--ease-smooth-out)
+      both;
+    animation-delay: 0ms !important;
+    animation-duration: var(--duration-fast) !important;
   }
 }
