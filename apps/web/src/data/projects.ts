@@ -18,7 +18,7 @@ export const projects: Project[] = [
     title: 'Finora',
     description: 'A financial OS client and mcp for AI chatbots/agents',
     image: schoolThingImage,
-    stack: ['expo', 'clerk', 'typescript', 'hono', 'cloudflare-workers'],
+    stack: ['expo', 'clerk', 'typescript', 'hono', 'cloudflare-workers', 'neondb'],
     href: 'https://finora-web.vercel.app',
     github: 'https://github.com/mhaadiabu/finora',
     disabled: true,
