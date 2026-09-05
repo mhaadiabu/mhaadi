@@ -1,46 +1,71 @@
 ---
-title: how i got into software engineering
+title: i was looking for a movie when i found software
 date: August 28, 2026
 description: a not so short story
 ---
 
-i've always been quite the curious kid, tinkering and trying to break apart and understand the things i found interesting enough. and i've learnt quite a lot through that, one of which i'm going to tell you a story about.
+## the folder i wasn't looking for
 
-back in junior high, somewhere in the middle of my freshman year, i was trying to find a movie to watch during my spare time. i've been quite the movie freak for as long as i can remember. so i was scouring through my old man's hard drive to see if there was anything new on there. i was 11 then (2017). after searching and searching for close to an hour, i couldn't find a the folder that usually contained the movies. me being me, this is the point where i easily get sidetracked... and i did. i came across this folder, "Web Design Fundamentals," it said. i wanted to know what that was. i _had_ to know what that was. and so i opened it. it was a bunch of video tutorials. about 12 or 13 of them if i recall correctly. opened the first one in vlc and watched it. "01 - Introduction.mp4". it was amazing. it looked like magic to me. maybe it was. then i thought, "maybe i could do this too?" so i started the video over and followed along.
+i was looking for a movie on my dad's hard drive when i found a folder called "Web Design Fundamentals." i had been searching for close to an hour and couldn't find the folder that usually contained the movies. me being me, i got sidetracked. i was 11 then, in junior high, and i wanted to know what the folder was about. i _had_ to know.
 
-`new txt file -> rename to index.html -> open in notepad -> enter doctype declaration, opening and closing <html> tags -> ...` (if you're here reading this you probably get the flow)
+it contained around 12 or 13 video tutorials, if i remember correctly. i opened the first one in vlc. "01 - Introduction.mp4". it looked like magic to me. maybe it was. then i thought, "maybe i could do this too?" so i started the video over and followed along.
 
-when that was done, i opened the file in chrome and there it was... a bold sans-serif "Hello world!" i felt different. i felt excited. i felt like a god (i think we've all been there).
-that was the beginning of something. some i'd come to love. although after going through the entire tutorial and grasping HTML and CSS well enough, i thought i knew it all. what a sweet innocent child i was.
+`new txt file -> rename to index.html -> open in notepad -> enter doctype declaration, opening and closing <html> tags -> ...`
 
-fast forward to 2020, high school first year, COVID, lockdown. was about 10 months from when the lockdown was in effect to when i went back to school. i had taken a graphic design course and a helpdesk support course in that period.
-i also did end up taking a "web development fundametals" course which served as something of a refresher. i probably wouldn't have taken any of those courses if my dad hadn't asked me to. glad he did.
-pretty sure you'd be curious as to why havent met javascript yet. i'll tell you why it didn't come earlier.
-in that 2017-2020 period i had a separate collection of tutorials my dad had got for me. they covered everything from html to css to javascript and git. throw bootstrap in there as well. although not much of JavaScript, Git and Bootstrap made sense to me at the time. until i had taken that "refresher" course. that was how and when i started to fall in love with the weird and quirky JS.
+when i was done, i opened the file in chrome and there it was. a bold, sans-serif "Hello world!" i felt different. i felt excited. i felt like a god.
 
-_side shade: i had tried python across 2021. weird stuff. really weird stuff. it's one of those things you try only to never use again_
+that was the beginning of something i'd come to love. after going through the entire tutorial and grasping HTML and CSS well enough, i thought i knew it all. what a sweet, innocent child i was.
 
-now by this time. after i realised i knew nothing and learnt a bit of JS and DOM manipulation, Bootstrap, jQuery. i thought i knew it all (yeah, again. i know). i'd made a handful of things with HTML and CSS. but i didn't understand Git or version control anywhere near enough. heck, i didn't even know what GitHub was. and so when the laptop i used to work on crashed, i lost everything. i was without a machine from then up until January 2023 when i started uni. another turning point...
+## i thought i knew everything
 
-by then i didn't know a single framework or library (aside jQuery). i had tried Angular a few times and it didn't make sense to me (_side shade 2_). it actually made me feel like frameworks and libraries were unnecessary, made me assume react was the same. i put both Python and Angular on the same spectrum point for languages and frameworks respectively.
+when i started my first year of high school in 2020, COVID sent us into lockdown. i spent about 10 months away from school. during that time, i took a graphic design course and a helpdesk support course. i also took a "web development fundamentals" course that refreshed what i knew about HTML and CSS. i probably wouldn't have taken any of those courses if my dad hadn't asked me to. glad he did.
 
-June 2023. Google I/O Extended, Accra. my first tech meetup or event of any sort. was my second semester in level 100. age 17. was quite the eye opening event. got me more interested in LLMs, and Google tech. there i heard and learnt a little bit more on AI, React and Angular.
-there waas a brief session during the event meant for attendees to connect and interact with others. the host/mc, <a href='https://x.com/acquels_' target='_blank' rel='noopener noreferrer'>Akweley Abena Okine</a>, co-founder of BeevaAI, came up to me, this shy guy who stood alone in front and spoke to no one. she insisted i spoke to at least one person. i didn't have it in me to. so she took it upon herself to find someone who was free and brought them to me. cue, <a href='https://x.com/manuel__dev' target='_blank' rel='noopener noreferrer'>Emmanuel</a>, who was a third year at UG at the time. both introduced ourselves. then he asked what i was into and what stack i worked with.
-we can all guess by now what my response was :)... HTML, CSS and JS. pointed out it would be necessary to an extent that i picked up a framework if i wanted to get into the job space as a dev. i heeded. he gave me a few tips on how i could decided what i wanted to go with. by then i'd thought i would be an Angular dev one day, atrocious as Angular was (and still is).
+somewhere in that 2017 to 2020 stretch, my dad had also gotten me another collection of tutorials. they covered HTML, CSS, JavaScript, Git, and Bootstrap. i barely understood JavaScript, but Git and Bootstrap seemed to make sense to me at the time. the refresher course was when the weird and quirky JS started to click.
 
-by July there was a message going around WhatsApp group chats on campus. a second year was looking for devs or others who were interested enough in learning to collaborate on a project he'd wanted to work on. i got in touch with him. he gathered about 12 of us in all, some more dedicated and willing than others.
-we had a zoom meeting and <a href='https://github.com/mansir93' target='_blank' rel='noopener noreferrer'>Mansir</a> asked if any of us knew React. general answer was no. so he took as through the basics of writing React in about an hour or two. i fell in love with it. immediately felt loathe for Angular. and that is how i got into React.
+_side shade: i tried Python in 2021. weird stuff. really weird stuff. it's one of those things you try only to never use again._
 
-over time, i spent a lot of time just making ui in React. not long after i came across Nextjs. absolute work of art as a framework. tinkered a bit witih it trying to understand how to build with it. and i like to think i'm an Nextjs baby raised on RSCs. the first fullstack app i built used Appwrite for the backend. but i was still just a frontend guy.
-mid-2025, i heard about convex. looked it up, read on it. seemed particularly interesting. but i didn't just want to get into it immediately. the syntax looked close to something i'd seen before... tRPC. that's when my acceleration amplified. i built a tiny <a href='https://task-thing.onrender.com' target='_blank' rel='noopener noreferrer'>todo app</a> so i could learn and understand how SQL, tRPC and backend and api layers in general worked.
-i learnt a lot building and refining that small and somewhat irrelevant app. including `<ViewTransition>` that i seemed to never be able to get right. with time i came to find out async had to be facilitated by the framework and/or router in use for a React app.
+by then, i'd learnt some JavaScript, DOM manipulation, Bootstrap, and jQuery. i'd made a handful of things with HTML and CSS, but i still didn't understand Git or version control anywhere near well enough. i didn't even know what GitHub was.
 
-i'm not going to bore y'all with the rest of the details so i'll wrap this up real quick.
-we're in August 2026 and i've put out <a href='https://svg.mhaadi.dev' target='_blank' rel='noopener noreferrer'>BetterSVG</a> (an svg rendering library for React, React Native, Vue and Svelte) and <a href='https://orbs-native.mhaadi.dev' target='_blank' rel='noopener noreferrer'>Thinking Orbs Native</a> (a React Native port of <a href='https://orbs.jakubantalik.com' target='_blank' rel='noopener noreferrer'>Thinking orbs</a> by <a href='https://x.com/jakubantalik' target='_blank' rel='noopener noreferrer'>Jakub Antalik</a> and <a href='https://x.com/a_brinza' target='_blank' rel='noopener noreferrer'>Alex Brinza</a>).
-working on something really cool with <a href='https://x.com/okenneth2255' target='_blank' rel='noopener noreferrer'>Kenneth</a> in the meantime.
+then the laptop i used to work on crashed, and i lost everything. i had to stop coding because i had no computer. i felt frustrated without it. i understood the value of version control much later, when i had to show what i was able to do but had practically nothing to show. i was without a machine until January 2023, when i started university.
 
-it's been quite the journey for me and i'm really proud of how far i've come. from HTML and CSS days, to nerding out about LLMs, frameworks, compilers and runtimes. couldn't have pictured myself here even two years ago.
+i spent part of that time refining my HTML and CSS skills. even though i wasn't able to progress quickly, all those years on the basics paid off. they gave me a good intuition for layouts and decent UI, something i still rely on now.
 
-we're where we are, grinding for more progress. follow me on <a href='https://x.com/mhaadiabu' target='_blank' rel='noopener noreferrer'>X</a> to catch up on anything new i may or may not be building, if you will.
+by then, i didn't know a single framework or library aside from jQuery. i'd tried Angular a few times, but it still made no sense to me. it actually made frameworks and libraries feel unnecessary and made me assume React would be the same. in my head, Python and Angular belonged in the same category: things that made no sense to me.
+
+## a conversation i almost avoided
+
+june 2023. Google I/O Extended, Accra. it was my first tech meetup or event of any sort. i was 17 and in my second semester of level 100. the event got me more interested in LLMs and Google tech, and i heard a little more about AI, React, and Angular.
+
+there was a short session during the event for attendees to connect and interact with one another. the host and MC, <a href='https://x.com/acquels_' target='_blank' rel='noopener noreferrer'>Akweley Abena Okine</a>, co-founder of BeevaAI, came up to me. i was standing alone and speaking to no one. she insisted that i speak to at least one person. i didn't have it in me to speak to anyone, so she found someone who was free and brought him to me.
+
+cue, <a href='https://x.com/manuel__dev' target='_blank' rel='noopener noreferrer'>Emmanuel</a>, who was a third year at UG at the time. we introduced ourselves, then he asked what i was into and what stack i worked with.
+
+my answer was HTML, CSS, and JS. he told me i needed to pick up a framework if i wanted to get into the job space as a developer. i listened. he gave me a few tips on how i could decide what to learn next. at the time, i'd thought i'd become an Angular developer one day. in hindsight, that was a strange plan for someone who still couldn't make sense of Angular.
+
+by July, a message was going around WhatsApp group chats on campus. a second-year student was looking for developers and other people who were interested enough in learning to collaborate on a project. i got in touch with him.
+
+he gathered about 12 of us to work on a platform for university students. the idea was a hub that combined a social platform, a marketplace, and a job search service, with our school as the first target. i worked mostly on the frontend and UI, and contributed ideas about how parts of the platform could work better.
+
+the project eventually stopped because participation failed to pick up. still, it introduced me to React. during one of our Zoom meetings, <a href='https://github.com/mansir93' target='_blank' rel='noopener noreferrer'>Mansir</a> asked if any of us knew React. the general answer was no, so he took us through the basics in about an hour or two.
+
+Mansir made it possible for me to pick up and understand React much faster. he showed me how much fun it could be and introduced me to the world of UI frameworks and libraries. i fell in love with it. i immediately started to loathe Angular. and that is how i got into React.
+
+## finding the layers underneath
+
+after that, i spent a lot of time making UI in React. not long after, i came across Next.js. it pulled me further into understanding how applications were put together. and i like to think i'm a Next.js baby raised on RSCs.
+
+the first full-stack app i built used Appwrite for the backend, but i was still mostly a frontend guy. mid-2025, i heard about Convex and looked into it. its syntax reminded me of something i'd seen before: tRPC. i built a tiny <a href='https://task-thing.onrender.com' target='_blank' rel='noopener noreferrer'>todo app</a> so i could learn SQL, tRPC, and how backend and API layers worked.
+
+i learnt a lot while building and refining that app. it was small, but it gave me a reason to go beyond the UI and understand what was happening underneath it.
+
+later, a conversation with <a href='https://x.com/uxderrick' target='_blank' rel='noopener noreferrer'>Derrick</a> about the hassle of rendering SVGs in React and React Native led me to build <a href='https://svg.mhaadi.dev' target='_blank' rel='noopener noreferrer'>BetterSVG</a>. i traced the simpler library i remembered back to Astro's Astro Icon, then took it upon myself to build something that could offer that same ease of use across React, React Native, Vue, and Svelte.
+
+we're in August 2026, and i've also put out <a href='https://orbs-native.mhaadi.dev' target='_blank' rel='noopener noreferrer'>Thinking Orbs Native</a>, a React Native port of <a href='https://orbs.jakubantalik.com' target='_blank' rel='noopener noreferrer'>Thinking Orbs</a> by <a href='https://x.com/jakubantalik' target='_blank' rel='noopener noreferrer'>Jakub Antalik</a> and <a href='https://x.com/a_brinza' target='_blank' rel='noopener noreferrer'>Alex Brinza</a>.
+
+i'm also working on something with <a href='https://x.com/okenneth2255' target='_blank' rel='noopener noreferrer'>Kenneth</a>. i'll tell you about it soon enough.
+
+from the HTML and CSS days to nerding out about LLMs, frameworks, compilers, and runtimes, i couldn't have pictured myself here even two years ago.
+
+you can follow me on <a href='https://x.com/mhaadiabu' target='_blank' rel='noopener noreferrer'>X</a> if you want to keep up with what i build next.
 
 later, nerds!
