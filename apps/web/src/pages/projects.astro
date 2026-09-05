@@ -27,11 +27,7 @@ const sortedProjects = [...projects].sort((a, b) => {
     >
       {
         sortedProjects.map((project, index) => (
-          <ProjectCard
-            {...project}
-            priority={index === 0}
-            revealIndex={2 + index}
-          />
+          <ProjectCard {...project} revealIndex={2 + index} />
         ))
       }
     </div>

@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { iconLabels } from '../icons/labels';
 import type { Package } from '../data/packages';
 
 interface Props extends Package {
@@ -12,6 +13,7 @@ const {
   name,
   scope,
   description,
+  stack,
   version,
   npm,
   github,
@@ -87,6 +89,21 @@ const cmd = installCommand ?? `npm install ${fullName}`;
   </div>
 
   <p class='text-muted text-base'>{description}</p>
+
+  <div class='flex flex-wrap gap-2 pt-1'>
+    {
+      stack.map((tech) => (
+        <div
+          class='text-secondary hover:text-primary flex items-center gap-1.5 transition-colors duration-[var(--duration-fast)]'
+          data-tooltip={iconLabels[tech] ?? tech}
+          role='img'
+          aria-label={iconLabels[tech] ?? tech}
+        >
+          <Icon name={tech} class='size-4' />
+        </div>
+      ))
+    }
+  </div>
 
   <div class='text-muted flex items-center gap-2 pt-1 font-mono text-sm'>
     <code class='text-secondary min-w-0 truncate'>$ {cmd}</code>

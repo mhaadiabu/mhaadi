@@ -269,6 +269,25 @@
   transform: translateX(-50%);
 }
 
+.home-more-cell::before,
+.home-more-cell::after {
+  position: absolute;
+  left: 50%;
+  width: 100vw;
+  border-top: 1px solid var(--theme-border);
+  content: '';
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.home-more-cell::before {
+  top: 0;
+}
+
+.home-more-cell::after {
+  bottom: 0;
+}
+
 /* Reveal meaningful pieces in reading order. Parents stay static so their
    children can arrive independently instead of moving in one large chunk. */
 [data-page-reveal],

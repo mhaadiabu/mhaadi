@@ -118,7 +118,6 @@ const reveal = {
             ...featuredProjects.map((project, index) => (
               <ProjectCard
                 {...project}
-                priority={index === 0}
                 revealIndex={reveal.selectedProject + index}
               />
             )),
@@ -128,19 +127,23 @@ const reveal = {
           ]
         }
       </div>
-      <a
-        href='/projects'
-        data-astro-prefetch
+      <div
+        class='home-more-cell relative mt-3'
         data-page-reveal
         style={`--page-reveal-index: ${reveal.workMore}`}
-        class='link-underline text-muted hover:text-primary group mx-4 mt-3 inline-flex w-fit items-center gap-1.5 text-sm sm:mx-6'
       >
-        view all work
-        <Icon
-          name='arrow-right'
-          class='size-3 transition-transform duration-[var(--duration-quick)] ease-[var(--ease-smooth-out)] group-hover:translate-x-0.5'
-        />
-      </a>
+        <a
+          href='/projects'
+          data-astro-prefetch
+          class='link-underline text-muted hover:text-primary group flex w-full items-center gap-1.5 px-4 py-3 text-sm sm:px-6'
+        >
+          view all work
+          <Icon
+            name='arrow-right'
+            class='size-3 transition-transform duration-[var(--duration-quick)] ease-[var(--ease-smooth-out)] group-hover:translate-x-0.5'
+          />
+        </a>
+      </div>
     </div>
   </section>
 

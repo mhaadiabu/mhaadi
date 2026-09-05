@@ -12,7 +12,6 @@ interface Props {
   href?: string;
   github?: string;
   disabled?: boolean;
-  priority?: boolean;
   revealIndex?: number;
 }
 
@@ -24,7 +23,6 @@ const {
   href,
   github,
   disabled = false,
-  priority = false,
   revealIndex,
 } = Astro.props;
 ---
@@ -48,8 +46,8 @@ const {
           layout='constrained'
           widths={[320, 640, 1280]}
           sizes='(min-width: 48rem) 640px, 100vw'
-          loading={priority ? 'eager' : 'lazy'}
-          fetchpriority={priority ? 'high' : 'auto'}
+          loading='lazy'
+          fetchpriority='auto'
           class='w-full rounded-none object-cover blur-sm'
         />
         <div class='bg-bg/70 absolute inset-0 flex items-center justify-center'>
@@ -72,8 +70,8 @@ const {
           layout='constrained'
           widths={[320, 640, 1280]}
           sizes='(min-width: 48rem) 640px, 100vw'
-          loading={priority ? 'eager' : 'lazy'}
-          fetchpriority={priority ? 'high' : 'auto'}
+          loading='lazy'
+          fetchpriority='auto'
           class='w-full rounded-none object-cover opacity-80 transition-opacity duration-[var(--duration-very-slow)] ease-[var(--ease-out)] group-hover/lightbox:opacity-100 group-hover/project:opacity-100'
         />
       </button>

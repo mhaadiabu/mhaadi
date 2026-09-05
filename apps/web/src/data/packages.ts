@@ -7,6 +7,7 @@ export interface Package {
   name: string;
   scope?: string;
   description: string;
+  stack: string[];
   version: string;
   npm: string;
   github?: string;
@@ -21,6 +22,7 @@ export const packages: Package[] = [
     name: 'svg',
     scope: 'mhaadi',
     description: 'Inline SVG rendering for React, React Native, Vue & Svelte',
+    stack: ['reactjs', 'typescript'],
     version: '0.2.3',
     npm: 'https://www.npmjs.com/package/@mhaadi/svg',
     github: 'https://github.com/mhaadiabu/better-svg',
@@ -33,6 +35,7 @@ export const packages: Package[] = [
     name: 'thinking-orbs-native',
     scope: 'mhaadi',
     description: 'Animated thinking orbs for React Native.',
+    stack: ['reactjs', 'expo', 'typescript'],
     version: '0.1.1',
     npm: 'https://www.npmjs.com/package/@mhaadi/thinking-orbs-native',
     github: 'https://github.com/mhaadiabu/thinking-orbs-native',
