@@ -31,4 +31,5 @@ export const iconLabels: Record<string, string> = {
   'tanstack-query': 'TanStack Query',
   astro: 'Astro',
   expo: 'Expo',
+  svelte: 'Svelte',
 };
