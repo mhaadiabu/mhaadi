@@ -31,4 +31,6 @@ export type Stack =
   | 'neondb'
   | 'tanstack-query'
   | 'astro'
-  | 'svelte';
+  | 'svelte'
+  | 'hono'
+  | 'cloudflare-workers';

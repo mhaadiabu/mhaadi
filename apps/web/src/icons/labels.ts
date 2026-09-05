@@ -32,4 +32,6 @@ export const iconLabels: Record<string, string> = {
   astro: 'Astro',
   expo: 'Expo',
   svelte: 'Svelte',
+  hono: 'Hono',
+  'cloudflare-workers': 'Cloudflare Workers',
 };

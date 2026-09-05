@@ -15,6 +15,16 @@ export interface Project {
 export const projects: Project[] = [
   {
     type: 'project',
+    title: 'Finora',
+    description: 'A financial OS client and mcp for AI chatbots/agents',
+    image: schoolThingImage,
+    stack: ['expo', 'clerk', 'typescript', 'hono', 'cloudflare-workers'],
+    href: 'https://finora-web.vercel.app',
+    github: 'https://github.com/mhaadiabu/finora',
+    disabled: true,
+  },
+  {
+    type: 'project',
     title: 'UPSA HMS',
     description:
       'A comprehensive Hospital Management System built for the UPSA Ewuntoma Clinic.',
@@ -30,16 +40,6 @@ export const projects: Project[] = [
     image: schoolThingImage,
     stack: ['tanstack', 'convex'],
     href: 'https://school-thing-zeta.vercel.app',
-    disabled: true,
-  },
-  {
-    type: 'project',
-    title: 'Finora',
-    description: 'A financial OS client and mcp for AI chatbots/agents',
-    image: schoolThingImage,
-    stack: ['expo', 'clerk', 'typescript'],
-    href: 'https://finora-web.vercel.app',
-    github: 'https://github.com/mhaadiabu/finora',
     disabled: true,
   },
   {
