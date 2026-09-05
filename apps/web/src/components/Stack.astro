@@ -35,7 +35,7 @@ const itemsFor = ({ categories }: { categories: StackItemCategory[] }) =>
         </h3>
         <div class='m-0 flex flex-wrap gap-2'>
           {itemsFor(group).map(({ name, icon }) => (
-            <span class='border-border text-muted hover:bg-muted/10 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 transition-colors duration-(--duration-fast)'>
+            <span class='border-border text-muted hover:bg-muted/10 cursor-default inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 transition-colors duration-(--duration-fast)'>
               <Icon name={icon} class='size-4 shrink-0' />
               <span class='text-xs'>{name}</span>
             </span>

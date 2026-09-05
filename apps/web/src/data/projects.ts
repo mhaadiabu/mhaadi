@@ -1,4 +1,5 @@
 export type Stack =
+|'expo'
   | 'nextjs'
   | 'tanstack'
   | 'reactjs'
@@ -56,11 +57,21 @@ export const projects: Project[] = [
     type: 'project',
     title: 'SchoolThing',
     description:
-      'A unified school management system for tertiary institutions. It brings coursework, announcements, messaging, and other student workflows into one focused experience.',
+      'A unified school management system for tertiary institutions bringing student workflows into one focused experience.',
     image: schoolThingImage,
     stack: ['tanstack', 'convex'],
     href: 'https://school-thing-zeta.vercel.app',
     disabled: true,
+  },
+  {
+    type: 'project',
+    title: 'Finora',
+    description: 'A financial OS client and mcp for AI chatbots/agents',
+    image: schoolThingImage,
+    stack: ['expo', 'clerk', 'typescript'],
+    href: 'https://finora-web.vercel.app',
+    github: 'https://github.com/mhaadiabu/finora',
+    disabled: true
   },
   {
     type: 'project',
