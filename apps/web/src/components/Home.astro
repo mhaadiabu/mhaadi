@@ -22,15 +22,14 @@ const reveal = {
   whatList: 5,
   selectedHeading: 9,
   selectedProject: 10,
-  selectedMore: 10 + featuredProjects.length,
-  packagesHeading: 11 + featuredProjects.length,
-  packages: 12 + featuredProjects.length,
-  writesHeading: 12 + featuredProjects.length + packages.length,
-  writes: 13 + featuredProjects.length + packages.length,
-  writesMore: 13 + featuredProjects.length + packages.length + blogPosts.length,
+  packages: 10 + featuredProjects.length,
+  workMore: 10 + featuredProjects.length + packages.length,
+  writesHeading: 11 + featuredProjects.length + packages.length,
+  writes: 12 + featuredProjects.length + packages.length,
+  writesMore: 12 + featuredProjects.length + packages.length + blogPosts.length,
   stackHeading:
-    14 + featuredProjects.length + packages.length + blogPosts.length,
-  stack: 15 + featuredProjects.length + packages.length + blogPosts.length,
+    13 + featuredProjects.length + packages.length + blogPosts.length,
+  stack: 14 + featuredProjects.length + packages.length + blogPosts.length,
 };
 ---
 
@@ -115,55 +114,33 @@ const reveal = {
         class='dim-list mt-6 flex w-full flex-col [&>*]:relative [&>article]:px-4 sm:[&>article]:px-6'
       >
         {
-          featuredProjects.map((project, index) => (
-            <ProjectCard
-              {...project}
-              priority={index === 0}
-              revealIndex={reveal.selectedProject + index}
-            />
-          ))
+          [
+            ...featuredProjects.map((project, index) => (
+              <ProjectCard
+                {...project}
+                priority={index === 0}
+                revealIndex={reveal.selectedProject + index}
+              />
+            )),
+            ...packages.map((pkg, index) => (
+              <PackageCard {...pkg} revealIndex={reveal.packages + index} />
+            )),
+          ]
         }
       </div>
-      <p
-        class='mx-4 pt-4 sm:mx-6'
+      <a
+        href='/projects'
+        data-astro-prefetch
         data-page-reveal
-        style={`--page-reveal-index: ${reveal.selectedMore}`}
+        style={`--page-reveal-index: ${reveal.workMore}`}
+        class='link-underline text-muted hover:text-primary group mx-4 mt-3 inline-flex w-fit items-center gap-1.5 text-sm sm:mx-6'
       >
-        interested in the rest of my projects? {' '}
-        <a
-          href='/projects'
-          data-astro-prefetch
-          class='link-underline group text-secondary hover:text-primary inline-flex items-center gap-1'
-        >
-          check them out <Icon
-            name='arrow-right'
-            class='size-3.5 transition-transform duration-[var(--duration-quick)] ease-[var(--ease-smooth-out)] group-hover:translate-x-0.5'
-          />
-        </a>
-      </p>
-    </div>
-  </section>
-
-  <section class='flex w-full flex-col'>
-    <div
-      class='home-section-head relative px-4 pt-11 pb-3 sm:px-6'
-      data-page-reveal
-      style={`--page-reveal-index: ${reveal.packagesHeading}`}
-    >
-      <h2 class='m-0 text-lg font-normal'>
-        <span class='text-primary'>open source packages</span>
-      </h2>
-    </div>
-    <div class='flex w-full flex-col pb-12'>
-      <div
-        class='dim-list mt-6 flex w-full flex-col [&>*]:relative [&>article]:px-4 sm:[&>article]:px-6'
-      >
-        {
-          packages.map((pkg, index) => (
-            <PackageCard {...pkg} revealIndex={reveal.packages + index} />
-          ))
-        }
-      </div>
+        view all work
+        <Icon
+          name='arrow-right'
+          class='size-3 transition-transform duration-[var(--duration-quick)] ease-[var(--ease-smooth-out)] group-hover:translate-x-0.5'
+        />
+      </a>
     </div>
   </section>
 
