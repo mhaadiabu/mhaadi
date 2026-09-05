@@ -54,7 +54,7 @@ Mansir made it possible for me to pick up and understand React much faster. he s
 
 after that, i spent a lot of time making UI in React. not long after, i came across Next.js. it pulled me further into understanding how applications were put together. and i like to think i'm a Next.js baby raised on RSCs.
 
-the first full-stack app i built used Appwrite for the backend, but i was still mostly a frontend guy. early in 2025, i was working on a project that used Appwrite for its backend and auth. i couldn't figure out how to gate authenticated parts of the app, and i didn't properly understand context providers either. <a href='https://x.com/okenneth2255' target='_blank' rel='noopener noreferrer'>Kenneth</a> put together a template that i could refer to while figuring it out. it helped me get the auth flow right.
+early in 2025, i was working on my first full-stack app. it used Appwrite for its backend and auth, but i was still mostly a frontend guy. i couldn't figure out how to gate authenticated parts of the app, and i didn't properly understand context providers either. <a href='https://x.com/okenneth2255' target='_blank' rel='noopener noreferrer'>Kenneth</a> put together a template that i could refer to while figuring it out. it helped me get the auth flow right.
 
 mid-2025, i heard about Convex and looked into it. its syntax reminded me of something i'd seen before: tRPC. i built a tiny <a href='https://task-thing.onrender.com' target='_blank' rel='noopener noreferrer'>todo app</a> so i could learn SQL, tRPC, and how backend and API layers worked.
 
