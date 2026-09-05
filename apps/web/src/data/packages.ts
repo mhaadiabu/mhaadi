@@ -1,3 +1,5 @@
+import type { Stack } from './types';
+
 export interface Package {
   type: 'package';
   /** display title, e.g. "BetterSVG" — falls back to the package name */
@@ -7,7 +9,7 @@ export interface Package {
   name: string;
   scope?: string;
   description: string;
-  stack: string[];
+  stack: Stack[];
   version: string;
   npm: string;
   github?: string;

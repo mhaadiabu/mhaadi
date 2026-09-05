@@ -1,35 +1,4 @@
-export type Stack =
-|'expo'
-  | 'nextjs'
-  | 'tanstack'
-  | 'reactjs'
-  | 'typescript'
-  | 'javascript'
-  | 'tailwindcss'
-  | 'trpc'
-  | 'convex'
-  | 'vite'
-  | 'shadcn-ui'
-  | 'prisma'
-  | 'drizzle'
-  | 'nodejs'
-  | 'express'
-  | 'mongodb'
-  | 'postgresql'
-  | 'redis'
-  | 'graphql'
-  | 'docker'
-  | 'aws'
-  | 'vercel'
-  | 'supabase'
-  | 'firebase'
-  | 'clerk'
-  | 'zod'
-  | 'zustand'
-  | 'framer-motion'
-  | 'radix-ui'
-  | 'neondb'
-  | 'tanstack-query';
+import type { Stack } from './types';
 
 export interface Project {
   type: 'project';
@@ -71,7 +40,7 @@ export const projects: Project[] = [
     stack: ['expo', 'clerk', 'typescript'],
     href: 'https://finora-web.vercel.app',
     github: 'https://github.com/mhaadiabu/finora',
-    disabled: true
+    disabled: true,
   },
   {
     type: 'project',
