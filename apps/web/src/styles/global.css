@@ -269,8 +269,7 @@
   transform: translateX(-50%);
 }
 
-.home-more-cell::before,
-.home-more-cell::after {
+.home-work-list::after {
   position: absolute;
   left: 50%;
   width: 100vw;
@@ -278,13 +277,6 @@
   content: '';
   pointer-events: none;
   transform: translateX(-50%);
-}
-
-.home-more-cell::before {
-  top: 0;
-}
-
-.home-more-cell::after {
   bottom: 0;
 }
 

@@ -111,7 +111,7 @@ const reveal = {
     </div>
     <div class='flex w-full flex-col pb-12'>
       <div
-        class='dim-list mt-6 flex w-full flex-col [&>*]:relative [&>article]:px-4 sm:[&>article]:px-6'
+        class='home-work-list dim-list relative mt-6 flex w-full flex-col [&>*]:relative [&>article]:px-4 sm:[&>article]:px-6'
       >
         {
           [
@@ -128,16 +128,16 @@ const reveal = {
         }
       </div>
       <div
-        class='home-more-cell relative mt-3'
+        class='home-more-cell relative pb-12'
         data-page-reveal
         style={`--page-reveal-index: ${reveal.workMore}`}
       >
         <a
           href='/projects'
           data-astro-prefetch
-          class='link-underline text-muted hover:text-primary group flex w-full items-center gap-1.5 px-4 py-3 text-sm sm:px-6'
+          class='text-muted hover:text-primary group mt-3 flex w-full items-center gap-1.5 px-4 py-3 text-sm sm:px-6'
         >
-          view all work
+          <span class='link-underline'>view all work</span>
           <Icon
             name='arrow-right'
             class='size-3 transition-transform duration-[var(--duration-quick)] ease-[var(--ease-smooth-out)] group-hover:translate-x-0.5'
