@@ -17,6 +17,8 @@ interface Props {
   time?: number;
   hideDescription?: boolean;
   hideFooter?: boolean;
+  titleTransitionName?: string;
+  dateTransitionName?: string;
 }
 
 const {
@@ -29,6 +31,8 @@ const {
   time,
   hideDescription = false,
   hideFooter = false,
+  titleTransitionName,
+  dateTransitionName,
 } = Astro.props;
 const isHomepage = Astro.url.pathname === '/';
 const showBackButton = !isHomepage && !centered;
@@ -99,7 +103,7 @@ const ogImage = new URL('/og-image.png', site.url);
           showBackButton && (
             <header
               class='page-header relative flex w-full flex-col gap-4 px-4 pt-12 pb-8 sm:px-6'
-              data-page-reveal
+              data-page-reveal={titleTransitionName ? undefined : true}
               style='--page-reveal-index: 0'
             >
               <div class='flex flex-col gap-1.5'>
@@ -118,11 +122,12 @@ const ogImage = new URL('/og-image.png', site.url);
                     </span>
                   )}
                 </a>
-                <h1>{title}</h1>
+                <h1 transition:name={titleTransitionName}>{title}</h1>
                 {date && (
                   <time
                     class='text-secondary font-mono text-sm'
                     datetime={dateTime}
+                    transition:name={dateTransitionName}
                   >
                     {date}
                   </time>

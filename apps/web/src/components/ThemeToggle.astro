@@ -33,6 +33,9 @@
 
 <script>
   function setupThemeToggle() {
+    if (document.documentElement.dataset.themeToggleReady) return;
+    document.documentElement.dataset.themeToggleReady = 'true';
+
     const toggle = document.getElementById('theme-toggle');
     const sunIcon = document.getElementById('sun-icon');
     const moonIcon = document.getElementById('moon-icon');
@@ -84,26 +87,79 @@
       updateIcons(theme);
     };
 
-    const switchTheme = () => {
+    const switchTheme = (origin?: { x: number; y: number }) => {
       const documentRoot = document.documentElement;
       const current = document.documentElement.classList.contains('dark')
         ? 'dark'
         : 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+
+      const calm =
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        typeof document.startViewTransition !== 'function';
 
       documentRoot.classList.add('theme-switching');
-      setTheme(current === 'dark' ? 'light' : 'dark');
       if (themeTransitionTimer) window.clearTimeout(themeTransitionTimer);
-      themeTransitionTimer = window.setTimeout(() => {
-        documentRoot.classList.remove('theme-switching');
-        themeTransitionTimer = undefined;
-      }, 250);
+      themeTransitionTimer = window.setTimeout(
+        () => {
+          documentRoot.classList.remove('theme-switching');
+          themeTransitionTimer = undefined;
+        },
+        calm ? 250 : 550,
+      );
+
+      // calm path: instant swap, palette crossfades via CSS vars
+      if (calm || document.activeViewTransition) {
+        setTheme(next);
+        return;
+      }
+
+      // wipe path: new theme reveals as a circle from the toggle point.
+      // default root crossfade is suppressed by `html.theme-wiping` CSS.
+      const rect = toggle.getBoundingClientRect();
+      const x = origin?.x ?? rect.left + rect.width / 2;
+      const y = origin?.y ?? rect.top + rect.height / 2;
+      const radius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y),
+      );
+      documentRoot.classList.add('theme-wiping');
+      const transition = document.startViewTransition(() => {
+        setTheme(next);
+      });
+      void transition.ready.then(() => {
+        try {
+          documentRoot.animate(
+            {
+              clipPath: [
+                `circle(0px at ${x}px ${y}px)`,
+                `circle(${radius}px at ${x}px ${y}px)`,
+              ],
+            },
+            {
+              duration: 450,
+              easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+              pseudoElement: '::view-transition-new(root)',
+            },
+          );
+        } catch {
+          // WAAPI on the pseudo failed: fall back to the instant swap
+          // (root crossfade stays suppressed for this transition only)
+          documentRoot.classList.remove('theme-wiping');
+        }
+      });
+      void transition.finished.finally(() => {
+        documentRoot.classList.remove('theme-wiping');
+      });
     };
 
     const currentTheme = getTheme();
     setTheme(currentTheme);
     updateScrollState();
 
-    toggle.addEventListener('click', switchTheme);
+    toggle.addEventListener('click', (event) => {
+      switchTheme({ x: event.clientX, y: event.clientY });
+    });
     // 'd' toggles the theme from anywhere, unless the user is typing
     document.addEventListener('keydown', (event) => {
       if (event.key !== 'd' || event.metaKey || event.ctrlKey || event.altKey)

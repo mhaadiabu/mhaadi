@@ -139,6 +139,12 @@
   navigation: auto;
 }
 
+/* theme wipe owns the root animation; the default crossfade would double it */
+html.theme-wiping::view-transition-old(root),
+html.theme-wiping::view-transition-new(root) {
+  animation: none;
+}
+
 /* physical borders, not border-inline — the logical shorthand doesn't
    paint on the legacy WebKit builds we still support */
 .site-frame {
