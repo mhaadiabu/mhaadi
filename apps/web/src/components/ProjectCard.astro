@@ -26,6 +26,9 @@ const {
   disabled = false,
   revealIndex,
 } = Astro.props;
+
+// unique shared-element name so the thumbnail can morph into the lightbox
+const shotName = `shot-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 ---
 
 <article
@@ -61,6 +64,7 @@ const {
       <button
         type='button'
         data-lightbox
+        data-lightbox-name={shotName}
         aria-haspopup='dialog'
         aria-label={`Open ${title} screenshot fullscreen`}
         class='group/lightbox relative shrink-0 cursor-pointer sm:w-36'
@@ -81,27 +85,23 @@ const {
 
   <script>
     // fullscreen lightbox for project screenshots
-    // delegated so buttons keep working after view-transition DOM swaps
-    let lightbox: HTMLElement | null = null;
-    let activeTrigger: HTMLElement | null = null;
+    // delegated so buttons keep working after view-transition DOM swaps.
+    // open/close morphs between thumbnail and lightbox via a same-page
+    // view transition; reduced motion or missing API falls back to instant.
+    function setupLightbox() {
+      // guarded: the script re-runs after client-side navigation, so only
+      // the first instance wires up the delegated listeners.
+      if (document.documentElement.dataset.lightboxReady) return;
+      document.documentElement.dataset.lightboxReady = 'true';
+      let lightbox: HTMLElement | null = null;
+      let activeTrigger: HTMLElement | null = null;
 
-    const closeLightbox = () => {
-      if (!lightbox) return;
-      lightbox.classList.replace('flex', 'hidden');
-      lightbox.setAttribute('aria-hidden', 'true');
-      lightbox.querySelector('img')?.removeAttribute('src');
-      document.body.style.overflow = '';
-      activeTrigger?.focus();
-      activeTrigger = null;
-    };
+      const calmMotion = () =>
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        typeof document.startViewTransition !== 'function';
 
-    document.addEventListener('click', (event) => {
-      const button = (event.target as HTMLElement).closest<HTMLElement>(
-        '[data-lightbox]',
-      );
-      if (!button) return;
-
-      if (!lightbox) {
+      const ensureLightbox = () => {
+        if (lightbox) return lightbox;
         lightbox = document.createElement('div');
         lightbox.className =
           'fixed inset-0 z-50 hidden items-center justify-center bg-bg/90 p-4 backdrop-blur-sm';
@@ -119,41 +119,134 @@ const {
           }
         });
         document.body.append(lightbox);
-      }
+        return lightbox;
+      };
 
-      const img = button.querySelector('img');
-      if (!img) return;
-      const lightboxImg = lightbox.querySelector('img')!;
-      // currentSrc is the thumbnail-sized variant; the lightbox wants the largest
-      const largest =
-        img.srcset
-          .split(',')
-          .map((entry) => entry.trim().split(/\s+/))
-          .sort(
-            (a, b) => parseInt(b[1] ?? '0', 10) - parseInt(a[1] ?? '0', 10),
-          )[0]?.[0] ?? img.src;
-      lightboxImg.src = largest;
-      lightboxImg.alt = img.alt;
-      activeTrigger = button;
-      lightbox.setAttribute('aria-hidden', 'false');
-      lightbox.classList.replace('hidden', 'flex');
-      // lock page scroll while the modal is open
-      document.body.style.overflow = 'hidden';
-      lightbox
-        .querySelector<HTMLButtonElement>('[data-lightbox-close]')
-        ?.focus();
-    });
+      const lightboxImg = () => ensureLightbox().querySelector('img')!;
 
-    document.addEventListener('keydown', (event) => {
-      if (!lightbox || lightbox.classList.contains('hidden')) return;
-      if (event.key === 'Escape') closeLightbox();
-      if (event.key === 'Tab') {
-        event.preventDefault();
-        lightbox
-          .querySelector<HTMLButtonElement>('[data-lightbox-close]')
-          ?.focus();
-      }
-    });
+      // wait for the full-size image (bounded) so the new snapshot isn't empty
+      const awaitFullImage = (img: HTMLImageElement) => {
+        if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+        return Promise.race([
+          new Promise((resolve) => {
+            img.addEventListener('load', resolve, { once: true });
+            img.addEventListener('error', resolve, { once: true });
+          }),
+          new Promise((resolve) => window.setTimeout(resolve, 700)),
+        ]);
+      };
+
+      const setShotNames = (
+        trigger: HTMLElement | null,
+        name: string | null,
+      ) => {
+        const img = lightboxImg();
+        if (trigger) {
+          if (name) trigger.style.viewTransitionName = name;
+          else trigger.style.removeProperty('view-transition-name');
+        }
+        if (name) img.style.viewTransitionName = name;
+        else img.style.removeProperty('view-transition-name');
+      };
+
+      const openLightbox = (button: HTMLElement) => {
+        const box = ensureLightbox();
+        const img = button.querySelector('img');
+        if (!img) return;
+        const fullImg = lightboxImg();
+        // currentSrc is the thumbnail-sized variant; the lightbox wants the largest
+        const largest =
+          img.srcset
+            .split(',')
+            .map((entry) => entry.trim().split(/\s+/))
+            .sort(
+              (a, b) => parseInt(b[1] ?? '0', 10) - parseInt(a[1] ?? '0', 10),
+            )[0]?.[0] ?? img.src;
+        fullImg.src = largest;
+        fullImg.alt = img.alt;
+        activeTrigger = button;
+
+        const show = () => {
+          button.style.removeProperty('view-transition-name');
+          box.setAttribute('aria-hidden', 'false');
+          box.classList.replace('hidden', 'flex');
+          // lock page scroll while the modal is open
+          document.body.style.overflow = 'hidden';
+          box
+            .querySelector<HTMLButtonElement>('[data-lightbox-close]')
+            ?.focus();
+        };
+
+        const name = button.getAttribute('data-lightbox-name');
+        if (!name || calmMotion()) {
+          show();
+          return;
+        }
+        // name only the thumbnail until the transition starts: a display:none
+        // element with the same name still counts as a duplicate and kills
+        // the pair. the image takes the name over inside the update callback.
+        button.style.viewTransitionName = name;
+        void awaitFullImage(fullImg).then(() => {
+          document.startViewTransition(() => {
+            fullImg.style.viewTransitionName = name;
+            show();
+          });
+        });
+      };
+
+      const closeLightbox = () => {
+        const box = lightbox;
+        const trigger = activeTrigger;
+        if (!box || box.classList.contains('hidden')) return;
+
+        const hide = () => {
+          // hand the name back to the thumbnail for the return flight
+          if (trigger) {
+            const name = trigger.getAttribute('data-lightbox-name');
+            if (name) trigger.style.viewTransitionName = name;
+          }
+          lightboxImg().style.removeProperty('view-transition-name');
+          box.setAttribute('aria-hidden', 'true');
+          box.classList.replace('flex', 'hidden');
+          document.body.style.overflow = '';
+          trigger?.focus();
+          activeTrigger = null;
+        };
+
+        if (calmMotion() || !trigger?.getAttribute('data-lightbox-name')) {
+          hide();
+          lightboxImg().removeAttribute('src');
+          setShotNames(trigger, null);
+          return;
+        }
+        const transition = document.startViewTransition(hide);
+        void transition.finished.finally(() => {
+          lightboxImg().removeAttribute('src');
+          setShotNames(trigger, null);
+        });
+      };
+
+      document.addEventListener('click', (event) => {
+        const button = (event.target as HTMLElement).closest<HTMLElement>(
+          '[data-lightbox]',
+        );
+        if (!button) return;
+        openLightbox(button);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (!lightbox || lightbox.classList.contains('hidden')) return;
+        if (event.key === 'Escape') closeLightbox();
+        if (event.key === 'Tab') {
+          event.preventDefault();
+          lightbox
+            .querySelector<HTMLButtonElement>('[data-lightbox-close]')
+            ?.focus();
+        }
+      });
+    }
+
+    setupLightbox();
   </script>
 
   <div class='flex min-w-0 flex-1 flex-col gap-1.5'>
