@@ -14,16 +14,17 @@ const posts = (await getCollection('blog')).sort(
 >
   <div class='blog-list -mx-4 flex w-auto flex-col sm:-mx-6 [&>*]:relative'>
     {
-      posts.map((post, index) => (
+      posts.map((post) => (
         <a
           href={`/blog/${post.id}`}
           data-astro-prefetch
-          data-page-reveal
-          style={`--page-reveal-index: ${1 + index}`}
           class='flex w-full flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4 sm:px-6'
         >
           <div class='flex flex-col gap-0.5'>
-            <span class='text-primary text-lg font-normal'>
+            <span
+              class='text-primary text-lg font-normal'
+              transition:name={`blog-title-${post.id}`}
+            >
               {post.data.title}
             </span>
             <span class='text-muted line-clamp-3 text-base'>
@@ -33,6 +34,7 @@ const posts = (await getCollection('blog')).sort(
           <time
             datetime={post.data.date.toISOString()}
             class='text-muted pt-1.5 font-mono text-sm whitespace-nowrap tabular-nums sm:pt-0'
+            transition:name={`blog-date-${post.id}`}
           >
             {formatDate(post.data.date)}
           </time>

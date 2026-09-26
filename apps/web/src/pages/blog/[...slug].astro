@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection, render } from 'astro:content';
+import { formatDate } from '../../utils/formatDate';
 import { readingTime } from '../../utils/readingTime';
 
 export async function getStaticPaths() {
@@ -19,17 +20,15 @@ const time = readingTime(post.body ?? '');
 
 <Layout
   title={post.data.title}
-  date={post.data.date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })}
+  date={formatDate(post.data.date)}
   dateTime={post.data.date.toISOString()}
   time={time}
   description={post.data.description}
   hideDescription
   hideFooter
   backTo='/blog'
+  titleTransitionName={`blog-title-${post.id}`}
+  dateTransitionName={`blog-date-${post.id}`}
 >
   <article class='blog-post flex flex-col gap-4'>
     <Content />
