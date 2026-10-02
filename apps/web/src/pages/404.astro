@@ -1,6 +1,6 @@
 ---
+import SVG from '@mhaadi/svg/astro';
 import Layout from '../layouts/Layout.astro';
-import { Icon } from 'astro-icon/components';
 ---
 
 <Layout title='404' centered>
@@ -22,7 +22,7 @@ import { Icon } from 'astro-icon/components';
     style='--page-reveal-index: 2'
     class='link-underline group text-secondary hover:text-primary inline-flex items-center gap-1'
   >
-    <Icon
+    <SVG
       name='arrow-left'
       class='size-4 transition-transform duration-[var(--duration-quick)] ease-[var(--ease-smooth-out)] group-hover:-translate-x-0.5'
     />

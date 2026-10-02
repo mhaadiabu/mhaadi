@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Icon } from 'astro-icon/components';
+import SVG from '@mhaadi/svg/astro';
 import { Image } from 'astro:assets';
 import face from '../assets/face.png';
 import ProjectCard from '../components/ProjectCard.astro';
@@ -68,7 +68,7 @@ const reveal = {
             class='link-underline text-secondary hover:text-primary inline-flex items-center gap-1 text-sm'
           >
             see selected work
-            <Icon name='arrow-right' class='size-3.5 rotate-90' />
+            <SVG name='arrow-right' class='size-3.5 rotate-90' />
           </a>
           <a
             href='/blog'
@@ -76,7 +76,7 @@ const reveal = {
             class='link-underline text-secondary hover:text-primary inline-flex items-center gap-1 text-sm'
           >
             read the blog
-            <Icon name='arrow-top-right' class='size-3.5' />
+            <SVG name='arrow-top-right' class='size-3.5' />
           </a>
         </nav>
         <GitHubContributions revealIndex={3} />
@@ -138,7 +138,7 @@ const reveal = {
           class='text-muted hover:text-primary group mt-3 flex w-full items-center gap-1.5 px-4 py-3 text-sm sm:px-6'
         >
           <span class='link-underline'>view all work</span>
-          <Icon
+          <SVG
             name='arrow-right'
             class='size-3 transition-transform duration-[var(--duration-quick)] ease-[var(--ease-smooth-out)] group-hover:translate-x-0.5'
           />
@@ -198,7 +198,7 @@ const reveal = {
         class='link-underline text-muted hover:text-primary group mx-4 mt-3 inline-flex w-fit items-center gap-1.5 text-sm sm:mx-6'
       >
         view all posts
-        <Icon
+        <SVG
           name='arrow-right'
           class='size-3 transition-transform duration-[var(--duration-quick)] ease-[var(--ease-smooth-out)] group-hover:translate-x-0.5'
         />

@@ -4,7 +4,7 @@ export interface Package {
   type: 'package';
   /** display title, e.g. "BetterSVG" — falls back to the package name */
   title?: string;
-  /** astro-icon name shown next to the title */
+  /** Local SVG name shown next to the title */
   icon?: string;
   name: string;
   scope?: string;

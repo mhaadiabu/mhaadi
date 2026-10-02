@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-icon/components';
+import SVG from '@mhaadi/svg/astro';
 import { iconLabels } from '../icons/labels';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
@@ -261,7 +261,7 @@ const shotName = `shot-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
               rel='noopener noreferrer'
               class='text-muted hover:text-primary inline-flex size-11 shrink-0 items-center justify-center transition-colors duration-[var(--duration-fast)]'
             >
-              <Icon name='github-logo' class='size-4' />
+              <SVG name='github-logo' class='size-4' />
               <span class='sr-only'>GitHub repository</span>
             </a>
           )
@@ -274,7 +274,7 @@ const shotName = `shot-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
               rel='noopener noreferrer'
               class='text-muted hover:text-primary group/link inline-flex size-11 shrink-0 items-center justify-center transition-colors duration-[var(--duration-fast)]'
             >
-              <Icon
+              <SVG
                 name='arrow-top-right'
                 class='size-4 transition-transform duration-[var(--duration-quick)] ease-[var(--ease-smooth-out)] group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5'
               />
@@ -296,7 +296,7 @@ const shotName = `shot-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
             role='img'
             aria-label={iconLabels[tech] ?? tech}
           >
-            <Icon name={tech} class='size-4' />
+            <SVG name={tech} class='size-4' />
           </div>
         ))
       }

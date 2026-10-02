@@ -1,7 +1,7 @@
 // @ts-check
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
-import icon from 'astro-icon';
+import svg from '@mhaadi/svg/astro/integration';
 import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   output: 'static',
@@ -17,5 +17,5 @@ export default defineConfig({
       cssMinify: 'esbuild',
     },
   },
-  integrations: [icon(), sitemap()],
+  integrations: [sitemap(), svg({ dirs: ['src/icons'] })],
 });

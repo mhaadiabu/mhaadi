@@ -1,6 +1,6 @@
 ---
-import { Icon } from 'astro-icon/components';
 import { stack, type StackItemCategory } from '../data/stack';
+import SVG from '@mhaadi/svg/astro';
 
 interface Props {
   revealStart?: number;
@@ -36,7 +36,7 @@ const itemsFor = ({ categories }: { categories: StackItemCategory[] }) =>
         <div class='m-0 flex flex-wrap gap-2'>
           {itemsFor(group).map(({ name, icon }) => (
             <span class='border-border text-muted hover:bg-muted/10 inline-flex cursor-default items-center gap-1.5 rounded-full border px-2.5 py-1 transition-colors duration-(--duration-fast)'>
-              <Icon name={icon} class='size-4 shrink-0' />
+              <SVG name={icon} class='size-4 shrink-0' />
               <span class='text-xs'>{name}</span>
             </span>
           ))}
