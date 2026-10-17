@@ -116,6 +116,7 @@ const ogImage = new URL('/og-image.png', site.url);
                   {!isHomepage && (
                     <span class='inline-flex items-center gap-1.5'>
                       <SVG
+                        fill='currentColor'
                         name='arrow-left'
                         class='size-4 shrink-0 transition-transform duration-[var(--duration-quick)] ease-[var(--ease-smooth-out)] group-hover:-translate-x-0.5'
                       />
@@ -165,7 +166,7 @@ const ogImage = new URL('/og-image.png', site.url);
         class='bg-bg-secondary text-muted hover:text-primary invisible fixed right-6 bottom-6 flex size-11 cursor-pointer items-center justify-center rounded-full p-0 opacity-0 transition-opacity duration-(--duration-fast)'
         aria-label='Scroll to top'
       >
-        <SVG name='arrow-top' class='size-4' />
+        <SVG fill='currentColor' name='arrow-top' class='size-4' />
       </button>
 
       <div
