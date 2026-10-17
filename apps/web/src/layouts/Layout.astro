@@ -109,6 +109,7 @@ const ogImage = new URL('/og-image.png', site.url);
               <div class='flex flex-col gap-1.5'>
                 <a
                   href={backTo}
+                  data-history-back
                   data-astro-prefetch
                   class='link-underline group text-muted hover:text-primary w-fit self-start'
                 >
@@ -320,4 +321,45 @@ const ogImage = new URL('/og-image.png', site.url);
 
   setupSiteTooltip();
   document.addEventListener('astro:page-load', setupSiteTooltip);
+</script>
+
+<script>
+  // If the user arrived here from another page on the site, the back link goes
+  // back in history instead of navigating; otherwise it falls back to `href`.
+  function setupHistoryBack() {
+    const link = document.querySelector<HTMLAnchorElement>(
+      '[data-history-back]',
+    );
+    if (!link) return;
+
+    link.addEventListener('click', (event) => {
+      // Only intercept plain left-clicks, so middle-click, cmd/ctrl-click,
+      // and shift-click keep their browser defaults.
+      if (
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      )
+        return;
+
+      const referrer = document.referrer;
+      if (!referrer) return;
+
+      try {
+        const referrerUrl = new URL(referrer);
+        if (referrerUrl.origin !== window.location.origin) return;
+        if (referrerUrl.pathname === window.location.pathname) return;
+      } catch {
+        return;
+      }
+
+      event.preventDefault();
+      history.back();
+    });
+  }
+
+  setupHistoryBack();
+  document.addEventListener('astro:page-load', setupHistoryBack);
 </script>
