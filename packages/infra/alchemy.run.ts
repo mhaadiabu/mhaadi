@@ -28,7 +28,15 @@ export const web = await Vite("web", {
   cwd: "../../apps/web",
   assets: {
     directory: "dist",
-    run_worker_first: true,
+    run_worker_first: [
+      "/*",
+      "!/_astro/*",
+      "!/favicon.ico",
+      "!/favicon.png",
+      "!/apple-touch-icon.png",
+      "!/og-image.png",
+      "!/robots.txt",
+    ],
     not_found_handling: "404-page",
   },
   script: REDIRECT_SCRIPT,
