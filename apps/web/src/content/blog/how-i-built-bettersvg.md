@@ -72,4 +72,6 @@ i'm holding off on publishing 0.5.2 for now. i've also been [working on the Next
 
 i started with an SVG Derrick already had and wanted on the screen. a few releases later i still open a fresh app and try to put one icon on the screen. it's a good way to find the next bit of setup i want to get rid of.
 
-later nerds
+i've been looking forward to putting this out. if you try BetterSVG and run into something weird, [tell me about it](https://x.com/mhaadiabu). questions about the build are welcome too.
+
+bye nerds!
