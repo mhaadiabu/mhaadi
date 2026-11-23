@@ -1,0 +1,9 @@
+{
+  "name": "mhaadi",
+  "compatibility_date": "2026-11-23",
+  "previews": {},
+  "assets": {
+    "directory": "./apps/web/dist",
+    "not_found_handling": "404-page"
+  }
+}
