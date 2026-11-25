@@ -14,23 +14,23 @@
     "check-types": "astro sync && tsrs --noEmit"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/sitemap": "^3.7.6",
     "@fontsource-variable/geist-mono": "^5.3.0",
     "@fontsource-variable/instrument-sans": "^5.3.0",
     "@fontsource-variable/public-sans": "^5.3.0",
     "@mhaadi/svg": "^0.5.1",
     "@portfolio/env": "workspace:*",
-    "astro": "^7.2.4",
-    "dotenv": "^17.4.2",
-    "sharp": "^0.35.3",
-    "zod": "^4.4.3"
+    "astro": "^7.4.13",
+    "dotenv": "^18.0.10",
+    "sharp": "^0.35.5",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@portfolio/config": "workspace:*",
-    "@tailwindcss/vite": "^4.3.3",
-    "prettier-plugin-astro": "^0.14.1",
+    "@tailwindcss/vite": "^4.3.5",
+    "prettier-plugin-astro": "^1.1.2",
     "prettier-plugin-tailwindcss": "^0.8.1",
-    "tailwindcss": "^4.3.3",
+    "tailwindcss": "^4.3.5",
     "tsrs": "7.1.0-beta.tsrs5"
   }
 }

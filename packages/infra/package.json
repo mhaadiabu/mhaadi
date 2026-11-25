@@ -16,7 +16,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "catalog:",
     "@portfolio/config": "workspace:*",
-    "alchemy": "^0.93.12",
+    "alchemy": "^0.94.0",
     "tsrs": "catalog:"
   }
 }
