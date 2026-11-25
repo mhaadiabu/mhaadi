@@ -7,7 +7,7 @@
     "deploy": "alchemy deploy",
     "destroy": "alchemy destroy",
     "lint": "oxlint",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsrs --noEmit"
   },
   "dependencies": {
     "dotenv": "catalog:",
@@ -17,6 +17,6 @@
     "@cloudflare/workers-types": "catalog:",
     "@portfolio/config": "workspace:*",
     "alchemy": "^0.93.12",
-    "typescript": "catalog:"
+    "tsrs": "catalog:"
   }
 }
