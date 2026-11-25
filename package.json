@@ -16,6 +16,7 @@
   },
   "type": "module",
   "scripts": {
+    "lint:typecheck": "TSRS_FAST=1 oxlint --type-aware --type-check",
     "dev": "turbo dev",
     "build": "turbo build",
     "check-types": "turbo check-types",
@@ -36,7 +37,7 @@
   "devDependencies": {
     "@types/node": "^26.2.0",
     "@portfolio/config": "workspace:*",
-    "oxlint": "^1.79.0",
+    "oxlint": "^1.92.0",
     "turbo": "^2.10.11",
     "tsrs": "7.1.0-beta.tsrs5"
   },
