@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "lint": "oxlint",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsrs --noEmit"
   },
   "exports": {
     "./web": "./src/web.ts"
@@ -17,6 +17,6 @@
   },
   "devDependencies": {
     "@portfolio/config": "workspace:*",
-    "typescript": "catalog:"
+    "tsrs": "catalog:"
   }
 }
